@@ -279,7 +279,7 @@ export default function HomePage() {
                   categoryColor: 'bg-amber-700',
                   productName: '아몬드 슬라이스 (Almond Slice)',
                   tags: ['#제과제빵', '#토핑', '#고소함'],
-                  image: '/images/product1.png',
+                  image: '/images/GOODS2_1505956856.jpg',
                   link: '/products/almond-slice'
                 },
                 {
@@ -289,7 +289,7 @@ export default function HomePage() {
                   categoryColor: 'bg-amber-600',
                   productName: '피칸 (Pecan)',
                   tags: ['#프리미엄', '#제과', '#건강간식'],
-                  image: '/images/product2.jpg',
+                  image: '/images/GOODS2_1506042521.jpg',
                   link: '/products/pecan'
                 },
                 {
@@ -299,7 +299,7 @@ export default function HomePage() {
                   categoryColor: 'bg-green-700',
                   productName: '코코넛 파우더 (Coconut Powder)',
                   tags: ['#천연재료', '#디저트', '#베이킹'],
-                  image: '/images/product3.jpg',
+                  image: '/images/GOODS2_1619680932.png',
                   link: '/products/coconut'
                 }
               ] : [
@@ -310,7 +310,7 @@ export default function HomePage() {
                   categoryColor: 'bg-yellow-700',
                   productName: '업소용 물엿',
                   tags: ['#요리용', '#제과제빵', '#대용량'],
-                  image: '/images/product1.png',
+                  image: '/images/GOODS2_1619681459.png',
                   link: '/products/syrup'
                 },
                 {
@@ -320,7 +320,7 @@ export default function HomePage() {
                   categoryColor: 'bg-white',
                   productName: '백설탕 (White Sugar)',
                   tags: ['#제과제빵', '#요리', '#정제'],
-                  image: '/images/product2.jpg',
+                  image: '/images/GOODS2_1619681613.png',
                   link: '/products/white-sugar'
                 },
                 {
@@ -330,7 +330,7 @@ export default function HomePage() {
                   categoryColor: 'bg-amber-500',
                   productName: '글루코스 시럽 (Glucose Syrup)',
                   tags: ['#제과', '#글레이즈', '#고급'],
-                  image: '/images/product3.jpg',
+                  image: '/images/GOODS2_1619681845.png',
                   link: '/products/glucose'
                 }
                 ]).map((product, index) => (
