@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeTab, setActiveTab] = useState('grain'); // grain, nut, sugar
 
   const mainSlides = [
     {
@@ -36,72 +37,94 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
 
+      {/* Floating Consultation Button */}
+      <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-40">
+        <Link
+          href="/contact"
+          className="bg-[#1e3a8a] text-white w-16 h-16 rounded-full shadow-xl hover:bg-[#1e40af] transition-all duration-300 flex items-center justify-center group hover:scale-110"
+        >
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        </Link>
+        <div className="mt-2 bg-white rounded-lg shadow-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="text-xs font-bold text-gray-700 whitespace-nowrap">상담문의</span>
+        </div>
+      </div>
+
       {/* Main Header */}
       <header className="bg-white border-b border-gray-200 relative z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-24">
-            {/* Logo */}
-            <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-              <img
-                src="/images/logo.png"
-                alt="에이스유통주식회사"
-                className="h-12 w-auto"
-              />
+        <div className="flex items-center h-24">
+          {/* Logo - Far Left */}
+          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity pl-8">
+            <img
+              src="/images/logo.png"
+              alt="에이스유통주식회사"
+              className="h-12 w-auto"
+            />
+          </Link>
+
+          {/* Main Navigation - Spread Wide */}
+          <nav className="hidden lg:flex items-center flex-1 justify-center space-x-32">
+            <div className="relative group">
+              <button className="text-gray-900 font-medium text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative">
+                회사소개
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+              </button>
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-0">
+                <Link href="/about/greeting" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">인사말</Link>
+                <Link href="/about/location" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">찾아오시는길</Link>
+              </div>
+            </div>
+
+            <div className="relative group">
+              <button className="text-gray-900 font-medium text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative">
+                제품소개
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+              </button>
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-0">
+                <Link href="/products/all" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">전체</Link>
+                <Link href="/products/legume" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">두서류가공품</Link>
+                <Link href="/products/grain" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">곡류가공품</Link>
+                <Link href="/products/nut" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">견과가공품</Link>
+                <Link href="/products/dairy" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">유지 및 유가공품</Link>
+                <Link href="/products/coffee" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">커피오가공품</Link>
+                <Link href="/products/sugar" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">당류가공품</Link>
+                <Link href="/products/frozen" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">냉동생지류</Link>
+                <Link href="/products/flour" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">잡가루</Link>
+                <Link href="/products/vegetable" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">과채가공품</Link>
+                <Link href="/products/meat" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">축산가공품</Link>
+              </div>
+            </div>
+
+            <div className="relative group">
+              <button className="text-gray-900 font-medium text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative">
+                커뮤니티
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+              </button>
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-0">
+                <Link href="/community/notice" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">공지사항</Link>
+                <Link href="/community/news" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">보도자료</Link>
+                <Link href="/community/recipe" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">레시피</Link>
+                <Link href="/community/qna" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">Q&A</Link>
+              </div>
+            </div>
+
+            <Link href="/contact" className="text-gray-900 font-medium text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer">
+              온라인 문의
             </Link>
+          </nav>
 
-            {/* Main Navigation */}
-            <nav className="hidden lg:flex items-center space-x-12">
-              <div className="relative group">
-                <button className="text-gray-900 font-medium text-base py-8 hover:text-primary">
-                  회사소개
-                </button>
-                <div className="absolute top-full left-0 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                  <Link href="/about/greeting" className="block px-6 py-3 hover:bg-gray-50">인사말</Link>
-                  <Link href="/about/location" className="block px-6 py-3 hover:bg-gray-50">찾아오시는길</Link>
-                </div>
-              </div>
-
-              <div className="relative group">
-                <button className="text-gray-900 font-medium text-base py-8 hover:text-primary">
-                  제품소개
-                </button>
-                <div className="absolute top-full left-0 w-56 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all max-h-96 overflow-y-auto">
-                  <Link href="/products/all" className="block px-6 py-3 hover:bg-gray-50">전체</Link>
-                  <Link href="/products/legume" className="block px-6 py-3 hover:bg-gray-50">두서류가공품</Link>
-                  <Link href="/products/grain" className="block px-6 py-3 hover:bg-gray-50">곡류가공품</Link>
-                  <Link href="/products/nut" className="block px-6 py-3 hover:bg-gray-50">견과가공품</Link>
-                  <Link href="/products/dairy" className="block px-6 py-3 hover:bg-gray-50">유지 및 유가공품</Link>
-                  <Link href="/products/coffee" className="block px-6 py-3 hover:bg-gray-50">커피오가공품</Link>
-                  <Link href="/products/sugar" className="block px-6 py-3 hover:bg-gray-50">당류가공품</Link>
-                  <Link href="/products/frozen" className="block px-6 py-3 hover:bg-gray-50">냉동생지류</Link>
-                  <Link href="/products/flour" className="block px-6 py-3 hover:bg-gray-50">잡가루</Link>
-                  <Link href="/products/vegetable" className="block px-6 py-3 hover:bg-gray-50">과채가공품</Link>
-                  <Link href="/products/meat" className="block px-6 py-3 hover:bg-gray-50">축산가공품</Link>
-                </div>
-              </div>
-
-              <div className="relative group">
-                <button className="text-gray-900 font-medium text-base py-8 hover:text-primary">
-                  커뮤니티
-                </button>
-                <div className="absolute top-full left-0 w-48 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                  <Link href="/community/notice" className="block px-6 py-3 hover:bg-gray-50">공지사항</Link>
-                  <Link href="/community/news" className="block px-6 py-3 hover:bg-gray-50">보도자료</Link>
-                  <Link href="/community/recipe" className="block px-6 py-3 hover:bg-gray-50">레시피</Link>
-                  <Link href="/community/qna" className="block px-6 py-3 hover:bg-gray-50">Q&A</Link>
-                </div>
-              </div>
-
-              <Link href="/contact" className="text-gray-900 font-medium text-base py-8 hover:text-primary">
-                온라인 문의
-              </Link>
-            </nav>
+          {/* Right Side - Login/Language */}
+          <div className="hidden lg:flex items-center gap-4 pr-8">
+            <Link href="/login" className="text-gray-600 text-sm hover:text-gray-900">로그인</Link>
+            <Link href="/register" className="text-gray-600 text-sm hover:text-gray-900">회원가입</Link>
           </div>
         </div>
       </header>
 
       {/* Main Slider */}
-      <section className="relative h-[500px] overflow-hidden">
+      <section className="relative h-[600px] overflow-hidden">
         {mainSlides.map((slide, index) => (
           <div
             key={index}
@@ -109,40 +132,56 @@ export default function HomePage() {
               currentSlide === index ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            {/* Background Image with Blur */}
+            {/* Background Image */}
             <div className="absolute inset-0">
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url('${slide.bgImage}')` }}
               />
-              {/* Overlay for blur effect */}
-              <div className="absolute inset-0 backdrop-blur-[2px] bg-white/40" />
+              {/* Dark overlay for better text visibility */}
+              <div className="absolute inset-0 bg-black/30" />
             </div>
 
             {/* Content */}
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-              <div className="max-w-2xl">
-                <h2 className="text-5xl font-bold text-primary mb-4 drop-shadow-lg">{slide.title}</h2>
-                <p className="text-xl text-gray-800 mb-8 drop-shadow">{slide.subtitle}</p>
+              <div className="max-w-3xl">
+                <h2 className="text-7xl font-bold text-white mb-6 leading-tight">
+                  Right Food<br />Right Person
+                </h2>
+                <p className="text-xl text-white mb-10 font-medium">
+                  생명 존중 정신을 바탕으로<br />
+                  인류 건강문화에 기여하겠습니다.
+                </p>
                 <Link
                   href="/products"
-                  className="inline-block bg-primary text-white px-8 py-3 font-medium hover:bg-primary-dark transition shadow-lg"
+                  className="inline-block bg-white text-gray-900 px-10 py-4 font-semibold hover:bg-gray-100 transition shadow-lg"
                 >
-                  제품 보러가기
+                  View More
                 </Link>
               </div>
             </div>
+
           </div>
         ))}
 
+        {/* Scroll Down Indicator */}
+        <div className="absolute bottom-8 right-8 z-20 text-white text-center hidden lg:block">
+          <div className="text-sm font-medium mb-2">Scroll</div>
+          <div className="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center mx-auto animate-bounce">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+
         {/* Slider Controls */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
           {mainSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition ${
-                currentSlide === index ? 'bg-primary' : 'bg-white/70'
+                currentSlide === index ? 'bg-white' : 'bg-white/50'
               }`}
             />
           ))}
@@ -152,57 +191,158 @@ export default function HomePage() {
       {/* Product Categories */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-8">
-            {/* Main Product Grid */}
-            <div className="flex-1">
-              <div className="grid md:grid-cols-3 gap-6 mb-12">
-                {[
-                  {
-                    icon: '🍞',
-                    title: '프리미엄',
-                    subtitle: '제빵개량제',
-                    category: '제빵재료',
-                    categoryColor: 'bg-amber-600',
-                    productName: '아뺑드 DH PRO (제빵개량제)',
-                    tags: ['#식빵및과자빵', '#포카치아', '#밀가루100%대비'],
-                    image: '/images/product1.png',
-                    link: '/products/dhpro'
-                  },
-                  {
-                    icon: '🥖',
-                    title: '바게트, 치아바타',
-                    subtitle: '프랑스산 밀가루',
-                    category: '밀가루',
-                    categoryColor: 'bg-orange-500',
-                    productName: '아뺑드 밀가루 T55',
-                    tags: ['#바게트', '#치아바타', '#여러분야의빵'],
-                    image: '/images/product2.jpg',
-                    link: '/products/t55'
-                  },
-                  {
-                    icon: '🥐',
-                    title: '아티장 베이커를 위한',
-                    subtitle: '프리미엄 밀가루',
-                    category: '밀가루',
-                    categoryColor: 'bg-red-600',
-                    productName: '아뺑드 밀가루 T65',
-                    tags: ['#르빵임태언셰프', '#공동연구개발', '#아티장베이커'],
-                    image: '/images/product3.jpg',
-                    link: '/products/t65'
-                  }
-                ].map((product, index) => (
+          {/* Section Title */}
+          <h2 className="text-3xl font-bold text-center mb-12">추천제품</h2>
+
+          <div className="max-w-6xl mx-auto">
+            {/* Tab Navigation */}
+            <div className="flex gap-4 mb-8 border-b border-gray-200 justify-center">
+              <button
+                  onClick={() => setActiveTab('grain')}
+                  className={`px-6 py-3 font-semibold transition-colors relative ${
+                    activeTab === 'grain'
+                      ? 'text-primary'
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  곡류가공품
+                  {activeTab === 'grain' && (
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></div>
+                  )}
+                </button>
+                <button
+                  onClick={() => setActiveTab('nut')}
+                  className={`px-6 py-3 font-semibold transition-colors relative ${
+                    activeTab === 'nut'
+                      ? 'text-primary'
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  견과가공품
+                  {activeTab === 'nut' && (
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></div>
+                  )}
+                </button>
+                <button
+                  onClick={() => setActiveTab('sugar')}
+                  className={`px-6 py-3 font-semibold transition-colors relative ${
+                    activeTab === 'sugar'
+                      ? 'text-primary'
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  당류가공품
+                  {activeTab === 'sugar' && (
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></div>
+                  )}
+                </button>
+            </div>
+
+            {/* Product Grid */}
+            <div className="grid md:grid-cols-3 gap-6">
+              {(activeTab === 'grain' ? [
+                {
+                  title: '프리미엄',
+                  subtitle: '제빵개량제',
+                  category: '제빵재료',
+                  categoryColor: 'bg-amber-600',
+                  productName: '아뺑드 DH PRO (제빵개량제)',
+                  tags: ['#식빵및과자빵', '#포카치아', '#밀가루100%대비'],
+                  image: '/images/product1.png',
+                  link: '/products/dhpro'
+                },
+                {
+                  title: '바게트, 치아바타',
+                  subtitle: '프랑스산 밀가루',
+                  category: '밀가루',
+                  categoryColor: 'bg-orange-500',
+                  productName: '아뺑드 밀가루 T55',
+                  tags: ['#바게트', '#치아바타', '#여러분야의빵'],
+                  image: '/images/product2.jpg',
+                  link: '/products/t55'
+                },
+                {
+                  title: '아티장 베이커를 위한',
+                  subtitle: '프리미엄 밀가루',
+                  category: '밀가루',
+                  categoryColor: 'bg-red-600',
+                  productName: '아뺑드 밀가루 T65',
+                  tags: ['#르빵임태언셰프', '#공동연구개발', '#아티장베이커'],
+                  image: '/images/product3.jpg',
+                  link: '/products/t65'
+                }
+              ] : activeTab === 'nut' ? [
+                {
+                  title: '프리미엄',
+                  subtitle: '아몬드 슬라이스',
+                  category: '견과가공품',
+                  categoryColor: 'bg-amber-700',
+                  productName: '아몬드 슬라이스 (Almond Slice)',
+                  tags: ['#제과제빵', '#토핑', '#고소함'],
+                  image: '/images/product1.png',
+                  link: '/products/almond-slice'
+                },
+                {
+                  title: '고급',
+                  subtitle: '피칸',
+                  category: '견과가공품',
+                  categoryColor: 'bg-amber-600',
+                  productName: '피칸 (Pecan)',
+                  tags: ['#프리미엄', '#제과', '#건강간식'],
+                  image: '/images/product2.jpg',
+                  link: '/products/pecan'
+                },
+                {
+                  title: '천연',
+                  subtitle: '코코넛 파우더',
+                  category: '견과가공품',
+                  categoryColor: 'bg-green-700',
+                  productName: '코코넛 파우더 (Coconut Powder)',
+                  tags: ['#천연재료', '#디저트', '#베이킹'],
+                  image: '/images/product3.jpg',
+                  link: '/products/coconut'
+                }
+              ] : [
+                {
+                  title: '업소용',
+                  subtitle: '물엿',
+                  category: '당류가공품',
+                  categoryColor: 'bg-yellow-700',
+                  productName: '업소용 물엿',
+                  tags: ['#요리용', '#제과제빵', '#대용량'],
+                  image: '/images/product1.png',
+                  link: '/products/syrup'
+                },
+                {
+                  title: '제과제빵용',
+                  subtitle: '백설탕',
+                  category: '당류가공품',
+                  categoryColor: 'bg-white',
+                  productName: '백설탕 (White Sugar)',
+                  tags: ['#제과제빵', '#요리', '#정제'],
+                  image: '/images/product2.jpg',
+                  link: '/products/white-sugar'
+                },
+                {
+                  title: '프리미엄',
+                  subtitle: '글루코스 시럽',
+                  category: '당류가공품',
+                  categoryColor: 'bg-amber-500',
+                  productName: '글루코스 시럽 (Glucose Syrup)',
+                  tags: ['#제과', '#글레이즈', '#고급'],
+                  image: '/images/product3.jpg',
+                  link: '/products/glucose'
+                }
+                ]).map((product, index) => (
                   <Link
                     key={index}
                     href={product.link}
                     className="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300"
                   >
                     {/* Header */}
-                    <div className="p-6 bg-gray-50 flex items-center gap-3">
-                      <div className="text-4xl">{product.icon}</div>
-                      <div>
-                        <div className="text-sm text-gray-600">{product.title}</div>
-                        <div className="font-bold text-lg">{product.subtitle}</div>
-                      </div>
+                    <div className="p-6 bg-gray-50">
+                      <div className="text-sm text-gray-600">{product.title}</div>
+                      <div className="font-bold text-lg">{product.subtitle}</div>
                     </div>
 
                     {/* Product Image */}
@@ -238,85 +378,54 @@ export default function HomePage() {
                   </Link>
                 ))}
               </div>
+          </div>
+        </div>
+      </section>
 
-              {/* Bottom Banner */}
-              <div className="bg-gradient-to-r from-amber-50 to-orange-100 rounded-lg p-8 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="text-4xl">👨‍🍳</div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-1">고급 제빵 재료를 찾고 계신가요?</h3>
-                    <p className="text-gray-600">프랑스 정통 제빵 재료로 최고의 퀄리티를 만들어보세요</p>
-                  </div>
-                </div>
-                <Link
-                  href="/products"
-                  className="bg-primary text-white px-8 py-3 rounded font-medium hover:bg-primary-dark transition whitespace-nowrap"
-                >
-                  제품 보기
-                </Link>
+      {/* Info Cards Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Title */}
+          <h2 className="text-3xl font-bold text-center mb-12">왜 에이스유통인가?</h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Card 1 - 품질관리 */}
+            <div className="text-center">
+              <div className="bg-gray-100 rounded-lg p-8 mb-4">
+                <img
+                  src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop"
+                  alt="품질관리"
+                  className="w-full h-48 object-cover rounded-lg"
+                />
               </div>
+              <h3 className="text-xl font-bold mb-2">철저한 품질관리</h3>
+              <p className="text-gray-600">HACCP 인증을 통한 체계적인 품질관리 시스템으로 안전한 식품을 제공합니다</p>
             </div>
 
-            {/* Sidebar */}
-            <div className="w-80 space-y-6">
-              {/* Brand Categories */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-6">주요 브랜드</h3>
-                <div className="space-y-3">
-                  {[
-                    { name: '아뺑드', count: 45, color: 'bg-amber-600' },
-                    { name: '르스쿠르', count: 28, color: 'bg-blue-600' },
-                    { name: '그랑페르마쥬', count: 32, color: 'bg-red-600' },
-                    { name: '기타 브랜드', count: 19, color: 'bg-gray-600' }
-                  ].map((brand, index) => (
-                    <Link
-                      key={index}
-                      href={`/brand/${brand.name}`}
-                      className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition group"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 ${brand.color} rounded-full flex items-center justify-center text-white font-bold text-sm`}>
-                          {brand.count}
-                        </div>
-                        <span className="font-medium text-lg group-hover:text-primary transition">
-                          {brand.name}
-                        </span>
-                      </div>
-                      <svg className="w-5 h-5 text-gray-400 group-hover:text-primary transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
-                  ))}
-                </div>
+            {/* Card 2 - 신속배송 */}
+            <div className="text-center">
+              <div className="bg-gray-100 rounded-lg p-8 mb-4">
+                <img
+                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=300&fit=crop"
+                  alt="신속배송"
+                  className="w-full h-48 object-cover rounded-lg"
+                />
               </div>
+              <h3 className="text-xl font-bold mb-2">신속한 배송</h3>
+              <p className="text-gray-600">전국 당일 배송 시스템으로 신선한 상태의 제품을 빠르게 전달합니다</p>
+            </div>
 
-              {/* All Category */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-6">All Category</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { name: '두서류가공품', icon: '🫘' },
-                    { name: '곡류가공품', icon: '🌾' },
-                    { name: '유가공품', icon: '🧈' },
-                    { name: '냉동생지류', icon: '❄️' },
-                    { name: '잡가루', icon: '🍞' },
-                    { name: '과채가공품', icon: '🥬' }
-                  ].map((category, index) => (
-                    <Link
-                      key={index}
-                      href={`/category/${category.name}`}
-                      className="flex flex-col items-center justify-center p-3 border border-gray-200 rounded-lg hover:border-primary hover:bg-blue-50 transition group"
-                    >
-                      <div className="text-2xl mb-1 group-hover:scale-110 transition-transform">
-                        {category.icon}
-                      </div>
-                      <span className="text-xs font-medium text-center group-hover:text-primary transition leading-tight">
-                        {category.name}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
+            {/* Card 3 - 고객만족 */}
+            <div className="text-center">
+              <div className="bg-gray-100 rounded-lg p-8 mb-4">
+                <img
+                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop"
+                  alt="고객서비스"
+                  className="w-full h-48 object-cover rounded-lg"
+                />
               </div>
+              <h3 className="text-xl font-bold mb-2">전문 상담 서비스</h3>
+              <p className="text-gray-600">전문 상담사가 제품 선택부터 구매까지 친절하게 안내해드립니다</p>
             </div>
           </div>
         </div>
@@ -383,35 +492,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quick Menu */}
-      <section className="py-16 bg-primary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 text-white">
-            <div className="text-center">
-              <div className="text-4xl mb-4">📋</div>
-              <h3 className="text-xl font-bold mb-2">제품 카탈로그</h3>
-              <p className="mb-4 opacity-90">전체 제품 라인업을 확인하세요</p>
-              <Link href="/catalog" className="inline-block border-2 border-white px-6 py-2 hover:bg-white hover:text-primary transition">
-                다운로드
-              </Link>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">💬</div>
-              <h3 className="text-xl font-bold mb-2">1:1 문의</h3>
-              <p className="mb-4 opacity-90">궁금한 사항을 문의해주세요</p>
-              <Link href="/contact/inquiry" className="inline-block border-2 border-white px-6 py-2 hover:bg-white hover:text-primary transition">
-                문의하기
-              </Link>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">📦</div>
-              <h3 className="text-xl font-bold mb-2">대량구매</h3>
-              <p className="mb-4 opacity-90">대량 구매 시 특별 할인 혜택</p>
-              <Link href="/contact/bulk" className="inline-block border-2 border-white px-6 py-2 hover:bg-white hover:text-primary transition">
-                상담신청
-              </Link>
-            </div>
-          </div>
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-[#1e3a8a] to-[#1e40af]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            최고의 식자재 파트너가 필요하신가요?
+          </h2>
+          <p className="text-xl text-white/90 mb-8">
+            30년 전통의 에이스유통이 귀사의 성공적인 비즈니스를 도와드립니다
+          </p>
+          <Link
+            href="/contact"
+            className="inline-block bg-white text-[#1e3a8a] px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl"
+          >
+            상담 신청하기
+          </Link>
         </div>
       </section>
 

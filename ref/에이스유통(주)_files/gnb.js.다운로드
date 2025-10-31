@@ -1,0 +1,55 @@
+var oneNum = -1;
+var twoNum = -1;
+
+$(function(){
+	getURL();
+
+	//GNB
+	var $gnb = $("#gnb");
+	var $twoDep = $("#gnb>ul>li>ul");
+	var $gnbBg = $("#wrap .active_bg");
+	$gnb.bind("mouseenter focusin", function(){
+		$twoDep.stop().slideDown(200);
+		$gnbBg.stop().css({"display":"block", "opacity":"0"}).animate({opacity:0.8, height:310}, 200);
+	});
+		
+	$gnb.bind("mouseleave focusout", function(){
+		$twoDep.stop().slideUp(200);
+		$gnbBg.stop().css({"display":"block", "opacity":"1"}).animate({opacity:0, height:0}, 200);
+	});
+	$twoDep.parent().each(function(){
+		$(this).hover(function(){
+			$(this).find(">a").addClass("on");
+		}, function(){
+			$(this).find(">a").removeClass("on");
+		});
+	});	
+});
+
+
+function getURL()
+{
+	// 회사소개
+	if(location.pathname.indexOf("/about/greeting.php") > -1) {oneNum = 0; twoNum = 0;};
+	//if(location.pathname.indexOf("/about/history.php") > -1) {oneNum = 0; twoNum = 1;};
+	if(location.pathname.indexOf("/about/location.php") > -1) {oneNum = 0; twoNum = 1;};
+	
+	// 제품소개
+	if(location.pathname.indexOf("/product/all_list.php") > -1) {oneNum = 1; twoNum = 0;};
+	if(location.pathname.indexOf("/product/product_list.php") > -1) {oneNum = 1; twoNum = 1;};
+	if(location.pathname.indexOf("/product/product_list.php") > -1) {oneNum = 1; twoNum = 2;};
+	
+	// 커뮤니티
+	if(location.pathname.indexOf("/community/notice.php") > -1) {oneNum = 2; twoNum = 0;};
+	if(location.pathname.indexOf("/community/press.php") > -1) {oneNum = 2; twoNum = 1;};
+	if(location.pathname.indexOf("/community/recipe.php") > -1) {oneNum = 2; twoNum = 2;};
+	if(location.pathname.indexOf("/community/q_a.php") > -1) {oneNum = 2; twoNum = 3;};
+
+	// 구인구직
+	if(location.pathname.indexOf("/recruit/offer_01.php") > -1) {oneNum = 3; twoNum = 0;};
+	if(location.pathname.indexOf("/recruit/offer_02.php") > -1) {oneNum = 3; twoNum = 1;};
+	
+	// 온라인 문의
+	if(location.pathname.indexOf("/inquiry/inquiry.php") > -1) {oneNum = 4; twoNum = 0;};
+			
+};
