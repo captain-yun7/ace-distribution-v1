@@ -192,7 +192,13 @@ export default function HomePage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Title */}
-          <h2 className="text-3xl font-bold text-center mb-12">추천제품</h2>
+          <div className="text-center mb-16">
+            <div className="inline-block">
+              <h2 className="text-5xl font-bold text-gray-900 mb-3">추천제품</h2>
+              <div className="h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+            </div>
+            <p className="text-gray-600 mt-4 text-lg">고객님을 위한 엄선된 프리미엄 식자재</p>
+          </div>
 
           <div className="max-w-6xl mx-auto">
             {/* Tab Navigation */}
@@ -378,6 +384,19 @@ export default function HomePage() {
                   </Link>
                 ))}
               </div>
+
+              {/* View All Products Button */}
+              <div className="flex justify-center mt-12">
+                <Link
+                  href="/products/all"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#1e3a8a] text-white font-bold text-lg rounded-lg hover:bg-[#1e40af] transition-all duration-300 shadow-md hover:shadow-xl"
+                >
+                  모든 제품 보기
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
           </div>
         </div>
       </section>
@@ -386,7 +405,13 @@ export default function HomePage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Title */}
-          <h2 className="text-3xl font-bold text-center mb-12">왜 에이스유통인가?</h2>
+          <div className="text-center mb-16">
+            <div className="inline-block">
+              <h2 className="text-5xl font-bold text-gray-900 mb-3">왜 에이스유통인가?</h2>
+              <div className="h-1 bg-gradient-to-r from-transparent via-[#1e3a8a] to-transparent"></div>
+            </div>
+            <p className="text-gray-600 mt-4 text-lg">30년 전통의 신뢰와 품질로 함께합니다</p>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Card 1 - 품질관리 */}
@@ -434,6 +459,15 @@ export default function HomePage() {
       {/* Notice Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Title */}
+          <div className="text-center mb-16">
+            <div className="inline-block">
+              <h2 className="text-5xl font-bold text-gray-900 mb-3">최신소식</h2>
+              <div className="h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+            </div>
+            <p className="text-gray-600 mt-4 text-lg">에이스유통의 새로운 소식을 전합니다</p>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-8">
             {/* 공지사항 */}
             <div className="bg-white border border-gray-200">
@@ -443,23 +477,32 @@ export default function HomePage() {
                   더보기 +
                 </Link>
               </div>
-              <ul className="divide-y divide-gray-200">
+              <div className="divide-y divide-gray-200">
                 {[
-                  { title: '[공지] 2024년 설 연휴 배송 안내', date: '2024.01.15' },
-                  { title: '[안내] 신제품 입고 안내 - 프랑스산 치즈', date: '2024.01.10' },
-                  { title: '[공지] 홈페이지 리뉴얼 안내', date: '2024.01.05' },
-                  { title: '[안내] 겨울철 배송 관련 안내사항', date: '2024.01.02' },
+                  { title: '[공지] 2024년 설 연휴 배송 안내', date: '2024.01.15', image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=300&h=200&fit=crop' },
+                  { title: '[안내] 신제품 입고 안내 - 프랑스산 치즈', date: '2024.01.10', image: 'https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=300&h=200&fit=crop' },
+                  { title: '[공지] 홈페이지 리뉴얼 안내', date: '2024.01.05', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=200&fit=crop' },
+                  { title: '[안내] 겨울철 배송 관련 안내사항', date: '2024.01.02', image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=300&h=200&fit=crop' },
                 ].map((item, index) => (
-                  <li key={index}>
-                    <Link href="#" className="block px-6 py-4 hover:bg-gray-50 group">
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-900 group-hover:text-primary">{item.title}</span>
-                        <span className="text-sm text-gray-500">{item.date}</span>
+                  <Link key={index} href="#" className="block hover:bg-gray-50 group">
+                    <div className="flex gap-4 p-4">
+                      <div className="flex-shrink-0">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-24 h-16 object-cover rounded"
+                        />
                       </div>
-                    </Link>
-                  </li>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-gray-900 group-hover:text-primary font-medium mb-1 truncate">
+                          {item.title}
+                        </div>
+                        <div className="text-sm text-gray-500">{item.date}</div>
+                      </div>
+                    </div>
+                  </Link>
                 ))}
-              </ul>
+              </div>
             </div>
 
             {/* 보도자료 */}
@@ -470,23 +513,32 @@ export default function HomePage() {
                   더보기 +
                 </Link>
               </div>
-              <ul className="divide-y divide-gray-200">
+              <div className="divide-y divide-gray-200">
                 {[
-                  { title: '에이스유통, 유럽 프리미엄 치즈 독점 공급 계약 체결', date: '2024.01.12' },
-                  { title: '식품안전관리 우수업체 인증 획득', date: '2024.01.08' },
-                  { title: '2023년 매출 전년 대비 30% 성장', date: '2024.01.03' },
-                  { title: '친환경 물류센터 준공식 개최', date: '2023.12.28' },
+                  { title: '에이스유통, 유럽 프리미엄 치즈 독점 공급 계약 체결', date: '2024.01.12', image: 'https://images.unsplash.com/photo-1452195100486-9cc805987862?w=300&h=200&fit=crop' },
+                  { title: '식품안전관리 우수업체 인증 획득', date: '2024.01.08', image: 'https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=300&h=200&fit=crop' },
+                  { title: '2023년 매출 전년 대비 30% 성장', date: '2024.01.03', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=300&h=200&fit=crop' },
+                  { title: '친환경 물류센터 준공식 개최', date: '2023.12.28', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=300&h=200&fit=crop' },
                 ].map((item, index) => (
-                  <li key={index}>
-                    <Link href="#" className="block px-6 py-4 hover:bg-gray-50 group">
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-900 group-hover:text-primary">{item.title}</span>
-                        <span className="text-sm text-gray-500">{item.date}</span>
+                  <Link key={index} href="#" className="block hover:bg-gray-50 group">
+                    <div className="flex gap-4 p-4">
+                      <div className="flex-shrink-0">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-24 h-16 object-cover rounded"
+                        />
                       </div>
-                    </Link>
-                  </li>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-gray-900 group-hover:text-primary font-medium mb-1 truncate">
+                          {item.title}
+                        </div>
+                        <div className="text-sm text-gray-500">{item.date}</div>
+                      </div>
+                    </div>
+                  </Link>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
