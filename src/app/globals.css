@@ -7,10 +7,13 @@
   --color-primary-dark: #1E3A8A;   /* blue-900 */
   --color-primary-light: #3B82F6;  /* blue-600 */
 
-  /* Secondary Green: 성장, 협력을 상징 */
-  --color-secondary: #059669;      /* emerald-600 */
-  --color-secondary-dark: #047857; /* emerald-700 */
-  --color-secondary-light: #10B981; /* emerald-500 */
+  /* Secondary Beige: 따뜻함, 자연, 식품을 상징 */
+  --color-secondary: #E8DCC8;      /* 베이지 */
+  --color-secondary-dark: #D4C5A9; /* 어두운 베이지 */
+  --color-secondary-light: #FAF8F5; /* 밝은 베이지 */
+  --color-beige-50: #FFFBF5;
+  --color-beige-100: #FFF8E7;
+  --color-beige-200: #F5F5DC;
 
   /* 텍스트 색상 - 검정/회색 계열 */
   --color-text-primary: #111827;   /* gray-900 */
