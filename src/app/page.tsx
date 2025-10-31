@@ -199,7 +199,7 @@ export default function HomePage() {
             <div className="flex gap-4 mb-8 border-b border-gray-200 justify-center">
               <button
                   onClick={() => setActiveTab('grain')}
-                  className={`px-6 py-3 font-semibold transition-colors relative ${
+                  className={`px-6 py-3 font-semibold transition-colors relative cursor-pointer ${
                     activeTab === 'grain'
                       ? 'text-primary'
                       : 'text-gray-500 hover:text-gray-700'
@@ -212,7 +212,7 @@ export default function HomePage() {
                 </button>
                 <button
                   onClick={() => setActiveTab('nut')}
-                  className={`px-6 py-3 font-semibold transition-colors relative ${
+                  className={`px-6 py-3 font-semibold transition-colors relative cursor-pointer ${
                     activeTab === 'nut'
                       ? 'text-primary'
                       : 'text-gray-500 hover:text-gray-700'
@@ -225,7 +225,7 @@ export default function HomePage() {
                 </button>
                 <button
                   onClick={() => setActiveTab('sugar')}
-                  className={`px-6 py-3 font-semibold transition-colors relative ${
+                  className={`px-6 py-3 font-semibold transition-colors relative cursor-pointer ${
                     activeTab === 'sugar'
                       ? 'text-primary'
                       : 'text-gray-500 hover:text-gray-700'
