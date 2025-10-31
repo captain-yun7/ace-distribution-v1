@@ -1,0 +1,302 @@
+// 에이스유통 - Prisma Schema
+// Database: PostgreSQL (Neon)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ===========================
+// NextAuth.js 관련
+// ===========================
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?   // 일반 로그인용 (bcrypt 해시)
+  phone         String?
+  company       String?   // 회사명
+  position      String?   // 직책
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  inquiries     Inquiry[]
+  downloads     UserDownload[]
+
+  @@map("users")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ===========================
+// 제품 카테고리 및 제품
+// ===========================
+
+model ProductCategory {
+  id          String   @id @default(cuid())
+  name        String   @unique // 카테고리명
+  displayName String   // 표시용 이름
+  description String?  @db.Text
+  order       Int      @default(0)
+  imageUrl    String?
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products    Product[]
+
+  @@map("product_categories")
+}
+
+model Product {
+  id           String          @id @default(cuid())
+  categoryId   String
+  name         String
+  code         String          @unique // 제품 코드
+  description  String          @db.Text
+  brand        String?         // 브랜드
+  manufacturer String?         // 제조사
+  origin       String?         // 원산지
+  price        Int?            // 가격 (원)
+  specs        Json?           // 상세 스펙 (JSON)
+  features     Json?           // 주요 특징 (JSON array)
+  imageUrl     String?
+  thumbnailUrl String?
+  images       Json?           // 추가 이미지들 (JSON array)
+  brochureUrl  String?         // 제품 브로셔 PDF
+  order        Int             @default(0)
+  stock        Int             @default(0) // 재고량
+  isPublished  Boolean         @default(true)
+  isFeatured   Boolean         @default(false) // 추천 제품
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  category     ProductCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@map("products")
+  @@index([categoryId])
+  @@index([code])
+}
+
+// ===========================
+// 다운로드 자료
+// ===========================
+
+model DownloadCategory {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  downloads Download[]
+
+  @@map("download_categories")
+}
+
+model Download {
+  id          String           @id @default(cuid())
+  categoryId  String
+  title       String
+  description String?          @db.Text
+  fileName    String
+  fileUrl     String           // 파일 URL
+  fileSize    Int              // 파일 크기 (bytes)
+  fileType    String           // 파일 타입 (pdf, zip 등)
+  version     String?          // 버전
+  downloads   Int              @default(0) // 다운로드 수
+  requireAuth Boolean          @default(false) // 로그인 필요 여부
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  category      DownloadCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  userDownloads UserDownload[]
+
+  @@map("downloads")
+  @@index([categoryId])
+}
+
+model UserDownload {
+  id          String   @id @default(cuid())
+  userId      String
+  downloadId  String
+  downloadedAt DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  download Download @relation(fields: [downloadId], references: [id], onDelete: Cascade)
+
+  @@map("user_downloads")
+  @@index([userId])
+  @@index([downloadId])
+}
+
+// ===========================
+// 뉴스 & 공지사항
+// ===========================
+
+model News {
+  id          String       @id @default(cuid())
+  title       String
+  category    NewsCategory
+  content     String       @db.Text // HTML 콘텐츠
+  excerpt     String?      @db.Text // 요약
+  thumbnailUrl String?
+  imageUrl    String?
+  author      String?
+  isPinned    Boolean      @default(false) // 중요 뉴스 (상단 고정)
+  views       Int          @default(0)     // 조회수
+  publishedAt DateTime     @default(now())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@map("news")
+  @@index([category])
+  @@index([publishedAt])
+}
+
+enum NewsCategory {
+  PRESS_RELEASE  // 보도자료
+  EVENT          // 이벤트
+  NOTICE         // 공지사항
+  BLOG           // 블로그
+}
+
+// ===========================
+// 문의하기
+// ===========================
+
+model Inquiry {
+  id          String        @id @default(cuid())
+  userId      String?       // 비회원도 가능
+  type        InquiryType
+  name        String
+  email       String
+  phone       String?
+  company     String?
+  subject     String
+  message     String        @db.Text
+  status      InquiryStatus @default(PENDING)
+  adminNote   String?       @db.Text // 관리자 메모
+  respondedAt DateTime?     // 답변 시각
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@map("inquiries")
+  @@index([userId])
+  @@index([type])
+  @@index([status])
+}
+
+enum InquiryType {
+  PRODUCT       // 제품 문의
+  PURCHASE      // 구매 문의
+  PARTNERSHIP   // 파트너십
+  SUPPORT       // 기술 지원
+  OTHER         // 기타
+}
+
+enum InquiryStatus {
+  PENDING   // 답변 대기
+  ANSWERED  // 답변 완료
+  CLOSED    // 종료
+}
+
+// ===========================
+// 회사 정보
+// ===========================
+
+model CompanyInfo {
+  id          String   @id @default(cuid())
+  key         String   @unique // 설정 키 (예: about, vision, history, location)
+  title       String?
+  content     String   @db.Text // HTML 콘텐츠
+  data        Json?    // 추가 데이터 (JSON)
+  updatedAt   DateTime @updatedAt
+
+  @@map("company_info")
+}
+
+// ===========================
+// 배너 & 슬라이드
+// ===========================
+
+model Banner {
+  id          String         @id @default(cuid())
+  title       String
+  description String?        @db.Text
+  imageUrl    String
+  mobileImageUrl String?     // 모바일용 이미지
+  linkUrl     String?
+  linkText    String?
+  position    BannerPosition @default(HOME_MAIN)
+  order       Int            @default(0)
+  isActive    Boolean        @default(true)
+  startDate   DateTime?      // 노출 시작일
+  endDate     DateTime?      // 노출 종료일
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@map("banners")
+  @@index([position])
+}
+
+enum BannerPosition {
+  HOME_MAIN      // 메인 페이지 Hero
+  HOME_SECONDARY // 메인 페이지 서브
+  PRODUCTS       // 제품 페이지
+  COMPANY        // 회사소개 페이지
+}
