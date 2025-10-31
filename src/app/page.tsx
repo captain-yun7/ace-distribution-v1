@@ -53,72 +53,83 @@ export default function HomePage() {
       </div>
 
       {/* Main Header */}
-      <header className="bg-white border-b border-gray-200 relative z-50">
+      <header className="bg-white border-b-2 border-gray-100 relative z-50 shadow-sm">
         <div className="flex items-center h-24">
           {/* Logo - Far Left */}
-          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity pl-8">
+          <Link href="/" className="flex items-center hover:opacity-80 transition-all duration-300 pl-8 group">
             <img
               src="/images/logo.png"
               alt="에이스유통주식회사"
-              className="h-12 w-auto"
+              className="h-12 w-auto group-hover:scale-105 transition-transform duration-300"
             />
           </Link>
 
           {/* Main Navigation - Spread Wide */}
           <nav className="hidden lg:flex items-center flex-1 justify-center space-x-32">
             <div className="relative group">
-              <button className="text-gray-900 font-medium text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative">
+              <button className="text-gray-900 font-bold text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative flex items-center gap-2 tracking-tight">
                 회사소개
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                </svg>
+                <span className="absolute bottom-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></span>
               </button>
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-0">
-                <Link href="/about/greeting" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">인사말</Link>
-                <Link href="/about/location" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">찾아오시는길</Link>
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-52 bg-white shadow-2xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-2 border border-gray-100 overflow-hidden">
+                <Link href="/about/greeting" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">인사말</Link>
+                <Link href="/about/location" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">찾아오시는길</Link>
               </div>
             </div>
 
             <div className="relative group">
-              <button className="text-gray-900 font-medium text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative">
+              <button className="text-gray-900 font-bold text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative flex items-center gap-2 tracking-tight">
                 제품소개
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                </svg>
+                <span className="absolute bottom-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></span>
               </button>
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-0">
-                <Link href="/products/all" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">전체</Link>
-                <Link href="/products/legume" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">두서류가공품</Link>
-                <Link href="/products/grain" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">곡류가공품</Link>
-                <Link href="/products/nut" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">견과가공품</Link>
-                <Link href="/products/dairy" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">유지 및 유가공품</Link>
-                <Link href="/products/coffee" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">커피오가공품</Link>
-                <Link href="/products/sugar" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">당류가공품</Link>
-                <Link href="/products/frozen" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">냉동생지류</Link>
-                <Link href="/products/flour" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">잡가루</Link>
-                <Link href="/products/vegetable" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">과채가공품</Link>
-                <Link href="/products/meat" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">축산가공품</Link>
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-52 bg-white shadow-2xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-2 border border-gray-100 overflow-hidden max-h-[500px] overflow-y-auto">
+                <Link href="/products/all" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">전체</Link>
+                <Link href="/products/legume" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">두서류가공품</Link>
+                <Link href="/products/grain" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">곡류가공품</Link>
+                <Link href="/products/nut" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">견과가공품</Link>
+                <Link href="/products/dairy" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">유지 및 유가공품</Link>
+                <Link href="/products/coffee" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">커피오가공품</Link>
+                <Link href="/products/sugar" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">당류가공품</Link>
+                <Link href="/products/frozen" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">냉동생지류</Link>
+                <Link href="/products/flour" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">잡가루</Link>
+                <Link href="/products/vegetable" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">과채가공품</Link>
+                <Link href="/products/meat" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">축산가공품</Link>
               </div>
             </div>
 
             <div className="relative group">
-              <button className="text-gray-900 font-medium text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative">
+              <button className="text-gray-900 font-bold text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative flex items-center gap-2 tracking-tight">
                 커뮤니티
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                </svg>
+                <span className="absolute bottom-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></span>
               </button>
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-48 bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-0">
-                <Link href="/community/notice" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">공지사항</Link>
-                <Link href="/community/news" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">보도자료</Link>
-                <Link href="/community/recipe" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">레시피</Link>
-                <Link href="/community/qna" className="block px-6 py-4 hover:bg-orange-50 hover:text-primary transition-colors">Q&A</Link>
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-52 bg-white shadow-2xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-2 border border-gray-100 overflow-hidden">
+                <Link href="/community/notice" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">공지사항</Link>
+                <Link href="/community/news" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">보도자료</Link>
+                <Link href="/community/recipe" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">레시피</Link>
+                <Link href="/community/qna" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">Q&A</Link>
               </div>
             </div>
 
-            <Link href="/contact" className="text-gray-900 font-medium text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer">
+            <Link href="/contact" className="text-gray-900 font-bold text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative group tracking-tight">
               온라인 문의
+              <span className="absolute bottom-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></span>
             </Link>
           </nav>
 
           {/* Right Side - Login/Language */}
-          <div className="hidden lg:flex items-center gap-4 pr-8">
-            <Link href="/login" className="text-gray-600 text-sm hover:text-gray-900">로그인</Link>
-            <Link href="/register" className="text-gray-600 text-sm hover:text-gray-900">회원가입</Link>
+          <div className="hidden lg:flex items-center gap-3 pr-8">
+            <Link href="/login" className="text-gray-700 text-sm font-semibold hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-gray-50">로그인</Link>
+            <span className="text-gray-300">|</span>
+            <Link href="/register" className="text-gray-700 text-sm font-semibold hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-gray-50">회원가입</Link>
           </div>
         </div>
       </header>
@@ -189,8 +200,26 @@ export default function HomePage() {
       </section>
 
       {/* Product Categories */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-white relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
+          <div className="absolute top-8 left-[15%] w-64 h-64">
+            <svg viewBox="0 0 200 200" className="text-primary">
+              {/* Shopping bag */}
+              <rect x="60" y="70" width="80" height="100" rx="5" fill="currentColor" opacity="0.3"/>
+              <path d="M75,70 L75,60 C75,45 85,35 100,35 C115,35 125,45 125,60 L125,70" stroke="currentColor" strokeWidth="4" fill="none"/>
+            </svg>
+          </div>
+          <div className="absolute top-8 right-[15%] w-64 h-64">
+            <svg viewBox="0 0 200 200" className="text-secondary">
+              {/* Food packaging boxes */}
+              <rect x="40" y="60" width="50" height="50" fill="currentColor" opacity="0.2" rx="3"/>
+              <rect x="100" y="60" width="50" height="50" fill="currentColor" opacity="0.25" rx="3"/>
+              <rect x="70" y="120" width="50" height="50" fill="currentColor" opacity="0.15" rx="3"/>
+            </svg>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Title */}
           <div className="text-center mb-16">
             <div className="inline-block">
@@ -402,8 +431,23 @@ export default function HomePage() {
       </section>
 
       {/* Info Cards Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 bg-white relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
+          <div className="absolute top-0 left-[15%] w-64 h-64">
+            <svg viewBox="0 0 200 200" className="text-[#1e3a8a]">
+              <rect x="50" y="50" width="100" height="100" fill="currentColor" opacity="0.3" rx="10"/>
+              <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" strokeWidth="4"/>
+              <path d="M70,100 L90,120 L130,80" stroke="currentColor" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <div className="absolute top-8 right-[12%] w-72 h-72">
+            <svg viewBox="0 0 200 200" className="text-primary">
+              <polygon points="100,20 180,180 20,180" fill="currentColor" opacity="0.2"/>
+            </svg>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Title */}
           <div className="text-center mb-16">
             <div className="inline-block">
@@ -457,8 +501,25 @@ export default function HomePage() {
       </section>
 
       {/* Notice Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-gray-50 relative">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-5 pointer-events-none overflow-visible">
+          <div className="absolute top-0 left-[15%] w-64 h-64">
+            <svg viewBox="0 0 200 200" className="text-primary">
+              <rect x="40" y="60" width="120" height="80" fill="currentColor" opacity="0.3" rx="5"/>
+              <line x1="60" y1="80" x2="140" y2="80" stroke="currentColor" strokeWidth="3"/>
+              <line x1="60" y1="100" x2="140" y2="100" stroke="currentColor" strokeWidth="3"/>
+              <line x1="60" y1="120" x2="120" y2="120" stroke="currentColor" strokeWidth="3"/>
+            </svg>
+          </div>
+          <div className="absolute top-4 right-[15%] w-64 h-64">
+            <svg viewBox="0 0 200 200" className="text-secondary">
+              <path d="M50,100 L100,50 L150,100 L100,150 Z" fill="currentColor" opacity="0.2"/>
+              <circle cx="100" cy="100" r="20" fill="currentColor" opacity="0.3"/>
+            </svg>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Title */}
           <div className="text-center mb-16">
             <div className="inline-block">
