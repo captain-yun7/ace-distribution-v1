@@ -38,18 +38,18 @@ export default function HomePage() {
     <div className="min-h-screen bg-white">
 
       {/* Floating Consultation Button */}
-      <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-40">
+      <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-40">
         <Link
           href="/contact"
-          className="bg-[#1e3a8a] text-white w-16 h-16 rounded-full shadow-xl hover:bg-[#1e40af] transition-all duration-300 flex items-center justify-center group hover:scale-110"
+          className="bg-[#1e3a8a] text-white px-4 py-6 rounded-l-lg shadow-xl hover:bg-[#1e40af] transition-all duration-300 flex flex-col items-center gap-2 font-bold"
         >
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
           </svg>
+          <span style={{ writingMode: 'vertical-rl' }} className="text-sm tracking-wider">
+            상담문의
+          </span>
         </Link>
-        <div className="mt-2 bg-white rounded-lg shadow-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <span className="text-xs font-bold text-gray-700 whitespace-nowrap">상담문의</span>
-        </div>
       </div>
 
       {/* Main Header */}
