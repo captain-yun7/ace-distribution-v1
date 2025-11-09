@@ -25,7 +25,7 @@ export default function HomePage() {
       </div>
 
       {/* Main Header */}
-      <header className="bg-white border-b-2 border-gray-100 relative z-50 shadow-sm">
+      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 hover:bg-white/90 hover:backdrop-blur-md hover:shadow-md hover:border-b-2 hover:border-gray-100">
         <div className="flex items-center h-24">
           {/* Logo - Far Left */}
           <Link href="/" className="flex items-center hover:opacity-80 transition-all duration-300 pl-8 group">
@@ -39,7 +39,7 @@ export default function HomePage() {
           {/* Main Navigation - Spread Wide */}
           <nav className="hidden lg:flex items-center flex-1 justify-center space-x-32">
             <div className="relative group">
-              <button className="text-gray-900 font-bold text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative flex items-center gap-2 tracking-tight">
+              <button className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative flex items-center gap-2 tracking-tight">
                 회사소개
                 <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
@@ -53,7 +53,7 @@ export default function HomePage() {
             </div>
 
             <div className="relative group">
-              <button className="text-gray-900 font-bold text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative flex items-center gap-2 tracking-tight">
+              <button className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative flex items-center gap-2 tracking-tight">
                 제품소개
                 <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
@@ -76,7 +76,7 @@ export default function HomePage() {
             </div>
 
             <div className="relative group">
-              <button className="text-gray-900 font-bold text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative flex items-center gap-2 tracking-tight">
+              <button className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative flex items-center gap-2 tracking-tight">
                 커뮤니티
                 <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
@@ -91,7 +91,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <Link href="/contact" className="text-gray-900 font-bold text-lg py-8 hover:text-primary whitespace-nowrap cursor-pointer relative group tracking-tight">
+            <Link href="/contact" className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative group tracking-tight">
               온라인 문의
               <span className="absolute bottom-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></span>
             </Link>
@@ -99,15 +99,15 @@ export default function HomePage() {
 
           {/* Right Side - Login/Language */}
           <div className="hidden lg:flex items-center gap-3 pr-8">
-            <Link href="/login" className="text-gray-700 text-sm font-semibold hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-gray-50">로그인</Link>
-            <span className="text-gray-300">|</span>
-            <Link href="/register" className="text-gray-700 text-sm font-semibold hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-gray-50">회원가입</Link>
+            <Link href="/login" className="text-white text-base font-bold hover:text-primary drop-shadow-md transition-colors px-3 py-2 rounded-lg hover:bg-white/40">로그인</Link>
+            <span className="text-white/70 font-bold">|</span>
+            <Link href="/register" className="text-white text-base font-bold hover:text-primary drop-shadow-md transition-colors px-3 py-2 rounded-lg hover:bg-white/40">회원가입</Link>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative h-[800px] overflow-hidden">
+      <section className="relative h-screen overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <div
