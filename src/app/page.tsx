@@ -1,38 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function HomePage() {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [activeTab, setActiveTab] = useState('grain'); // grain, nut, sugar
-
-  const mainSlides = [
-    {
-      title: '지루가능으면 빵도 맞았다!',
-      subtitle: '최고로 엄선된 재료만을 제공해 드립니다',
-      bgImage: '/images/main_visual_1.jpg'
-    },
-    {
-      title: '지루가능으면 빵도 맞았다!',
-      subtitle: '최고로 엄선된 재료만을 제공해 드립니다',
-      bgImage: '/images/main_visual_2.jpg'
-    },
-    {
-      title: '지루가능으면 빵도 맞았다!',
-      subtitle: '최고로 엄선된 재료만을 제공해 드립니다',
-      bgImage: '/images/main_visual_3.jpg'
-    }
-  ];
-
-  // 자동 슬라이드 (5초마다)
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % mainSlides.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [mainSlides.length]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -41,7 +13,7 @@ export default function HomePage() {
       <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-40">
         <Link
           href="/contact"
-          className="bg-[#1e3a8a] text-white px-4 py-6 rounded-l-lg shadow-xl hover:bg-[#1e40af] transition-all duration-300 flex flex-col items-center gap-2 font-bold"
+          className="bg-[#A67C52] text-white px-4 py-6 rounded-l-lg shadow-xl hover:bg-[#B8956A] transition-all duration-300 flex flex-col items-center gap-2 font-bold"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -134,73 +106,190 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Main Slider */}
-      <section className="relative h-[600px] overflow-hidden">
-        {mainSlides.map((slide, index) => (
+      {/* Hero Section */}
+      <section className="relative h-[800px] overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
           <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              currentSlide === index ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            {/* Background Image */}
-            <div className="absolute inset-0">
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url('${slide.bgImage}')` }}
-              />
-              {/* Dark overlay for better text visibility */}
-              <div className="absolute inset-0 bg-black/30" />
-            </div>
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url('/images/main_visual_1.jpg')` }}
+          />
+          {/* Beige overlay for warm tone */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#4A4039]/60 via-[#4A4039]/40 to-transparent" />
+        </div>
 
-            {/* Content */}
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-              <div className="max-w-3xl">
-                <h2 className="text-7xl font-bold text-white mb-6 leading-tight">
-                  Right Food<br />Right Person
-                </h2>
-                <p className="text-xl text-white mb-10 font-medium">
-                  생명 존중 정신을 바탕으로<br />
-                  인류 건강문화에 기여하겠습니다.
-                </p>
-                <Link
-                  href="/products"
-                  className="inline-block bg-white text-gray-900 px-10 py-4 font-semibold hover:bg-gray-100 transition shadow-lg"
-                >
-                  View More
-                </Link>
-              </div>
-            </div>
-
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+          <div className="max-w-4xl">
+            <h1 className="text-8xl font-bold text-white mb-8 leading-tight tracking-tight">
+              Right Food<br />Right Person
+            </h1>
+            <p className="text-2xl text-white/95 mb-12 font-medium leading-relaxed">
+              생명 존중 정신을 바탕으로<br />
+              인류 건강문화에 기여하겠습니다.
+            </p>
+            <Link
+              href="/products"
+              className="inline-block bg-[#B8956A] text-white px-12 py-5 font-bold text-lg hover:bg-[#A67C52] transition-all duration-300 shadow-xl hover:shadow-2xl rounded-sm"
+            >
+              제품 둘러보기
+            </Link>
           </div>
-        ))}
+        </div>
 
         {/* Scroll Down Indicator */}
-        <div className="absolute bottom-8 right-8 z-20 text-white text-center hidden lg:block">
-          <div className="text-sm font-medium mb-2">Scroll</div>
-          <div className="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center mx-auto animate-bounce">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 text-white text-center hidden lg:block">
+          <div className="text-sm font-medium mb-3 tracking-wider">SCROLL</div>
+          <div className="w-12 h-12 border-2 border-white/80 rounded-full flex items-center justify-center mx-auto animate-bounce">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </div>
         </div>
+      </section>
 
-        {/* Slider Controls */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
-          {mainSlides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition ${
-                currentSlide === index ? 'bg-white' : 'bg-white/50'
-              }`}
-            />
-          ))}
+      {/* Mission & Vision Section */}
+      <section className="py-24 bg-[#FAF6F1]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Mission Statement */}
+          <div className="text-center mb-20">
+            <h2 className="text-6xl font-bold text-[#4A4039] mb-6 tracking-tight">
+              식품 유통의 새로운 기준
+            </h2>
+            <p className="text-2xl text-[#6B5D53] font-medium">
+              30년 전통의 신뢰로 귀사의 성공을 함께 만들어갑니다
+            </p>
+          </div>
+
+          {/* Core Values */}
+          <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+            {/* Value 1 */}
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-lg mb-6">
+                <svg className="w-12 h-12 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[#4A4039] mb-4">엄선된 품질</h3>
+              <p className="text-[#6B5D53] leading-relaxed">
+                HACCP 인증 시스템으로<br />
+                최상의 품질만을 제공합니다
+              </p>
+            </div>
+
+            {/* Value 2 */}
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-lg mb-6">
+                <svg className="w-12 h-12 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[#4A4039] mb-4">신속한 공급</h3>
+              <p className="text-[#6B5D53] leading-relaxed">
+                전국 당일 배송 시스템으로<br />
+                빠르고 안전하게 배송합니다
+              </p>
+            </div>
+
+            {/* Value 3 */}
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-lg mb-6">
+                <svg className="w-12 h-12 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[#4A4039] mb-4">합리적 가격</h3>
+              <p className="text-[#6B5D53] leading-relaxed">
+                직수입 유통망으로<br />
+                경쟁력 있는 가격을 제공합니다
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Company Story Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Title */}
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-[#4A4039] mb-4">우리의 이야기</h2>
+            <p className="text-xl text-[#6B5D53]">에이스유통과 함께한 30년의 여정</p>
+          </div>
+
+          {/* Story Cards */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="group cursor-pointer">
+              <div className="relative overflow-hidden rounded-lg mb-6 aspect-[4/3]">
+                <img
+                  src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop"
+                  alt="30년의 전통"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#4A4039]/80 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="text-2xl font-bold mb-2">30년의 전통</h3>
+                  <p className="text-white/90">1994년부터 이어온 신뢰의 역사</p>
+                </div>
+              </div>
+              <Link href="/about/greeting" className="inline-flex items-center text-[#B8956A] font-semibold hover:text-[#A67C52] transition">
+                자세히 보기
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Card 2 */}
+            <div className="group cursor-pointer">
+              <div className="relative overflow-hidden rounded-lg mb-6 aspect-[4/3]">
+                <img
+                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop"
+                  alt="전국 유통 네트워크"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#4A4039]/80 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="text-2xl font-bold mb-2">전국 유통 네트워크</h3>
+                  <p className="text-white/90">어디서나 빠르고 정확하게</p>
+                </div>
+              </div>
+              <Link href="/about/location" className="inline-flex items-center text-[#B8956A] font-semibold hover:text-[#A67C52] transition">
+                자세히 보기
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Card 3 */}
+            <div className="group cursor-pointer">
+              <div className="relative overflow-hidden rounded-lg mb-6 aspect-[4/3]">
+                <img
+                  src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=600&fit=crop"
+                  alt="함께 성장하는 파트너십"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#4A4039]/80 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="text-2xl font-bold mb-2">함께 성장하는 파트너십</h3>
+                  <p className="text-white/90">고객의 성공이 우리의 목표입니다</p>
+                </div>
+              </div>
+              <Link href="/about/greeting" className="inline-flex items-center text-[#B8956A] font-semibold hover:text-[#A67C52] transition">
+                자세히 보기
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Product Categories */}
-      <section className="py-20 bg-white relative overflow-hidden">
+      <section className="py-20 bg-[#FFF8F0] relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-5 pointer-events-none">
           <div className="absolute top-8 left-[15%] w-64 h-64">
@@ -223,52 +312,52 @@ export default function HomePage() {
           {/* Section Title */}
           <div className="text-center mb-16">
             <div className="inline-block">
-              <h2 className="text-5xl font-bold text-gray-900 mb-3">추천제품</h2>
-              <div className="h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+              <h2 className="text-5xl font-bold text-[#4A4039] mb-3">추천제품</h2>
+              <div className="h-1 bg-gradient-to-r from-transparent via-[#B8956A] to-transparent"></div>
             </div>
-            <p className="text-gray-600 mt-4 text-lg">고객님을 위한 엄선된 프리미엄 식자재</p>
+            <p className="text-[#6B5D53] mt-4 text-lg">고객님을 위한 엄선된 프리미엄 식자재</p>
           </div>
 
           <div className="max-w-6xl mx-auto">
             {/* Tab Navigation */}
-            <div className="flex gap-4 mb-8 border-b border-gray-200 justify-center">
+            <div className="flex gap-4 mb-8 border-b border-[#E8DCC8] justify-center">
               <button
                   onClick={() => setActiveTab('grain')}
                   className={`px-6 py-3 font-semibold transition-colors relative cursor-pointer ${
                     activeTab === 'grain'
-                      ? 'text-primary'
-                      : 'text-gray-500 hover:text-gray-700'
+                      ? 'text-[#B8956A]'
+                      : 'text-[#8B7D73] hover:text-[#6B5D53]'
                   }`}
                 >
                   곡류가공품
                   {activeTab === 'grain' && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#B8956A]"></div>
                   )}
                 </button>
                 <button
                   onClick={() => setActiveTab('nut')}
                   className={`px-6 py-3 font-semibold transition-colors relative cursor-pointer ${
                     activeTab === 'nut'
-                      ? 'text-primary'
-                      : 'text-gray-500 hover:text-gray-700'
+                      ? 'text-[#B8956A]'
+                      : 'text-[#8B7D73] hover:text-[#6B5D53]'
                   }`}
                 >
                   견과가공품
                   {activeTab === 'nut' && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#B8956A]"></div>
                   )}
                 </button>
                 <button
                   onClick={() => setActiveTab('sugar')}
                   className={`px-6 py-3 font-semibold transition-colors relative cursor-pointer ${
                     activeTab === 'sugar'
-                      ? 'text-primary'
-                      : 'text-gray-500 hover:text-gray-700'
+                      ? 'text-[#B8956A]'
+                      : 'text-[#8B7D73] hover:text-[#6B5D53]'
                   }`}
                 >
                   당류가공품
                   {activeTab === 'sugar' && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#B8956A]"></div>
                   )}
                 </button>
             </div>
@@ -418,7 +507,7 @@ export default function HomePage() {
               <div className="flex justify-center mt-12">
                 <Link
                   href="/products/all"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#1e3a8a] text-white font-bold text-lg rounded-lg hover:bg-[#1e40af] transition-all duration-300 shadow-md hover:shadow-xl"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#B8956A] text-white font-bold text-lg rounded-lg hover:bg-[#A67C52] transition-all duration-300 shadow-md hover:shadow-xl"
                 >
                   모든 제품 보기
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -435,14 +524,14 @@ export default function HomePage() {
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-5 pointer-events-none">
           <div className="absolute top-0 left-[15%] w-64 h-64">
-            <svg viewBox="0 0 200 200" className="text-[#1e3a8a]">
+            <svg viewBox="0 0 200 200" className="text-[#B8956A]">
               <rect x="50" y="50" width="100" height="100" fill="currentColor" opacity="0.3" rx="10"/>
               <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" strokeWidth="4"/>
               <path d="M70,100 L90,120 L130,80" stroke="currentColor" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
           <div className="absolute top-8 right-[12%] w-72 h-72">
-            <svg viewBox="0 0 200 200" className="text-primary">
+            <svg viewBox="0 0 200 200" className="text-[#B8956A]">
               <polygon points="100,20 180,180 20,180" fill="currentColor" opacity="0.2"/>
             </svg>
           </div>
@@ -451,10 +540,10 @@ export default function HomePage() {
           {/* Section Title */}
           <div className="text-center mb-16">
             <div className="inline-block">
-              <h2 className="text-5xl font-bold text-gray-900 mb-3">왜 에이스유통인가?</h2>
-              <div className="h-1 bg-gradient-to-r from-transparent via-[#1e3a8a] to-transparent"></div>
+              <h2 className="text-5xl font-bold text-[#4A4039] mb-3">왜 에이스유통인가?</h2>
+              <div className="h-1 bg-gradient-to-r from-transparent via-[#B8956A] to-transparent"></div>
             </div>
-            <p className="text-gray-600 mt-4 text-lg">30년 전통의 신뢰와 품질로 함께합니다</p>
+            <p className="text-[#6B5D53] mt-4 text-lg">30년 전통의 신뢰와 품질로 함께합니다</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -501,11 +590,11 @@ export default function HomePage() {
       </section>
 
       {/* Notice Section */}
-      <section className="py-20 bg-gray-50 relative">
+      <section className="py-20 bg-[#FAF6F1] relative">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-5 pointer-events-none overflow-visible">
           <div className="absolute top-0 left-[15%] w-64 h-64">
-            <svg viewBox="0 0 200 200" className="text-primary">
+            <svg viewBox="0 0 200 200" className="text-[#B8956A]">
               <rect x="40" y="60" width="120" height="80" fill="currentColor" opacity="0.3" rx="5"/>
               <line x1="60" y1="80" x2="140" y2="80" stroke="currentColor" strokeWidth="3"/>
               <line x1="60" y1="100" x2="140" y2="100" stroke="currentColor" strokeWidth="3"/>
@@ -513,7 +602,7 @@ export default function HomePage() {
             </svg>
           </div>
           <div className="absolute top-4 right-[15%] w-64 h-64">
-            <svg viewBox="0 0 200 200" className="text-secondary">
+            <svg viewBox="0 0 200 200" className="text-[#8B6F47]">
               <path d="M50,100 L100,50 L150,100 L100,150 Z" fill="currentColor" opacity="0.2"/>
               <circle cx="100" cy="100" r="20" fill="currentColor" opacity="0.3"/>
             </svg>
@@ -523,18 +612,18 @@ export default function HomePage() {
           {/* Section Title */}
           <div className="text-center mb-16">
             <div className="inline-block">
-              <h2 className="text-5xl font-bold text-gray-900 mb-3">최신소식</h2>
-              <div className="h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+              <h2 className="text-5xl font-bold text-[#4A4039] mb-3">최신소식</h2>
+              <div className="h-1 bg-gradient-to-r from-transparent via-[#B8956A] to-transparent"></div>
             </div>
-            <p className="text-gray-600 mt-4 text-lg">에이스유통의 새로운 소식을 전합니다</p>
+            <p className="text-[#6B5D53] mt-4 text-lg">에이스유통의 새로운 소식을 전합니다</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* 공지사항 */}
-            <div className="bg-white border border-gray-200">
-              <div className="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-                <h3 className="text-xl font-bold">공지사항</h3>
-                <Link href="/community/notice" className="text-sm text-gray-600 hover:text-primary">
+            <div className="bg-white border border-[#E8DCC8]">
+              <div className="border-b border-[#E8DCC8] px-6 py-4 flex justify-between items-center">
+                <h3 className="text-xl font-bold text-[#4A4039]">공지사항</h3>
+                <Link href="/community/notice" className="text-sm text-[#6B5D53] hover:text-[#B8956A]">
                   더보기 +
                 </Link>
               </div>
@@ -545,7 +634,7 @@ export default function HomePage() {
                   { title: '[공지] 홈페이지 리뉴얼 안내', date: '2024.01.05', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=200&fit=crop' },
                   { title: '[안내] 겨울철 배송 관련 안내사항', date: '2024.01.02', image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=300&h=200&fit=crop' },
                 ].map((item, index) => (
-                  <Link key={index} href="#" className="block hover:bg-gray-50 group">
+                  <Link key={index} href="#" className="block hover:bg-[#FFF8F0] group">
                     <div className="flex gap-4 p-4">
                       <div className="flex-shrink-0">
                         <img
@@ -555,10 +644,10 @@ export default function HomePage() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-gray-900 group-hover:text-primary font-medium mb-1 truncate">
+                        <div className="text-[#4A4039] group-hover:text-[#B8956A] font-medium mb-1 truncate">
                           {item.title}
                         </div>
-                        <div className="text-sm text-gray-500">{item.date}</div>
+                        <div className="text-sm text-[#8B7D73]">{item.date}</div>
                       </div>
                     </div>
                   </Link>
@@ -567,10 +656,10 @@ export default function HomePage() {
             </div>
 
             {/* 보도자료 */}
-            <div className="bg-white border border-gray-200">
-              <div className="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-                <h3 className="text-xl font-bold">보도자료</h3>
-                <Link href="/community/news" className="text-sm text-gray-600 hover:text-primary">
+            <div className="bg-white border border-[#E8DCC8]">
+              <div className="border-b border-[#E8DCC8] px-6 py-4 flex justify-between items-center">
+                <h3 className="text-xl font-bold text-[#4A4039]">보도자료</h3>
+                <Link href="/community/news" className="text-sm text-[#6B5D53] hover:text-[#B8956A]">
                   더보기 +
                 </Link>
               </div>
@@ -581,7 +670,7 @@ export default function HomePage() {
                   { title: '2023년 매출 전년 대비 30% 성장', date: '2024.01.03', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=300&h=200&fit=crop' },
                   { title: '친환경 물류센터 준공식 개최', date: '2023.12.28', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=300&h=200&fit=crop' },
                 ].map((item, index) => (
-                  <Link key={index} href="#" className="block hover:bg-gray-50 group">
+                  <Link key={index} href="#" className="block hover:bg-[#FFF8F0] group">
                     <div className="flex gap-4 p-4">
                       <div className="flex-shrink-0">
                         <img
@@ -591,10 +680,10 @@ export default function HomePage() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-gray-900 group-hover:text-primary font-medium mb-1 truncate">
+                        <div className="text-[#4A4039] group-hover:text-[#B8956A] font-medium mb-1 truncate">
                           {item.title}
                         </div>
-                        <div className="text-sm text-gray-500">{item.date}</div>
+                        <div className="text-sm text-[#8B7D73]">{item.date}</div>
                       </div>
                     </div>
                   </Link>
@@ -606,17 +695,17 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#1e3a8a] to-[#1e40af]">
+      <section className="py-20 bg-gradient-to-r from-[#A67C52] to-[#B8956A]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
             최고의 식자재 파트너가 필요하신가요?
           </h2>
-          <p className="text-xl text-white/90 mb-8">
+          <p className="text-xl text-white/95 mb-8">
             30년 전통의 에이스유통이 귀사의 성공적인 비즈니스를 도와드립니다
           </p>
           <Link
             href="/contact"
-            className="inline-block bg-white text-[#1e3a8a] px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl"
+            className="inline-block bg-white text-[#A67C52] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#FFF8F0] transition-colors shadow-xl"
           >
             상담 신청하기
           </Link>
@@ -624,7 +713,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-100 border-t border-gray-200 py-6">
+      <footer className="bg-[#F5EFE7] border-t border-[#E8DCC8] py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Logo */}
@@ -637,7 +726,7 @@ export default function HomePage() {
             </div>
 
             {/* Company Info */}
-            <div className="text-sm text-gray-600 text-center md:text-right">
+            <div className="text-sm text-[#6B5D53] text-center md:text-right">
               <p className="mb-1">
                 대표 : 안종철 | 주소 : 경기도 의왕시 생포로 119번길 31(전현동 302-3) | Tel. 02) 471-1644~6 | Fax. 02) 476-1372
               </p>

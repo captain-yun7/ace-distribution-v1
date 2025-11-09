@@ -1,28 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  /* 에이스유통 브랜드 컬러: 신뢰와 전문성을 상징하는 블루 계열 */
-  /* Primary Blue: 신뢰, 안정성을 상징 */
-  --color-primary: #1E40AF;        /* blue-800 */
-  --color-primary-dark: #1E3A8A;   /* blue-900 */
-  --color-primary-light: #3B82F6;  /* blue-600 */
+  /* 에이스유통 브랜드 컬러: 자연스럽고 따뜻한 베이지/브라운 계열 */
+  /* Primary Brown: 신뢰, 자연, 식품을 상징하는 따뜻한 베이지 브라운 */
+  --color-primary: #B8956A;        /* 따뜻한 베이지 브라운 */
+  --color-primary-dark: #A67C52;   /* 어두운 베이지 브라운 */
+  --color-primary-light: #D4B896;  /* 밝은 베이지 */
 
-  /* Secondary Beige: 따뜻함, 자연, 식품을 상징 */
-  --color-secondary: #E8DCC8;      /* 베이지 */
-  --color-secondary-dark: #D4C5A9; /* 어두운 베이지 */
-  --color-secondary-light: #FAF8F5; /* 밝은 베이지 */
-  --color-beige-50: #FFFBF5;
-  --color-beige-100: #FFF8E7;
-  --color-beige-200: #F5F5DC;
+  /* Secondary Brown: 짙은 브라운 계열 */
+  --color-secondary: #8B6F47;      /* 중간 브라운 */
+  --color-secondary-dark: #6B4423; /* 다크 브라운 */
+  --color-secondary-light: #A0846A; /* 라이트 브라운 */
 
-  /* 텍스트 색상 - 검정/회색 계열 */
-  --color-text-primary: #111827;   /* gray-900 */
-  --color-text-secondary: #4B5563; /* gray-600 */
-  --color-text-light: #6B7280;     /* gray-500 */
+  /* Background Colors: 크림/베이지 배경 */
+  --color-beige-50: #FFF8F0;       /* 매우 밝은 크림 */
+  --color-beige-100: #FAF6F1;      /* 밝은 크림 */
+  --color-beige-200: #F5EFE7;      /* 베이지 */
+  --color-beige-300: #E8DCC8;      /* 중간 베이지 */
 
-  /* Accent Orange: 강조, 활동성 */
-  --color-accent: #F97316;         /* orange-500 */
-  --color-accent-dark: #EA580C;    /* orange-600 */
+  /* 텍스트 색상 - 브라운 계열 */
+  --color-text-primary: #4A4039;   /* 다크 브라운 */
+  --color-text-secondary: #6B5D53; /* 미디엄 브라운 */
+  --color-text-light: #8B7D73;     /* 라이트 브라운 */
+
+  /* Accent Color: 강조색 - 따뜻한 오렌지 브라운 */
+  --color-accent: #D4A574;         /* 따뜻한 오렌지 베이지 */
+  --color-accent-dark: #C18E5A;    /* 어두운 오렌지 베이지 */
 
   /* 개선된 폰트 크기 - 더 큰 기본 크기와 명확한 계층 */
   --font-size-xs: 0.875rem;    /* 14px */
