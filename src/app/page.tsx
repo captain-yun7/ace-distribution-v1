@@ -149,59 +149,123 @@ export default function HomePage() {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-24 bg-[#FAF6F1]">
+      <section className="py-32 bg-[#FAF6F1]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Mission Statement */}
-          <div className="text-center mb-20">
-            <h2 className="text-6xl font-bold text-[#4A4039] mb-6 tracking-tight">
-              식품 유통의 새로운 기준
+          <div className="text-center mb-24">
+            <h2 className="text-7xl font-bold text-[#4A4039] mb-8 tracking-tight uppercase" style={{ letterSpacing: '-0.02em' }}>
+              Quality is Our Mission
             </h2>
-            <p className="text-2xl text-[#6B5D53] font-medium">
-              30년 전통의 신뢰로 귀사의 성공을 함께 만들어갑니다
+            <p className="text-2xl text-[#6B5D53] font-light max-w-3xl mx-auto leading-relaxed">
+              최고의 식재료로 귀사의 성공을 만들어가는 파트너
             </p>
           </div>
 
           {/* Core Values */}
-          <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-            {/* Value 1 */}
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-lg mb-6">
-                <svg className="w-12 h-12 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div className="grid md:grid-cols-3 gap-16 max-w-6xl mx-auto">
+            {/* Value 1 - Widest Variety (Bread/Bakery) */}
+            <div className="text-center group">
+              <div className="mb-8 transition-transform duration-300 group-hover:scale-110">
+                <svg className="w-32 h-32 mx-auto" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Croissant/Bread */}
+                  <ellipse cx="60" cy="60" rx="45" ry="35" fill="#D4B896" opacity="0.3"/>
+                  <path d="M25 55 Q30 35, 50 30 Q70 28, 85 35 Q95 40, 95 60 Q95 75, 85 82 Q70 88, 50 85 Q30 82, 25 70 Z"
+                    fill="#B8956A" opacity="0.6"/>
+                  {/* Texture lines */}
+                  <path d="M35 50 Q45 48, 55 50" stroke="#8B6F47" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.7"/>
+                  <path d="M40 60 Q55 58, 70 60" stroke="#8B6F47" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.7"/>
+                  <path d="M35 70 Q50 68, 65 70" stroke="#8B6F47" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.7"/>
+                  {/* Scoring marks */}
+                  <circle cx="45" cy="45" r="2" fill="#A67C52"/>
+                  <circle cx="60" cy="48" r="2" fill="#A67C52"/>
+                  <circle cx="75" cy="50" r="2" fill="#A67C52"/>
+                  <circle cx="50" cy="65" r="2" fill="#A67C52"/>
+                  <circle cx="68" cy="68" r="2" fill="#A67C52"/>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-[#4A4039] mb-4">엄선된 품질</h3>
-              <p className="text-[#6B5D53] leading-relaxed">
+              <h3 className="text-3xl font-bold text-[#4A4039] mb-3 uppercase tracking-wide">Widest Variety</h3>
+              <div className="w-16 h-1 bg-[#B8956A] mx-auto mb-4"></div>
+              <p className="text-[#6B5D53] leading-relaxed text-lg font-light">
+                10개 품목 1,000여 종의<br />
+                다양한 식자재 라인업
+              </p>
+            </div>
+
+            {/* Value 2 - Quality Sourcing (Wheat/Grain) */}
+            <div className="text-center group">
+              <div className="mb-8 transition-transform duration-300 group-hover:scale-110">
+                <svg className="w-32 h-32 mx-auto" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Wheat stalks */}
+                  <g>
+                    {/* Left wheat */}
+                    <path d="M40 90 L40 35" stroke="#A67C52" strokeWidth="3" strokeLinecap="round"/>
+                    <ellipse cx="40" cy="40" rx="8" ry="4" fill="#D4B896"/>
+                    <ellipse cx="40" cy="48" rx="9" ry="5" fill="#D4B896"/>
+                    <ellipse cx="40" cy="57" rx="10" ry="5" fill="#B8956A"/>
+                    <ellipse cx="40" cy="66" rx="9" ry="5" fill="#B8956A"/>
+                    <ellipse cx="40" cy="74" rx="8" ry="4" fill="#D4B896"/>
+
+                    {/* Center wheat */}
+                    <path d="M60 95 L60 30" stroke="#8B6F47" strokeWidth="3.5" strokeLinecap="round"/>
+                    <ellipse cx="60" cy="35" rx="9" ry="5" fill="#D4B896"/>
+                    <ellipse cx="60" cy="44" rx="11" ry="6" fill="#D4B896"/>
+                    <ellipse cx="60" cy="54" rx="12" ry="6" fill="#B8956A"/>
+                    <ellipse cx="60" cy="64" rx="11" ry="6" fill="#B8956A"/>
+                    <ellipse cx="60" cy="74" rx="10" ry="5" fill="#D4B896"/>
+                    <ellipse cx="60" cy="83" rx="9" ry="4" fill="#D4B896"/>
+
+                    {/* Right wheat */}
+                    <path d="M80 90 L80 35" stroke="#A67C52" strokeWidth="3" strokeLinecap="round"/>
+                    <ellipse cx="80" cy="40" rx="8" ry="4" fill="#D4B896"/>
+                    <ellipse cx="80" cy="48" rx="9" ry="5" fill="#D4B896"/>
+                    <ellipse cx="80" cy="57" rx="10" ry="5" fill="#B8956A"/>
+                    <ellipse cx="80" cy="66" rx="9" ry="5" fill="#B8956A"/>
+                    <ellipse cx="80" cy="74" rx="8" ry="4" fill="#D4B896"/>
+                  </g>
+                </svg>
+              </div>
+              <h3 className="text-3xl font-bold text-[#4A4039] mb-3 uppercase tracking-wide">Quality Sourcing</h3>
+              <div className="w-16 h-1 bg-[#B8956A] mx-auto mb-4"></div>
+              <p className="text-[#6B5D53] leading-relaxed text-lg font-light">
                 HACCP 인증 시스템으로<br />
-                최상의 품질만을 제공합니다
+                검증된 프리미엄 품질
               </p>
             </div>
 
-            {/* Value 2 */}
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-lg mb-6">
-                <svg className="w-12 h-12 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-[#4A4039] mb-4">신속한 공급</h3>
-              <p className="text-[#6B5D53] leading-relaxed">
-                전국 당일 배송 시스템으로<br />
-                빠르고 안전하게 배송합니다
-              </p>
-            </div>
+            {/* Value 3 - Best Pricing (Nuts/Seeds) */}
+            <div className="text-center group">
+              <div className="mb-8 transition-transform duration-300 group-hover:scale-110">
+                <svg className="w-32 h-32 mx-auto" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Mixed nuts arrangement */}
+                  {/* Almond */}
+                  <ellipse cx="45" cy="45" rx="12" ry="18" fill="#D4B896" transform="rotate(-25 45 45)"/>
+                  <path d="M45 35 Q45 40, 45 50" stroke="#A67C52" strokeWidth="1.5"/>
 
-            {/* Value 3 */}
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-lg mb-6">
-                <svg className="w-12 h-12 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  {/* Walnut */}
+                  <circle cx="75" cy="50" r="16" fill="#B8956A" opacity="0.8"/>
+                  <path d="M65 45 Q75 50, 85 45" stroke="#8B6F47" strokeWidth="2" fill="none"/>
+                  <path d="M65 55 Q75 50, 85 55" stroke="#8B6F47" strokeWidth="2" fill="none"/>
+
+                  {/* Hazelnut */}
+                  <circle cx="40" cy="75" r="13" fill="#A67C52"/>
+                  <circle cx="40" cy="75" r="8" fill="#D4B896" opacity="0.6"/>
+
+                  {/* Cashew */}
+                  <path d="M70 75 Q80 72, 85 78 Q85 85, 78 88 Q68 88, 65 82 Z" fill="#D4B896"/>
+                  <path d="M72 80 Q77 78, 80 81" stroke="#B8956A" strokeWidth="1.5" fill="none"/>
+
+                  {/* Small seeds scattered */}
+                  <circle cx="58" cy="40" r="3" fill="#8B6F47"/>
+                  <circle cx="62" cy="68" r="3" fill="#8B6F47"/>
+                  <ellipse cx="55" cy="82" rx="2.5" ry="4" fill="#A67C52" transform="rotate(20 55 82)"/>
+                  <ellipse cx="68" cy="42" rx="2.5" ry="4" fill="#A67C52" transform="rotate(-30 68 42)"/>
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-[#4A4039] mb-4">합리적 가격</h3>
-              <p className="text-[#6B5D53] leading-relaxed">
-                직수입 유통망으로<br />
-                경쟁력 있는 가격을 제공합니다
+              <h3 className="text-3xl font-bold text-[#4A4039] mb-3 uppercase tracking-wide">Best Pricing</h3>
+              <div className="w-16 h-1 bg-[#B8956A] mx-auto mb-4"></div>
+              <p className="text-[#6B5D53] leading-relaxed text-lg font-light">
+                직수입 유통 시스템으로<br />
+                최고의 가격 경쟁력 제공
               </p>
             </div>
           </div>
