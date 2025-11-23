@@ -25,7 +25,7 @@ export default function HomePage() {
       </div>
 
       {/* Main Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 hover:bg-white/90 hover:backdrop-blur-md hover:shadow-md hover:border-b-2 hover:border-gray-100">
+      <header className="absolute top-0 left-0 right-0 z-50 transition-all duration-300 group/header hover:bg-white hover:shadow-md">
         <div className="flex items-center h-24">
           {/* Logo - Far Left */}
           <Link href="/" className="flex items-center hover:opacity-80 transition-all duration-300 pl-8 group">
@@ -37,27 +37,26 @@ export default function HomePage() {
           </Link>
 
           {/* Main Navigation - Spread Wide */}
-          <nav className="hidden lg:flex items-center flex-1 justify-center space-x-32">
+          <nav className="hidden lg:flex items-center flex-1 justify-center space-x-20">
+            {/* 회사 소개 */}
             <div className="relative group">
-              <button className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative flex items-center gap-2 tracking-tight">
-                회사소개
-                <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                </svg>
+              <button className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative tracking-tight group-hover/header:text-gray-900 group-hover/header:drop-shadow-none transition-all">
+                회사 소개
                 <span className="absolute bottom-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></span>
               </button>
               <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-52 bg-white shadow-2xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-2 border border-gray-100 overflow-hidden">
-                <Link href="/about/greeting" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">인사말</Link>
-                <Link href="/about/location" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">찾아오시는길</Link>
+                <Link href="/about/intro" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">기업소개</Link>
+                <Link href="/about/history" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">기업 연혁</Link>
+                <Link href="/about/philosophy" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">경영철학</Link>
+                <Link href="/about/business" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">사업장 소개</Link>
+                <Link href="/about/certification" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">조직 및 인증서</Link>
               </div>
             </div>
 
+            {/* 판매 제품 */}
             <div className="relative group">
-              <button className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative flex items-center gap-2 tracking-tight">
-                제품소개
-                <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                </svg>
+              <button className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative tracking-tight group-hover/header:text-gray-900 group-hover/header:drop-shadow-none transition-all">
+                판매 제품
                 <span className="absolute bottom-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></span>
               </button>
               <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-52 bg-white shadow-2xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-2 border border-gray-100 overflow-hidden max-h-[500px] overflow-y-auto">
@@ -75,33 +74,53 @@ export default function HomePage() {
               </div>
             </div>
 
+            {/* 콘텐츠 / 홍보 */}
             <div className="relative group">
-              <button className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative flex items-center gap-2 tracking-tight">
-                커뮤니티
-                <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                </svg>
+              <button className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative tracking-tight group-hover/header:text-gray-900 group-hover/header:drop-shadow-none transition-all">
+                콘텐츠 / 홍보
                 <span className="absolute bottom-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></span>
               </button>
               <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-52 bg-white shadow-2xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-2 border border-gray-100 overflow-hidden">
-                <Link href="/community/notice" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">공지사항</Link>
-                <Link href="/community/news" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">보도자료</Link>
-                <Link href="/community/recipe" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">레시피</Link>
-                <Link href="/community/qna" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">Q&A</Link>
+                <Link href="/content/recipe" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">레시피</Link>
+                <Link href="/content/trend" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">트렌드 리포트</Link>
+                <Link href="/content/news" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">언론보도</Link>
               </div>
             </div>
 
-            <Link href="/contact" className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative group tracking-tight">
-              온라인 문의
-              <span className="absolute bottom-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></span>
-            </Link>
+            {/* 기업 문화 */}
+            <div className="relative group">
+              <button className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative tracking-tight group-hover/header:text-gray-900 group-hover/header:drop-shadow-none transition-all">
+                기업 문화
+                <span className="absolute bottom-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></span>
+              </button>
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-52 bg-white shadow-2xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-2 border border-gray-100 overflow-hidden">
+                <Link href="/culture/internal" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">사내 문화</Link>
+                <Link href="/culture/social" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">사회 공헌</Link>
+                <Link href="/culture/partnership" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">협력 사례</Link>
+              </div>
+            </div>
+
+            {/* 고객 지원 */}
+            <div className="relative group">
+              <button className="text-white font-extrabold text-xl py-8 hover:text-primary drop-shadow-lg whitespace-nowrap cursor-pointer relative tracking-tight group-hover/header:text-gray-900 group-hover/header:drop-shadow-none transition-all">
+                고객 지원
+                <span className="absolute bottom-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></span>
+              </button>
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-52 bg-white shadow-2xl rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 mt-2 border border-gray-100 overflow-hidden">
+                <Link href="/support/faq" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">FAQ</Link>
+                <Link href="/support/notice" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">공지사항</Link>
+                <Link href="/support/resources" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">자료실</Link>
+                <Link href="/support/contact" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">고객문의</Link>
+                <Link href="/support/location" className="block px-6 py-4 hover:bg-gray-50 hover:text-primary transition-all font-semibold border-b border-gray-50 last:border-0 hover:pl-8 hover:border-l-4 hover:border-l-primary">찾아오시는 길</Link>
+              </div>
+            </div>
           </nav>
 
           {/* Right Side - Login/Language */}
           <div className="hidden lg:flex items-center gap-3 pr-8">
-            <Link href="/login" className="text-white text-base font-bold hover:text-primary drop-shadow-md transition-colors px-3 py-2 rounded-lg hover:bg-white/40">로그인</Link>
-            <span className="text-white/70 font-bold">|</span>
-            <Link href="/register" className="text-white text-base font-bold hover:text-primary drop-shadow-md transition-colors px-3 py-2 rounded-lg hover:bg-white/40">회원가입</Link>
+            <Link href="/login" className="text-white text-base font-bold hover:text-primary drop-shadow-md transition-all px-3 py-2 rounded-lg hover:bg-white/40 group-hover/header:text-gray-900 group-hover/header:drop-shadow-none">로그인</Link>
+            <span className="text-white/70 font-bold group-hover/header:text-gray-400">|</span>
+            <Link href="/register" className="text-white text-base font-bold hover:text-primary drop-shadow-md transition-all px-3 py-2 rounded-lg hover:bg-white/40 group-hover/header:text-gray-900 group-hover/header:drop-shadow-none">회원가입</Link>
           </div>
         </div>
       </header>
