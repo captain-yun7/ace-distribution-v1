@@ -28,12 +28,14 @@ export default function HomePage() {
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 group/header hover:bg-white hover:shadow-md bg-transparent">
         <div className="flex items-center h-24">
           {/* Logo - Far Left */}
-          <Link href="/" className="flex items-center hover:opacity-80 transition-all duration-300 pl-8 group">
-            <img
-              src="/images/logo.png"
-              alt="에이스유통주식회사"
-              className="h-12 w-auto group-hover:scale-105 transition-transform duration-300"
-            />
+          <Link href="/" className="flex items-center hover:opacity-90 transition-all duration-300 pl-8 group">
+            <div className="flex items-center gap-3">
+              <span className="text-3xl font-black text-white group-hover/header:text-[#B8956A] transition-colors duration-200">ACE</span>
+              <div className="flex flex-col">
+                <span className="text-sm font-bold text-white/90 group-hover/header:text-gray-700 transition-colors duration-200 leading-tight">에이스유통</span>
+                <span className="text-xs font-medium text-white/80 group-hover/header:text-gray-600 transition-colors duration-200 leading-tight">주식회사</span>
+              </div>
+            </div>
           </Link>
 
           {/* Main Navigation - Spread Wide */}
@@ -154,32 +156,104 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative h-screen overflow-hidden">
-        {/* Background Image */}
+        {/* Background Video/Image - Premium Food Warehouse */}
         <div className="absolute inset-0">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url('/images/main_visual_1.jpg')` }}
+          {/*
+            아름다운 무료 이미지 옵션들:
+            1. 고급 식재료 창고: https://images.unsplash.com/photo-1543168256-418811576931?q=80&w=3000&auto=format&fit=crop
+            2. 신선한 채소들: https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=3000&auto=format&fit=crop
+            3. 프리미엄 식품 진열: https://images.unsplash.com/photo-1534723452862-4c874018d66d?q=80&w=3000&auto=format&fit=crop
+            4. 모던 물류 창고: https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=3000&auto=format&fit=crop
+            5. 신선 과일 배경: https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=3000&auto=format&fit=crop
+          */}
+
+          {/* 비디오가 작동하지 않으면 아래 img 태그를 사용하세요 */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            poster="https://images.unsplash.com/photo-1543168256-418811576931?q=80&w=3000&auto=format&fit=crop"
+          >
+            <source src="https://player.vimeo.com/external/434045526.hd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f86e7fab02&profile_id=175&download=1" type="video/mp4" />
+          </video>
+
+          {/* 이미지 대안 (비디오가 안될 경우 주석 해제):
+          <img
+            src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=3000&auto=format&fit=crop"
+            alt="Premium fresh produce"
+            className="absolute inset-0 w-full h-full object-cover"
           />
-          {/* Beige overlay for warm tone */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#4A4039]/60 via-[#4A4039]/40 to-transparent" />
+          */}
+          {/* Overlay for better text visibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <div className="max-w-4xl">
-            <h1 className="text-8xl font-bold text-white mb-8 leading-tight tracking-tight">
-              Right Food<br />Right Person
-            </h1>
-            <p className="text-2xl text-white/95 mb-12 font-medium leading-relaxed">
-              생명 존중 정신을 바탕으로<br />
-              인류 건강문화에 기여하겠습니다.
-            </p>
-            <Link
-              href="/products"
-              className="inline-block bg-[#B8956A] text-white px-12 py-5 font-bold text-lg hover:bg-[#A67C52] transition-all duration-300 shadow-xl hover:shadow-2xl rounded-sm"
-            >
-              제품 둘러보기
-            </Link>
+        {/* Content - Modern Design */}
+        <div className="relative z-10 w-full h-full flex flex-col justify-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            {/* Main Title - Elegant Typography */}
+            <div className="mb-16">
+              <div className="overflow-hidden mb-2">
+                <h1 className="text-5xl lg:text-6xl font-light text-white tracking-[0.2em] uppercase animate-slideUp">
+                  Right Food
+                </h1>
+              </div>
+              <div className="overflow-hidden mb-8">
+                <h1 className="text-5xl lg:text-6xl font-light text-white tracking-[0.2em] uppercase animate-slideUp animation-delay-200">
+                  Right Person
+                </h1>
+              </div>
+              {/* Decorative Line */}
+              <div className="w-24 h-[1px] bg-white/60 mb-8 animate-expandWidth"></div>
+
+              {/* Subtitle */}
+              <div className="max-w-2xl">
+                <p className="text-lg text-white/90 font-light leading-loose tracking-wide">
+                  생명 존중 정신을 바탕으로
+                  <span className="text-[#B8956A] font-medium mx-2">인류 건강문화</span>에
+                  기여하겠습니다
+                </p>
+              </div>
+            </div>
+
+            {/* CTA Buttons - Refined Style */}
+            <div className="flex gap-4 items-center">
+              <Link
+                href="/products"
+                className="group inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm text-white px-8 py-4 font-medium border border-white/30 hover:bg-white hover:text-[#4A4039] transition-all duration-500"
+              >
+                <span>제품 둘러보기</span>
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-3 text-white/90 px-8 py-4 font-medium hover:text-white transition-all duration-300"
+              >
+                <span>회사 소개</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+
+          {/* Side Info - Premium Touch */}
+          <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden xl:block">
+            <div className="flex flex-col items-end gap-8 text-white/70">
+              <div className="text-right">
+                <div className="text-xs uppercase tracking-widest mb-1">Since</div>
+                <div className="text-2xl font-light">1994</div>
+              </div>
+              <div className="w-[1px] h-20 bg-white/30"></div>
+              <div className="text-right">
+                <div className="text-xs uppercase tracking-widest mb-1">Products</div>
+                <div className="text-2xl font-light">1,000+</div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -828,11 +902,13 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Logo */}
             <div className="flex items-center">
-              <img
-                src="/images/logo.png"
-                alt="에이스유통주식회사"
-                className="h-10 w-auto"
-              />
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-black text-[#B8956A]">ACE</span>
+                <div className="flex flex-col">
+                  <span className="text-xs font-bold text-gray-700 leading-tight">에이스유통</span>
+                  <span className="text-[10px] font-medium text-gray-600 leading-tight">주식회사</span>
+                </div>
+              </div>
             </div>
 
             {/* Company Info */}
