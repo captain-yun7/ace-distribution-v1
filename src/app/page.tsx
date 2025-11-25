@@ -538,7 +538,7 @@ export default function HomePage() {
                     year: '2020',
                     title: '글로벌 파트너십',
                     desc: '해외 20개국 생산자와 직거래 시스템 구축',
-                    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc31?w=800&h=600&fit=crop',
+                    image: 'https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?w=800&h=600&fit=crop',
                     position: 'right'
                   },
                   {
@@ -636,41 +636,67 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Modern Product Categories Section */}
+      {/* Premium Product Showcase Section */}
       <section
         ref={(el) => (sectionsRef.current[2] = el)}
         id="products"
-        className="py-32 bg-gradient-to-b from-[#FFF8F0] to-white relative overflow-hidden"
+        className="py-32 bg-gradient-to-br from-[#FAF6F1] via-white to-[#FFF8F0] relative overflow-hidden"
       >
-        {/* Animated Background */}
+        {/* Premium Background Effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-40 -left-20 w-96 h-96 bg-[#B8956A]/10 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-40 -right-20 w-96 h-96 bg-[#D4A574]/10 rounded-full blur-3xl animate-float animation-delay-400"></div>
+          {/* Gradient Orbs */}
+          <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-gradient-to-br from-[#B8956A]/20 to-[#D4A574]/10 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-[400px] h-[400px] bg-gradient-to-tl from-[#D4A574]/20 to-[#B8956A]/10 rounded-full blur-3xl animate-float animation-delay-600"></div>
+
+          {/* Decorative Pattern */}
+          <div className="absolute inset-0 opacity-[0.02]" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8956A' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Section Title */}
+          {/* Premium Section Header */}
           <div className={`text-center mb-20 ${isVisible.products ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <h2 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4A4039] to-[#6B5D53] mb-6">
-              추천제품
+            <span className="inline-block text-sm font-bold text-[#B8956A] tracking-[0.3em] uppercase mb-4">
+              PREMIUM SELECTION
+            </span>
+            <h2 className="text-5xl lg:text-6xl font-black mb-6">
+              <span className="text-[#4A4039]">추천</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B8956A] to-[#D4A574]"> 제품</span>
             </h2>
-            <p className="text-xl text-[#6B5D53]">고객님을 위한 엄선된 프리미엄 식자재</p>
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <span className="w-20 h-[2px] bg-gradient-to-r from-transparent to-[#B8956A]"></span>
+              <p className="text-lg text-[#6B5D53] font-medium">고객님을 위한 엄선된 프리미엄 식자재</p>
+              <span className="w-20 h-[2px] bg-gradient-to-l from-transparent to-[#B8956A]"></span>
+            </div>
           </div>
 
           <div className="max-w-6xl mx-auto">
-            {/* Modern Tab Navigation */}
-            <div className="flex gap-2 mb-12 justify-center">
-              {['grain', 'nut', 'sugar'].map((tab) => (
+            {/* Premium Tab Navigation with Badge */}
+            <div className="flex gap-4 mb-16 justify-center relative">
+              {[
+                { id: 'grain', name: '곡류가공품', badge: 'HOT' },
+                { id: 'nut', name: '견과가공품', badge: 'NEW' },
+                { id: 'sugar', name: '당류가공품', badge: null }
+              ].map((tab) => (
                 <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-8 py-4 rounded-full font-semibold transition-all duration-500 ${
-                    activeTab === tab
-                      ? 'bg-gradient-to-r from-[#B8956A] to-[#D4A574] text-white shadow-lg scale-105'
-                      : 'bg-white text-[#8B7D73] hover:text-[#6B5D53] hover:bg-gray-50 shadow-md'
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`relative px-10 py-4 rounded-2xl font-bold transition-all duration-500 transform ${
+                    activeTab === tab.id
+                      ? 'bg-gradient-to-r from-[#B8956A] via-[#C5A474] to-[#D4A574] text-white shadow-2xl scale-105 border-2 border-white'
+                      : 'bg-white text-[#6B5D53] hover:text-[#4A4039] shadow-lg hover:shadow-xl border-2 border-[#F5EFE7]'
                   }`}
                 >
-                  {tab === 'grain' ? '곡류가공품' : tab === 'nut' ? '견과가공품' : '당류가공품'}
+                  <span className="relative z-10">{tab.name}</span>
+                  {tab.badge && activeTab === tab.id && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded-full animate-pulse">
+                      {tab.badge}
+                    </span>
+                  )}
+                  {activeTab === tab.id && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#B8956A] to-[#D4A574] rounded-2xl blur opacity-50"></div>
+                  )}
                 </button>
               ))}
             </div>
@@ -774,45 +800,55 @@ export default function HomePage() {
                   <Link
                     key={index}
                     href={product.link}
-                    className={`group block ${isVisible.products ? `animate-fadeInScale animation-delay-${index * 200}` : 'opacity-0'}`}
+                    className={`group block h-full ${isVisible.products ? `animate-fadeInScale animation-delay-${index * 200}` : 'opacity-0'}`}
                   >
-                    <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
-                      {/* Modern Header */}
-                      <div className="p-6 bg-gradient-to-br from-gray-50 to-gray-100">
-                        <div className="text-sm text-gray-600 font-medium">{product.title}</div>
-                        <div className="text-xl font-bold text-gray-800">{product.subtitle}</div>
-                      </div>
+                    <div className="relative h-full bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col">
+                      {/* Clean Image Section */}
+                      <div className="relative h-72 bg-gradient-to-b from-[#FAF6F1] to-white overflow-hidden">
+                        <div className="absolute inset-0 flex items-center justify-center p-8">
+                          <img
+                            src={product.image}
+                            alt={product.productName}
+                            className="max-w-full max-h-full object-contain transform group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
 
-                      {/* Product Image Container */}
-                      <div className="relative h-64 bg-gradient-to-br from-white to-gray-50 p-8 overflow-hidden">
-                        <img
-                          src={product.image}
-                          alt={product.productName}
-                          className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        {/* Hover Effect Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-
-                      {/* Modern Footer */}
-                      <div className="p-6 bg-white">
-                        <div className="flex items-center gap-2 mb-4">
-                          <span className={`inline-block bg-gradient-to-r ${product.categoryColor} text-white text-xs font-bold px-4 py-2 rounded-full`}>
+                        {/* Simple Category Badge */}
+                        <div className="absolute top-4 left-4">
+                          <span className={`inline-block bg-gradient-to-r ${product.categoryColor} text-white text-[11px] font-bold px-3 py-1.5 rounded-md`}>
                             {product.category}
                           </span>
-                          <span className="inline-block bg-gray-100 text-gray-600 text-xs px-4 py-2 rounded-full">
-                            프랑스산
-                          </span>
                         </div>
-                        <h3 className="font-bold text-xl text-gray-800 mb-3 group-hover:text-[#B8956A] transition-colors duration-300">
-                          {product.productName}
-                        </h3>
-                        <div className="flex flex-wrap gap-2">
+                      </div>
+
+                      {/* Clean Content Section */}
+                      <div className="p-6 flex-grow flex flex-col">
+                        {/* Title Area */}
+                        <div className="mb-4">
+                          <p className="text-xs text-[#B8956A] font-semibold tracking-wide uppercase mb-1">
+                            {product.title}
+                          </p>
+                          <h3 className="text-xl font-bold text-[#4A4039] leading-tight">
+                            {product.productName}
+                          </h3>
+                        </div>
+
+                        {/* Tags - Simple Style */}
+                        <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-[#F5EFE7]">
                           {product.tags.map((tag, tagIndex) => (
-                            <span key={tagIndex} className="text-xs text-gray-500 bg-gray-50 px-2 py-1 rounded">
+                            <span key={tagIndex} className="text-[11px] text-[#6B5D53] bg-[#FAF6F1] px-2.5 py-1 rounded">
                               {tag}
                             </span>
                           ))}
+                        </div>
+
+                        {/* Hover Indicator */}
+                        <div className="mt-4 flex items-center justify-between">
+                          <span className="text-xs text-[#8B7D73]">프랑스산</span>
+                          <svg className="w-5 h-5 text-[#B8956A] opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l2 4-2-4zM17 8l-2-4 2 4zm0 0l-6 8-6-8m6 8v8" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
                         </div>
                       </div>
                     </div>
@@ -820,106 +856,50 @@ export default function HomePage() {
                 ))}
             </div>
 
-            {/* Modern View All Button */}
-            <div className="flex justify-center mt-16">
+            {/* Premium CTA Button */}
+            <div className="flex justify-center mt-20 relative">
+              {/* Decorative Elements */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-64 h-1 bg-gradient-to-r from-transparent via-[#B8956A]/20 to-transparent"></div>
+              </div>
+
               <Link
                 href="/products/all"
-                className="group relative inline-flex items-center gap-3 px-10 py-5 overflow-hidden"
+                className="group relative inline-flex items-center gap-4 px-12 py-6 transform transition-all duration-700 hover:scale-105"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#B8956A] to-[#D4A574] rounded-full transform transition-transform duration-500 group-hover:scale-110"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#D4A574] to-[#B8956A] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <span className="relative z-10 text-white font-bold text-lg">모든 제품 보기</span>
-                <svg className="relative z-10 w-6 h-6 text-white group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                {/* Button Background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#B8956A] via-[#C5A474] to-[#D4A574] rounded-2xl transform transition-all duration-500 group-hover:rotate-1"></div>
+
+                {/* Shimmer Effect */}
+                <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                </div>
+
+                {/* Shadow and Glow */}
+                <div className="absolute inset-0 rounded-2xl shadow-2xl group-hover:shadow-[0_20px_60px_-10px_rgba(184,149,106,0.5)]"></div>
+
+                {/* Button Content */}
+                <span className="relative z-10 text-white font-black text-lg tracking-wide">모든 제품 보기</span>
+
+                {/* Animated Arrow */}
+                <div className="relative z-10 flex items-center">
+                  <svg className="w-6 h-6 text-white transform group-hover:translate-x-2 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
+
+                {/* Pulse Ring */}
+                <div className="absolute inset-0 rounded-2xl border-2 border-white/30 animate-pulse"></div>
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Modern Info Cards Section */}
-      <section
-        ref={(el) => (sectionsRef.current[3] = el)}
-        id="info"
-        className="py-32 bg-white relative"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Title */}
-          <div className={`text-center mb-20 ${isVisible.info ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <h2 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4A4039] to-[#6B5D53] mb-6">
-              왜 에이스유통인가?
-            </h2>
-            <p className="text-xl text-[#6B5D53]">30년 전통의 신뢰와 품질로 함께합니다</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-10">
-            {[
-              {
-                title: '철저한 품질관리',
-                description: 'HACCP 인증을 통한 체계적인 품질관리 시스템으로 안전한 식품을 제공합니다',
-                image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop',
-                icon: (
-                  <svg className="w-8 h-8 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                )
-              },
-              {
-                title: '신속한 배송',
-                description: '전국 당일 배송 시스템으로 신선한 상태의 제품을 빠르게 전달합니다',
-                image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=300&fit=crop',
-                icon: (
-                  <svg className="w-8 h-8 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                )
-              },
-              {
-                title: '전문 상담 서비스',
-                description: '전문 상담사가 제품 선택부터 구매까지 친절하게 안내해드립니다',
-                image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop',
-                icon: (
-                  <svg className="w-8 h-8 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                )
-              }
-            ].map((card, index) => (
-              <div
-                key={index}
-                className={`group ${isVisible.info ? `animate-fadeInUp animation-delay-${index * 200}` : 'opacity-0'}`}
-              >
-                <div className="relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-3">
-                  {/* Image Container */}
-                  <div className="relative h-56 overflow-hidden">
-                    <img
-                      src={card.image}
-                      alt={card.title}
-                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    />
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    {/* Icon Badge */}
-                    <div className="absolute bottom-4 right-4 w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl shadow-xl transform group-hover:rotate-12 transition-transform duration-500">
-                      {card.icon}
-                    </div>
-                  </div>
-                  {/* Content */}
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-4">{card.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{card.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Modern Notice Section */}
       <section
-        ref={(el) => (sectionsRef.current[4] = el)}
+        ref={(el) => (sectionsRef.current[3] = el)}
         id="notice"
         className="py-32 bg-gradient-to-br from-[#FAF6F1] to-white relative"
       >
