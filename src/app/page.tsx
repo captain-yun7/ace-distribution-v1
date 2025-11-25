@@ -897,101 +897,217 @@ export default function HomePage() {
       </section>
 
 
-      {/* Modern Notice Section */}
+      {/* Premium News & Notice Section - Magazine Style */}
       <section
         ref={(el) => (sectionsRef.current[3] = el)}
         id="notice"
-        className="py-32 bg-gradient-to-br from-[#FAF6F1] to-white relative"
+        className="py-32 bg-white relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Title */}
-          <div className={`text-center mb-20 ${isVisible.notice ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <h2 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4A4039] to-[#6B5D53] mb-6">
-              최신소식
-            </h2>
-            <p className="text-xl text-[#6B5D53]">에이스유통의 새로운 소식을 전합니다</p>
-          </div>
+        {/* Sophisticated Background */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-[#B8956A]/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#D4A574]/10 to-transparent rounded-full blur-3xl"></div>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-10">
-            {/* Modern Notice List */}
-            <div className={`${isVisible.notice ? 'animate-slideInLeft' : 'opacity-0'}`}>
-              <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-                <div className="bg-gradient-to-r from-[#B8956A] to-[#D4A574] px-8 py-6 flex justify-between items-center">
-                  <h3 className="text-2xl font-bold text-white">공지사항</h3>
-                  <Link href="/community/notice" className="text-white/90 hover:text-white transition-colors">
-                    더보기 →
-                  </Link>
-                </div>
-                <div className="divide-y divide-gray-100">
-                  {[
-                    { title: '[공지] 2024년 설 연휴 배송 안내', date: '2024.01.15', isNew: true },
-                    { title: '[안내] 신제품 입고 안내 - 프랑스산 치즈', date: '2024.01.10', isNew: true },
-                    { title: '[공지] 홈페이지 리뉴얼 안내', date: '2024.01.05', isNew: false },
-                    { title: '[안내] 겨울철 배송 관련 안내사항', date: '2024.01.02', isNew: false },
-                  ].map((item, index) => (
-                    <Link key={index} href="#" className="block p-6 hover:bg-gray-50 transition-colors group">
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <h4 className="text-gray-800 font-medium group-hover:text-[#B8956A] transition-colors">
-                              {item.title}
-                            </h4>
-                            {item.isNew && (
-                              <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
-                                NEW
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-sm text-gray-500">{item.date}</p>
-                        </div>
-                        <svg className="w-5 h-5 text-gray-400 group-hover:text-[#B8956A] group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Premium Section Header */}
+          <div className={`mb-16 ${isVisible.notice ? 'animate-fadeInUp' : 'opacity-0'}`}>
+            <div className="flex items-center justify-between mb-12">
+              <div>
+                <span className="inline-block text-xs font-bold text-[#B8956A] tracking-[0.4em] uppercase mb-3">NEWS & UPDATES</span>
+                <h2 className="text-4xl lg:text-5xl font-black text-[#4A4039]">
+                  최신 소식
+                </h2>
               </div>
+              <Link
+                href="/news/all"
+                className="hidden md:flex items-center gap-2 px-6 py-3 border-2 border-[#B8956A] text-[#B8956A] rounded-full hover:bg-[#B8956A] hover:text-white transition-all duration-300 font-semibold"
+              >
+                전체보기
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
 
-            {/* Modern News List */}
-            <div className={`${isVisible.notice ? 'animate-slideInRight' : 'opacity-0'}`}>
-              <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-                <div className="bg-gradient-to-r from-[#D4A574] to-[#B8956A] px-8 py-6 flex justify-between items-center">
-                  <h3 className="text-2xl font-bold text-white">보도자료</h3>
-                  <Link href="/community/news" className="text-white/90 hover:text-white transition-colors">
-                    더보기 →
-                  </Link>
+            {/* Modern Tab Navigation */}
+            <div className="flex gap-1 border-b border-gray-200">
+              {['전체', '공지사항', '보도자료', '이벤트'].map((tab, index) => (
+                <button
+                  key={tab}
+                  className={`px-6 py-3 text-sm font-semibold transition-all duration-300 relative ${
+                    index === 0
+                      ? 'text-[#B8956A]'
+                      : 'text-gray-500 hover:text-[#4A4039]'
+                  }`}
+                >
+                  {tab}
+                  {index === 0 && (
+                    <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#B8956A]"></div>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Magazine-style Grid Layout */}
+          <div className="grid lg:grid-cols-12 gap-8">
+            {/* Featured Article - Large Card */}
+            <div className={`lg:col-span-7 ${isVisible.notice ? 'animate-fadeInScale' : 'opacity-0'}`}>
+              <Link href="#" className="group block relative h-full">
+                <div className="relative overflow-hidden rounded-3xl shadow-2xl h-full">
+                  {/* Featured Image */}
+                  <div className="relative h-[500px] overflow-hidden bg-gradient-to-br from-[#FAF6F1] to-[#F5EFE7]">
+                    <img
+                      src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop"
+                      alt="Featured News"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+                    {/* Featured Badge */}
+                    <div className="absolute top-6 left-6">
+                      <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-full">
+                        <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                        <span className="text-sm font-bold text-[#4A4039]">FEATURED</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-10">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3 text-white/90 text-sm">
+                        <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full">보도자료</span>
+                        <span>2024.01.15</span>
+                      </div>
+                      <h3 className="text-3xl lg:text-4xl font-bold text-white leading-tight group-hover:text-[#FFE5CC] transition-colors duration-300">
+                        에이스유통, 유럽 3대 치즈 브랜드와<br />
+                        독점 공급 계약 체결
+                      </h3>
+                      <p className="text-white/90 text-lg">
+                        프랑스, 이탈리아, 스위스 프리미엄 치즈 브랜드들과의 파트너십 강화로
+                        국내 최고의 유럽 치즈 공급망 구축
+                      </p>
+                      <div className="flex items-center gap-2 text-white font-semibold">
+                        자세히 보기
+                        <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="divide-y divide-gray-100">
+              </Link>
+            </div>
+
+            {/* Side Articles - Modern List */}
+            <div className={`lg:col-span-5 ${isVisible.notice ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
+              <div className="space-y-6">
+                {/* Sub-featured Article */}
+                <Link href="#" className="group block">
+                  <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="px-2.5 py-1 bg-[#B8956A] text-white text-xs font-bold rounded-md">공지</span>
+                          <span className="text-xs text-gray-500">2024.01.14</span>
+                        </div>
+                        <h4 className="text-lg font-bold text-[#4A4039] mb-2 group-hover:text-[#B8956A] transition-colors">
+                          2024년 설 연휴 배송 일정 안내
+                        </h4>
+                        <p className="text-sm text-[#6B5D53] line-clamp-2">
+                          설 연휴 기간 동안 원활한 제품 공급을 위한 특별 배송 일정을 안내해드립니다.
+                        </p>
+                      </div>
+                      <div className="w-20 h-20 bg-[#B8956A]/10 rounded-xl flex items-center justify-center group-hover:bg-[#B8956A]/20 transition-colors">
+                        <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Article List with Modern Cards */}
+                <div className="space-y-4">
                   {[
-                    { title: '에이스유통, 유럽 프리미엄 치즈 독점 공급 계약 체결', date: '2024.01.12', isHot: true },
-                    { title: '식품안전관리 우수업체 인증 획득', date: '2024.01.08', isHot: false },
-                    { title: '2023년 매출 전년 대비 30% 성장', date: '2024.01.03', isHot: false },
-                    { title: '친환경 물류센터 준공식 개최', date: '2023.12.28', isHot: false },
+                    {
+                      category: '보도자료',
+                      title: '식품안전관리 우수업체 인증 획득',
+                      date: '2024.01.12',
+                      badge: 'NEW',
+                      excerpt: 'HACCP 인증에 이어 식품안전 최고등급 획득'
+                    },
+                    {
+                      category: '이벤트',
+                      title: '신규 회원 가입 특별 혜택 안내',
+                      date: '2024.01.10',
+                      badge: 'EVENT',
+                      excerpt: '첫 구매 시 20% 할인 쿠폰 제공'
+                    },
+                    {
+                      category: '공지사항',
+                      title: '홈페이지 리뉴얼 오픈',
+                      date: '2024.01.08',
+                      badge: null,
+                      excerpt: '더욱 편리해진 서비스를 경험해보세요'
+                    },
+                    {
+                      category: '보도자료',
+                      title: '2023년 매출 전년 대비 30% 성장',
+                      date: '2024.01.05',
+                      badge: null,
+                      excerpt: '프리미엄 식자재 시장 선도 기업으로 도약'
+                    }
                   ].map((item, index) => (
-                    <Link key={index} href="#" className="block p-6 hover:bg-gray-50 transition-colors group">
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <h4 className="text-gray-800 font-medium group-hover:text-[#B8956A] transition-colors">
-                              {item.title}
-                            </h4>
-                            {item.isHot && (
-                              <span className="bg-orange-500 text-white text-xs px-2 py-1 rounded-full">
-                                HOT
-                              </span>
+                    <Link
+                      key={index}
+                      href="#"
+                      className="group block bg-white rounded-xl p-5 hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-[#B8956A]/20"
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-xs font-semibold text-[#B8956A]">{item.category}</span>
+                            <span className="text-xs text-gray-400">·</span>
+                            <span className="text-xs text-gray-500">{item.date}</span>
+                            {item.badge && (
+                              <>
+                                <span className="text-xs text-gray-400">·</span>
+                                <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
+                                  item.badge === 'NEW' ? 'bg-red-100 text-red-600' :
+                                  item.badge === 'EVENT' ? 'bg-purple-100 text-purple-600' :
+                                  'bg-gray-100 text-gray-600'
+                                }`}>
+                                  {item.badge}
+                                </span>
+                              </>
                             )}
                           </div>
-                          <p className="text-sm text-gray-500">{item.date}</p>
+                          <h4 className="font-semibold text-[#4A4039] group-hover:text-[#B8956A] transition-colors mb-1 line-clamp-1">
+                            {item.title}
+                          </h4>
+                          <p className="text-xs text-gray-500 line-clamp-1">{item.excerpt}</p>
                         </div>
-                        <svg className="w-5 h-5 text-gray-400 group-hover:text-[#B8956A] group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 text-gray-400 group-hover:text-[#B8956A] flex-shrink-0 mt-1 transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </div>
                     </Link>
                   ))}
                 </div>
+
+                {/* View All Button - Mobile */}
+                <Link
+                  href="/news/all"
+                  className="md:hidden flex items-center justify-center gap-2 w-full px-6 py-3 border-2 border-[#B8956A] text-[#B8956A] rounded-full hover:bg-[#B8956A] hover:text-white transition-all duration-300 font-semibold"
+                >
+                  전체 소식 보기
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
               </div>
             </div>
           </div>
