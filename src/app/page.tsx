@@ -310,97 +310,112 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Modern Mission & Vision Section */}
+      {/* Renewed Mission & Vision Section - Modern Corporate Style */}
       <section
         ref={(el) => (sectionsRef.current[0] = el)}
         id="mission"
-        className="py-32 bg-gradient-to-br from-[#FAF6F1] to-white relative overflow-hidden"
+        className="py-24 bg-white relative"
       >
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-br from-[#D4A574] to-[#B8956A] rounded-full blur-3xl animate-pulse animation-delay-400"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Modern Section Header */}
-          <div className={`text-center mb-24 ${isVisible.mission ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <div className="inline-block relative">
-              <h2 className="text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4A4039] to-[#6B5D53] mb-6 tracking-tight uppercase">
-                Quality is Our Mission
-              </h2>
-              <div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#B8956A] to-transparent"></div>
-            </div>
-            <p className="text-2xl text-[#6B5D53] font-light max-w-3xl mx-auto leading-relaxed mt-12">
-              최고의 식재료로 귀사의 성공을 만들어가는 파트너
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header - Clean & Minimal */}
+          <div className={`text-center mb-20 ${isVisible.mission ? 'animate-fadeInUp' : 'opacity-0'}`}>
+            <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">Our Mission</span>
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#4A4039] mb-6">
+              최고의 품질로 성공을 만들어갑니다
+            </h2>
+            <p className="text-lg text-[#6B5D53] max-w-2xl mx-auto">
+              30년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다
             </p>
           </div>
 
-          {/* Modern Value Cards */}
-          <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+          {/* Process Flow Section */}
+          <div className={`mb-32 ${isVisible.mission ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
+            <div className="relative">
+              {/* Connection Line */}
+              <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#E8DCC8] to-transparent -translate-y-1/2"></div>
+
+              {/* Process Steps */}
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-8">
+                {[
+                  { step: '01', title: '글로벌 소싱', desc: '전세계 우수 생산지', icon: '🌍' },
+                  { step: '02', title: '품질 검증', desc: 'HACCP 인증 시스템', icon: '✓' },
+                  { step: '03', title: '직수입 유통', desc: '가격 경쟁력 확보', icon: '📦' },
+                  { step: '04', title: '재고 관리', desc: '실시간 재고 시스템', icon: '📊' },
+                  { step: '05', title: '신속 배송', desc: '당일/익일 배송', icon: '🚚' },
+                  { step: '06', title: '사후 관리', desc: '지속적 품질 관리', icon: '🤝' }
+                ].map((item, idx) => (
+                  <div key={idx} className="relative text-center group">
+                    {/* Icon Circle */}
+                    <div className="relative z-10 w-24 h-24 mx-auto mb-6 bg-white border-4 border-[#F5EFE7] rounded-full flex items-center justify-center group-hover:border-[#B8956A] transition-all duration-300 shadow-lg">
+                      <span className="text-3xl">{item.icon}</span>
+                    </div>
+                    {/* Step Number */}
+                    <span className="absolute top-0 right-1/2 translate-x-1/2 text-xs font-bold text-[#B8956A] bg-white px-2 py-1 rounded-full shadow-md">
+                      {item.step}
+                    </span>
+                    {/* Content */}
+                    <h4 className="text-base font-bold text-[#4A4039] mb-2">{item.title}</h4>
+                    <p className="text-sm text-[#8B7D73]">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Core Values - Card Grid */}
+          <div className="grid md:grid-cols-4 gap-6">
             {[
               {
-                title: 'Widest Variety',
-                subtitle: '10개 품목 1,000여 종의\n다양한 식자재 라인업',
-                icon: 'bread',
-                gradient: 'from-[#D4B896] to-[#B8956A]',
-                delay: '0'
+                title: '품질 최우선',
+                subtitle: 'Quality First',
+                desc: '엄격한 품질관리 시스템으로 최고의 제품만을 선별합니다',
+                bgImage: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=400&fit=crop'
               },
               {
-                title: 'Quality Sourcing',
-                subtitle: 'HACCP 인증 시스템으로\n검증된 프리미엄 품질',
-                icon: 'wheat',
-                gradient: 'from-[#B8956A] to-[#A67C52]',
-                delay: '200'
+                title: '고객 중심',
+                subtitle: 'Customer Focus',
+                desc: '고객의 니즈를 정확히 파악하여 맞춤형 솔루션을 제공합니다',
+                bgImage: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop'
               },
               {
-                title: 'Best Pricing',
-                subtitle: '직수입 유통 시스템으로\n최고의 가격 경쟁력 제공',
-                icon: 'nuts',
-                gradient: 'from-[#A67C52] to-[#8B6F47]',
-                delay: '400'
+                title: '전문성',
+                subtitle: 'Expertise',
+                desc: '30년간 축적된 노하우와 전문 지식을 바탕으로 서비스합니다',
+                bgImage: 'https://images.unsplash.com/photo-1553531087-b25a0b9a68ab?w=600&h=400&fit=crop'
+              },
+              {
+                title: '혁신 추구',
+                subtitle: 'Innovation',
+                desc: '시장 트렌드를 선도하며 새로운 가치를 창출합니다',
+                bgImage: 'https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=600&h=400&fit=crop'
               }
             ].map((value, index) => (
               <div
                 key={index}
-                className={`group relative ${isVisible.mission ? `animate-fadeInScale animation-delay-${value.delay}` : 'opacity-0'}`}
+                className={`group relative overflow-hidden rounded-2xl shadow-xl cursor-pointer ${isVisible.mission ? `animate-fadeInScale animation-delay-${index * 100}` : 'opacity-0'}`}
               >
-                <div className="relative bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 overflow-hidden h-full flex flex-col">
-                  {/* Gradient Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${value.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                  <img src={value.bgImage} alt={value.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                </div>
 
-                  {/* Modern Icon Container */}
-                  <div className="relative mb-10">
-                    <div className={`w-32 h-32 mx-auto bg-gradient-to-br ${value.gradient} rounded-3xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-500`}>
-                      {value.icon === 'bread' && (
-                        <svg className="w-20 h-20 text-white" viewBox="0 0 120 120" fill="currentColor">
-                          <path d="M60 20c-22 0-40 8-40 20v40c0 12 18 20 40 20s40-8 40-20V40c0-12-18-20-40-20zm0 10c18 0 30 6 30 10s-12 10-30 10-30-6-30-10 12-10 30-10z"/>
-                        </svg>
-                      )}
-                      {value.icon === 'wheat' && (
-                        <svg className="w-20 h-20 text-white" viewBox="0 0 120 120" fill="currentColor">
-                          <path d="M60 90V30m-10 5c0-3 4-5 10-5s10 2 10 5v10c0 3-4 5-10 5s-10-2-10-5V35zm-5 15c0-3 7-5 15-5s15 2 15 5v10c0 3-7 5-15 5s-15-2-15-5V50zm-5 15c0-3 10-5 20-5s20 2 20 5v10c0 3-10 5-20 5s-20-2-20-5V65z"/>
-                        </svg>
-                      )}
-                      {value.icon === 'nuts' && (
-                        <svg className="w-20 h-20 text-white" viewBox="0 0 120 120" fill="currentColor">
-                          <circle cx="45" cy="50" r="15"/>
-                          <circle cx="75" cy="50" r="15"/>
-                          <circle cx="60" cy="75" r="15"/>
-                        </svg>
-                      )}
+                {/* Content */}
+                <div className="relative p-8 h-80 flex flex-col justify-end">
+                  <span className="text-[#FFE5CC] text-xs font-medium tracking-wider uppercase mb-2">{value.subtitle}</span>
+                  <h3 className="text-white text-2xl font-bold mb-3">{value.title}</h3>
+                  <p className="text-white/90 text-sm leading-relaxed">{value.desc}</p>
+                </div>
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#B8956A]/90 to-[#B8956A]/40 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
+                  <div className="text-center text-white p-8">
+                    <div className="w-16 h-16 mx-auto mb-4 border-2 border-white rounded-full flex items-center justify-center">
+                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
                     </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1 flex flex-col justify-center">
-                    <h3 className="text-3xl font-bold text-[#4A4039] mb-4 uppercase tracking-wide text-center">
-                      {value.title}
-                    </h3>
-                    <div className="w-20 h-1 bg-gradient-to-r from-[#B8956A] to-[#D4A574] mx-auto mb-6"></div>
-                    <p className="text-[#6B5D53] leading-relaxed text-lg font-light text-center whitespace-pre-line">
-                      {value.subtitle}
-                    </p>
+                    <p className="text-lg font-medium">{value.desc}</p>
                   </div>
                 </div>
               </div>
@@ -409,70 +424,126 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Modern Company Story Section */}
+      {/* Renewed Company Story Section - Timeline Style */}
       <section
         ref={(el) => (sectionsRef.current[1] = el)}
         id="story"
-        className="py-32 bg-white relative"
+        className="py-24 bg-gradient-to-b from-[#FAF6F1] to-white relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23B8956A' fill-opacity='0.3'%3E%3Ccircle cx='50' cy='50' r='2'/%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '100px 100px'
+          }}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
           <div className={`text-center mb-20 ${isVisible.story ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <h2 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#4A4039] to-[#6B5D53] mb-6">
-              우리의 이야기
+            <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">Our Story</span>
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#4A4039] mb-6">
+              30년 전통의 신뢰와 혁신
             </h2>
-            <p className="text-2xl text-[#6B5D53] font-light">에이스유통과 함께한 30년의 여정</p>
+            <p className="text-lg text-[#6B5D53] max-w-2xl mx-auto">
+              1994년 창립 이래, 대한민국 식품 유통의 새로운 기준을 만들어가고 있습니다
+            </p>
           </div>
 
-          {/* Modern Story Cards */}
-          <div className="grid md:grid-cols-3 gap-10">
-            {[
-              {
-                title: '30년의 전통',
-                subtitle: '1994년부터 이어온 신뢰의 역사',
-                image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop',
-                href: '/about/greeting'
-              },
-              {
-                title: '전국 유통 네트워크',
-                subtitle: '어디서나 빠르고 정확하게',
-                image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop',
-                href: '/about/location'
-              },
-              {
-                title: '함께 성장하는 파트너십',
-                subtitle: '고객의 성공이 우리의 목표입니다',
-                image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=600&fit=crop',
-                href: '/about/greeting'
-              }
-            ].map((card, index) => (
-              <Link
-                key={index}
-                href={card.href}
-                className={`group relative ${isVisible.story ? `animate-fadeInUp animation-delay-${index * 200}` : 'opacity-0'}`}
-              >
-                <div className="relative overflow-hidden rounded-3xl aspect-[4/3] shadow-2xl">
-                  <img
-                    src={card.image}
-                    alt={card.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  {/* Modern Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
+          {/* Timeline Section */}
+          <div className={`mb-32 ${isVisible.story ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
+            <div className="relative">
+              {/* Vertical Line */}
+              <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#B8956A] via-[#D4A574] to-[#B8956A]"></div>
 
-                  {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="text-3xl font-bold mb-3">{card.title}</h3>
-                    <p className="text-lg opacity-90 mb-4">{card.subtitle}</p>
-                    <div className="flex items-center text-[#FFE5CC] font-semibold opacity-0 group-hover:opacity-100 transition-all duration-500">
-                      자세히 보기
-                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
+              {/* Timeline Items */}
+              <div className="space-y-24">
+                {[
+                  {
+                    year: '1994',
+                    title: '에이스유통 창립',
+                    desc: '서울 강남에서 소규모 식자재 유통업체로 시작',
+                    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop',
+                    position: 'left'
+                  },
+                  {
+                    year: '2000',
+                    title: 'HACCP 인증 획득',
+                    desc: '업계 최초 식품안전관리인증 획득으로 품질 경쟁력 확보',
+                    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop',
+                    position: 'right'
+                  },
+                  {
+                    year: '2010',
+                    title: '전국 물류망 구축',
+                    desc: '전국 5개 물류센터 설립, 당일 배송 시스템 구축',
+                    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop',
+                    position: 'left'
+                  },
+                  {
+                    year: '2020',
+                    title: '글로벌 파트너십',
+                    desc: '해외 20개국 생산자와 직거래 시스템 구축',
+                    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc31?w=800&h=600&fit=crop',
+                    position: 'right'
+                  },
+                  {
+                    year: '2024',
+                    title: '미래를 향한 도약',
+                    desc: 'AI 기반 재고관리 시스템 도입, ESG 경영 선언',
+                    image: 'https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=800&h=600&fit=crop',
+                    position: 'left'
+                  }
+                ].map((item, index) => (
+                  <div key={index} className={`relative flex items-center ${item.position === 'right' ? 'lg:flex-row-reverse' : ''}`}>
+                    {/* Year Badge */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">
+                      {item.year}
+                    </div>
+
+                    {/* Content Card */}
+                    <div className={`w-full lg:w-5/12 ${item.position === 'right' ? 'lg:ml-auto lg:pl-12' : 'lg:mr-auto lg:pr-12'}`}>
+                      <div className="bg-white rounded-2xl shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
+                        {/* Image */}
+                        <div className="h-56 overflow-hidden">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          />
+                        </div>
+                        {/* Content */}
+                        <div className="p-8">
+                          <span className="lg:hidden inline-block bg-[#B8956A] text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
+                            {item.year}
+                          </span>
+                          <h3 className="text-2xl font-bold text-[#4A4039] mb-3">{item.title}</h3>
+                          <p className="text-[#6B5D53] leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Achievement Numbers */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { number: '30년', label: '업계 경력', icon: '🏆' },
+              { number: '1,000+', label: '제품 종류', icon: '📦' },
+              { number: '500+', label: '파트너사', icon: '🤝' },
+              { number: '24시간', label: '배송 시스템', icon: '🚚' }
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className={`text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 ${isVisible.story ? `animate-fadeInScale animation-delay-${index * 100}` : 'opacity-0'}`}
+              >
+                <div className="text-4xl mb-4">{stat.icon}</div>
+                <div className="text-3xl font-bold text-[#B8956A] mb-2">{stat.number}</div>
+                <div className="text-sm text-[#6B5D53] font-medium">{stat.label}</div>
+              </div>
             ))}
           </div>
         </div>
