@@ -325,7 +325,7 @@ export default function HomePage() {
                 key={index}
                 className={`group relative ${isVisible.mission ? `animate-fadeInScale animation-delay-${value.delay}` : 'opacity-0'}`}
               >
-                <div className="relative bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 overflow-hidden">
+                <div className="relative bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 overflow-hidden h-full flex flex-col">
                   {/* Gradient Background */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${value.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
 
@@ -353,13 +353,15 @@ export default function HomePage() {
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-3xl font-bold text-[#4A4039] mb-4 uppercase tracking-wide text-center">
-                    {value.title}
-                  </h3>
-                  <div className="w-20 h-1 bg-gradient-to-r from-[#B8956A] to-[#D4A574] mx-auto mb-6"></div>
-                  <p className="text-[#6B5D53] leading-relaxed text-lg font-light text-center whitespace-pre-line">
-                    {value.subtitle}
-                  </p>
+                  <div className="flex-1 flex flex-col justify-center">
+                    <h3 className="text-3xl font-bold text-[#4A4039] mb-4 uppercase tracking-wide text-center">
+                      {value.title}
+                    </h3>
+                    <div className="w-20 h-1 bg-gradient-to-r from-[#B8956A] to-[#D4A574] mx-auto mb-6"></div>
+                    <p className="text-[#6B5D53] leading-relaxed text-lg font-light text-center whitespace-pre-line">
+                      {value.subtitle}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
