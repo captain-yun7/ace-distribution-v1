@@ -337,17 +337,71 @@ export default function HomePage() {
               {/* Process Steps */}
               <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-8">
                 {[
-                  { step: '01', title: '글로벌 소싱', desc: '전세계 우수 생산지', icon: '🌍' },
-                  { step: '02', title: '품질 검증', desc: 'HACCP 인증 시스템', icon: '✓' },
-                  { step: '03', title: '직수입 유통', desc: '가격 경쟁력 확보', icon: '📦' },
-                  { step: '04', title: '재고 관리', desc: '실시간 재고 시스템', icon: '📊' },
-                  { step: '05', title: '신속 배송', desc: '당일/익일 배송', icon: '🚚' },
-                  { step: '06', title: '사후 관리', desc: '지속적 품질 관리', icon: '🤝' }
+                  {
+                    step: '01',
+                    title: '글로벌 소싱',
+                    desc: '전세계 우수 생산지',
+                    icon: (
+                      <svg className="w-12 h-12 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    )
+                  },
+                  {
+                    step: '02',
+                    title: '품질 검증',
+                    desc: 'HACCP 인증 시스템',
+                    icon: (
+                      <svg className="w-12 h-12 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    )
+                  },
+                  {
+                    step: '03',
+                    title: '직수입 유통',
+                    desc: '가격 경쟁력 확보',
+                    icon: (
+                      <svg className="w-12 h-12 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                      </svg>
+                    )
+                  },
+                  {
+                    step: '04',
+                    title: '재고 관리',
+                    desc: '실시간 재고 시스템',
+                    icon: (
+                      <svg className="w-12 h-12 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      </svg>
+                    )
+                  },
+                  {
+                    step: '05',
+                    title: '신속 배송',
+                    desc: '당일/익일 배송',
+                    icon: (
+                      <svg className="w-12 h-12 text-[#B8956A]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                      </svg>
+                    )
+                  },
+                  {
+                    step: '06',
+                    title: '사후 관리',
+                    desc: '지속적 품질 관리',
+                    icon: (
+                      <svg className="w-12 h-12 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    )
+                  }
                 ].map((item, idx) => (
                   <div key={idx} className="relative text-center group">
                     {/* Icon Circle */}
                     <div className="relative z-10 w-24 h-24 mx-auto mb-6 bg-white border-4 border-[#F5EFE7] rounded-full flex items-center justify-center group-hover:border-[#B8956A] transition-all duration-300 shadow-lg">
-                      <span className="text-3xl">{item.icon}</span>
+                      {item.icon}
                     </div>
                     {/* Step Number */}
                     <span className="absolute top-0 right-1/2 translate-x-1/2 text-xs font-bold text-[#B8956A] bg-white px-2 py-1 rounded-full shadow-md">
@@ -531,16 +585,49 @@ export default function HomePage() {
           {/* Achievement Numbers */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: '30년', label: '업계 경력', icon: '🏆' },
-              { number: '1,000+', label: '제품 종류', icon: '📦' },
-              { number: '500+', label: '파트너사', icon: '🤝' },
-              { number: '24시간', label: '배송 시스템', icon: '🚚' }
+              {
+                number: '30년',
+                label: '업계 경력',
+                icon: (
+                  <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M5 7h14l-.89-3.11A1 1 0 0017.22 3H6.78a1 1 0 00-.89.89L5 7zm14.71 2H4.29L3.1 4.11A3 3 0 015.78 1h12.44a3 3 0 012.68 3.11L19.71 9zM12 13a1 1 0 011 1v5h2v-5a3 3 0 00-6 0v5h2v-5a1 1 0 011-1z"/>
+                    <path d="M5.29 9l.44 1.76A1 1 0 006.7 12h10.6a1 1 0 00.97-1.24L17.71 9H5.29z"/>
+                  </svg>
+                )
+              },
+              {
+                number: '1,000+',
+                label: '제품 종류',
+                icon: (
+                  <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                  </svg>
+                )
+              },
+              {
+                number: '500+',
+                label: '파트너사',
+                icon: (
+                  <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                  </svg>
+                )
+              },
+              {
+                number: '24시간',
+                label: '배송 시스템',
+                icon: (
+                  <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+                  </svg>
+                )
+              }
             ].map((stat, index) => (
               <div
                 key={index}
                 className={`text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 ${isVisible.story ? `animate-fadeInScale animation-delay-${index * 100}` : 'opacity-0'}`}
               >
-                <div className="text-4xl mb-4">{stat.icon}</div>
+                <div className="mb-4">{stat.icon}</div>
                 <div className="text-3xl font-bold text-[#B8956A] mb-2">{stat.number}</div>
                 <div className="text-sm text-[#6B5D53] font-medium">{stat.label}</div>
               </div>
@@ -772,19 +859,31 @@ export default function HomePage() {
                 title: '철저한 품질관리',
                 description: 'HACCP 인증을 통한 체계적인 품질관리 시스템으로 안전한 식품을 제공합니다',
                 image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop',
-                icon: '✓'
+                icon: (
+                  <svg className="w-8 h-8 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                )
               },
               {
                 title: '신속한 배송',
                 description: '전국 당일 배송 시스템으로 신선한 상태의 제품을 빠르게 전달합니다',
                 image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=300&fit=crop',
-                icon: '⚡'
+                icon: (
+                  <svg className="w-8 h-8 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                )
               },
               {
                 title: '전문 상담 서비스',
                 description: '전문 상담사가 제품 선택부터 구매까지 친절하게 안내해드립니다',
                 image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop',
-                icon: '💬'
+                icon: (
+                  <svg className="w-8 h-8 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                )
               }
             ].map((card, index) => (
               <div
