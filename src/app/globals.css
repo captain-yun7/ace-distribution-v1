@@ -361,3 +361,17 @@ button, .btn {
 .parallax {
   will-change: transform;
 }
+
+/* Hero Background Zoom In Animation */
+@keyframes heroZoomIn {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-hero-zoom {
+  animation: heroZoomIn 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}

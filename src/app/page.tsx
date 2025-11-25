@@ -161,17 +161,14 @@ export default function HomePage() {
 
       {/* Modern Hero Section with Enhanced Effects */}
       <section className="relative h-screen overflow-hidden">
-        {/* Parallax Background */}
-        <div
-          className="absolute inset-0 transform scale-110"
-          style={{ transform: `translateY(${scrollY * 0.5}px) scale(1.1)` }}
-        >
+        {/* Fixed Background with Zoom Animation */}
+        <div className="absolute inset-0 overflow-hidden">
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover animate-hero-zoom"
             poster="https://images.unsplash.com/photo-1543168256-418811576931?q=80&w=3000&auto=format&fit=crop"
           >
             <source src="https://player.vimeo.com/external/434045526.hd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f86e7fab02&profile_id=175&download=1" type="video/mp4" />
