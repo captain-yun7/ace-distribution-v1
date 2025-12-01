@@ -56,8 +56,6 @@ body {
   line-height: 1.6;
   font-weight: 400;
   letter-spacing: -0.01em; /* 한글 최적화 */
-  /* Bread cursor! 🍞 */
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size: 28px'><text y='28'>🍞</text></svg>") 16 16, auto;
 }
 
 /* 헤딩 폰트 최적화 */
@@ -88,13 +86,9 @@ button, .btn {
   letter-spacing: -0.01em;
 }
 
-/* Interactive elements with toasted bread cursor! 🍞 */
+/* Interactive elements cursor */
 a, button, [role="button"], input[type="button"], input[type="submit"] {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size: 28px'><text y='28'>🥖</text></svg>") 16 16, pointer !important;
-}
-
-a:hover, button:hover, [role="button"]:hover {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' style='font-size: 32px'><text y='32'>🥐</text></svg>") 18 18, pointer !important;
+  cursor: pointer;
 }
 
 /* 드래그 앤 드롭 커서 개선 */

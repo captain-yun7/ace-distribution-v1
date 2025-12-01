@@ -176,23 +176,6 @@ export default function HomePage() {
             </ul>
           </nav>
 
-          {/* Premium Auth Buttons */}
-          <div className="hidden lg:flex items-center gap-4">
-            <Link
-              href="/login"
-              className="relative px-5 py-2.5 text-sm font-semibold text-white group-hover/header:text-[#4A4039] transition-all duration-500 overflow-hidden group/btn"
-            >
-              <span className="relative z-10">로그인</span>
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white/50 group-hover/header:bg-[#B8956A]/50 transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></span>
-            </Link>
-            <Link
-              href="/register"
-              className="relative px-6 py-2.5 text-sm font-semibold text-white bg-white/10 backdrop-blur-sm border border-white/30 rounded-full hover:bg-white hover:text-[#B8956A] hover:border-[#B8956A] transition-all duration-500 group-hover/header:bg-[#B8956A] group-hover/header:text-white group-hover/header:border-[#B8956A] overflow-hidden group/btn"
-            >
-              <span className="relative z-10">회원가입</span>
-            </Link>
-          </div>
-
           {/* Mobile Menu Button */}
           <button className="lg:hidden p-2 text-white group-hover/header:text-[#4A4039] transition-colors duration-500">
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -280,20 +263,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Animated Side Stats */}
-          <div className="absolute right-12 top-1/2 -translate-y-1/2 hidden xl:block animate-fadeInRight animation-delay-800">
-            <div className="flex flex-col items-end gap-10 text-white/80">
-              <div className="text-right group cursor-pointer">
-                <div className="text-xs uppercase tracking-[0.3em] mb-2 opacity-70 group-hover:opacity-100 transition-opacity">Since</div>
-                <div className="text-3xl font-light tracking-wider group-hover:text-[#FFE5CC] transition-colors">1994</div>
-              </div>
-              <div className="w-[1px] h-24 bg-gradient-to-b from-transparent via-white/50 to-transparent"></div>
-              <div className="text-right group cursor-pointer">
-                <div className="text-xs uppercase tracking-[0.3em] mb-2 opacity-70 group-hover:opacity-100 transition-opacity">Products</div>
-                <div className="text-3xl font-light tracking-wider group-hover:text-[#FFE5CC] transition-colors">1,000+</div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Modern Scroll Indicator */}
@@ -324,7 +293,7 @@ export default function HomePage() {
               최고의 품질로 성공을 만들어갑니다
             </h2>
             <p className="text-lg text-[#6B5D53] max-w-2xl mx-auto">
-              30년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다
+              15년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다
             </p>
           </div>
 
@@ -497,10 +466,10 @@ export default function HomePage() {
           <div className={`text-center mb-20 ${isVisible.story ? 'animate-fadeInUp' : 'opacity-0'}`}>
             <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">Our Story</span>
             <h2 className="text-4xl lg:text-5xl font-bold text-[#4A4039] mb-6">
-              30년 전통의 신뢰와 혁신
+              15년 전통의 신뢰와 혁신
             </h2>
             <p className="text-lg text-[#6B5D53] max-w-2xl mx-auto">
-              1994년 창립 이래, 대한민국 식품 유통의 새로운 기준을 만들어가고 있습니다
+              2010년 창립 이래, 카페·베이커리 원재료 유통의 새로운 기준을 만들어가고 있습니다
             </p>
           </div>
 
@@ -514,37 +483,37 @@ export default function HomePage() {
               <div className="space-y-24">
                 {[
                   {
-                    year: '1994',
-                    title: '에이스유통 창립',
-                    desc: '서울 강남에서 소규모 식자재 유통업체로 시작',
+                    year: '2010',
+                    title: '에이스유통㈜ 창립',
+                    desc: '직원 5명으로 카페·베이커리 원재료 유통 사업 시작',
                     image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop',
                     position: 'left'
                   },
                   {
-                    year: '2000',
-                    title: 'HACCP 인증 획득',
-                    desc: '업계 최초 식품안전관리인증 획득으로 품질 경쟁력 확보',
-                    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop',
+                    year: '2015',
+                    title: '본사 사옥 신축 이전',
+                    desc: '경기도 하남시 천현동에 자체 물류센터 보유 사옥 신축',
+                    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop',
                     position: 'right'
                   },
                   {
-                    year: '2010',
-                    title: '전국 물류망 구축',
-                    desc: '전국 5개 물류센터 설립, 당일 배송 시스템 구축',
-                    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop',
+                    year: '2019',
+                    title: '우수기술기업 인증',
+                    desc: '제과제빵 재료 유통물류 및 기술마케팅 부문 우수기술기업 인증 획득',
+                    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop',
                     position: 'left'
                   },
                   {
                     year: '2020',
-                    title: '글로벌 파트너십',
-                    desc: '해외 20개국 생산자와 직거래 시스템 구축',
+                    title: '창립 10주년 & 특허 취득',
+                    desc: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 취득',
                     image: 'https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?w=800&h=600&fit=crop',
                     position: 'right'
                   },
                   {
-                    year: '2024',
-                    title: '미래를 향한 도약',
-                    desc: 'AI 기반 재고관리 시스템 도입, ESG 경영 선언',
+                    year: '2025',
+                    title: '전략적 파트너십 체결',
+                    desc: 'IP 굿즈 및 에듀 콘텐츠 기업 ㈜토이트론과 전략적 계약 체결',
                     image: 'https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=800&h=600&fit=crop',
                     position: 'left'
                   }
@@ -586,7 +555,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               {
-                number: '30년',
+                number: '15년',
                 label: '업계 경력',
                 icon: (
                   <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="currentColor" viewBox="0 0 24 24">
@@ -596,17 +565,17 @@ export default function HomePage() {
                 )
               },
               {
-                number: '1,000+',
-                label: '제품 종류',
+                number: '245억',
+                label: '연간 매출',
                 icon: (
                   <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                   </svg>
                 )
               },
               {
                 number: '500+',
-                label: '파트너사',
+                label: '거래처',
                 icon: (
                   <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -614,8 +583,8 @@ export default function HomePage() {
                 )
               },
               {
-                number: '24시간',
-                label: '배송 시스템',
+                number: '20대',
+                label: '전용 배송차량',
                 icon: (
                   <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
@@ -1131,7 +1100,7 @@ export default function HomePage() {
             최고의 식자재 파트너가<br />필요하신가요?
           </h2>
           <p className="text-2xl text-white/95 mb-12 animate-fadeInUp animation-delay-200">
-            30년 전통의 에이스유통이 귀사의 성공적인 비즈니스를 도와드립니다
+            15년 전통의 에이스유통이 귀사의 성공적인 비즈니스를 도와드립니다
           </p>
           <Link
             href="/contact"
@@ -1147,32 +1116,138 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Modern Footer */}
-      <footer className="bg-gradient-to-b from-[#F5EFE7] to-[#FAF6F1] border-t border-[#E8DCC8] py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            {/* Logo */}
-            <div className="flex items-center">
-              <div className="flex items-center gap-3">
-                <span className="text-3xl font-black text-gradient">ACE</span>
-                <div className="flex flex-col">
-                  <span className="text-sm font-bold text-gray-700 leading-tight">에이스유통</span>
-                  <span className="text-xs font-medium text-gray-600 leading-tight">주식회사</span>
+      {/* CEO Message Section */}
+      <section className="py-24 bg-white relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* CEO Image Placeholder */}
+            <div className="relative">
+              <div className="aspect-[4/5] bg-gradient-to-br from-[#FAF6F1] to-[#F5EFE7] rounded-3xl overflow-hidden shadow-2xl">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-[#B8956A]/20 to-[#D4A574]/20 rounded-full flex items-center justify-center">
+                      <svg className="w-16 h-16 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                    </div>
+                    <p className="text-[#B8956A] font-semibold">대표이사 안종일</p>
+                  </div>
                 </div>
+              </div>
+              {/* Decorative Elements */}
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-[#B8956A]/20 to-[#D4A574]/20 rounded-2xl -z-10"></div>
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-[#D4A574]/20 to-[#B8956A]/20 rounded-full -z-10"></div>
+            </div>
+
+            {/* CEO Message Content */}
+            <div>
+              <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">CEO MESSAGE</span>
+              <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-8 leading-tight">
+                좋은 상품을 정직하게 유통하는<br />
+                <span className="text-[#B8956A]">신뢰받는 파트너</span>가 되겠습니다
+              </h2>
+
+              <div className="space-y-6 text-[#6B5D53] leading-relaxed">
+                <p>
+                  에이스유통주식회사는 카페·베이커리 산업을 위한 프리미엄 원재료 공급, 전문 소싱,
+                  콜드체인 물류, 품질관리(QC)를 기반으로 성장해온 F&B B2B 솔루션 기업입니다.
+                </p>
+                <p>
+                  2010년 설립 이후 자체 물류센터와 체계적인 유통 인프라를 구축하며 국내 프랜차이즈,
+                  베이커리 카페, 전문 제과점 등 다양한 파트너에게 신뢰성 높은 제품을 안정적으로 공급해왔습니다.
+                </p>
+                <p>
+                  당사는 원재료의 선별력과 정교한 품질관리, 신속한 공급망 운영을 통해 고객이 필요로 하는
+                  제품을 정확하고 안정적으로 전달하는 데 집중해 왔으며, 업계에서 견고한 파트너십을 확보해 왔습니다.
+                </p>
+                <p className="font-medium text-[#4A4039]">
+                  에이스유통은 앞으로도 고품질 원재료와 안정적인 공급 체계를 중심으로 고객의 비즈니스를
+                  확실하게 지원하는 신뢰받는 유통 파트너로 자리매김하겠습니다.
+                </p>
+              </div>
+
+              {/* CEO Signature */}
+              <div className="mt-10 pt-8 border-t border-[#E8DCC8]">
+                <p className="text-[#B8956A] font-bold text-lg">에이스유통주식회사</p>
+                <p className="text-[#4A4039] font-bold text-xl mt-1">대표이사 안종일</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Modern Footer */}
+      <footer className="bg-gradient-to-b from-[#4A4039] to-[#3A3029] py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Footer Top */}
+          <div className="grid md:grid-cols-3 gap-12 pb-12 border-b border-white/10">
+            {/* Logo & Company Info */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-3xl font-black text-white">ACE</span>
+                <div className="flex flex-col">
+                  <span className="text-sm font-bold text-white leading-tight">에이스유통</span>
+                  <span className="text-xs font-medium text-white/60 leading-tight">주식회사</span>
+                </div>
+              </div>
+              <p className="text-sm text-white/70 leading-relaxed">
+                카페·베이커리 원재료 유통 전문기업<br />
+                프리미엄 품질과 신속한 배송으로<br />
+                고객의 성공을 지원합니다.
+              </p>
+            </div>
+
+            {/* Contact Info */}
+            <div>
+              <h4 className="text-white font-bold mb-4">Contact</h4>
+              <div className="space-y-3 text-sm text-white/70">
+                <p className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  경기도 하남시 샘재로 119번길 31(천현동 392-3)
+                </p>
+                <p className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  02) 471-1644~6
+                </p>
+                <p className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  ace32865@hanmail.net
+                </p>
+                <p className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Fax. 02) 476-1372
+                </p>
               </div>
             </div>
 
-            {/* Company Info */}
-            <div className="text-sm text-[#6B5D53] text-center md:text-right">
-              <p className="mb-2">
-                대표 : 안종철 | 주소 : 경기도 의왕시 생포로 119번길 31(전현동 302-3)
-              </p>
-              <p className="mb-2">
-                Tel. 02) 471-1644~6 | Fax. 02) 476-1372 | Email. ace32865@hanmail.net
-              </p>
-              <p className="text-xs text-[#8B7D73] mt-4">
-                ⓒ Copyright 2016. 에이스유통(주) All rights reserved.
-              </p>
+            {/* Business Info */}
+            <div>
+              <h4 className="text-white font-bold mb-4">Business Info</h4>
+              <div className="space-y-2 text-sm text-white/70">
+                <p>대표이사 : 안종일</p>
+                <p>사업자등록번호 : 126-86-32865</p>
+                <p>설립년도 : 2010년</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Bottom */}
+          <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-xs text-white/50">
+              Copyright 2010. 에이스유통주식회사 All rights reserved.
+            </p>
+            <div className="flex gap-6 text-xs text-white/50">
+              <Link href="/privacy" className="hover:text-white transition-colors">개인정보처리방침</Link>
+              <Link href="/terms" className="hover:text-white transition-colors">이용약관</Link>
             </div>
           </div>
         </div>
