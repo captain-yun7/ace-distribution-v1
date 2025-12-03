@@ -1,5 +1,6 @@
 'use client';
 
+import { Header, Footer, PageHero } from '@/components/layout';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -16,237 +17,250 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     alert('문의가 접수되었습니다. 빠른 시일 내에 답변 드리겠습니다.');
   };
 
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative h-[400px] bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="relative z-10 text-center text-white">
-          <h1 className="text-5xl font-bold mb-4">고객문의</h1>
-          <p className="text-xl opacity-90">무엇이든 물어보세요. 친절하게 답변 드리겠습니다.</p>
-        </div>
-      </section>
+    <>
+      <Header />
+      <main className="min-h-screen bg-[#FAF6F1]">
+        <PageHero
+          badge="CONTACT"
+          title="고객문의"
+          subtitle="무엇이든 물어보세요. 친절하게 답변 드리겠습니다."
+          breadcrumb={[
+            { name: '고객 지원', href: '/support/faq' },
+            { name: '고객문의' }
+          ]}
+        />
 
-      {/* Breadcrumb */}
-      <div className="bg-beige-100 py-4">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-2 text-sm text-text-secondary">
-            <Link href="/" className="hover:text-primary">홈</Link>
-            <span>/</span>
-            <Link href="/support/faq" className="hover:text-primary">고객지원</Link>
-            <span>/</span>
-            <span className="text-primary font-medium">고객문의</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Contact Info */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-8 bg-beige-50 rounded-2xl">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-text-primary mb-2">전화 문의</h3>
-              <p className="text-2xl font-bold text-primary mb-2">031-792-8195</p>
-              <p className="text-sm text-text-light">평일 08:00 - 18:00</p>
-            </div>
-
-            <div className="text-center p-8 bg-beige-50 rounded-2xl">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-text-primary mb-2">이메일 문의</h3>
-              <p className="text-xl font-bold text-primary mb-2">ace@acedist.co.kr</p>
-              <p className="text-sm text-text-light">24시간 접수 가능</p>
-            </div>
-
-            <div className="text-center p-8 bg-beige-50 rounded-2xl">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-text-primary mb-2">카카오톡 문의</h3>
-              <p className="text-xl font-bold text-primary mb-2">@에이스유통</p>
-              <p className="text-sm text-text-light">평일 09:00 - 18:00</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Form */}
-      <section className="py-16 bg-beige-50">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-text-primary mb-4">문의하기</h2>
-            <p className="text-text-secondary">아래 양식을 작성해 주시면 담당자가 빠르게 연락드리겠습니다.</p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 md:p-12 shadow-lg">
-            {/* Inquiry Type */}
-            <div className="mb-8">
-              <label className="block text-sm font-medium text-text-primary mb-4">
-                문의 유형 *
-              </label>
-              <div className="flex flex-wrap gap-3">
-                {['일반문의', '거래문의', '제품문의', '배송문의', '기타'].map((type) => (
-                  <button
-                    key={type}
-                    type="button"
-                    onClick={() => setFormData({ ...formData, type })}
-                    className={`px-6 py-2 rounded-full transition-all ${
-                      formData.type === type
-                        ? 'bg-primary text-white'
-                        : 'bg-beige-100 text-text-secondary hover:bg-beige-200'
-                    }`}
-                  >
-                    {type}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Form Fields */}
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block text-sm font-medium text-text-primary mb-2">
-                  업체명
-                </label>
-                <input
-                  type="text"
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-beige-300 focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="업체명을 입력하세요 (개인은 생략 가능)"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-text-primary mb-2">
-                  성함 *
-                </label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-beige-300 focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="성함을 입력하세요"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block text-sm font-medium text-text-primary mb-2">
-                  이메일 *
-                </label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-beige-300 focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="이메일을 입력하세요"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-text-primary mb-2">
-                  연락처 *
-                </label>
-                <input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-beige-300 focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="연락처를 입력하세요"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-text-primary mb-2">
-                문의 내용 *
-              </label>
-              <textarea
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                rows={6}
-                className="w-full px-4 py-3 rounded-lg border border-beige-300 focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                placeholder="문의 내용을 상세히 작성해주세요"
-                required
-              />
-            </div>
-
-            {/* Privacy Agreement */}
-            <div className="mb-8">
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={formData.agree}
-                  onChange={(e) => setFormData({ ...formData, agree: e.target.checked })}
-                  className="mt-1 w-5 h-5 rounded border-beige-300 text-primary focus:ring-primary"
-                  required
-                />
-                <span className="text-sm text-text-secondary">
-                  개인정보 수집 및 이용에 동의합니다. 수집된 정보는 문의 답변 목적으로만 사용되며, 답변 완료 후 파기됩니다.
-                </span>
-              </label>
-            </div>
-
-            {/* Submit Button */}
-            <div className="text-center">
-              <button
-                type="submit"
-                className="bg-primary hover:bg-primary-dark text-white px-12 py-4 rounded-full transition-colors font-medium text-lg"
-              >
-                문의 접수하기
-              </button>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      {/* Quick Links */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-text-primary mb-4">빠른 링크</h2>
-            <p className="text-text-secondary">자주 찾는 정보를 바로 확인하세요</p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { title: 'FAQ', desc: '자주 묻는 질문', href: '/support/faq', icon: '?' },
-              { title: '공지사항', desc: '새로운 소식', href: '/support/notice', icon: '!' },
-              { title: '자료실', desc: '다운로드 자료', href: '/support/resources', icon: '↓' },
-              { title: '오시는 길', desc: '위치 안내', href: '/support/location', icon: '→' },
-            ].map((link, index) => (
-              <Link
-                key={index}
-                href={link.href}
-                className="block p-6 bg-beige-50 rounded-xl hover:bg-beige-100 transition-colors text-center group"
-              >
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-xl font-bold group-hover:bg-primary group-hover:text-white transition-colors">
-                  {link.icon}
+        {/* Contact Info */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center p-8 bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
                 </div>
-                <h3 className="font-bold text-text-primary mb-1">{link.title}</h3>
-                <p className="text-sm text-text-secondary">{link.desc}</p>
-              </Link>
-            ))}
+                <h3 className="text-xl font-bold text-[#4A4039] mb-2">전화 문의</h3>
+                <p className="text-2xl font-bold text-[#B8956A] mb-2">02-471-1644~6</p>
+                <p className="text-sm text-[#6B5D53]">평일 08:00 - 18:00</p>
+              </div>
+
+              <div className="text-center p-8 bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-[#4A4039] mb-2">이메일 문의</h3>
+                <p className="text-xl font-bold text-[#B8956A] mb-2">ace32865@hanmail.net</p>
+                <p className="text-sm text-[#6B5D53]">24시간 접수 가능</p>
+              </div>
+
+              <div className="text-center p-8 bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-[#4A4039] mb-2">팩스</h3>
+                <p className="text-xl font-bold text-[#B8956A] mb-2">02-476-7949</p>
+                <p className="text-sm text-[#6B5D53]">24시간 접수 가능</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+
+        {/* Contact Form */}
+        <section className="py-16">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">INQUIRY</span>
+              <h2 className="text-3xl font-bold text-[#4A4039] mb-4">문의하기</h2>
+              <p className="text-[#6B5D53]">아래 양식을 작성해 주시면 담당자가 빠르게 연락드리겠습니다.</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 md:p-12 border border-[#E8DCC8]">
+              {/* Inquiry Type */}
+              <div className="mb-8">
+                <label className="block text-sm font-medium text-[#4A4039] mb-4">
+                  문의 유형 *
+                </label>
+                <div className="flex flex-wrap gap-3">
+                  {['일반문의', '거래문의', '제품문의', '배송문의', '기타'].map((type) => (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, type })}
+                      className={`px-6 py-2 rounded-full transition-all ${
+                        formData.type === type
+                          ? 'bg-gradient-to-r from-[#B8956A] to-[#D4A574] text-white'
+                          : 'bg-[#FAF6F1] text-[#6B5D53] hover:bg-[#E8DCC8]'
+                      }`}
+                    >
+                      {type}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Form Fields */}
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-medium text-[#4A4039] mb-2">
+                    업체명
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-[#E8DCC8] focus:outline-none focus:ring-2 focus:ring-[#B8956A]"
+                    placeholder="업체명을 입력하세요 (개인은 생략 가능)"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-[#4A4039] mb-2">
+                    성함 *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-[#E8DCC8] focus:outline-none focus:ring-2 focus:ring-[#B8956A]"
+                    placeholder="성함을 입력하세요"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-medium text-[#4A4039] mb-2">
+                    이메일 *
+                  </label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-[#E8DCC8] focus:outline-none focus:ring-2 focus:ring-[#B8956A]"
+                    placeholder="이메일을 입력하세요"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-[#4A4039] mb-2">
+                    연락처 *
+                  </label>
+                  <input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border border-[#E8DCC8] focus:outline-none focus:ring-2 focus:ring-[#B8956A]"
+                    placeholder="연락처를 입력하세요"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-[#4A4039] mb-2">
+                  문의 내용 *
+                </label>
+                <textarea
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  rows={6}
+                  className="w-full px-4 py-3 rounded-xl border border-[#E8DCC8] focus:outline-none focus:ring-2 focus:ring-[#B8956A] resize-none"
+                  placeholder="문의 내용을 상세히 작성해주세요"
+                  required
+                />
+              </div>
+
+              {/* Privacy Agreement */}
+              <div className="mb-8">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.agree}
+                    onChange={(e) => setFormData({ ...formData, agree: e.target.checked })}
+                    className="mt-1 w-5 h-5 rounded border-[#E8DCC8] text-[#B8956A] focus:ring-[#B8956A]"
+                    required
+                  />
+                  <span className="text-sm text-[#6B5D53]">
+                    개인정보 수집 및 이용에 동의합니다. 수집된 정보는 문의 답변 목적으로만 사용되며, 답변 완료 후 파기됩니다.
+                  </span>
+                </label>
+              </div>
+
+              {/* Submit Button */}
+              <div className="text-center">
+                <button
+                  type="submit"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-[#B8956A] to-[#D4A574] text-white px-12 py-4 rounded-xl font-bold hover:shadow-lg transition-all duration-300 text-lg"
+                >
+                  문의 접수하기
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        {/* Quick Links */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">QUICK LINKS</span>
+              <h2 className="text-3xl font-bold text-[#4A4039] mb-4">빠른 링크</h2>
+              <p className="text-[#6B5D53]">자주 찾는 정보를 바로 확인하세요</p>
+            </div>
+
+            <div className="grid md:grid-cols-4 gap-6">
+              {[
+                { title: 'FAQ', desc: '자주 묻는 질문', href: '/support/faq', icon: (
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                )},
+                { title: '공지사항', desc: '새로운 소식', href: '/support/notice', icon: (
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                  </svg>
+                )},
+                { title: '자료실', desc: '다운로드 자료', href: '/support/resources', icon: (
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                )},
+                { title: '오시는 길', desc: '위치 안내', href: '/support/location', icon: (
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                )},
+              ].map((link, index) => (
+                <Link
+                  key={index}
+                  href={link.href}
+                  className="block p-6 bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 text-center group"
+                >
+                  <div className="w-14 h-14 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-xl flex items-center justify-center mx-auto mb-4 text-white group-hover:scale-110 transition-transform duration-300">
+                    {link.icon}
+                  </div>
+                  <h3 className="font-bold text-[#4A4039] mb-1 group-hover:text-[#B8956A] transition-colors">{link.title}</h3>
+                  <p className="text-sm text-[#6B5D53]">{link.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }
