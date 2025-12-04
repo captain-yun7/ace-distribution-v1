@@ -45,17 +45,56 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
 
-      {/* Modern Floating Consultation Button */}
-      <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 group">
+      {/* Bread-shaped Floating Consultation Button */}
+      <div className="fixed right-4 bottom-6 z-40 group">
         <Link
-          href="/contact"
-          className="relative bg-gradient-to-r from-[#A67C52] to-[#B8956A] text-white px-4 py-6 rounded-l-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 flex flex-col items-center gap-2 font-bold hover:translate-x-[-4px] overflow-hidden"
+          href="/support/contact"
+          className="relative flex flex-col items-center"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-[#B8956A] to-[#D4A574] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <svg className="w-6 h-6 relative z-10 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
-          <span style={{ writingMode: 'vertical-rl' }} className="text-sm tracking-wider relative z-10">
+          {/* Bread Shape */}
+          <div className="relative w-20 h-24 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1">
+            {/* Bread SVG */}
+            <svg viewBox="0 0 80 96" className="w-full h-full drop-shadow-lg">
+              {/* Bread body */}
+              <ellipse cx="40" cy="60" rx="36" ry="32" fill="url(#breadGradient)" />
+              {/* Bread top (rounded dome) */}
+              <ellipse cx="40" cy="36" rx="32" ry="28" fill="url(#breadTopGradient)" />
+              {/* Bread shine */}
+              <ellipse cx="28" cy="30" rx="12" ry="8" fill="rgba(255,255,255,0.3)" />
+              {/* Bread lines (scoring) */}
+              <path d="M25 45 Q40 38 55 45" stroke="#A67C52" strokeWidth="2" fill="none" opacity="0.4" />
+              <path d="M28 55 Q40 48 52 55" stroke="#A67C52" strokeWidth="1.5" fill="none" opacity="0.3" />
+
+              <defs>
+                <linearGradient id="breadGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#D4A574" />
+                  <stop offset="100%" stopColor="#B8956A" />
+                </linearGradient>
+                <linearGradient id="breadTopGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#E8C9A0" />
+                  <stop offset="50%" stopColor="#D4A574" />
+                  <stop offset="100%" stopColor="#C4956A" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            {/* Chat icon on bread */}
+            <div className="absolute inset-0 flex items-center justify-center pt-2">
+              <svg className="w-8 h-8 text-white drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+                <circle cx="8" cy="10" r="1.5" fill="currentColor"/>
+                <circle cx="12" cy="10" r="1.5" fill="currentColor"/>
+                <circle cx="16" cy="10" r="1.5" fill="currentColor"/>
+              </svg>
+            </div>
+
+            {/* Floating animation sparkles */}
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-300 rounded-full animate-ping opacity-75"></div>
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full"></div>
+          </div>
+
+          {/* Label */}
+          <span className="mt-1 text-xs font-bold text-[#8B6F47] bg-white/90 px-3 py-1 rounded-full shadow-md backdrop-blur-sm group-hover:bg-[#B8956A] group-hover:text-white transition-all duration-300">
             상담문의
           </span>
         </Link>
