@@ -392,25 +392,25 @@ export default function HomePage() {
                 title: '품질 최우선',
                 subtitle: 'Quality First',
                 desc: '엄격한 품질관리 시스템으로 최고의 제품만을 선별합니다',
-                bgImage: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=400&fit=crop'
+                bgImage: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&h=400&fit=crop'
               },
               {
                 title: '고객 중심',
                 subtitle: 'Customer Focus',
                 desc: '고객의 니즈를 정확히 파악하여 맞춤형 솔루션을 제공합니다',
-                bgImage: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop'
+                bgImage: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=600&h=400&fit=crop'
               },
               {
                 title: '전문성',
                 subtitle: 'Expertise',
-                desc: '30년간 축적된 노하우와 전문 지식을 바탕으로 서비스합니다',
-                bgImage: 'https://images.unsplash.com/photo-1553531087-b25a0b9a68ab?w=600&h=400&fit=crop'
+                desc: '15년간 축적된 노하우와 전문 지식을 바탕으로 서비스합니다',
+                bgImage: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&h=400&fit=crop'
               },
               {
                 title: '혁신 추구',
                 subtitle: 'Innovation',
                 desc: '시장 트렌드를 선도하며 새로운 가치를 창출합니다',
-                bgImage: 'https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=600&h=400&fit=crop'
+                bgImage: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&h=400&fit=crop'
               }
             ].map((value, index) => (
               <div
@@ -486,35 +486,35 @@ export default function HomePage() {
                     year: '2010',
                     title: '에이스유통㈜ 창립',
                     desc: '직원 5명으로 카페·베이커리 원재료 유통 사업 시작',
-                    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop',
+                    image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=800&h=600&fit=crop',
                     position: 'left'
                   },
                   {
                     year: '2015',
                     title: '본사 사옥 신축 이전',
                     desc: '경기도 하남시 천현동에 자체 물류센터 보유 사옥 신축',
-                    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop',
+                    image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&h=600&fit=crop',
                     position: 'right'
                   },
                   {
                     year: '2019',
                     title: '우수기술기업 인증',
                     desc: '제과제빵 재료 유통물류 및 기술마케팅 부문 우수기술기업 인증 획득',
-                    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop',
+                    image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=600&fit=crop',
                     position: 'left'
                   },
                   {
                     year: '2020',
                     title: '창립 10주년 & 특허 취득',
                     desc: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 취득',
-                    image: 'https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?w=800&h=600&fit=crop',
+                    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&h=600&fit=crop',
                     position: 'right'
                   },
                   {
                     year: '2025',
                     title: '전략적 파트너십 체결',
                     desc: 'IP 굿즈 및 에듀 콘텐츠 기업 ㈜토이트론과 전략적 계약 체결',
-                    image: 'https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=800&h=600&fit=crop',
+                    image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop',
                     position: 'left'
                   }
                 ].map((item, index) => (
@@ -928,7 +928,7 @@ export default function HomePage() {
                   {/* Featured Image */}
                   <div className="relative h-[500px] overflow-hidden bg-gradient-to-br from-[#FAF6F1] to-[#F5EFE7]">
                     <img
-                      src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop"
+                      src="https://images.unsplash.com/photo-1452195100486-9cc805987862?w=800&h=600&fit=crop"
                       alt="Featured News"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />

@@ -2,10 +2,10 @@ import { Header, Footer, PageHero } from '@/components/layout';
 import Link from 'next/link';
 
 const trends = [
-  { title: '2024 베이커리 트렌드: 건강과 지속가능성', category: '트렌드 분석', date: '2024.12', desc: '글루텐프리, 비건 베이커리의 성장과 친환경 포장재의 확산에 대한 심층 분석', tags: ['건강', '비건', '지속가능성'] },
-  { title: '프리미엄 초콜릿 시장 동향', category: '시장 분석', date: '2024.11', desc: '싱글오리진 초콜릿과 빈투바 트렌드가 이끄는 프리미엄 시장의 변화', tags: ['초콜릿', '프리미엄', '싱글오리진'] },
-  { title: '소비자가 원하는 베이커리 메뉴', category: '소비자 조사', date: '2024.10', desc: 'MZ세대가 선호하는 베이커리 메뉴와 구매 패턴 분석', tags: ['소비자', 'MZ세대', '트렌드'] },
-  { title: '냉동생지 시장의 성장', category: '시장 분석', date: '2024.09', desc: '편의성과 품질을 모두 갖춘 냉동생지 시장의 급성장 배경', tags: ['냉동생지', '편의성', '시장분석'] },
+  { title: '2024 베이커리 트렌드: 건강과 지속가능성', category: '트렌드 분석', date: '2024.12', desc: '글루텐프리, 비건 베이커리의 성장과 친환경 포장재의 확산에 대한 심층 분석', tags: ['건강', '비건', '지속가능성'], image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&h=400&fit=crop' },
+  { title: '프리미엄 초콜릿 시장 동향', category: '시장 분석', date: '2024.11', desc: '싱글오리진 초콜릿과 빈투바 트렌드가 이끄는 프리미엄 시장의 변화', tags: ['초콜릿', '프리미엄', '싱글오리진'], image: 'https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=800&h=400&fit=crop' },
+  { title: '소비자가 원하는 베이커리 메뉴', category: '소비자 조사', date: '2024.10', desc: 'MZ세대가 선호하는 베이커리 메뉴와 구매 패턴 분석', tags: ['소비자', 'MZ세대', '트렌드'], image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=800&h=400&fit=crop' },
+  { title: '냉동생지 시장의 성장', category: '시장 분석', date: '2024.09', desc: '편의성과 품질을 모두 갖춘 냉동생지 시장의 급성장 배경', tags: ['냉동생지', '편의성', '시장분석'], image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&h=400&fit=crop' },
 ];
 
 export default function TrendPage() {
@@ -48,12 +48,12 @@ export default function TrendPage() {
             <div className="grid md:grid-cols-2 gap-8">
               {trends.map((trend, index) => (
                 <div key={index} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
-                  <div className="aspect-[2/1] bg-gradient-to-br from-[#B8956A]/20 to-[#D4A574]/20 flex items-center justify-center relative">
-                    <div className="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-10 h-10 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                      </svg>
-                    </div>
+                  <div className="aspect-[2/1] relative overflow-hidden">
+                    <img
+                      src={trend.image}
+                      alt={trend.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
                     <span className="absolute top-4 left-4 bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
                       {trend.category}
                     </span>

@@ -48,8 +48,8 @@ export default function AboutIntroPage() {
             <div className="relative">
               <div className="aspect-[4/3] bg-gradient-to-br from-[#FAF6F1] to-[#F5EFE7] rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop"
-                  alt="에이스유통 사옥"
+                  src="https://images.unsplash.com/photo-1608198093002-ad4e005571d1?w=800&h=600&fit=crop"
+                  alt="에이스유통 물류센터"
                   className="w-full h-full object-cover"
                 />
               </div>

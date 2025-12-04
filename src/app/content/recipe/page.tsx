@@ -4,12 +4,12 @@ import { Header, Footer, PageHero } from '@/components/layout';
 import { useState } from 'react';
 
 const recipes = [
-  { title: '클래식 크루아상', category: '빵', difficulty: '상', time: '6시간', desc: '버터의 풍미가 살아있는 정통 프랑스 크루아상' },
-  { title: '티라미수', category: '디저트', difficulty: '중', time: '4시간', desc: '마스카포네 치즈와 에스프레소의 완벽한 조화' },
-  { title: '바스크 치즈케이크', category: '케이크', difficulty: '하', time: '1시간', desc: '겉은 바삭, 속은 크리미한 바스크식 치즈케이크' },
-  { title: '마카롱', category: '쿠키', difficulty: '상', time: '3시간', desc: '컬러풀한 프렌치 마카롱 만들기' },
-  { title: '식빵', category: '빵', difficulty: '중', time: '4시간', desc: '부드럽고 촉촉한 기본 식빵' },
-  { title: '초코 브라우니', category: '디저트', difficulty: '하', time: '1시간', desc: '진한 초콜릿의 풍미가 가득한 브라우니' },
+  { title: '클래식 크루아상', category: '빵', difficulty: '상', time: '6시간', desc: '버터의 풍미가 살아있는 정통 프랑스 크루아상', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&h=600&fit=crop' },
+  { title: '티라미수', category: '디저트', difficulty: '중', time: '4시간', desc: '마스카포네 치즈와 에스프레소의 완벽한 조화', image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&h=600&fit=crop' },
+  { title: '바스크 치즈케이크', category: '케이크', difficulty: '하', time: '1시간', desc: '겉은 바삭, 속은 크리미한 바스크식 치즈케이크', image: 'https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=800&h=600&fit=crop' },
+  { title: '마카롱', category: '쿠키', difficulty: '상', time: '3시간', desc: '컬러풀한 프렌치 마카롱 만들기', image: 'https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=800&h=600&fit=crop' },
+  { title: '식빵', category: '빵', difficulty: '중', time: '4시간', desc: '부드럽고 촉촉한 기본 식빵', image: 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=800&h=600&fit=crop' },
+  { title: '초코 브라우니', category: '디저트', difficulty: '하', time: '1시간', desc: '진한 초콜릿의 풍미가 가득한 브라우니', image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800&h=600&fit=crop' },
 ];
 
 export default function RecipePage() {
@@ -61,12 +61,12 @@ export default function RecipePage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredRecipes.map((recipe, index) => (
                 <div key={index} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-[#B8956A]/20 to-[#D4A574]/20 flex items-center justify-center relative">
-                    <div className="w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-12 h-12 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                      </svg>
-                    </div>
+                  <div className="aspect-[4/3] relative overflow-hidden">
+                    <img
+                      src={recipe.image}
+                      alt={recipe.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
                     <span className="absolute top-4 left-4 bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
                       {recipe.category}
                     </span>

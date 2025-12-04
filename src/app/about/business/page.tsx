@@ -75,13 +75,29 @@ export default function BusinessPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { title: '저온창고 운영', desc: '저온창고와 해충방제 시스템을 통한 양질의 제품 공급 최우선', icon: '❄️' },
-                  { title: '해외직수입 & 대량구매', desc: '구매원가 절감 → 거래처 출고단가 추가 인하효과', icon: '🌍' },
-                  { title: '전 상품 공급 시스템', desc: '국내 제조 모든 상품과 수입 베이커리 부자재 공급 가능', icon: '📦' },
-                  { title: '유연한 배송 시스템', desc: '정해진 배송날짜 외 필요 시 어느때라도 배송 가능', icon: '🚚' },
+                  { title: '저온창고 운영', desc: '저온창고와 해충방제 시스템을 통한 양질의 제품 공급 최우선', icon: (
+                    <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                    </svg>
+                  )},
+                  { title: '해외직수입 & 대량구매', desc: '구매원가 절감 → 거래처 출고단가 추가 인하효과', icon: (
+                    <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  )},
+                  { title: '전 상품 공급 시스템', desc: '국내 제조 모든 상품과 수입 베이커리 부자재 공급 가능', icon: (
+                    <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                  )},
+                  { title: '유연한 배송 시스템', desc: '정해진 배송날짜 외 필요 시 어느때라도 배송 가능', icon: (
+                    <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                  )},
                 ].map((item, index) => (
                   <div key={index} className="bg-white border-2 border-[#E8DCC8] rounded-2xl p-6 hover:border-[#B8956A]/50 hover:shadow-lg transition-all duration-300 group">
-                    <div className="text-3xl mb-3">{item.icon}</div>
+                    <div className="mb-3">{item.icon}</div>
                     <h4 className="font-bold text-[#4A4039] mb-2 group-hover:text-[#B8956A] transition-colors">{item.title}</h4>
                     <p className="text-sm text-[#6B5D53]">{item.desc}</p>
                   </div>

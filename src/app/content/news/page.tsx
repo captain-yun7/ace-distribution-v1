@@ -1,12 +1,12 @@
 import { Header, Footer, PageHero } from '@/components/layout';
 
 const newsItems = [
-  { title: '에이스유통, 2024 식품유통대상 수상', category: '수상', date: '2024.11.15', desc: '대한상공회의소 주관 2024 식품유통대상에서 우수기업상 수상', featured: true },
-  { title: '친환경 포장재 도입으로 ESG 경영 강화', category: '경영', date: '2024.10.28', desc: '생분해성 포장재 도입과 탄소배출 저감 프로그램 시행', featured: true },
-  { title: '제2 물류센터 하남 확장 완료', category: '사업확장', date: '2024.09.20', desc: '하남시 천현동에 520평 규모 물류센터 확장 완료', featured: false },
-  { title: '베이커리 원재료 유통 전문기업으로 성장', category: '언론보도', date: '2024.08.15', desc: '매일경제 인터뷰: 에이스유통 안종일 대표의 성장 스토리', featured: false },
-  { title: '신규 프리미엄 초콜릿 라인업 런칭', category: '신제품', date: '2024.07.10', desc: '유럽산 프리미엄 커버춰 초콜릿 5종 신규 런칭', featured: false },
-  { title: '상반기 거래처 만족도 조사 결과 발표', category: '고객만족', date: '2024.06.30', desc: '거래처 만족도 95% 달성, 배송 서비스 부문 최고점', featured: false },
+  { title: '에이스유통, 2024 식품유통대상 수상', category: '수상', date: '2024.11.15', desc: '대한상공회의소 주관 2024 식품유통대상에서 우수기업상 수상', featured: true, image: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=800&h=400&fit=crop' },
+  { title: '친환경 포장재 도입으로 ESG 경영 강화', category: '경영', date: '2024.10.28', desc: '생분해성 포장재 도입과 탄소배출 저감 프로그램 시행', featured: true, image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=400&fit=crop' },
+  { title: '제2 물류센터 하남 확장 완료', category: '사업확장', date: '2024.09.20', desc: '하남시 천현동에 520평 규모 물류센터 확장 완료', featured: false, image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&h=400&fit=crop' },
+  { title: '베이커리 원재료 유통 전문기업으로 성장', category: '언론보도', date: '2024.08.15', desc: '매일경제 인터뷰: 에이스유통 안종일 대표의 성장 스토리', featured: false, image: 'https://images.unsplash.com/photo-1486427944344-d2f90f9b0678?w=800&h=400&fit=crop' },
+  { title: '신규 프리미엄 초콜릿 라인업 런칭', category: '신제품', date: '2024.07.10', desc: '유럽산 프리미엄 커버춰 초콜릿 5종 신규 런칭', featured: false, image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=800&h=400&fit=crop' },
+  { title: '상반기 거래처 만족도 조사 결과 발표', category: '고객만족', date: '2024.06.30', desc: '거래처 만족도 95% 달성, 배송 서비스 부문 최고점', featured: false, image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop' },
 ];
 
 export default function NewsPage() {
@@ -35,12 +35,12 @@ export default function NewsPage() {
             <div className="grid md:grid-cols-2 gap-8">
               {newsItems.filter(n => n.featured).map((news, index) => (
                 <div key={index} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
-                  <div className="aspect-[2/1] bg-gradient-to-br from-[#B8956A]/20 to-[#D4A574]/20 flex items-center justify-center relative">
-                    <div className="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-10 h-10 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                      </svg>
-                    </div>
+                  <div className="aspect-[2/1] relative overflow-hidden">
+                    <img
+                      src={news.image}
+                      alt={news.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
                     <span className="absolute top-4 left-4 bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
                       {news.category}
                     </span>
