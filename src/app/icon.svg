@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="15" fill="#B8956A"/>
+
+  <!-- Bread/Croissant shape -->
+  <g fill="#FAF6F1">
+    <!-- Main bread body -->
+    <ellipse cx="16" cy="18" rx="10" ry="7"/>
+
+    <!-- Top crust curves -->
+    <path d="M8 14 Q10 8 16 8 Q22 8 24 14 Q22 12 16 12 Q10 12 8 14Z"/>
+
+    <!-- Bread details/slits -->
+    <path d="M11 15 Q13 13 16 13 Q19 13 21 15" fill="none" stroke="#D4A574" stroke-width="1" stroke-linecap="round"/>
+    <path d="M12 18 Q14 16 16 16 Q18 16 20 18" fill="none" stroke="#D4A574" stroke-width="0.8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Shine effect -->
+  <ellipse cx="12" cy="12" rx="2" ry="1.5" fill="#FFFFFF" opacity="0.3"/>
+</svg>
