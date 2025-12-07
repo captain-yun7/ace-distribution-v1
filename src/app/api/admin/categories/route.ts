@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/auth';
+import { auth } from '../../../../../auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 
@@ -8,7 +8,7 @@ const categorySchema = z.object({
   displayName: z.string().min(1, '표시명은 필수입니다'),
   description: z.string().optional(),
   imageUrl: z.string().optional(),
-  sortOrder: z.number().optional(),
+  order: z.number().optional(),
   isPublished: z.boolean().optional(),
 });
 
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     }
 
     const categories = await prisma.productCategory.findMany({
-      orderBy: { sortOrder: 'asc' },
+      orderBy: { order: 'asc' },
       include: {
         _count: {
           select: { products: true },
@@ -47,15 +47,15 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedData = categorySchema.parse(body);
 
-    // Get max sortOrder
+    // Get max order
     const maxOrder = await prisma.productCategory.aggregate({
-      _max: { sortOrder: true },
+      _max: { order: true },
     });
 
     const category = await prisma.productCategory.create({
       data: {
         ...validatedData,
-        sortOrder: validatedData.sortOrder ?? (maxOrder._max.sortOrder ?? 0) + 1,
+        order: validatedData.order ?? (maxOrder._max.order ?? 0) + 1,
       },
     });
 
@@ -78,13 +78,13 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { categories } = body as { categories: { id: string; sortOrder: number }[] };
+    const { categories } = body as { categories: { id: string; order: number }[] };
 
     await prisma.$transaction(
       categories.map((cat) =>
         prisma.productCategory.update({
           where: { id: cat.id },
-          data: { sortOrder: cat.sortOrder },
+          data: { order: cat.order },
         })
       )
     );
