@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@/auth';
+import { auth } from '../../../../../auth';
 import { prisma } from '@/lib/prisma';
 
 export async function GET() {
@@ -44,7 +44,7 @@ export async function GET() {
           id: true,
           title: true,
           category: true,
-          isPublished: true,
+          isPinned: true,
           createdAt: true,
         },
       }),
