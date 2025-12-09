@@ -76,141 +76,209 @@ export default function HomePage() {
         </Link>
       </div>
 
-      {/* Premium Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-[#FFF8F0]/95 backdrop-blur-md shadow-sm">
-        <div className="max-w-[1400px] mx-auto flex items-center justify-between h-20 px-6 lg:px-12">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <span className="text-3xl font-black text-[#8B6F47] group-hover:text-[#A67C52] transition-colors">
-              ACE
-            </span>
-            <div className="hidden sm:flex flex-col border-l-2 border-[#D4A574]/30 pl-3">
-              <span className="text-sm font-bold text-[#4A4039]">에이스유통</span>
-              <span className="text-xs text-[#8B7D73]">주식회사</span>
+      {/* Premium Header with Enhanced Visual Hierarchy */}
+      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-700 group/header hover:bg-white hover:shadow-[0_4px_30px_rgba(0,0,0,0.1)] bg-gradient-to-b from-black/40 to-transparent">
+        <div className="max-w-[1920px] mx-auto flex items-center justify-between h-20 lg:h-24 px-6 lg:px-12">
+          {/* Logo with Premium Styling */}
+          <Link href="/" className="flex items-center transition-all duration-500 group/logo relative">
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <span className="text-4xl font-black tracking-tight text-white group-hover/header:text-[#8B6F47] transition-all duration-500 drop-shadow-lg">
+                  ACE
+                </span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#B8956A] to-[#D4A574] group-hover/logo:w-full transition-all duration-500"></span>
+              </div>
+              <div className="hidden sm:flex flex-col border-l-2 border-white/30 group-hover/header:border-[#B8956A]/30 pl-4 transition-all duration-500">
+                <span className="text-sm font-bold text-white group-hover/header:text-[#4A4039] transition-all duration-500 tracking-wide">에이스유통</span>
+                <span className="text-xs font-medium text-white/70 group-hover/header:text-[#6B5D53] transition-all duration-500">주식회사</span>
+              </div>
             </div>
           </Link>
 
-          {/* Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {[
-              { title: '회사 소개', href: '/about/intro' },
-              { title: '판매 제품', href: '/products/all' },
-              { title: '콘텐츠', href: '/content/recipe' },
-              { title: '고객 지원', href: '/support/contact' },
-            ].map((menu) => (
-              <Link
-                key={menu.title}
-                href={menu.href}
-                className="px-5 py-2 text-[15px] font-medium text-[#4A4039] hover:text-[#A67C52] transition-colors"
-              >
-                {menu.title}
-              </Link>
-            ))}
-            <Link
-              href="/support/contact"
-              className="ml-4 px-6 py-2.5 bg-[#A67C52] text-white text-sm font-bold rounded-full hover:bg-[#8B6F47] transition-colors"
-            >
-              문의하기
-            </Link>
+          {/* Premium Navigation */}
+          <nav className="hidden lg:flex items-center">
+            <ul className="flex items-center gap-2">
+              {[
+                { title: '회사 소개', items: [
+                  { name: '기업소개', href: '/about/intro', desc: '에이스유통을 소개합니다' },
+                  { name: '기업 연혁', href: '/about/history', desc: '30년의 발자취' },
+                  { name: '경영철학', href: '/about/philosophy', desc: '우리의 가치와 비전' },
+                  { name: '사업장 소개', href: '/about/business', desc: '전국 물류 네트워크' },
+                  { name: '조직 및 인증서', href: '/about/certification', desc: '신뢰의 증명' }
+                ]},
+                { title: '판매 제품', items: [
+                  { name: '전체', href: '/products/all', desc: '모든 제품 보기' },
+                  { name: '두서류가공품', href: '/products/legume', desc: '콩류 가공식품' },
+                  { name: '곡류가공품', href: '/products/grain', desc: '밀가루, 전분류' },
+                  { name: '견과가공품', href: '/products/nut', desc: '아몬드, 호두 등' },
+                  { name: '유지 및 유가공품', href: '/products/dairy', desc: '버터, 크림류' },
+                  { name: '커피오가공품', href: '/products/coffee', desc: '커피, 코코아' },
+                  { name: '당류가공품', href: '/products/sugar', desc: '설탕, 시럽류' },
+                  { name: '냉동생지류', href: '/products/frozen', desc: '냉동 베이커리' },
+                  { name: '잡가루', href: '/products/flour', desc: '특수 가루류' },
+                  { name: '과채가공품', href: '/products/vegetable', desc: '과일, 채소류' },
+                  { name: '축산가공품', href: '/products/meat', desc: '육류 가공품' }
+                ]},
+                { title: '콘텐츠 / 홍보', items: [
+                  { name: '레시피', href: '/content/recipe', desc: '셰프의 레시피' },
+                  { name: '트렌드 리포트', href: '/content/trend', desc: '업계 최신 트렌드' },
+                  { name: '언론보도', href: '/content/news', desc: '미디어 소식' }
+                ]},
+                { title: '기업 문화', items: [
+                  { name: '사내 문화', href: '/culture/internal', desc: '함께 성장하는 문화' },
+                  { name: '사회 공헌', href: '/culture/social', desc: '나눔의 가치 실현' },
+                  { name: '협력 사례', href: '/culture/partnership', desc: '파트너십 스토리' }
+                ]},
+                { title: '고객 지원', items: [
+                  { name: 'FAQ', href: '/support/faq', desc: '자주 묻는 질문' },
+                  { name: '공지사항', href: '/support/notice', desc: '새로운 소식' },
+                  { name: '자료실', href: '/support/resources', desc: '카탈로그, 인증서' },
+                  { name: '고객문의', href: '/support/contact', desc: '1:1 상담 신청' },
+                  { name: '찾아오시는 길', href: '/support/location', desc: '오시는 방법' }
+                ]}
+              ].map((menu) => (
+                <li key={menu.title} className="relative group">
+                  <button className="relative px-5 py-3 text-[15px] font-semibold text-white group-hover/header:text-[#4A4039] transition-all duration-500 tracking-wide">
+                    <span className="relative z-10">{menu.title}</span>
+                    {/* Elegant underline animation */}
+                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[#B8956A] to-[#D4A574] group-hover:w-[calc(100%-20px)] transition-all duration-500 rounded-full"></span>
+                    {/* Subtle glow on hover */}
+                    <span className="absolute inset-0 rounded-xl bg-white/0 group-hover:bg-white/10 group-hover/header:bg-[#B8956A]/5 transition-all duration-500"></span>
+                  </button>
+
+                  {/* Premium Dropdown Menu */}
+                  <div className="fixed left-0 right-0 top-20 lg:top-24 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                    {/* Backdrop */}
+                    <div className="absolute inset-0 bg-white/98 backdrop-blur-xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] border-t border-[#B8956A]/10"></div>
+
+                    {/* Content */}
+                    <div className="relative max-w-6xl mx-auto px-8 py-10">
+                      {/* Menu Title */}
+                      <div className="flex items-center gap-4 mb-8 pb-6 border-b border-gray-100">
+                        <div className="w-1 h-8 bg-gradient-to-b from-[#B8956A] to-[#D4A574] rounded-full"></div>
+                        <h3 className="text-2xl font-bold text-[#4A4039]">{menu.title}</h3>
+                      </div>
+
+                      {/* Menu Items Grid */}
+                      <div className={`grid gap-3 ${menu.items.length > 6 ? 'grid-cols-4' : menu.items.length > 3 ? 'grid-cols-3' : 'grid-cols-3'}`}>
+                        {menu.items.map((item, idx) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="group/item flex items-start gap-4 p-4 rounded-2xl hover:bg-gradient-to-br hover:from-[#FAF6F1] hover:to-white transition-all duration-300 border border-transparent hover:border-[#B8956A]/10"
+                            style={{ animationDelay: `${idx * 50}ms` }}
+                          >
+                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 flex items-center justify-center flex-shrink-0 group-hover/item:from-[#B8956A] group-hover/item:to-[#D4A574] transition-all duration-300">
+                              <svg className="w-5 h-5 text-[#B8956A] group-hover/item:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <span className="block text-[15px] font-semibold text-[#4A4039] group-hover/item:text-[#B8956A] transition-colors duration-300 mb-1">
+                                {item.name}
+                              </span>
+                              <span className="block text-xs text-[#8B7D73] truncate">
+                                {item.desc}
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </nav>
 
           {/* Mobile Menu Button */}
-          <button className="lg:hidden p-2 text-[#4A4039]">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button className="lg:hidden p-2 text-white group-hover/header:text-[#4A4039] transition-colors duration-500">
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
       </header>
 
-      {/* Hero Section - Bakery Style */}
-      <section className="relative min-h-screen pt-20 bg-gradient-to-b from-[#FFF8F0] to-[#FAF6F1] overflow-hidden">
-        {/* Decorative Background Elements */}
+      {/* Hero Section - Bakery Style with Full Background */}
+      <section className="relative h-screen overflow-hidden">
+        {/* Full Background Image/Video */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-[#E8DCC8]/40 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#D4A574]/20 to-transparent rounded-full blur-3xl"></div>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover animate-hero-zoom"
+            poster="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=3000&auto=format&fit=crop"
+          >
+            <source src="https://player.vimeo.com/external/434045526.hd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f86e7fab02&profile_id=175&download=1" type="video/mp4" />
+          </video>
+
+          {/* Warm Bakery Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#4A4039]/90 via-[#4A4039]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#A67C52]/20 via-transparent to-[#4A4039]/70" />
         </div>
 
-        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12 min-h-[calc(100vh-80px)] flex items-center">
-          <div className="grid lg:grid-cols-2 gap-12 items-center w-full py-16">
-            {/* Left Content */}
-            <div className="order-2 lg:order-1">
-              <div className="mb-6">
-                <span className="inline-block px-4 py-2 bg-[#A67C52]/10 text-[#A67C52] text-sm font-bold rounded-full mb-6">
+        {/* Hero Content */}
+        <div className="relative z-10 w-full h-full flex flex-col justify-center">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-12 w-full">
+            <div className="max-w-3xl">
+              {/* Badge */}
+              <div className="mb-8 animate-fadeInUp">
+                <span className="inline-block px-5 py-2 bg-[#A67C52]/80 backdrop-blur-sm text-white text-sm font-bold rounded-full">
                   프리미엄 식자재 유통 전문
                 </span>
               </div>
 
-              <h1 className="text-5xl lg:text-7xl font-black text-[#4A4039] leading-tight mb-6">
+              {/* Main Title */}
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6 animate-fadeInUp animation-delay-200">
                 <span className="block">갓 구운 신선함,</span>
-                <span className="block text-[#A67C52]">당신만을 위해!</span>
+                <span className="block text-[#D4A574]">당신만을 위해!</span>
               </h1>
 
-              <p className="text-lg text-[#6B5D53] leading-relaxed mb-10 max-w-lg">
+              {/* Decorative Line */}
+              <div className="flex items-center gap-4 mb-8 animate-fadeInUp animation-delay-400">
+                <div className="w-24 h-[2px] bg-gradient-to-r from-[#D4A574] to-[#A67C52]"></div>
+                <div className="w-2 h-2 bg-[#D4A574] rounded-full animate-pulse"></div>
+              </div>
+
+              {/* Description */}
+              <p className="text-xl text-white/90 leading-relaxed mb-10 max-w-xl animate-fadeInUp animation-delay-400">
                 15년 전통의 에이스유통이 엄선한 프리미엄 베이커리 원재료로
                 당신의 특별한 레시피를 완성하세요.
               </p>
 
-              <div className="flex flex-wrap gap-4">
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-4 animate-fadeInUp animation-delay-600">
                 <Link
                   href="/products/all"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#A67C52] text-white font-bold rounded-full hover:bg-[#8B6F47] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
+                  className="group inline-flex items-center gap-3 px-10 py-5 bg-[#A67C52] text-white font-bold rounded-full hover:bg-[#8B6F47] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
                 >
                   제품 보기
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
                 <Link
                   href="/about/intro"
-                  className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#A67C52] text-[#A67C52] font-bold rounded-full hover:bg-[#A67C52] hover:text-white transition-all duration-300"
+                  className="group inline-flex items-center gap-3 px-10 py-5 border-2 border-white/50 text-white font-bold rounded-full hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
                 >
                   회사 소개
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
-              </div>
-            </div>
-
-            {/* Right Content - Bakery Images */}
-            <div className="order-1 lg:order-2 relative">
-              <div className="relative">
-                {/* Main Croissant Image */}
-                <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl">
-                  <img
-                    src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&h=600&fit=crop"
-                    alt="갓 구운 크로와상"
-                    className="w-full h-[400px] lg:h-[500px] object-cover"
-                  />
-                </div>
-
-                {/* Floating Small Images */}
-                <div className="absolute -top-8 -left-8 w-32 h-32 rounded-2xl overflow-hidden shadow-xl border-4 border-white z-20 animate-float">
-                  <img
-                    src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop"
-                    alt="식빵"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div className="absolute -bottom-6 -right-6 w-40 h-40 rounded-2xl overflow-hidden shadow-xl border-4 border-white z-20 animate-float animation-delay-400">
-                  <img
-                    src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=200&h=200&fit=crop"
-                    alt="베이커리"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Decorative Circle */}
-                <div className="absolute top-1/2 -right-12 w-24 h-24 bg-[#D4A574]/30 rounded-full blur-xl"></div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
-          <div className="text-xs text-[#8B7D73] tracking-widest mb-2">SCROLL</div>
-          <div className="w-6 h-10 border-2 border-[#A67C52] rounded-full mx-auto flex justify-center">
-            <div className="w-1 h-3 bg-[#A67C52] rounded-full mt-2 animate-bounce"></div>
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-center z-10">
+          <div className="text-xs text-white/70 tracking-[0.3em] uppercase mb-3">Scroll</div>
+          <div className="w-8 h-12 border-2 border-white/50 rounded-full mx-auto flex justify-center">
+            <div className="w-1.5 h-3 bg-white/80 rounded-full mt-2 animate-bounce"></div>
           </div>
         </div>
       </section>
@@ -219,7 +287,7 @@ export default function HomePage() {
       <section
         ref={(el) => { sectionsRef.current[0] = el; }}
         id="whychoose"
-        className="py-24 bg-white"
+        className="py-24 bg-[#FDF8F3]"
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           {/* Section Header */}
@@ -227,7 +295,7 @@ export default function HomePage() {
             <div className="flex items-center justify-center gap-2 mb-4">
               <span className="text-2xl">🌾</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#4A4039] mb-4">
+            <h2 className="text-4xl lg:text-5xl font-black text-[#4A4039] mb-4 font-display">
               Why Choose Us?
             </h2>
             <p className="text-[#6B5D53] max-w-2xl mx-auto">
@@ -312,7 +380,7 @@ export default function HomePage() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           {/* Section Header */}
           <div className={`text-center mb-16 ${isVisible.products ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <span className="text-sm font-bold text-[#A67C52] tracking-widest uppercase mb-4 block">
+            <span className="text-sm font-bold text-[#A67C52] tracking-widest uppercase mb-4 block font-display italic">
               Our Products
             </span>
             <h2 className="text-4xl lg:text-5xl font-black text-[#4A4039] mb-4">
@@ -377,13 +445,13 @@ export default function HomePage() {
       <section
         ref={(el) => { sectionsRef.current[2] = el; }}
         id="visit"
-        className="py-24 bg-white"
+        className="py-24 bg-[#FDF8F3]"
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
             <div className={isVisible.visit ? 'animate-fadeInUp' : 'opacity-0'}>
-              <span className="text-sm font-bold text-[#A67C52] tracking-widest uppercase mb-4 block">
+              <span className="text-sm font-bold text-[#A67C52] tracking-widest uppercase mb-4 block font-display italic">
                 Visit Us Today
               </span>
               <h2 className="text-4xl lg:text-5xl font-black text-[#4A4039] mb-6">
@@ -491,7 +559,7 @@ export default function HomePage() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className={`flex items-center justify-between mb-10 ${isVisible.featured ? 'animate-fadeInUp' : 'opacity-0'}`}>
             <div>
-              <span className="text-sm font-bold text-[#A67C52] tracking-widest uppercase">Featured</span>
+              <span className="text-sm font-bold text-[#A67C52] tracking-widest uppercase font-display italic">Featured</span>
               <h2 className="text-3xl font-black text-[#4A4039]">이달의 추천 제품</h2>
             </div>
             <Link href="/products/all" className="text-[#A67C52] font-semibold hover:underline">
@@ -509,7 +577,7 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-8">
-                <span className="inline-block px-3 py-1 bg-[#A67C52] text-white text-xs font-bold rounded-full mb-3">
+                <span className="inline-block px-3 py-1 bg-[#A67C52] text-white text-xs font-bold rounded-full mb-3 font-display">
                   BEST SELLER
                 </span>
                 <h3 className="text-3xl font-bold text-white mb-2">프랑스산 밀가루 T55</h3>
@@ -533,7 +601,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="inline-block px-3 py-1 bg-[#D4A574] text-white text-xs font-bold rounded-full mb-2">
+                  <span className="inline-block px-3 py-1 bg-[#D4A574] text-white text-xs font-bold rounded-full mb-2 font-display">
                     NEW
                   </span>
                   <h3 className="text-xl font-bold text-white">프리미엄 아몬드 슬라이스</h3>
@@ -547,7 +615,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="inline-block px-3 py-1 bg-[#8B6F47] text-white text-xs font-bold rounded-full mb-2">
+                  <span className="inline-block px-3 py-1 bg-[#8B6F47] text-white text-xs font-bold rounded-full mb-2 font-display">
                     HOT
                   </span>
                   <h3 className="text-xl font-bold text-white">원두 커피 블렌드</h3>
