@@ -3,9 +3,38 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
+// Hero slide images - Premium bakery images
+const heroSlides = [
+  {
+    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=3000&auto=format&fit=crop',
+    alt: '갓 구운 크로와상'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=3000&auto=format&fit=crop',
+    alt: '프리미엄 베이커리'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=3000&auto=format&fit=crop',
+    alt: '신선한 빵'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=3000&auto=format&fit=crop',
+    alt: '아티장 브레드'
+  }
+];
+
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
+  const [currentSlide, setCurrentSlide] = useState(0);
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
+
+  // Hero slider auto-play
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -170,24 +199,46 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Hero Section - Bakery Style with Full Background */}
+      {/* Hero Section - Bakery Style with Image Slider */}
       <section className="relative h-screen overflow-hidden">
-        {/* Full Background Image/Video */}
-        <div className="absolute inset-0 overflow-hidden">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover animate-hero-zoom"
-            poster="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=3000&auto=format&fit=crop"
-          >
-            <source src="https://player.vimeo.com/external/434045526.hd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f86e7fab02&profile_id=175&download=1" type="video/mp4" />
-          </video>
+        {/* Background Image Slider */}
+        <div className="absolute inset-0">
+          {heroSlides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                index === currentSlide
+                  ? 'opacity-100 scale-100'
+                  : 'opacity-0 scale-105'
+              }`}
+            >
+              <img
+                src={slide.image}
+                alt={slide.alt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
 
           {/* Warm Bakery Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#4A4039]/90 via-[#4A4039]/60 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#A67C52]/20 via-transparent to-[#4A4039]/70" />
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`h-1 rounded-full transition-all duration-500 ${
+                index === currentSlide
+                  ? 'w-10 bg-white'
+                  : 'w-4 bg-white/40 hover:bg-white/60'
+              }`}
+              aria-label={`슬라이드 ${index + 1}`}
+            />
+          ))}
         </div>
 
         {/* Hero Content */}
