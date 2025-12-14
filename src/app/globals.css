@@ -398,3 +398,19 @@ a, button, [role="button"], input[type="button"], input[type="submit"] {
   writing-mode: vertical-rl;
   text-orientation: upright;
 }
+
+/* Slide Progress Animation */
+@keyframes slideProgress {
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+.animate-progress {
+  animation: slideProgress 8s linear forwards;
+}
