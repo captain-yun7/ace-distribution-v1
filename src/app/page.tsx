@@ -6,20 +6,20 @@ import { useEffect, useRef, useState } from 'react';
 // Hero slide images - Premium bakery images
 const heroSlides = [
   {
-    image: 'https://images.unsplash.com/photo-1543168256-418811576931?q=80&w=3000&auto=format&fit=crop',
-    alt: '프리미엄 베이커리'
-  },
-  {
     image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=3000&auto=format&fit=crop',
     alt: '갓 구운 크로와상'
   },
   {
     image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=3000&auto=format&fit=crop',
-    alt: '밀가루와 빵'
+    alt: '프리미엄 베이커리'
   },
   {
     image: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=3000&auto=format&fit=crop',
     alt: '신선한 빵'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=3000&auto=format&fit=crop',
+    alt: '아티장 브레드'
   }
 ];
 
@@ -32,7 +32,7 @@ export default function HomePage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 8000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -61,14 +61,14 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FFF8F0] overflow-x-hidden">
+    <div className="min-h-screen bg-[#F5F2EE] overflow-x-hidden">
 
       {/* Premium Vertical Consultation Button */}
       <Link
         href="/support/contact"
         className="fixed right-0 top-1/2 -translate-y-1/2 z-40 group"
       >
-        <div className="flex flex-col items-center justify-center w-12 py-6 bg-[#8B6F47] hover:bg-[#6B4423] transition-all duration-300 shadow-lg hover:shadow-xl">
+        <div className="flex flex-col items-center justify-center w-12 py-6 bg-[#2C2824] hover:bg-[#1A1714] transition-all duration-300 shadow-lg hover:shadow-xl">
           <span className="text-white text-sm font-semibold tracking-widest writing-vertical">
             상담하기
           </span>
@@ -88,8 +88,8 @@ export default function HomePage() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#B8956A] to-[#D4A574] group-hover/logo:w-full transition-all duration-500"></span>
               </div>
               <div className="hidden sm:flex flex-col border-l-2 border-white/30 group-hover/header:border-[#B8956A]/30 pl-4 transition-all duration-500">
-                <span className="text-sm font-bold text-white group-hover/header:text-[#4A4039] transition-all duration-500 tracking-wide">에이스유통</span>
-                <span className="text-xs font-medium text-white/70 group-hover/header:text-[#6B5D53] transition-all duration-500">주식회사</span>
+                <span className="text-sm font-bold text-white group-hover/header:text-[#2C2824] transition-all duration-500 tracking-wide">에이스유통</span>
+                <span className="text-xs font-medium text-white/70 group-hover/header:text-[#5A524A] transition-all duration-500">주식회사</span>
               </div>
             </div>
           </Link>
@@ -137,7 +137,7 @@ export default function HomePage() {
                 ]}
               ].map((menu) => (
                 <li key={menu.title} className="relative group">
-                  <button className="relative px-5 py-3 text-[15px] font-semibold text-white group-hover/header:text-[#4A4039] transition-all duration-500 tracking-wide">
+                  <button className="relative px-5 py-3 text-[15px] font-semibold text-white group-hover/header:text-[#2C2824] transition-all duration-500 tracking-wide">
                     <span className="relative z-10">{menu.title}</span>
                     {/* Elegant underline animation */}
                     <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[#B8956A] to-[#D4A574] group-hover:w-[calc(100%-20px)] transition-all duration-500 rounded-full"></span>
@@ -155,7 +155,7 @@ export default function HomePage() {
                       {/* Menu Title */}
                       <div className="flex items-center gap-4 mb-8 pb-6 border-b border-gray-100">
                         <div className="w-1 h-8 bg-gradient-to-b from-[#B8956A] to-[#D4A574] rounded-full"></div>
-                        <h3 className="text-2xl font-bold text-[#4A4039]">{menu.title}</h3>
+                        <h3 className="text-2xl font-bold text-[#2C2824]">{menu.title}</h3>
                       </div>
 
                       {/* Menu Items Grid */}
@@ -173,7 +173,7 @@ export default function HomePage() {
                               </svg>
                             </div>
                             <div className="flex-1 min-w-0">
-                              <span className="block text-[15px] font-semibold text-[#4A4039] group-hover/item:text-[#B8956A] transition-colors duration-300 mb-1">
+                              <span className="block text-[15px] font-semibold text-[#2C2824] group-hover/item:text-[#B8956A] transition-colors duration-300 mb-1">
                                 {item.name}
                               </span>
                               <span className="block text-xs text-[#8B7D73] truncate">
@@ -191,7 +191,7 @@ export default function HomePage() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button className="lg:hidden p-2 text-white group-hover/header:text-[#4A4039] transition-colors duration-500">
+          <button className="lg:hidden p-2 text-white group-hover/header:text-[#2C2824] transition-colors duration-500">
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -206,20 +206,16 @@ export default function HomePage() {
           {heroSlides.map((slide, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-all duration-[3000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
+              className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
                 index === currentSlide
-                  ? 'opacity-100 scale-100 z-10'
-                  : index === (currentSlide - 1 + heroSlides.length) % heroSlides.length
-                    ? 'opacity-0 scale-105 z-[5]'
-                    : 'opacity-0 scale-100 z-0'
+                  ? 'opacity-100 scale-100'
+                  : 'opacity-0 scale-105'
               }`}
             >
               <img
                 src={slide.image}
                 alt={slide.alt}
-                className={`w-full h-full object-cover transition-transform duration-[12000ms] ease-linear ${
-                  index === currentSlide ? 'scale-110' : 'scale-100'
-                }`}
+                className="w-full h-full object-cover"
               />
             </div>
           ))}
@@ -230,24 +226,18 @@ export default function HomePage() {
         </div>
 
         {/* Slide Indicators */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-4">
+        <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-20 flex gap-3">
           {heroSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className="group relative py-2"
-              aria-label={`슬라이드 ${index + 1}`}
-            >
-              <span className={`block h-[2px] rounded-full transition-all duration-700 ease-out ${
+              className={`h-1 rounded-full transition-all duration-500 ${
                 index === currentSlide
-                  ? 'w-12 bg-white'
-                  : 'w-6 bg-white/30 group-hover:bg-white/50'
-              }`} />
-              {index === currentSlide && (
-                <span className="absolute top-1/2 left-0 -translate-y-1/2 h-[2px] bg-white/50 rounded-full animate-progress"
-                      style={{ width: '100%' }} />
-              )}
-            </button>
+                  ? 'w-10 bg-white'
+                  : 'w-4 bg-white/40 hover:bg-white/60'
+              }`}
+              aria-label={`슬라이드 ${index + 1}`}
+            />
           ))}
         </div>
 
@@ -291,7 +281,7 @@ export default function HomePage() {
               <div className="flex flex-wrap gap-5 animate-fadeInUp animation-delay-600">
                 <Link
                   href="/products/all"
-                  className="group inline-flex items-center gap-3 px-10 py-4 bg-[#A67C52] text-white font-semibold tracking-wide hover:bg-[#8B6F47] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                  className="group inline-flex items-center gap-3 px-10 py-4 bg-[#C9A86C] text-white font-semibold tracking-wide hover:bg-[#B89555] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                 >
                   제품 보기
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -318,7 +308,7 @@ export default function HomePage() {
       <section
         ref={(el) => { sectionsRef.current[0] = el; }}
         id="whychoose"
-        className="py-24 bg-[#FDF8F3]"
+        className="py-24 bg-[#ECEAE6]"
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           {/* Section Header */}
@@ -334,10 +324,10 @@ export default function HomePage() {
                 <path d="M24 36C24 36 32 32 32 24C32 20 28 18 24 18" strokeLinecap="round"/>
               </svg>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#4A4039] mb-4 font-display">
+            <h2 className="text-4xl lg:text-5xl font-black text-[#2C2824] mb-4 font-display">
               Why Choose Us?
             </h2>
-            <p className="text-[#6B5D53] max-w-2xl mx-auto">
+            <p className="text-[#5A524A] max-w-2xl mx-auto">
               에이스유통이 15년간 쌓아온 신뢰와 전문성으로 고객님의 성공적인 비즈니스를 지원합니다.
             </p>
           </div>
@@ -369,7 +359,7 @@ export default function HomePage() {
             ].map((item, index) => (
               <div
                 key={index}
-                className={`group bg-[#FAF6F1] rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500 ${
+                className={`group bg-[#F8F6F3] rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500 ${
                   isVisible.whychoose ? `animate-fadeInScale animation-delay-${index * 200}` : 'opacity-0'
                 }`}
               >
@@ -385,18 +375,18 @@ export default function HomePage() {
 
                 {/* Content */}
                 <div className="p-8">
-                  <span className="text-xs font-bold text-[#A67C52] tracking-wider uppercase">
+                  <span className="text-xs font-bold text-[#9A7B4F] tracking-wider uppercase">
                     {item.subtitle}
                   </span>
-                  <h3 className="text-2xl font-bold text-[#4A4039] mt-2 mb-4">
+                  <h3 className="text-2xl font-bold text-[#2C2824] mt-2 mb-4">
                     {item.title}
                   </h3>
-                  <p className="text-[#6B5D53] mb-6 leading-relaxed">
+                  <p className="text-[#5A524A] mb-6 leading-relaxed">
                     {item.desc}
                   </p>
                   <Link
                     href={item.link}
-                    className="inline-flex items-center gap-2 text-[#A67C52] font-semibold group-hover:gap-4 transition-all"
+                    className="inline-flex items-center gap-2 text-[#9A7B4F] font-semibold group-hover:gap-4 transition-all"
                   >
                     자세히 보기
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -414,18 +404,18 @@ export default function HomePage() {
       <section
         ref={(el) => { sectionsRef.current[1] = el; }}
         id="products"
-        className="py-24 bg-[#FAF6F1]"
+        className="py-24 bg-[#F5F2EE]"
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           {/* Section Header */}
           <div className={`text-center mb-16 ${isVisible.products ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <span className="text-sm font-bold text-[#A67C52] tracking-widest uppercase mb-4 block font-display italic">
+            <span className="text-sm font-bold text-[#9A7B4F] tracking-widest uppercase mb-4 block font-display italic">
               Our Products
             </span>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#4A4039] mb-4">
+            <h2 className="text-4xl lg:text-5xl font-black text-[#2C2824] mb-4">
               제품 카테고리
             </h2>
-            <p className="text-[#6B5D53]">
+            <p className="text-[#5A524A]">
               다양한 카테고리의 프리미엄 베이커리 원재료를 만나보세요
             </p>
           </div>
@@ -458,7 +448,7 @@ export default function HomePage() {
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h3 className="text-white text-lg font-bold">{category.name}</h3>
                 </div>
-                <div className="absolute inset-0 bg-[#A67C52]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-[#2C2824]/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <span className="text-white font-bold text-lg">자세히 보기 →</span>
                 </div>
               </Link>
@@ -469,7 +459,7 @@ export default function HomePage() {
           <div className="text-center mt-12">
             <Link
               href="/products/all"
-              className="inline-flex items-center gap-3 px-10 py-4 bg-[#A67C52] text-white font-bold rounded-full hover:bg-[#8B6F47] transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center gap-3 px-10 py-4 bg-[#C9A86C] text-white font-bold rounded-full hover:bg-[#B89555] transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               전체 제품 보기
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -484,64 +474,64 @@ export default function HomePage() {
       <section
         ref={(el) => { sectionsRef.current[2] = el; }}
         id="visit"
-        className="py-24 bg-[#FDF8F3]"
+        className="py-24 bg-[#ECEAE6]"
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
             <div className={isVisible.visit ? 'animate-fadeInUp' : 'opacity-0'}>
-              <span className="text-sm font-bold text-[#A67C52] tracking-widest uppercase mb-4 block font-display italic">
+              <span className="text-sm font-bold text-[#9A7B4F] tracking-widest uppercase mb-4 block font-display italic">
                 Visit Us Today
               </span>
-              <h2 className="text-4xl lg:text-5xl font-black text-[#4A4039] mb-6">
+              <h2 className="text-4xl lg:text-5xl font-black text-[#2C2824] mb-6">
                 직접 방문하여<br />
-                <span className="text-[#A67C52]">품질을 확인하세요</span>
+                <span className="text-[#9A7B4F]">품질을 확인하세요</span>
               </h2>
-              <p className="text-[#6B5D53] leading-relaxed mb-8">
+              <p className="text-[#5A524A] leading-relaxed mb-8">
                 에이스유통의 자체 물류센터를 방문하시면 다양한 제품을 직접 확인하실 수 있습니다.
                 전문 상담원이 귀사에 맞는 최적의 솔루션을 제안해 드립니다.
               </p>
 
               <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[#A67C52]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-[#A67C52]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-10 h-10 bg-[#9A7B4F]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-[#9A7B4F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-bold text-[#4A4039]">주소</h4>
-                    <p className="text-[#6B5D53]">경기도 하남시 샘재로 119번길 31(천현동)</p>
+                    <h4 className="font-bold text-[#2C2824]">주소</h4>
+                    <p className="text-[#5A524A]">경기도 하남시 샘재로 119번길 31(천현동)</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[#A67C52]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-[#A67C52]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-10 h-10 bg-[#9A7B4F]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-[#9A7B4F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-bold text-[#4A4039]">영업시간</h4>
-                    <p className="text-[#6B5D53]">월-금 09:00 ~ 18:00 (주말/공휴일 휴무)</p>
+                    <h4 className="font-bold text-[#2C2824]">영업시간</h4>
+                    <p className="text-[#5A524A]">월-금 09:00 ~ 18:00 (주말/공휴일 휴무)</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[#A67C52]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-[#A67C52]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-10 h-10 bg-[#9A7B4F]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-[#9A7B4F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-bold text-[#4A4039]">연락처</h4>
-                    <p className="text-[#6B5D53]">02-471-1644~6</p>
+                    <h4 className="font-bold text-[#2C2824]">연락처</h4>
+                    <p className="text-[#5A524A]">02-471-1644~6</p>
                   </div>
                 </div>
               </div>
 
               <Link
                 href="/support/location"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#A67C52] text-white font-bold rounded-full hover:bg-[#8B6F47] transition-all duration-300"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#C9A86C] text-white font-bold rounded-full hover:bg-[#B89555] transition-all duration-300"
               >
                 찾아오시는 길
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -593,15 +583,15 @@ export default function HomePage() {
       <section
         ref={(el) => { sectionsRef.current[3] = el; }}
         id="featured"
-        className="py-16 bg-[#FAF6F1]"
+        className="py-16 bg-[#F5F2EE]"
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className={`flex items-center justify-between mb-10 ${isVisible.featured ? 'animate-fadeInUp' : 'opacity-0'}`}>
             <div>
-              <span className="text-sm font-bold text-[#A67C52] tracking-widest uppercase font-display italic">Featured</span>
-              <h2 className="text-3xl font-black text-[#4A4039]">이달의 추천 제품</h2>
+              <span className="text-sm font-bold text-[#9A7B4F] tracking-widest uppercase font-display italic">Featured</span>
+              <h2 className="text-3xl font-black text-[#2C2824]">이달의 추천 제품</h2>
             </div>
-            <Link href="/products/all" className="text-[#A67C52] font-semibold hover:underline">
+            <Link href="/products/all" className="text-[#9A7B4F] font-semibold hover:underline">
               더보기 →
             </Link>
           </div>
@@ -616,7 +606,7 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-8">
-                <span className="inline-block px-3 py-1 bg-[#A67C52] text-white text-xs font-bold rounded-full mb-3 font-display">
+                <span className="inline-block px-3 py-1 bg-[#C9A86C] text-white text-xs font-bold rounded-full mb-3 font-display">
                   BEST SELLER
                 </span>
                 <h3 className="text-3xl font-bold text-white mb-2">프랑스산 밀가루 T55</h3>
@@ -640,7 +630,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="inline-block px-3 py-1 bg-[#D4A574] text-white text-xs font-bold rounded-full mb-2 font-display">
+                  <span className="inline-block px-3 py-1 bg-[#C9A86C] text-white text-xs font-bold rounded-full mb-2 font-display">
                     NEW
                   </span>
                   <h3 className="text-xl font-bold text-white">프리미엄 아몬드 슬라이스</h3>
@@ -654,7 +644,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="inline-block px-3 py-1 bg-[#8B6F47] text-white text-xs font-bold rounded-full mb-2 font-display">
+                  <span className="inline-block px-3 py-1 bg-[#3D3530] text-white text-xs font-bold rounded-full mb-2 font-display">
                     HOT
                   </span>
                   <h3 className="text-xl font-bold text-white">원두 커피 블렌드</h3>
@@ -666,7 +656,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-[#A67C52] to-[#8B6F47] relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-r from-[#3D3530] to-[#2C2824] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
@@ -682,7 +672,7 @@ export default function HomePage() {
           </p>
           <Link
             href="/support/contact"
-            className="inline-flex items-center gap-3 px-10 py-5 bg-white text-[#A67C52] font-bold text-lg rounded-full hover:bg-[#FAF6F1] transition-all duration-300 shadow-xl"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-[#C9A86C] text-white font-bold text-lg rounded-full hover:bg-[#B89555] transition-all duration-300 shadow-xl"
           >
             무료 상담 신청
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -693,7 +683,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#4A4039] py-16">
+      <footer className="bg-[#1E1B18] py-16">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           {/* Footer Top */}
           <div className="grid md:grid-cols-4 gap-12 pb-12 border-b border-white/10">
