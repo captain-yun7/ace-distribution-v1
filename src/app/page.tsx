@@ -3,6 +3,32 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
+// Types
+interface Category {
+  id: string;
+  name: string;
+  displayName: string;
+  description: string | null;
+  imageUrl: string | null;
+  _count: { products: number };
+}
+
+interface Product {
+  id: string;
+  name: string;
+  code: string;
+  description: string;
+  brand: string | null;
+  imageUrl: string | null;
+  thumbnailUrl: string | null;
+  isFeatured: boolean;
+  category: {
+    id: string;
+    name: string;
+    displayName: string;
+  };
+}
+
 // Hero slide images - Premium bakery images
 const heroSlides = [
   {
@@ -26,7 +52,22 @@ const heroSlides = [
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
+
+  // Fetch categories and featured products from DB
+  useEffect(() => {
+    fetch('/api/categories')
+      .then(res => res.json())
+      .then(data => setCategories(data))
+      .catch(err => console.error('Failed to fetch categories:', err));
+
+    fetch('/api/products?featured=true&limit=4')
+      .then(res => res.json())
+      .then(data => setFeaturedProducts(data))
+      .catch(err => console.error('Failed to fetch products:', err));
+  }, []);
 
   // Hero slider auto-play
   useEffect(() => {
@@ -422,31 +463,23 @@ export default function HomePage() {
 
           {/* Product Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {[
-              { name: '곡류가공품', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=400&fit=crop', href: '/products/grain' },
-              { name: '견과가공품', image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&h=400&fit=crop', href: '/products/nut' },
-              { name: '유지/유가공품', image: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&h=400&fit=crop', href: '/products/dairy' },
-              { name: '당류가공품', image: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400&h=400&fit=crop', href: '/products/sugar' },
-              { name: '냉동생지류', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&h=400&fit=crop', href: '/products/frozen' },
-              { name: '커피가공품', image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400&h=400&fit=crop', href: '/products/coffee' },
-              { name: '과채가공품', image: 'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=400&h=400&fit=crop', href: '/products/vegetable' },
-              { name: '축산가공품', image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=400&h=400&fit=crop', href: '/products/meat' },
-            ].map((category, index) => (
+            {categories.map((category, index) => (
               <Link
-                key={index}
-                href={category.href}
+                key={category.id}
+                href={`/products/${category.name}`}
                 className={`group relative aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ${
                   isVisible.products ? `animate-fadeInScale animation-delay-${index * 100}` : 'opacity-0'
                 }`}
               >
                 <img
-                  src={category.image}
-                  alt={category.name}
+                  src={category.imageUrl || 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=400&fit=crop'}
+                  alt={category.displayName}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="text-white text-lg font-bold">{category.name}</h3>
+                  <h3 className="text-white text-lg font-bold">{category.displayName}</h3>
+                  <p className="text-white/70 text-sm">{category._count.products}개 제품</p>
                 </div>
                 <div className="absolute inset-0 bg-[#2C2824]/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <span className="text-white font-bold text-lg">자세히 보기 →</span>
