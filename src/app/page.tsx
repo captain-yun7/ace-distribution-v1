@@ -245,48 +245,55 @@ export default function HomePage() {
         <div className="relative z-10 w-full h-full flex flex-col justify-center">
           <div className="max-w-[1400px] mx-auto px-6 lg:px-12 w-full">
             <div className="max-w-3xl">
-              {/* Badge */}
-              <div className="mb-8 animate-fadeInUp">
-                <span className="inline-block px-5 py-2 bg-[#A67C52]/80 backdrop-blur-sm text-white text-sm font-bold rounded-full">
-                  프리미엄 식자재 유통 전문
+              {/* Premium Badge */}
+              <div className="mb-10 animate-fadeInUp">
+                <span className="inline-flex items-center gap-2 px-6 py-2.5 bg-white/10 backdrop-blur-md text-white text-sm font-medium tracking-widest uppercase border border-white/20">
+                  <span className="w-2 h-2 bg-[#D4A574] rounded-full"></span>
+                  Premium Bakery Ingredients
                 </span>
               </div>
 
-              {/* Main Title */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6 animate-fadeInUp animation-delay-200">
-                <span className="block">갓 구운 신선함,</span>
-                <span className="block text-[#D4A574]">당신만을 위해!</span>
+              {/* English Tagline */}
+              <p className="font-display italic text-xl md:text-2xl text-[#D4A574] mb-4 animate-fadeInUp animation-delay-200 tracking-wide">
+                Freshly Baked Excellence
+              </p>
+
+              {/* Main Title - Korean */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8 animate-fadeInUp animation-delay-200">
+                <span className="block mb-2">최상의 원재료로</span>
+                <span className="block text-white/90">완성하는 <span className="text-[#D4A574]">프리미엄</span> 베이킹</span>
               </h1>
 
               {/* Decorative Line */}
-              <div className="flex items-center gap-4 mb-8 animate-fadeInUp animation-delay-400">
-                <div className="w-24 h-[2px] bg-gradient-to-r from-[#D4A574] to-[#A67C52]"></div>
-                <div className="w-2 h-2 bg-[#D4A574] rounded-full animate-pulse"></div>
+              <div className="flex items-center gap-6 mb-10 animate-fadeInUp animation-delay-400">
+                <div className="w-20 h-[1px] bg-gradient-to-r from-[#D4A574] to-transparent"></div>
+                <span className="font-display italic text-white/60 text-sm tracking-wider">Since 2009</span>
+                <div className="w-20 h-[1px] bg-gradient-to-l from-[#D4A574] to-transparent"></div>
               </div>
 
               {/* Description */}
-              <p className="text-xl text-white/90 leading-relaxed mb-10 max-w-xl animate-fadeInUp animation-delay-400">
-                15년 전통의 에이스유통이 엄선한 프리미엄 베이커리 원재료로
-                당신의 특별한 레시피를 완성하세요.
+              <p className="text-lg text-white/80 leading-relaxed mb-12 max-w-lg animate-fadeInUp animation-delay-400 font-light">
+                15년간 축적된 노하우와 엄격한 품질 관리로<br />
+                최고의 베이커리 원재료를 공급합니다.
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-wrap gap-4 animate-fadeInUp animation-delay-600">
+              <div className="flex flex-wrap gap-5 animate-fadeInUp animation-delay-600">
                 <Link
                   href="/products/all"
-                  className="group inline-flex items-center gap-3 px-10 py-5 bg-[#A67C52] text-white font-bold rounded-full hover:bg-[#8B6F47] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
+                  className="group inline-flex items-center gap-3 px-10 py-4 bg-[#A67C52] text-white font-semibold tracking-wide hover:bg-[#8B6F47] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                 >
                   제품 보기
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
                 <Link
                   href="/about/intro"
-                  className="group inline-flex items-center gap-3 px-10 py-5 border-2 border-white/50 text-white font-bold rounded-full hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
+                  className="group inline-flex items-center gap-3 px-10 py-4 border border-white/40 text-white font-semibold tracking-wide hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
                 >
                   회사 소개
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>
@@ -295,13 +302,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-center z-10">
-          <div className="text-xs text-white/70 tracking-[0.3em] uppercase mb-3">Scroll</div>
-          <div className="w-8 h-12 border-2 border-white/50 rounded-full mx-auto flex justify-center">
-            <div className="w-1.5 h-3 bg-white/80 rounded-full mt-2 animate-bounce"></div>
-          </div>
-        </div>
       </section>
 
       {/* Why Choose Us Section */}
