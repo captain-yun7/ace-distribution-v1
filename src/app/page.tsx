@@ -34,47 +34,17 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#FFF8F0] overflow-x-hidden">
 
-      {/* Bread-shaped Floating Consultation Button */}
-      <div className="fixed right-4 bottom-6 z-40 group">
-        <Link
-          href="/support/contact"
-          className="relative flex flex-col items-center"
-        >
-          <div className="relative w-20 h-24 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-            <svg viewBox="0 0 80 96" className="w-full h-full drop-shadow-lg">
-              <ellipse cx="40" cy="60" rx="36" ry="32" fill="url(#breadGradient)" />
-              <ellipse cx="40" cy="36" rx="32" ry="28" fill="url(#breadTopGradient)" />
-              <ellipse cx="28" cy="30" rx="12" ry="8" fill="rgba(255,255,255,0.3)" />
-              <path d="M25 45 Q40 38 55 45" stroke="#A67C52" strokeWidth="2" fill="none" opacity="0.4" />
-              <path d="M28 55 Q40 48 52 55" stroke="#A67C52" strokeWidth="1.5" fill="none" opacity="0.3" />
-              <defs>
-                <linearGradient id="breadGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#D4A574" />
-                  <stop offset="100%" stopColor="#B8956A" />
-                </linearGradient>
-                <linearGradient id="breadTopGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#E8C9A0" />
-                  <stop offset="50%" stopColor="#D4A574" />
-                  <stop offset="100%" stopColor="#C4956A" />
-                </linearGradient>
-              </defs>
-            </svg>
-            <div className="absolute inset-0 flex items-center justify-center pt-2">
-              <svg className="w-8 h-8 text-white drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-                <circle cx="8" cy="10" r="1.5" fill="currentColor"/>
-                <circle cx="12" cy="10" r="1.5" fill="currentColor"/>
-                <circle cx="16" cy="10" r="1.5" fill="currentColor"/>
-              </svg>
-            </div>
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-300 rounded-full animate-ping opacity-75"></div>
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full"></div>
-          </div>
-          <span className="mt-1 text-xs font-bold text-[#8B6F47] bg-white/90 px-3 py-1 rounded-full shadow-md backdrop-blur-sm group-hover:bg-[#B8956A] group-hover:text-white transition-all duration-300">
-            상담문의
+      {/* Premium Vertical Consultation Button */}
+      <Link
+        href="/support/contact"
+        className="fixed right-0 top-1/2 -translate-y-1/2 z-40 group"
+      >
+        <div className="flex flex-col items-center justify-center w-12 py-6 bg-[#8B6F47] hover:bg-[#6B4423] transition-all duration-300 shadow-lg hover:shadow-xl">
+          <span className="text-white text-sm font-semibold tracking-widest writing-vertical">
+            상담하기
           </span>
-        </Link>
-      </div>
+        </div>
+      </Link>
 
       {/* Premium Header with Enhanced Visual Hierarchy */}
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-700 group/header hover:bg-white hover:shadow-[0_4px_30px_rgba(0,0,0,0.1)] bg-gradient-to-b from-black/40 to-transparent">
