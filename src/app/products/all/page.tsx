@@ -1,29 +1,55 @@
+'use client';
+
 import { Header, Footer, PageHero } from '@/components/layout';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-const categories = [
-  { id: 'legume', name: '두서류가공품', desc: '콩류 가공식품', count: 45 },
-  { id: 'grain', name: '곡류가공품', desc: '밀가루, 전분류', count: 62 },
-  { id: 'nut', name: '견과가공품', desc: '아몬드, 호두 등', count: 38 },
-  { id: 'dairy', name: '유지 및 유가공품', desc: '버터, 크림류', count: 54 },
-  { id: 'coffee', name: '커피오가공품', desc: '커피, 코코아', count: 29 },
-  { id: 'sugar', name: '당류가공품', desc: '설탕, 시럽류', count: 33 },
-  { id: 'frozen', name: '냉동생지류', desc: '냉동 베이커리', count: 48 },
-  { id: 'flour', name: '잡가루', desc: '특수 가루류', count: 26 },
-  { id: 'vegetable', name: '과채가공품', desc: '과일, 채소류', count: 41 },
-  { id: 'meat', name: '축산가공품', desc: '육류 가공품', count: 22 },
-];
+interface Category {
+  id: string;
+  name: string;
+  displayName: string;
+  description: string | null;
+  imageUrl: string | null;
+  _count: { products: number };
+}
 
-const featuredProducts = [
-  { name: '프리미엄 강력분', category: '곡류가공품', brand: '대한제분' },
-  { name: '무염버터 450g', category: '유가공품', brand: '서울우유' },
-  { name: '다크초콜릿 커버춰', category: '커피오가공품', brand: '발로나' },
-  { name: '아몬드 슬라이스', category: '견과가공품', brand: '캘리포니아' },
-  { name: '크루아상 냉동생지', category: '냉동생지류', brand: '에이스' },
-  { name: '백설탕 15kg', category: '당류가공품', brand: 'CJ제일제당' },
-];
+interface Product {
+  id: string;
+  name: string;
+  code: string;
+  description: string;
+  brand: string | null;
+  imageUrl: string | null;
+  thumbnailUrl: string | null;
+  isFeatured: boolean;
+  category: {
+    id: string;
+    name: string;
+    displayName: string;
+  };
+}
 
 export default function ProductsAllPage() {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const [totalProducts, setTotalProducts] = useState(0);
+
+  useEffect(() => {
+    fetch('/api/categories')
+      .then(res => res.json())
+      .then((data: Category[]) => {
+        setCategories(data);
+        const total = data.reduce((sum, cat) => sum + cat._count.products, 0);
+        setTotalProducts(total);
+      })
+      .catch(err => console.error('Failed to fetch categories:', err));
+
+    fetch('/api/products?featured=true&limit=6')
+      .then(res => res.json())
+      .then(data => setFeaturedProducts(data))
+      .catch(err => console.error('Failed to fetch products:', err));
+  }, []);
+
   return (
     <>
       <Header />
@@ -43,9 +69,9 @@ export default function ProductsAllPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { value: '400+', label: '취급 제품' },
+                { value: `${totalProducts}+`, label: '취급 제품' },
                 { value: '50+', label: '협력 브랜드' },
-                { value: '10', label: '제품 카테고리' },
+                { value: categories.length.toString(), label: '제품 카테고리' },
                 { value: '15년', label: '유통 노하우' },
               ].map((stat, index) => (
                 <div key={index} className="text-center">
@@ -66,11 +92,11 @@ export default function ProductsAllPage() {
               <p className="text-[#6B5D53]">다양한 베이커리·카페 원재료를 카테고리별로 만나보세요</p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {categories.map((category) => (
                 <Link
                   key={category.id}
-                  href={`/products/${category.id}`}
+                  href={`/products/${category.name}`}
                   className="bg-white rounded-2xl p-6 border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group"
                 >
                   <div className="w-14 h-14 bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 rounded-xl flex items-center justify-center mb-4 group-hover:from-[#B8956A] group-hover:to-[#D4A574] transition-all duration-300">
@@ -78,10 +104,10 @@ export default function ProductsAllPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                     </svg>
                   </div>
-                  <h3 className="font-bold text-[#4A4039] mb-1 group-hover:text-[#B8956A] transition-colors">{category.name}</h3>
-                  <p className="text-sm text-[#6B5D53] mb-3">{category.desc}</p>
+                  <h3 className="font-bold text-[#4A4039] mb-1 group-hover:text-[#B8956A] transition-colors">{category.displayName}</h3>
+                  <p className="text-sm text-[#6B5D53] mb-3">{category.description}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-[#B8956A] font-medium">{category.count}개 제품</span>
+                    <span className="text-xs text-[#B8956A] font-medium">{category._count.products}개 제품</span>
                     <svg className="w-4 h-4 text-[#B8956A] group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
@@ -102,19 +128,27 @@ export default function ProductsAllPage() {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredProducts.map((product, index) => (
-                <div key={index} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:shadow-xl transition-all duration-300 group">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 flex items-center justify-center">
-                    <div className="w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-12 h-12 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                      </svg>
-                    </div>
+              {featuredProducts.map((product) => (
+                <div key={product.id} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:shadow-xl transition-all duration-300 group">
+                  <div className="aspect-[4/3] bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 flex items-center justify-center overflow-hidden">
+                    {product.imageUrl ? (
+                      <img
+                        src={product.imageUrl}
+                        alt={product.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg className="w-12 h-12 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        </svg>
+                      </div>
+                    )}
                   </div>
                   <div className="p-6">
-                    <span className="text-xs text-[#B8956A] font-medium">{product.category}</span>
+                    <span className="text-xs text-[#B8956A] font-medium">{product.category.displayName}</span>
                     <h3 className="text-lg font-bold text-[#4A4039] mt-1 mb-2 group-hover:text-[#B8956A] transition-colors">{product.name}</h3>
-                    <p className="text-sm text-[#6B5D53]">{product.brand}</p>
+                    <p className="text-sm text-[#6B5D53]">{product.brand || '에이스유통'}</p>
                   </div>
                 </div>
               ))}
