@@ -262,8 +262,16 @@ export default function HomePage() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           {/* Section Header */}
           <div className={`text-center mb-16 ${isVisible.whychoose ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="text-2xl">🌾</span>
+            <div className="flex items-center justify-center gap-2 mb-6">
+              {/* Elegant Wheat SVG Icon */}
+              <svg className="w-10 h-10 text-[#B8956A]" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M24 44V20" strokeLinecap="round"/>
+                <path d="M24 20C24 20 20 16 20 12C20 8 24 4 24 4C24 4 28 8 28 12C28 16 24 20 24 20Z" fill="currentColor" opacity="0.2"/>
+                <path d="M24 28C24 28 18 24 18 18C18 14 22 12 24 12" strokeLinecap="round"/>
+                <path d="M24 28C24 28 30 24 30 18C30 14 26 12 24 12" strokeLinecap="round"/>
+                <path d="M24 36C24 36 16 32 16 24C16 20 20 18 24 18" strokeLinecap="round"/>
+                <path d="M24 36C24 36 32 32 32 24C32 20 28 18 24 18" strokeLinecap="round"/>
+              </svg>
             </div>
             <h2 className="text-4xl lg:text-5xl font-black text-[#4A4039] mb-4 font-display">
               Why Choose Us?
