@@ -3,10 +3,31 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 
+// Hero slide images - Premium bakery images
+const heroSlides = [
+  {
+    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=3000&auto=format&fit=crop',
+    alt: '갓 구운 크로와상'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=3000&auto=format&fit=crop',
+    alt: '프리미엄 베이커리'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=3000&auto=format&fit=crop',
+    alt: '신선한 빵'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=3000&auto=format&fit=crop',
+    alt: '아티장 브레드'
+  }
+];
+
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('grain');
   const [scrollY, setScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState({});
+  const [currentSlide, setCurrentSlide] = useState(0);
   const sectionsRef = useRef([]);
 
   // Parallax scroll effect
@@ -16,6 +37,14 @@ export default function HomePage() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Hero slider auto-play
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   // Intersection Observer for scroll animations
@@ -45,60 +74,17 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
 
-      {/* Bread-shaped Floating Consultation Button */}
-      <div className="fixed right-4 bottom-6 z-40 group">
-        <Link
-          href="/support/contact"
-          className="relative flex flex-col items-center"
-        >
-          {/* Bread Shape */}
-          <div className="relative w-20 h-24 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-            {/* Bread SVG */}
-            <svg viewBox="0 0 80 96" className="w-full h-full drop-shadow-lg">
-              {/* Bread body */}
-              <ellipse cx="40" cy="60" rx="36" ry="32" fill="url(#breadGradient)" />
-              {/* Bread top (rounded dome) */}
-              <ellipse cx="40" cy="36" rx="32" ry="28" fill="url(#breadTopGradient)" />
-              {/* Bread shine */}
-              <ellipse cx="28" cy="30" rx="12" ry="8" fill="rgba(255,255,255,0.3)" />
-              {/* Bread lines (scoring) */}
-              <path d="M25 45 Q40 38 55 45" stroke="#A67C52" strokeWidth="2" fill="none" opacity="0.4" />
-              <path d="M28 55 Q40 48 52 55" stroke="#A67C52" strokeWidth="1.5" fill="none" opacity="0.3" />
-
-              <defs>
-                <linearGradient id="breadGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#D4A574" />
-                  <stop offset="100%" stopColor="#B8956A" />
-                </linearGradient>
-                <linearGradient id="breadTopGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#E8C9A0" />
-                  <stop offset="50%" stopColor="#D4A574" />
-                  <stop offset="100%" stopColor="#C4956A" />
-                </linearGradient>
-              </defs>
-            </svg>
-
-            {/* Chat icon on bread */}
-            <div className="absolute inset-0 flex items-center justify-center pt-2">
-              <svg className="w-8 h-8 text-white drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-                <circle cx="8" cy="10" r="1.5" fill="currentColor"/>
-                <circle cx="12" cy="10" r="1.5" fill="currentColor"/>
-                <circle cx="16" cy="10" r="1.5" fill="currentColor"/>
-              </svg>
-            </div>
-
-            {/* Floating animation sparkles */}
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-300 rounded-full animate-ping opacity-75"></div>
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full"></div>
-          </div>
-
-          {/* Label */}
-          <span className="mt-1 text-xs font-bold text-[#8B6F47] bg-white/90 px-3 py-1 rounded-full shadow-md backdrop-blur-sm group-hover:bg-[#B8956A] group-hover:text-white transition-all duration-300">
-            상담문의
+      {/* Premium Vertical Consultation Button */}
+      <Link
+        href="/support/contact"
+        className="fixed right-0 top-1/2 -translate-y-1/2 z-40 group"
+      >
+        <div className="flex flex-col items-center justify-center w-12 py-6 bg-[#4A4039] hover:bg-[#3A3029] transition-all duration-300 shadow-lg hover:shadow-xl rounded-l-lg">
+          <span className="text-white text-sm font-semibold tracking-widest [writing-mode:vertical-rl]">
+            상담하기
           </span>
-        </Link>
-      </div>
+        </div>
+      </Link>
 
       {/* Premium Header with Enhanced Visual Hierarchy */}
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-700 group/header hover:bg-white hover:shadow-[0_4px_30px_rgba(0,0,0,0.1)] bg-gradient-to-b from-black/40 to-transparent">
@@ -224,96 +210,114 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Modern Hero Section with Enhanced Effects */}
+      {/* Hero Section with Image Slider */}
       <section className="relative h-screen overflow-hidden">
-        {/* Fixed Background with Zoom Animation */}
+        {/* Background Image Slider */}
         <div className="absolute inset-0 overflow-hidden">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover animate-hero-zoom"
-            poster="https://images.unsplash.com/photo-1543168256-418811576931?q=80&w=3000&auto=format&fit=crop"
-          >
-            <source src="https://player.vimeo.com/external/434045526.hd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f86e7fab02&profile_id=175&download=1" type="video/mp4" />
-          </video>
+          {heroSlides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                index === currentSlide
+                  ? 'opacity-100 scale-100'
+                  : 'opacity-0 scale-105'
+              }`}
+            >
+              <img
+                src={slide.image}
+                alt={slide.alt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
 
-          {/* Multi-layer Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
+          {/* Warm Bakery Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#4A4039]/90 via-[#4A4039]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#A67C52]/20 via-transparent to-[#4A4039]/70" />
         </div>
 
-        {/* Hero Content with Modern Typography */}
+        {/* Slide Indicators */}
+        <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`h-1 rounded-full transition-all duration-500 ${
+                index === currentSlide
+                  ? 'w-10 bg-white'
+                  : 'w-4 bg-white/40 hover:bg-white/60'
+              }`}
+              aria-label={`슬라이드 ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Hero Content - Left Aligned */}
         <div className="relative z-10 w-full h-full flex flex-col justify-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            {/* Animated Main Title */}
-            <div className="mb-16">
-              <div className="overflow-hidden mb-4">
-                <h1 className="text-6xl lg:text-7xl font-extralight text-white tracking-[0.3em] uppercase animate-slideUp bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
-                  Right Food
-                </h1>
-              </div>
-              <div className="overflow-hidden mb-10">
-                <h1 className="text-6xl lg:text-7xl font-extralight text-white tracking-[0.3em] uppercase animate-slideUp animation-delay-200 bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
-                  Right Person
-                </h1>
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-12 w-full">
+            <div className="max-w-3xl">
+              {/* Premium Badge */}
+              <div className="mb-10 animate-fadeInUp">
+                <span className="inline-flex items-center gap-2 px-6 py-2.5 bg-white/10 backdrop-blur-md text-white text-sm font-medium tracking-widest uppercase border border-white/20">
+                  <span className="w-2 h-2 bg-[#D4A574] rounded-full"></span>
+                  Premium Bakery Ingredients
+                </span>
               </div>
 
-              {/* Animated Decorative Elements */}
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-32 h-[2px] bg-gradient-to-r from-transparent via-[#B8956A] to-[#D4A574] animate-expandWidth"></div>
-                <div className="w-2 h-2 bg-[#B8956A] rounded-full animate-pulse"></div>
+              {/* English Tagline */}
+              <p className="italic text-xl md:text-2xl text-[#D4A574] mb-4 animate-fadeInUp animation-delay-200 tracking-wide">
+                Freshly Baked Excellence
+              </p>
+
+              {/* Main Title - Korean */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8 animate-fadeInUp animation-delay-200">
+                <span className="block mb-2">최상의 원재료로</span>
+                <span className="block text-white/90">완성하는 <span className="text-[#D4A574]">프리미엄</span> 베이킹</span>
+              </h1>
+
+              {/* Decorative Line */}
+              <div className="flex items-center gap-6 mb-10 animate-fadeInUp animation-delay-400">
+                <div className="w-20 h-[1px] bg-gradient-to-r from-[#D4A574] to-transparent"></div>
+                <span className="italic text-white/60 text-sm tracking-wider">Since 2010</span>
+                <div className="w-20 h-[1px] bg-gradient-to-l from-[#D4A574] to-transparent"></div>
               </div>
 
-              {/* Enhanced Subtitle */}
-              <div className="max-w-3xl">
-                <p className="text-xl text-white/90 font-light leading-relaxed tracking-wide animate-fadeInUp animation-delay-400">
-                  생명 존중 정신을 바탕으로
-                  <span className="text-[#FFE5CC] font-medium mx-2 text-2xl">인류 건강문화</span>에
-                  기여하겠습니다
-                </p>
+              {/* Description */}
+              <p className="text-lg text-white/80 leading-relaxed mb-12 max-w-lg animate-fadeInUp animation-delay-400 font-light">
+                15년간 축적된 노하우와 엄격한 품질 관리로<br />
+                최고의 베이커리 원재료를 공급합니다.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-5 animate-fadeInUp animation-delay-600">
+                <Link
+                  href="/products/all"
+                  className="group inline-flex items-center gap-3 px-10 py-4 bg-[#B8956A] text-white font-semibold tracking-wide hover:bg-[#A67C52] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 rounded-lg"
+                >
+                  제품 보기
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/about/intro"
+                  className="group inline-flex items-center gap-3 px-10 py-4 border border-white/40 text-white font-semibold tracking-wide hover:bg-white/10 backdrop-blur-sm transition-all duration-300 rounded-lg"
+                >
+                  회사 소개
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
               </div>
-            </div>
-
-            {/* Modern CTA Buttons */}
-            <div className="flex gap-6 items-center animate-fadeInUp animation-delay-600">
-              <Link
-                href="/products"
-                className="group relative inline-flex items-center gap-3 px-10 py-5 overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#B8956A] to-[#D4A574] rounded-full transform transition-transform duration-500 group-hover:scale-110"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#D4A574] to-[#B8956A] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <span className="relative z-10 text-white font-semibold text-lg">제품 둘러보기</span>
-                <svg className="relative z-10 w-6 h-6 text-white group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-
-              <Link
-                href="/about"
-                className="group inline-flex items-center gap-3 text-white px-10 py-5 border-2 border-white/30 rounded-full hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
-              >
-                <span className="font-semibold text-lg">회사 소개</span>
-                <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
             </div>
           </div>
-
         </div>
 
-        {/* Modern Scroll Indicator */}
-        <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-20 text-white text-center hidden lg:block">
-          <div className="text-xs font-light tracking-[0.3em] mb-4 uppercase opacity-70">Scroll</div>
-          <div className="relative w-14 h-14">
-            <div className="absolute inset-0 border-2 border-white/40 rounded-full animate-ping"></div>
-            <div className="relative w-14 h-14 border-2 border-white/80 rounded-full flex items-center justify-center animate-bounce">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 text-white text-center hidden lg:block">
+          <div className="text-xs font-light tracking-[0.3em] mb-3 uppercase opacity-70">Scroll</div>
+          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/80 rounded-full mt-2 animate-bounce"></div>
           </div>
         </div>
       </section>
