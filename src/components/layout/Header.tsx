@@ -6,10 +6,11 @@ import { useState } from 'react';
 const menuData = [
   { title: '회사 소개', items: [
     { name: '기업소개', href: '/about/intro', desc: '에이스유통을 소개합니다' },
-    { name: '기업 연혁', href: '/about/history', desc: '30년의 발자취' },
+    { name: '기업 연혁', href: '/about/history', desc: '15년의 발자취' },
     { name: '경영철학', href: '/about/philosophy', desc: '우리의 가치와 비전' },
     { name: '사업장 소개', href: '/about/business', desc: '전국 물류 네트워크' },
-    { name: '조직 및 인증서', href: '/about/certification', desc: '신뢰의 증명' }
+    { name: '조직 및 인증서', href: '/about/certification', desc: '신뢰의 증명' },
+    { name: '주요 고객사', href: '/about/clients', desc: '파트너사 소개' }
   ]},
   { title: '판매 제품', items: [
     { name: '전체', href: '/products/all', desc: '모든 제품 보기' },

@@ -39,11 +39,11 @@ export default function PhilosophyPage() {
                   </div>
                   <span className="text-sm font-bold text-[#B8956A] tracking-widest">VISION</span>
                   <h3 className="text-2xl lg:text-3xl font-bold text-[#4A4039] mt-2 mb-4">
-                    고객과 함께 성장하는<br />신뢰의 유통 파트너
+                    식자재 유통업계의<br />리딩기업
                   </h3>
                   <p className="text-[#6B5D53] leading-relaxed">
-                    에이스유통은 단순한 제품 공급을 넘어, 고객의 성공이 곧 우리의 성공이라는 신념으로
-                    함께 성장하는 파트너십을 추구합니다.
+                    에이스유통은 카페·베이커리 식자재 유통 분야에서 선도적인 위치를 확보하고,
+                    업계를 이끌어가는 기업이 되겠습니다.
                   </p>
                 </div>
               </div>
@@ -59,11 +59,11 @@ export default function PhilosophyPage() {
                   </div>
                   <span className="text-sm font-bold text-[#D4A574] tracking-widest">MISSION</span>
                   <h3 className="text-2xl lg:text-3xl font-bold mt-2 mb-4">
-                    최고의 품질과 서비스로<br />식품 유통의 새로운 기준 제시
+                    고객사들과 함께 성장하며<br />고객 만족도 1위
                   </h3>
                   <p className="text-white/80 leading-relaxed">
-                    철저한 품질 관리와 신속한 배송 시스템으로 고객에게 최상의 가치를 전달하며,
-                    식품 유통 업계의 모범이 되겠습니다.
+                    고객의 성공이 곧 우리의 성공입니다. 최상의 품질과 서비스로
+                    고객 만족도 1위를 달성하고, 함께 성장하는 파트너가 되겠습니다.
                   </p>
                 </div>
               </div>
@@ -82,6 +82,16 @@ export default function PhilosophyPage() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
+                {
+                  title: '고객 만족',
+                  subtitle: 'CUSTOMER',
+                  description: '고객의 성공이 곧 우리의 성공, 고객 만족을 최우선으로',
+                  icon: (
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  ),
+                },
                 {
                   title: '신뢰',
                   subtitle: 'TRUST',
@@ -103,22 +113,12 @@ export default function PhilosophyPage() {
                   ),
                 },
                 {
-                  title: '혁신',
-                  subtitle: 'INNOVATION',
-                  description: '변화하는 시장에 맞춘 지속적인 시스템 혁신',
+                  title: '성장',
+                  subtitle: 'GROWTH',
+                  description: '고객과 함께 성장하는 지속 가능한 파트너십',
                   icon: (
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                  ),
-                },
-                {
-                  title: '상생',
-                  subtitle: 'WIN-WIN',
-                  description: '고객, 협력사와 함께 성장하는 상생의 파트너십',
-                  icon: (
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                     </svg>
                   ),
                 },

@@ -13,9 +13,19 @@ export default function CertificationPage() {
       date: '매년 갱신',
     },
     {
-      title: '냉동/냉장 운송 인증',
-      description: '콜드체인 운송 품질 인증',
-      date: '2015년 취득',
+      title: '특허증 (냉장/냉동 장치)',
+      description: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허',
+      date: '2020년 취득',
+    },
+    {
+      title: '우수기술기업 인증서',
+      description: '제과제빵 재료 유통물류 및 기술마케팅 부문',
+      date: '2019년 취득',
+    },
+    {
+      title: '상표등록증 (에이스제빵소)',
+      description: '에이스제빵소 브랜드 상표권 등록',
+      date: '2019년 등록',
     },
     {
       title: 'HACCP 협력업체 인증',
@@ -129,7 +139,7 @@ export default function CertificationPage() {
               <p className="text-[#6B5D53]">신뢰할 수 있는 기업 인증 현황</p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {certifications.map((cert, index) => (
                 <div key={index} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A]/50 hover:shadow-xl transition-all duration-300 group">
                   <div className="aspect-[4/3] bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 flex items-center justify-center p-6">

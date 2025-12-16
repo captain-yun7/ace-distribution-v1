@@ -2,9 +2,9 @@ import { Header, Footer, PageHero } from '@/components/layout';
 import Link from 'next/link';
 
 const csrActivities = [
-  { title: '지역 사회 기부', desc: '매월 지역 복지시설에 빵과 식품을 기부하고 있습니다.', stats: '연간 1,000만원 상당' },
-  { title: '환경 보호 활동', desc: '친환경 포장재 사용, 배송 차량 효율화 등 탄소 발자국 감소 노력', stats: '포장재 30% 절감' },
-  { title: '지역 상생', desc: '지역 소상공인과의 협력을 통해 지역 경제 활성화에 기여', stats: '지역 업체 50% 이상 거래' },
+  { title: '취약계층 제빵재료 지원', desc: '취약계층 및 소상공인에게 제빵재료를 지원하여 자립을 돕고 있습니다.', stats: '연간 지속 지원' },
+  { title: '지역아동센터 후원', desc: '지역 아동센터에 빵과 간식 재료를 정기적으로 후원합니다.', stats: '월 1회 정기 후원' },
+  { title: '지역 상생', desc: '지역 베이커리 및 소상공인과의 협력을 통해 지역 경제 활성화에 기여', stats: '지역 업체 상생 협력' },
 ];
 
 const donationHistory = [

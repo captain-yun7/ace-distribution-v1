@@ -2,10 +2,10 @@ import { Header, Footer, PageHero } from '@/components/layout';
 import Link from 'next/link';
 
 const cultureItems = [
-  { title: '소통하는 문화', desc: '매월 전체 회의를 통해 경영 현황을 공유하고, 열린 소통 문화를 만들어갑니다.' },
-  { title: '함께 성장하는 문화', desc: '직원 역량 강화를 위한 교육 지원과 자기계발 기회를 제공합니다.' },
-  { title: '건강한 문화', desc: '워라밸을 존중하며, 정시 퇴근과 연차 사용을 권장합니다.' },
-  { title: '즐거운 문화', desc: '분기별 회식, 워크숍 등 다양한 팀 빌딩 활동으로 즐거운 직장을 만듭니다.' },
+  { title: '연말 단합 행사', desc: '매년 연말 전 직원이 함께하는 송년회와 시상식을 통해 한 해를 마무리합니다.' },
+  { title: '팀 빌딩 활동', desc: '분기별 워크숍, 체육대회 등 다양한 팀 빌딩 활동으로 화합을 도모합니다.' },
+  { title: '쾌적한 근무환경', desc: '깨끗하고 안전한 물류센터와 사무환경을 유지합니다.' },
+  { title: '워라밸 존중', desc: '정시 퇴근을 권장하고 연차 사용을 적극 권장합니다.' },
 ];
 
 const benefits = [

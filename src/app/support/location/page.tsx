@@ -35,7 +35,7 @@ export default function LocationPage() {
                   <p className="text-[#6B5D53] mb-4">지도 영역</p>
                   <div className="flex gap-2 justify-center">
                     <a
-                      href="https://map.naver.com/v5/search/서울 송파구 백제고분로32길 21"
+                      href="https://map.naver.com/v5/search/경기도 하남시 샘재로 119번길 31"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl text-sm transition-colors"
@@ -43,7 +43,7 @@ export default function LocationPage() {
                       네이버 지도
                     </a>
                     <a
-                      href="https://map.kakao.com/link/search/서울 송파구 백제고분로32길 21"
+                      href="https://map.kakao.com/link/search/경기도 하남시 샘재로 119번길 31"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-xl text-sm transition-colors"
@@ -69,8 +69,8 @@ export default function LocationPage() {
                     </div>
                     <div>
                       <h3 className="font-bold text-[#4A4039] mb-1">주소</h3>
-                      <p className="text-[#6B5D53]">서울 송파구 백제고분로32길 21</p>
-                      <p className="text-sm text-[#6B5D53]/70">(우) 05581</p>
+                      <p className="text-[#6B5D53]">경기도 하남시 샘재로 119번길 31</p>
+                      <p className="text-sm text-[#6B5D53]/70">(천현동 392-3)</p>
                     </div>
                   </div>
 
@@ -96,7 +96,7 @@ export default function LocationPage() {
                     </div>
                     <div>
                       <h3 className="font-bold text-[#4A4039] mb-1">팩스</h3>
-                      <p className="text-[#6B5D53]">02-476-7949</p>
+                      <p className="text-[#6B5D53]">02-476-1372</p>
                     </div>
                   </div>
 
@@ -154,15 +154,15 @@ export default function LocationPage() {
                 <ul className="space-y-3 text-[#6B5D53]">
                   <li className="flex gap-2">
                     <span className="text-[#B8956A]">•</span>
-                    8호선 석촌역 3번 출구
+                    5호선 하남풍산역 이용
                   </li>
                   <li className="flex gap-2">
                     <span className="text-[#B8956A]">•</span>
-                    도보 약 5분 소요
+                    택시 약 10분 소요
                   </li>
                   <li className="flex gap-2">
                     <span className="text-[#B8956A]">•</span>
-                    2호선 잠실역 환승 가능
+                    9호선 미사역 이용 가능
                   </li>
                 </ul>
               </div>
@@ -178,15 +178,15 @@ export default function LocationPage() {
                 <ul className="space-y-3 text-[#6B5D53]">
                   <li className="flex gap-2">
                     <span className="text-[#B8956A]">•</span>
-                    석촌역 정류장 하차
+                    천현동 정류장 하차
                   </li>
                   <li className="flex gap-2">
                     <span className="text-[#B8956A]">•</span>
-                    간선 301, 302, 303번
+                    하남시 시내버스 이용
                   </li>
                   <li className="flex gap-2">
                     <span className="text-[#B8956A]">•</span>
-                    지선 3314, 3315번
+                    광역버스 이용 가능
                   </li>
                 </ul>
               </div>
@@ -202,15 +202,15 @@ export default function LocationPage() {
                 <ul className="space-y-3 text-[#6B5D53]">
                   <li className="flex gap-2">
                     <span className="text-[#B8956A]">•</span>
-                    올림픽대로 잠실IC 이용
+                    서울외곽순환 하남IC 이용
                   </li>
                   <li className="flex gap-2">
                     <span className="text-[#B8956A]">•</span>
-                    석촌호수 방면으로 약 5분
+                    하남시청 방면으로 약 5분
                   </li>
                   <li className="flex gap-2">
                     <span className="text-[#B8956A]">•</span>
-                    주차 가능 (사전 문의)
+                    자체 주차장 보유
                   </li>
                 </ul>
               </div>

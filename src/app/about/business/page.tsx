@@ -169,8 +169,8 @@ export default function BusinessPage() {
             {/* Coverage Map */}
             <div className="bg-gradient-to-br from-[#FAF6F1] to-white border-2 border-[#E8DCC8] rounded-3xl p-8">
               <h4 className="text-xl font-bold text-[#4A4039] mb-8 text-center">주요 배송 권역</h4>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
-                {['서울/수도권', '춘천', '원주', '전주', '부산', '거제', '천안'].map((city, index) => (
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
+                {['서울/수도권', '춘천', '원주', '천안', '대전', '전주', '부산', '거제'].map((city, index) => (
                   <div key={index} className="text-center p-4 bg-white rounded-xl border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group">
                     <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
