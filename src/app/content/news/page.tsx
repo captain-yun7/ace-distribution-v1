@@ -1,15 +1,59 @@
-import { Header, Footer, PageHero } from '@/components/layout';
+'use client';
 
-const newsItems = [
-  { title: '에이스유통, 2024 식품유통대상 수상', category: '수상', date: '2024.11.15', desc: '대한상공회의소 주관 2024 식품유통대상에서 우수기업상 수상', featured: true, image: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=800&h=400&fit=crop' },
-  { title: '친환경 포장재 도입으로 ESG 경영 강화', category: '경영', date: '2024.10.28', desc: '생분해성 포장재 도입과 탄소배출 저감 프로그램 시행', featured: true, image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=400&fit=crop' },
-  { title: '제2 물류센터 하남 확장 완료', category: '사업확장', date: '2024.09.20', desc: '하남시 천현동에 520평 규모 물류센터 확장 완료', featured: false, image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&h=400&fit=crop' },
-  { title: '베이커리 원재료 유통 전문기업으로 성장', category: '언론보도', date: '2024.08.15', desc: '매일경제 인터뷰: 에이스유통 안종일 대표의 성장 스토리', featured: false, image: 'https://images.unsplash.com/photo-1486427944344-d2f90f9b0678?w=800&h=400&fit=crop' },
-  { title: '신규 프리미엄 초콜릿 라인업 런칭', category: '신제품', date: '2024.07.10', desc: '유럽산 프리미엄 커버춰 초콜릿 5종 신규 런칭', featured: false, image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=800&h=400&fit=crop' },
-  { title: '상반기 거래처 만족도 조사 결과 발표', category: '고객만족', date: '2024.06.30', desc: '거래처 만족도 95% 달성, 배송 서비스 부문 최고점', featured: false, image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop' },
-];
+import { Header, Footer, PageHero } from '@/components/layout';
+import { useEffect, useState } from 'react';
+
+interface NewsItem {
+  id: string;
+  title: string;
+  content: string;
+  excerpt: string | null;
+  category: string;
+  thumbnailUrl: string | null;
+  imageUrl: string | null;
+  author: string | null;
+  isPinned: boolean;
+  publishedAt: string;
+  createdAt: string;
+}
+
+const categoryLabels: Record<string, string> = {
+  'PRESS_RELEASE': '보도자료',
+  'EVENT': '이벤트',
+  'NOTICE': '공지',
+  'BLOG': '블로그',
+};
+
+const defaultImage = 'https://images.unsplash.com/photo-1486427944344-d2f90f9b0678?w=800&h=400&fit=crop';
 
 export default function NewsPage() {
+  const [news, setNews] = useState<NewsItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await fetch('/api/news?limit=20');
+        if (res.ok) {
+          const data = await res.json();
+          setNews(data.news);
+        }
+      } catch (error) {
+        console.error('Error fetching news:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
+  const featuredNews = news.filter(n => n.isPinned);
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\./g, '.').replace(/\s/g, '');
+  };
+
   return (
     <>
       <Header />
@@ -32,27 +76,46 @@ export default function NewsPage() {
               <h2 className="text-3xl font-bold text-[#4A4039]">주요 소식</h2>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              {newsItems.filter(n => n.featured).map((news, index) => (
-                <div key={index} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
-                  <div className="aspect-[2/1] relative overflow-hidden">
-                    <img
-                      src={news.image}
-                      alt={news.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <span className="absolute top-4 left-4 bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
-                      {news.category}
-                    </span>
+            {loading ? (
+              <div className="grid md:grid-cols-2 gap-8">
+                {[...Array(2)].map((_, i) => (
+                  <div key={i} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl overflow-hidden border border-[#E8DCC8] animate-pulse">
+                    <div className="aspect-[2/1] bg-gray-200"></div>
+                    <div className="p-6">
+                      <div className="h-3 bg-gray-200 rounded w-1/4 mb-3"></div>
+                      <div className="h-6 bg-gray-200 rounded w-3/4 mb-3"></div>
+                      <div className="h-4 bg-gray-200 rounded w-full"></div>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <div className="text-xs text-[#6B5D53] mb-2">{news.date}</div>
-                    <h3 className="text-xl font-bold text-[#4A4039] mb-3 group-hover:text-[#B8956A] transition-colors">{news.title}</h3>
-                    <p className="text-[#6B5D53]">{news.desc}</p>
+                ))}
+              </div>
+            ) : featuredNews.length > 0 ? (
+              <div className="grid md:grid-cols-2 gap-8">
+                {featuredNews.slice(0, 2).map((item) => (
+                  <div key={item.id} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
+                    <div className="aspect-[2/1] relative overflow-hidden">
+                      <img
+                        src={item.imageUrl || item.thumbnailUrl || defaultImage}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <span className="absolute top-4 left-4 bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
+                        {categoryLabels[item.category] || item.category}
+                      </span>
+                    </div>
+                    <div className="p-6">
+                      <div className="text-xs text-[#6B5D53] mb-2">{formatDate(item.publishedAt)}</div>
+                      <h3 className="text-xl font-bold text-[#4A4039] mb-3 group-hover:text-[#B8956A] transition-colors">{item.title}</h3>
+                      <p className="text-[#6B5D53]">{item.excerpt || item.content.substring(0, 100)}...</p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12 text-[#6B5D53]">
+                주요 소식이 없습니다.
+              </div>
+            )}
           </div>
         </section>
 
@@ -61,25 +124,54 @@ export default function NewsPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-[#4A4039] mb-8">전체 소식</h2>
 
-            <div className="space-y-4">
-              {newsItems.map((news, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group flex flex-col sm:flex-row sm:items-center gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-xs bg-[#B8956A]/10 text-[#B8956A] px-3 py-1 rounded-full font-medium">
-                        {news.category}
-                      </span>
-                      <span className="text-xs text-[#6B5D53]">{news.date}</span>
+            {loading ? (
+              <div className="space-y-4">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="bg-white rounded-xl p-6 border border-[#E8DCC8] animate-pulse flex gap-4">
+                    <div className="flex-1">
+                      <div className="h-4 bg-gray-200 rounded w-1/4 mb-3"></div>
+                      <div className="h-5 bg-gray-200 rounded w-3/4 mb-2"></div>
+                      <div className="h-3 bg-gray-200 rounded w-full"></div>
                     </div>
-                    <h3 className="text-lg font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors">{news.title}</h3>
-                    <p className="text-sm text-[#6B5D53] mt-1">{news.desc}</p>
                   </div>
-                  <svg className="w-6 h-6 text-[#B8956A] flex-shrink-0 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                ))}
+              </div>
+            ) : news.length > 0 ? (
+              <div className="space-y-4">
+                {news.map((item) => (
+                  <div key={item.id} className="bg-white rounded-xl p-6 border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group flex flex-col sm:flex-row sm:items-center gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-xs bg-[#B8956A]/10 text-[#B8956A] px-3 py-1 rounded-full font-medium">
+                          {categoryLabels[item.category] || item.category}
+                        </span>
+                        <span className="text-xs text-[#6B5D53]">{formatDate(item.publishedAt)}</span>
+                        {item.isPinned && (
+                          <span className="text-xs bg-[#4A4039] text-white px-2 py-0.5 rounded-full">
+                            주요
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="text-lg font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors">{item.title}</h3>
+                      <p className="text-sm text-[#6B5D53] mt-1">{item.excerpt || item.content.substring(0, 80)}...</p>
+                    </div>
+                    <svg className="w-6 h-6 text-[#B8956A] flex-shrink-0 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-20 bg-white rounded-2xl border border-[#E8DCC8]">
+                <div className="w-16 h-16 bg-[#B8956A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                   </svg>
                 </div>
-              ))}
-            </div>
+                <h3 className="text-lg font-bold text-[#4A4039] mb-2">등록된 소식이 없습니다</h3>
+                <p className="text-[#6B5D53]">새로운 소식이 등록되면 이곳에 표시됩니다.</p>
+              </div>
+            )}
           </div>
         </section>
 

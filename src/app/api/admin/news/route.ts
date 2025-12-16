@@ -5,13 +5,13 @@ import { z } from 'zod';
 
 const newsSchema = z.object({
   title: z.string().min(1, '제목은 필수입니다'),
-  slug: z.string().optional(),
-  content: z.string().optional(),
-  excerpt: z.string().optional(),
-  category: z.enum(['PRESS', 'EVENT', 'NOTICE', 'BLOG']),
-  thumbnailUrl: z.string().optional(),
-  isPublished: z.boolean().optional(),
-  isFeatured: z.boolean().optional(),
+  content: z.string().min(1, '내용은 필수입니다'),
+  excerpt: z.string().optional().nullable(),
+  category: z.enum(['PRESS_RELEASE', 'EVENT', 'NOTICE', 'BLOG']),
+  thumbnailUrl: z.string().optional().nullable(),
+  imageUrl: z.string().optional().nullable(),
+  author: z.string().optional().nullable(),
+  isPinned: z.boolean().optional(),
   publishedAt: z.string().optional(),
 });
 
@@ -71,24 +71,24 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedData = newsSchema.parse(body);
 
-    // Generate slug if not provided
-    const slug = validatedData.slug || validatedData.title
-      .toLowerCase()
-      .replace(/[^a-z0-9가-힣]+/g, '-')
-      .replace(/^-|-$/g, '');
-
     const news = await prisma.news.create({
       data: {
-        ...validatedData,
-        slug,
-        publishedAt: validatedData.publishedAt ? new Date(validatedData.publishedAt) : null,
+        title: validatedData.title,
+        content: validatedData.content,
+        excerpt: validatedData.excerpt,
+        category: validatedData.category,
+        thumbnailUrl: validatedData.thumbnailUrl,
+        imageUrl: validatedData.imageUrl,
+        author: validatedData.author,
+        isPinned: validatedData.isPinned ?? false,
+        publishedAt: validatedData.publishedAt ? new Date(validatedData.publishedAt) : new Date(),
       },
     });
 
     return NextResponse.json(news, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     console.error('Error creating news:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

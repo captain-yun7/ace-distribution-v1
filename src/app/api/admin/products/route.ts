@@ -5,21 +5,23 @@ import { z } from 'zod';
 
 const productSchema = z.object({
   name: z.string().min(1, '제품명은 필수입니다'),
-  code: z.string().optional(),
-  brand: z.string().optional(),
-  manufacturer: z.string().optional(),
-  origin: z.string().optional(),
-  description: z.string().optional(),
-  specification: z.string().optional(),
-  price: z.number().optional(),
-  unit: z.string().optional(),
-  stockStatus: z.enum(['IN_STOCK', 'LOW_STOCK', 'OUT_OF_STOCK']).optional(),
-  imageUrl: z.string().optional(),
-  thumbnailUrl: z.string().optional(),
-  brochureUrl: z.string().optional(),
+  code: z.string().min(1, '제품코드는 필수입니다'),
+  categoryId: z.string().min(1, '카테고리는 필수입니다'),
+  description: z.string().min(1, '설명은 필수입니다'),
+  brand: z.string().optional().nullable(),
+  manufacturer: z.string().optional().nullable(),
+  origin: z.string().optional().nullable(),
+  price: z.number().optional().nullable(),
+  specs: z.any().optional().nullable(),
+  features: z.any().optional().nullable(),
+  imageUrl: z.string().optional().nullable(),
+  thumbnailUrl: z.string().optional().nullable(),
+  images: z.any().optional().nullable(),
+  brochureUrl: z.string().optional().nullable(),
+  order: z.number().optional(),
+  stock: z.number().optional(),
   isPublished: z.boolean().optional(),
   isFeatured: z.boolean().optional(),
-  categoryId: z.string().optional(),
 });
 
 // GET - List products
@@ -97,7 +99,26 @@ export async function POST(request: NextRequest) {
     const validatedData = productSchema.parse(body);
 
     const product = await prisma.product.create({
-      data: validatedData,
+      data: {
+        name: validatedData.name,
+        code: validatedData.code,
+        categoryId: validatedData.categoryId,
+        description: validatedData.description,
+        brand: validatedData.brand,
+        manufacturer: validatedData.manufacturer,
+        origin: validatedData.origin,
+        price: validatedData.price,
+        specs: validatedData.specs,
+        features: validatedData.features,
+        imageUrl: validatedData.imageUrl,
+        thumbnailUrl: validatedData.thumbnailUrl,
+        images: validatedData.images,
+        brochureUrl: validatedData.brochureUrl,
+        order: validatedData.order ?? 0,
+        stock: validatedData.stock ?? 0,
+        isPublished: validatedData.isPublished ?? true,
+        isFeatured: validatedData.isFeatured ?? false,
+      },
       include: {
         category: {
           select: { id: true, name: true, displayName: true },
@@ -108,7 +129,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(product, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     console.error('Error creating product:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

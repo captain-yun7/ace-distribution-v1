@@ -1,24 +1,56 @@
 'use client';
 
 import { Header, Footer, PageHero } from '@/components/layout';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const recipes = [
-  { title: '클래식 크루아상', category: '빵', difficulty: '상', time: '6시간', desc: '버터의 풍미가 살아있는 정통 프랑스 크루아상', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&h=600&fit=crop' },
-  { title: '티라미수', category: '디저트', difficulty: '중', time: '4시간', desc: '마스카포네 치즈와 에스프레소의 완벽한 조화', image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&h=600&fit=crop' },
-  { title: '바스크 치즈케이크', category: '케이크', difficulty: '하', time: '1시간', desc: '겉은 바삭, 속은 크리미한 바스크식 치즈케이크', image: 'https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=800&h=600&fit=crop' },
-  { title: '마카롱', category: '쿠키', difficulty: '상', time: '3시간', desc: '컬러풀한 프렌치 마카롱 만들기', image: 'https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=800&h=600&fit=crop' },
-  { title: '식빵', category: '빵', difficulty: '중', time: '4시간', desc: '부드럽고 촉촉한 기본 식빵', image: 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=800&h=600&fit=crop' },
-  { title: '초코 브라우니', category: '디저트', difficulty: '하', time: '1시간', desc: '진한 초콜릿의 풍미가 가득한 브라우니', image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800&h=600&fit=crop' },
-];
+interface RecipeCategory {
+  id: string;
+  name: string;
+}
+
+interface Recipe {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string | null;
+  difficulty: string | null;
+  cookingTime: string | null;
+  category: {
+    id: string;
+    name: string;
+  };
+}
 
 export default function RecipePage() {
   const [selectedCategory, setSelectedCategory] = useState('전체');
-  const categories = ['전체', '빵', '케이크', '디저트', '쿠키'];
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [categories, setCategories] = useState<RecipeCategory[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const res = await fetch('/api/recipes');
+        if (res.ok) {
+          const data = await res.json();
+          setRecipes(data.recipes);
+          setCategories(data.categories);
+        }
+      } catch (error) {
+        console.error('Error fetching recipes:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRecipes();
+  }, []);
+
+  const categoryNames = ['전체', ...categories.map(c => c.name)];
 
   const filteredRecipes = selectedCategory === '전체'
     ? recipes
-    : recipes.filter(r => r.category === selectedCategory);
+    : recipes.filter(r => r.category?.name === selectedCategory);
 
   return (
     <>
@@ -38,7 +70,7 @@ export default function RecipePage() {
         <section className="py-8 bg-white border-b border-[#E8DCC8]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap gap-3 justify-center">
-              {categories.map((cat) => (
+              {categoryNames.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
@@ -58,40 +90,80 @@ export default function RecipePage() {
         {/* Recipe Grid */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredRecipes.map((recipe, index) => (
-                <div key={index} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
-                  <div className="aspect-[4/3] relative overflow-hidden">
-                    <img
-                      src={recipe.image}
-                      alt={recipe.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <span className="absolute top-4 left-4 bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
-                      {recipe.category}
-                    </span>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-[#4A4039] mb-2 group-hover:text-[#B8956A] transition-colors">{recipe.title}</h3>
-                    <p className="text-[#6B5D53] text-sm mb-4">{recipe.desc}</p>
-                    <div className="flex items-center gap-4 text-xs text-[#6B5D53]">
-                      <span className="flex items-center gap-1">
-                        <svg className="w-4 h-4 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        {recipe.time}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <svg className="w-4 h-4 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                        난이도: {recipe.difficulty}
-                      </span>
+            {loading ? (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] animate-pulse">
+                    <div className="aspect-[4/3] bg-gray-200"></div>
+                    <div className="p-6">
+                      <div className="h-5 bg-gray-200 rounded w-3/4 mb-3"></div>
+                      <div className="h-4 bg-gray-200 rounded w-full mb-4"></div>
+                      <div className="flex gap-4">
+                        <div className="h-4 bg-gray-200 rounded w-16"></div>
+                        <div className="h-4 bg-gray-200 rounded w-20"></div>
+                      </div>
                     </div>
                   </div>
+                ))}
+              </div>
+            ) : filteredRecipes.length > 0 ? (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredRecipes.map((recipe) => (
+                  <div key={recipe.id} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
+                    <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10">
+                      {recipe.imageUrl ? (
+                        <img
+                          src={recipe.imageUrl}
+                          alt={recipe.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <svg className="w-16 h-16 text-[#B8956A]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                          </svg>
+                        </div>
+                      )}
+                      <span className="absolute top-4 left-4 bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
+                        {recipe.category?.name}
+                      </span>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-[#4A4039] mb-2 group-hover:text-[#B8956A] transition-colors">{recipe.title}</h3>
+                      <p className="text-[#6B5D53] text-sm mb-4 line-clamp-2">{recipe.description}</p>
+                      <div className="flex items-center gap-4 text-xs text-[#6B5D53]">
+                        {recipe.cookingTime && (
+                          <span className="flex items-center gap-1">
+                            <svg className="w-4 h-4 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            {recipe.cookingTime}
+                          </span>
+                        )}
+                        {recipe.difficulty && (
+                          <span className="flex items-center gap-1">
+                            <svg className="w-4 h-4 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                            난이도: {recipe.difficulty}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-20 bg-white rounded-2xl border border-[#E8DCC8]">
+                <div className="w-16 h-16 bg-[#B8956A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
                 </div>
-              ))}
-            </div>
+                <h3 className="text-lg font-bold text-[#4A4039] mb-2">등록된 레시피가 없습니다</h3>
+                <p className="text-[#6B5D53]">레시피가 등록되면 이곳에 표시됩니다.</p>
+              </div>
+            )}
           </div>
         </section>
 

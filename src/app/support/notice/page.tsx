@@ -1,86 +1,79 @@
 'use client';
 
 import { Header, Footer, PageHero } from '@/components/layout';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const categories = ['전체', '배송', '제품', '운영', '가격', '이벤트'];
+interface Notice {
+  id: string;
+  title: string;
+  content: string;
+  excerpt: string | null;
+  category: string;
+  isPinned: boolean;
+  publishedAt: string;
+  createdAt: string;
+}
 
-const notices = [
-  {
-    id: 1,
-    title: '2024년 연말 배송 일정 안내',
-    date: '2024.12.02',
-    category: '배송',
-    isImportant: true,
-    content: '연말 물량 증가로 인한 배송 일정 변경 안내드립니다.',
-  },
-  {
-    id: 2,
-    title: '신규 제품 라인업 출시 안내',
-    date: '2024.11.28',
-    category: '제품',
-    isImportant: true,
-    content: '에이스베이커리 겨울 시즌 한정 제품이 출시되었습니다.',
-  },
-  {
-    id: 3,
-    title: '12월 휴무일 안내',
-    date: '2024.11.25',
-    category: '운영',
-    isImportant: false,
-    content: '12월 25일(수) 크리스마스는 휴무입니다.',
-  },
-  {
-    id: 4,
-    title: '가격 인상 안내 (2025년 1월 적용)',
-    date: '2024.11.20',
-    category: '가격',
-    isImportant: true,
-    content: '원자재 가격 상승으로 인한 일부 제품 가격 인상 안내',
-  },
-  {
-    id: 5,
-    title: '콜센터 운영시간 변경 안내',
-    date: '2024.11.15',
-    category: '운영',
-    isImportant: false,
-    content: '고객센터 운영 시간이 오전 8시~오후 6시로 변경됩니다.',
-  },
-  {
-    id: 6,
-    title: '추천인 이벤트 당첨자 발표',
-    date: '2024.11.10',
-    category: '이벤트',
-    isImportant: false,
-    content: '10월 추천인 이벤트 당첨자를 발표합니다.',
-  },
-  {
-    id: 7,
-    title: '하반기 신규 거래처 모집',
-    date: '2024.11.01',
-    category: '이벤트',
-    isImportant: false,
-    content: '2024년 하반기 신규 거래처를 모집합니다.',
-  },
-  {
-    id: 8,
-    title: '물류센터 확장 이전 완료',
-    date: '2024.10.20',
-    category: '운영',
-    isImportant: false,
-    content: '하남시 물류센터 확장 이전이 완료되었습니다.',
-  },
-];
+const categories = ['전체', '공지', '보도자료', '이벤트', '블로그'];
+
+const categoryMap: Record<string, string> = {
+  '공지': 'NOTICE',
+  '보도자료': 'PRESS_RELEASE',
+  '이벤트': 'EVENT',
+  '블로그': 'BLOG',
+};
+
+const categoryLabels: Record<string, string> = {
+  'NOTICE': '공지',
+  'PRESS_RELEASE': '보도자료',
+  'EVENT': '이벤트',
+  'BLOG': '블로그',
+};
 
 export default function NoticePage() {
   const [selectedCategory, setSelectedCategory] = useState('전체');
+  const [notices, setNotices] = useState<Notice[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredNotices = selectedCategory === '전체'
-    ? notices
-    : notices.filter(n => n.category === selectedCategory);
+  useEffect(() => {
+    const fetchNotices = async () => {
+      try {
+        const res = await fetch('/api/news?limit=50');
+        if (res.ok) {
+          const data = await res.json();
+          setNotices(data.news);
+        }
+      } catch (error) {
+        console.error('Error fetching notices:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const importantNotices = filteredNotices.filter(n => n.isImportant);
-  const regularNotices = filteredNotices.filter(n => !n.isImportant);
+    fetchNotices();
+  }, []);
+
+  const filteredNotices = notices.filter(n => {
+    // Category filter
+    if (selectedCategory !== '전체') {
+      const categoryCode = categoryMap[selectedCategory];
+      if (n.category !== categoryCode) return false;
+    }
+    // Search filter
+    if (searchQuery && !n.title.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false;
+    }
+    return true;
+  });
+
+  const importantNotices = filteredNotices.filter(n => n.isPinned);
+  const regularNotices = filteredNotices.filter(n => !n.isPinned);
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\. /g, '.').replace('.', '');
+  };
 
   return (
     <>
@@ -119,6 +112,8 @@ export default function NoticePage() {
                 <input
                   type="text"
                   placeholder="검색어를 입력하세요"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full px-4 py-2 pr-10 rounded-full border border-[#E8DCC8] focus:outline-none focus:ring-2 focus:ring-[#B8956A] text-sm"
                 />
                 <svg
@@ -137,84 +132,95 @@ export default function NoticePage() {
         {/* Notice List */}
         <section className="py-12">
           <div className="max-w-7xl mx-auto px-4">
-            {/* Important Notices */}
-            {importantNotices.length > 0 && (
-              <div className="mb-8">
-                {importantNotices.map((notice) => (
-                  <div
-                    key={notice.id}
-                    className="bg-gradient-to-r from-[#B8956A]/10 to-[#D4A574]/10 border-l-4 border-[#B8956A] rounded-r-xl p-6 mb-4 hover:shadow-lg transition-all duration-300 cursor-pointer"
-                  >
-                    <div className="flex flex-col md:flex-row md:items-center gap-4">
-                      <div className="flex items-center gap-3">
-                        <span className="bg-gradient-to-r from-[#B8956A] to-[#D4A574] text-white text-xs px-3 py-1 rounded-full font-medium">
-                          중요
-                        </span>
-                        <span className="bg-[#E8DCC8] text-[#6B5D53] text-xs px-2 py-1 rounded">
-                          {notice.category}
-                        </span>
-                      </div>
-                      <h3 className="flex-grow font-bold text-[#4A4039] hover:text-[#B8956A] transition-colors">
-                        {notice.title}
-                      </h3>
-                      <span className="text-sm text-[#6B5D53]">{notice.date}</span>
+            {loading ? (
+              <div className="space-y-4">
+                {[...Array(5)].map((_, i) => (
+                  <div key={i} className="bg-white rounded-xl p-6 border border-[#E8DCC8] animate-pulse">
+                    <div className="flex items-center gap-4">
+                      <div className="h-6 w-16 bg-gray-200 rounded-full"></div>
+                      <div className="h-5 w-64 bg-gray-200 rounded"></div>
+                      <div className="h-4 w-24 bg-gray-200 rounded ml-auto"></div>
                     </div>
                   </div>
                 ))}
               </div>
+            ) : (
+              <>
+                {/* Important Notices */}
+                {importantNotices.length > 0 && (
+                  <div className="mb-8">
+                    {importantNotices.map((notice) => (
+                      <div
+                        key={notice.id}
+                        className="bg-gradient-to-r from-[#B8956A]/10 to-[#D4A574]/10 border-l-4 border-[#B8956A] rounded-r-xl p-6 mb-4 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                      >
+                        <div className="flex flex-col md:flex-row md:items-center gap-4">
+                          <div className="flex items-center gap-3">
+                            <span className="bg-gradient-to-r from-[#B8956A] to-[#D4A574] text-white text-xs px-3 py-1 rounded-full font-medium">
+                              중요
+                            </span>
+                            <span className="bg-[#E8DCC8] text-[#6B5D53] text-xs px-2 py-1 rounded">
+                              {categoryLabels[notice.category] || notice.category}
+                            </span>
+                          </div>
+                          <h3 className="flex-grow font-bold text-[#4A4039] hover:text-[#B8956A] transition-colors">
+                            {notice.title}
+                          </h3>
+                          <span className="text-sm text-[#6B5D53]">{formatDate(notice.publishedAt)}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Regular Notices */}
+                {regularNotices.length > 0 ? (
+                  <div className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8]">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="bg-gradient-to-r from-[#FAF6F1] to-white text-[#6B5D53] text-sm">
+                          <th className="py-4 px-6 text-left w-20">번호</th>
+                          <th className="py-4 px-6 text-left w-24">분류</th>
+                          <th className="py-4 px-6 text-left">제목</th>
+                          <th className="py-4 px-6 text-right w-32">작성일</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {regularNotices.map((notice, index) => (
+                          <tr
+                            key={notice.id}
+                            className="border-b border-[#E8DCC8] hover:bg-[#FAF6F1] transition-colors cursor-pointer group"
+                          >
+                            <td className="py-4 px-6 text-[#6B5D53]">{regularNotices.length - index}</td>
+                            <td className="py-4 px-6">
+                              <span className="bg-[#FAF6F1] text-[#6B5D53] text-xs px-2 py-1 rounded">
+                                {categoryLabels[notice.category] || notice.category}
+                              </span>
+                            </td>
+                            <td className="py-4 px-6">
+                              <span className="text-[#4A4039] group-hover:text-[#B8956A] transition-colors">
+                                {notice.title}
+                              </span>
+                            </td>
+                            <td className="py-4 px-6 text-right text-[#6B5D53] text-sm">{formatDate(notice.publishedAt)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <div className="text-center py-20 bg-white rounded-2xl border border-[#E8DCC8]">
+                    <div className="w-16 h-16 bg-[#B8956A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-bold text-[#4A4039] mb-2">등록된 공지사항이 없습니다</h3>
+                    <p className="text-[#6B5D53]">새로운 공지사항이 등록되면 이곳에 표시됩니다.</p>
+                  </div>
+                )}
+              </>
             )}
-
-            {/* Regular Notices */}
-            <div className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8]">
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-gradient-to-r from-[#FAF6F1] to-white text-[#6B5D53] text-sm">
-                    <th className="py-4 px-6 text-left w-20">번호</th>
-                    <th className="py-4 px-6 text-left w-24">분류</th>
-                    <th className="py-4 px-6 text-left">제목</th>
-                    <th className="py-4 px-6 text-right w-32">작성일</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {regularNotices.map((notice, index) => (
-                    <tr
-                      key={notice.id}
-                      className="border-b border-[#E8DCC8] hover:bg-[#FAF6F1] transition-colors cursor-pointer group"
-                    >
-                      <td className="py-4 px-6 text-[#6B5D53]">{regularNotices.length - index}</td>
-                      <td className="py-4 px-6">
-                        <span className="bg-[#FAF6F1] text-[#6B5D53] text-xs px-2 py-1 rounded">
-                          {notice.category}
-                        </span>
-                      </td>
-                      <td className="py-4 px-6">
-                        <span className="text-[#4A4039] group-hover:text-[#B8956A] transition-colors">
-                          {notice.title}
-                        </span>
-                      </td>
-                      <td className="py-4 px-6 text-right text-[#6B5D53] text-sm">{notice.date}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Pagination */}
-            <div className="flex justify-center gap-2 mt-8">
-              <button className="w-10 h-10 rounded-full bg-white border border-[#E8DCC8] text-[#6B5D53] hover:border-[#B8956A] flex items-center justify-center transition-colors">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button className="w-10 h-10 rounded-full bg-gradient-to-r from-[#B8956A] to-[#D4A574] text-white">1</button>
-              <button className="w-10 h-10 rounded-full bg-white border border-[#E8DCC8] text-[#6B5D53] hover:border-[#B8956A] transition-colors">2</button>
-              <button className="w-10 h-10 rounded-full bg-white border border-[#E8DCC8] text-[#6B5D53] hover:border-[#B8956A] transition-colors">3</button>
-              <button className="w-10 h-10 rounded-full bg-white border border-[#E8DCC8] text-[#6B5D53] hover:border-[#B8956A] flex items-center justify-center transition-colors">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
           </div>
         </section>
       </main>

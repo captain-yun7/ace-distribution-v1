@@ -6,12 +6,13 @@ import { z } from 'zod';
 const downloadUpdateSchema = z.object({
   title: z.string().min(1).optional(),
   description: z.string().optional().nullable(),
+  fileName: z.string().optional(),
   fileUrl: z.string().optional(),
-  fileSize: z.string().optional().nullable(),
-  fileType: z.string().optional().nullable(),
-  category: z.string().optional().nullable(),
-  sortOrder: z.number().optional(),
-  isPublished: z.boolean().optional(),
+  fileSize: z.number().optional(),
+  fileType: z.string().optional(),
+  categoryId: z.string().optional(),
+  version: z.string().optional().nullable(),
+  requireAuth: z.boolean().optional(),
 });
 
 export async function GET(
@@ -60,7 +61,7 @@ export async function PUT(
     return NextResponse.json(download);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     console.error('Error updating download:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

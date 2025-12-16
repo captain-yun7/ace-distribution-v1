@@ -5,10 +5,13 @@ import { z } from 'zod';
 
 const bannerUpdateSchema = z.object({
   title: z.string().min(1).optional(),
-  subtitle: z.string().optional().nullable(),
+  description: z.string().optional().nullable(),
   imageUrl: z.string().optional(),
+  mobileImageUrl: z.string().optional().nullable(),
   linkUrl: z.string().optional().nullable(),
-  sortOrder: z.number().optional(),
+  linkText: z.string().optional().nullable(),
+  position: z.enum(['HOME_MAIN', 'HOME_SECONDARY', 'PRODUCTS', 'COMPANY']).optional(),
+  order: z.number().optional(),
   isActive: z.boolean().optional(),
   startDate: z.string().optional().nullable(),
   endDate: z.string().optional().nullable(),
@@ -68,7 +71,7 @@ export async function PUT(
     return NextResponse.json(banner);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     console.error('Error updating banner:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

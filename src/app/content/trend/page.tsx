@@ -1,14 +1,46 @@
+'use client';
+
 import { Header, Footer, PageHero } from '@/components/layout';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
-const trends = [
-  { title: '2024 베이커리 트렌드: 건강과 지속가능성', category: '트렌드 분석', date: '2024.12', desc: '글루텐프리, 비건 베이커리의 성장과 친환경 포장재의 확산에 대한 심층 분석', tags: ['건강', '비건', '지속가능성'], image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&h=400&fit=crop' },
-  { title: '프리미엄 초콜릿 시장 동향', category: '시장 분석', date: '2024.11', desc: '싱글오리진 초콜릿과 빈투바 트렌드가 이끄는 프리미엄 시장의 변화', tags: ['초콜릿', '프리미엄', '싱글오리진'], image: 'https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=800&h=400&fit=crop' },
-  { title: '소비자가 원하는 베이커리 메뉴', category: '소비자 조사', date: '2024.10', desc: 'MZ세대가 선호하는 베이커리 메뉴와 구매 패턴 분석', tags: ['소비자', 'MZ세대', '트렌드'], image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=800&h=400&fit=crop' },
-  { title: '냉동생지 시장의 성장', category: '시장 분석', date: '2024.09', desc: '편의성과 품질을 모두 갖춘 냉동생지 시장의 급성장 배경', tags: ['냉동생지', '편의성', '시장분석'], image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&h=400&fit=crop' },
-];
+interface Trend {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  imageUrl: string | null;
+  tags: string[] | null;
+  publishedAt: string;
+}
 
 export default function TrendPage() {
+  const [trends, setTrends] = useState<Trend[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTrends = async () => {
+      try {
+        const res = await fetch('/api/trends');
+        if (res.ok) {
+          const data = await res.json();
+          setTrends(data);
+        }
+      } catch (error) {
+        console.error('Error fetching trends:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTrends();
+  }, []);
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit' }).replace('. ', '.').replace('.', '');
+  };
+
   return (
     <>
       <Header />
@@ -45,34 +77,73 @@ export default function TrendPage() {
         {/* Trend Articles */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              {trends.map((trend, index) => (
-                <div key={index} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
-                  <div className="aspect-[2/1] relative overflow-hidden">
-                    <img
-                      src={trend.image}
-                      alt={trend.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <span className="absolute top-4 left-4 bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
-                      {trend.category}
-                    </span>
-                  </div>
-                  <div className="p-6">
-                    <div className="text-xs text-[#6B5D53] mb-2">{trend.date}</div>
-                    <h3 className="text-xl font-bold text-[#4A4039] mb-3 group-hover:text-[#B8956A] transition-colors">{trend.title}</h3>
-                    <p className="text-[#6B5D53] text-sm mb-4">{trend.desc}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {trend.tags.map((tag) => (
-                        <span key={tag} className="text-xs bg-[#FAF6F1] text-[#6B5D53] px-3 py-1 rounded-full">
-                          #{tag}
-                        </span>
-                      ))}
+            {loading ? (
+              <div className="grid md:grid-cols-2 gap-8">
+                {[...Array(4)].map((_, i) => (
+                  <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] animate-pulse">
+                    <div className="aspect-[2/1] bg-gray-200"></div>
+                    <div className="p-6">
+                      <div className="h-3 bg-gray-200 rounded w-20 mb-2"></div>
+                      <div className="h-5 bg-gray-200 rounded w-3/4 mb-3"></div>
+                      <div className="h-4 bg-gray-200 rounded w-full mb-4"></div>
+                      <div className="flex gap-2">
+                        <div className="h-6 bg-gray-200 rounded-full w-16"></div>
+                        <div className="h-6 bg-gray-200 rounded-full w-16"></div>
+                      </div>
                     </div>
                   </div>
+                ))}
+              </div>
+            ) : trends.length > 0 ? (
+              <div className="grid md:grid-cols-2 gap-8">
+                {trends.map((trend) => (
+                  <div key={trend.id} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
+                    <div className="aspect-[2/1] relative overflow-hidden bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10">
+                      {trend.imageUrl ? (
+                        <img
+                          src={trend.imageUrl}
+                          alt={trend.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <svg className="w-16 h-16 text-[#B8956A]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                          </svg>
+                        </div>
+                      )}
+                      <span className="absolute top-4 left-4 bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
+                        {trend.category}
+                      </span>
+                    </div>
+                    <div className="p-6">
+                      <div className="text-xs text-[#6B5D53] mb-2">{formatDate(trend.publishedAt)}</div>
+                      <h3 className="text-xl font-bold text-[#4A4039] mb-3 group-hover:text-[#B8956A] transition-colors">{trend.title}</h3>
+                      <p className="text-[#6B5D53] text-sm mb-4 line-clamp-2">{trend.description}</p>
+                      {trend.tags && trend.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {trend.tags.map((tag) => (
+                            <span key={tag} className="text-xs bg-[#FAF6F1] text-[#6B5D53] px-3 py-1 rounded-full">
+                              #{tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-20 bg-white rounded-2xl border border-[#E8DCC8]">
+                <div className="w-16 h-16 bg-[#B8956A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
                 </div>
-              ))}
-            </div>
+                <h3 className="text-lg font-bold text-[#4A4039] mb-2">등록된 트렌드 리포트가 없습니다</h3>
+                <p className="text-[#6B5D53]">트렌드 리포트가 등록되면 이곳에 표시됩니다.</p>
+              </div>
+            )}
           </div>
         </section>
 

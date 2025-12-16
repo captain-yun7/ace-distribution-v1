@@ -5,10 +5,13 @@ import { z } from 'zod';
 
 const bannerSchema = z.object({
   title: z.string().min(1, '제목은 필수입니다'),
-  subtitle: z.string().optional(),
+  description: z.string().optional().nullable(),
   imageUrl: z.string().min(1, '이미지 URL은 필수입니다'),
-  linkUrl: z.string().optional(),
-  sortOrder: z.number().optional(),
+  mobileImageUrl: z.string().optional().nullable(),
+  linkUrl: z.string().optional().nullable(),
+  linkText: z.string().optional().nullable(),
+  position: z.enum(['HOME_MAIN', 'HOME_SECONDARY', 'PRODUCTS', 'COMPANY']).optional(),
+  order: z.number().optional(),
   isActive: z.boolean().optional(),
   startDate: z.string().optional().nullable(),
   endDate: z.string().optional().nullable(),
@@ -32,7 +35,7 @@ export async function GET(request: NextRequest) {
 
     const banners = await prisma.banner.findMany({
       where,
-      orderBy: { sortOrder: 'asc' },
+      orderBy: { order: 'asc' },
     });
 
     return NextResponse.json({ banners });
@@ -52,19 +55,26 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedData = bannerSchema.parse(body);
 
-    // Get next sortOrder if not provided
-    let sortOrder = validatedData.sortOrder;
-    if (sortOrder === undefined) {
+    // Get next order if not provided
+    let order = validatedData.order;
+    if (order === undefined) {
       const lastBanner = await prisma.banner.findFirst({
-        orderBy: { sortOrder: 'desc' },
+        orderBy: { order: 'desc' },
       });
-      sortOrder = (lastBanner?.sortOrder ?? 0) + 1;
+      order = (lastBanner?.order ?? 0) + 1;
     }
 
     const banner = await prisma.banner.create({
       data: {
-        ...validatedData,
-        sortOrder,
+        title: validatedData.title,
+        description: validatedData.description,
+        imageUrl: validatedData.imageUrl,
+        mobileImageUrl: validatedData.mobileImageUrl,
+        linkUrl: validatedData.linkUrl,
+        linkText: validatedData.linkText,
+        position: validatedData.position || 'HOME_MAIN',
+        order,
+        isActive: validatedData.isActive ?? true,
         startDate: validatedData.startDate ? new Date(validatedData.startDate) : null,
         endDate: validatedData.endDate ? new Date(validatedData.endDate) : null,
       },
@@ -73,7 +83,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(banner, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     console.error('Error creating banner:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
@@ -89,13 +99,13 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { banners } = body as { banners: { id: string; sortOrder: number }[] };
+    const { banners } = body as { banners: { id: string; order: number }[] };
 
     await prisma.$transaction(
       banners.map((banner) =>
         prisma.banner.update({
           where: { id: banner.id },
-          data: { sortOrder: banner.sortOrder },
+          data: { order: banner.order },
         })
       )
     );

@@ -4,8 +4,9 @@ import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 
 const inquiryUpdateSchema = z.object({
-  status: z.enum(['PENDING', 'IN_PROGRESS', 'COMPLETED', 'CLOSED']).optional(),
+  status: z.enum(['PENDING', 'ANSWERED', 'CLOSED']).optional(),
   adminNote: z.string().optional().nullable(),
+  respondedAt: z.string().optional().nullable(),
 });
 
 export async function GET(
@@ -46,15 +47,20 @@ export async function PUT(
     const body = await request.json();
     const validatedData = inquiryUpdateSchema.parse(body);
 
+    const updateData: Record<string, unknown> = { ...validatedData };
+    if (validatedData.respondedAt !== undefined) {
+      updateData.respondedAt = validatedData.respondedAt ? new Date(validatedData.respondedAt) : null;
+    }
+
     const inquiry = await prisma.inquiry.update({
       where: { id },
-      data: validatedData,
+      data: updateData,
     });
 
     return NextResponse.json(inquiry);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     console.error('Error updating inquiry:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

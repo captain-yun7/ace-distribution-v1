@@ -5,13 +5,13 @@ import { z } from 'zod';
 
 const newsUpdateSchema = z.object({
   title: z.string().min(1).optional(),
-  slug: z.string().optional(),
-  content: z.string().optional().nullable(),
+  content: z.string().optional(),
   excerpt: z.string().optional().nullable(),
-  category: z.enum(['PRESS', 'EVENT', 'NOTICE', 'BLOG']).optional(),
+  category: z.enum(['PRESS_RELEASE', 'EVENT', 'NOTICE', 'BLOG']).optional(),
   thumbnailUrl: z.string().optional().nullable(),
-  isPublished: z.boolean().optional(),
-  isFeatured: z.boolean().optional(),
+  imageUrl: z.string().optional().nullable(),
+  author: z.string().optional().nullable(),
+  isPinned: z.boolean().optional(),
   publishedAt: z.string().optional().nullable(),
 });
 
@@ -66,7 +66,7 @@ export async function PUT(
     return NextResponse.json(news);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     console.error('Error updating news:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

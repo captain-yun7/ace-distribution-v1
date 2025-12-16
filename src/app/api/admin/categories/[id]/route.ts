@@ -8,7 +8,7 @@ const categoryUpdateSchema = z.object({
   displayName: z.string().min(1).optional(),
   description: z.string().optional().nullable(),
   imageUrl: z.string().optional().nullable(),
-  sortOrder: z.number().optional(),
+  order: z.number().optional(),
   isPublished: z.boolean().optional(),
 });
 
@@ -61,7 +61,7 @@ export async function PUT(
     return NextResponse.json(category);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     console.error('Error updating category:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

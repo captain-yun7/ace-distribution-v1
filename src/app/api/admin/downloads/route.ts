@@ -5,13 +5,14 @@ import { z } from 'zod';
 
 const downloadSchema = z.object({
   title: z.string().min(1, '제목은 필수입니다'),
-  description: z.string().optional(),
+  description: z.string().optional().nullable(),
+  fileName: z.string().min(1, '파일명은 필수입니다'),
   fileUrl: z.string().min(1, '파일 URL은 필수입니다'),
-  fileSize: z.string().optional(),
-  fileType: z.string().optional(),
-  category: z.string().optional(),
-  sortOrder: z.number().optional(),
-  isPublished: z.boolean().optional(),
+  fileSize: z.number().min(0, '파일 크기는 0 이상이어야 합니다'),
+  fileType: z.string().min(1, '파일 타입은 필수입니다'),
+  categoryId: z.string().min(1, '카테고리는 필수입니다'),
+  version: z.string().optional().nullable(),
+  requireAuth: z.boolean().optional(),
 });
 
 export async function GET(request: NextRequest) {
@@ -25,7 +26,7 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '20');
     const search = searchParams.get('search') || '';
-    const category = searchParams.get('category') || '';
+    const categoryId = searchParams.get('categoryId') || '';
 
     const where: Record<string, unknown> = {};
 
@@ -36,16 +37,17 @@ export async function GET(request: NextRequest) {
       ];
     }
 
-    if (category) {
-      where.category = category;
+    if (categoryId) {
+      where.categoryId = categoryId;
     }
 
     const [downloads, total] = await Promise.all([
       prisma.download.findMany({
         where,
-        orderBy: { sortOrder: 'asc' },
+        orderBy: { createdAt: 'desc' },
         skip: (page - 1) * limit,
         take: limit,
+        include: { category: true },
       }),
       prisma.download.count({ where }),
     ]);
@@ -70,26 +72,25 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedData = downloadSchema.parse(body);
 
-    // Get next sortOrder if not provided
-    let sortOrder = validatedData.sortOrder;
-    if (sortOrder === undefined) {
-      const lastDownload = await prisma.download.findFirst({
-        orderBy: { sortOrder: 'desc' },
-      });
-      sortOrder = (lastDownload?.sortOrder ?? 0) + 1;
-    }
-
     const download = await prisma.download.create({
       data: {
-        ...validatedData,
-        sortOrder,
+        title: validatedData.title,
+        description: validatedData.description,
+        fileName: validatedData.fileName,
+        fileUrl: validatedData.fileUrl,
+        fileSize: validatedData.fileSize,
+        fileType: validatedData.fileType,
+        categoryId: validatedData.categoryId,
+        version: validatedData.version,
+        requireAuth: validatedData.requireAuth ?? false,
       },
+      include: { category: true },
     });
 
     return NextResponse.json(download, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     console.error('Error creating download:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

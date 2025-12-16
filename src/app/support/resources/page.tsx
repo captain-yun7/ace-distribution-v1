@@ -1,72 +1,109 @@
 'use client';
 
 import { Header, Footer, PageHero } from '@/components/layout';
+import { useState, useEffect } from 'react';
 
-const resources = [
-  {
-    category: '카탈로그',
-    items: [
-      { title: '2024 에이스유통 제품 카탈로그', size: '15.2 MB', type: 'PDF', date: '2024.01' },
-      { title: '에이스베이커리 제품 안내서', size: '8.5 MB', type: 'PDF', date: '2024.03' },
-      { title: '냉동 베이커리 라인업 소개', size: '5.3 MB', type: 'PDF', date: '2024.06' },
-    ],
-  },
-  {
-    category: '거래 양식',
-    items: [
-      { title: '신규 거래 신청서', size: '125 KB', type: 'HWP', date: '2024.01' },
-      { title: '거래 계약서 양식', size: '98 KB', type: 'HWP', date: '2024.01' },
-      { title: '주문서 양식', size: '85 KB', type: 'XLS', date: '2024.01' },
-    ],
-  },
-  {
-    category: '인증서',
-    items: [
-      { title: '사업자등록증 사본', size: '1.2 MB', type: 'PDF', date: '2024.01' },
-      { title: '식품 위생 인증서', size: '2.1 MB', type: 'PDF', date: '2023.09' },
-      { title: '냉동/냉장 운송 인증서', size: '1.8 MB', type: 'PDF', date: '2023.06' },
-    ],
-  },
-  {
-    category: '가이드',
-    items: [
-      { title: '냉동 베이커리 취급 가이드', size: '3.5 MB', type: 'PDF', date: '2024.02' },
-      { title: '제품 보관 온도 안내', size: '1.1 MB', type: 'PDF', date: '2024.01' },
-      { title: '주문 및 배송 이용 가이드', size: '2.3 MB', type: 'PDF', date: '2024.01' },
-    ],
-  },
-];
+interface Download {
+  id: string;
+  title: string;
+  description: string | null;
+  fileName: string;
+  fileUrl: string;
+  fileSize: number;
+  fileType: string;
+  version: string | null;
+  downloads: number;
+  createdAt: string;
+}
+
+interface DownloadCategory {
+  id: string;
+  name: string;
+  order: number;
+  downloads: Download[];
+}
+
+const formatFileSize = (bytes: number): string => {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+};
 
 const getFileIcon = (type: string) => {
-  switch (type) {
-    case 'PDF':
+  const typeLower = type.toLowerCase();
+  switch (typeLower) {
+    case 'pdf':
       return (
         <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
           <span className="text-red-600 font-bold text-xs">PDF</span>
         </div>
       );
-    case 'HWP':
+    case 'hwp':
+    case 'hwpx':
       return (
         <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
           <span className="text-blue-600 font-bold text-xs">HWP</span>
         </div>
       );
-    case 'XLS':
+    case 'xls':
+    case 'xlsx':
       return (
         <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
           <span className="text-green-600 font-bold text-xs">XLS</span>
         </div>
       );
+    case 'doc':
+    case 'docx':
+      return (
+        <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+          <span className="text-blue-600 font-bold text-xs">DOC</span>
+        </div>
+      );
+    case 'zip':
+    case 'rar':
+      return (
+        <div className="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center">
+          <span className="text-yellow-700 font-bold text-xs">ZIP</span>
+        </div>
+      );
     default:
       return (
         <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center">
-          <span className="text-gray-600 font-bold text-xs">FILE</span>
+          <span className="text-gray-600 font-bold text-xs uppercase">{typeLower.substring(0, 3)}</span>
         </div>
       );
   }
 };
 
 export default function ResourcesPage() {
+  const [categories, setCategories] = useState<DownloadCategory[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDownloads = async () => {
+      try {
+        const res = await fetch('/api/downloads');
+        if (res.ok) {
+          const data = await res.json();
+          setCategories(data);
+        }
+      } catch (error) {
+        console.error('Error fetching downloads:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDownloads();
+  }, []);
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit' }).replace('. ', '.').replace('.', '');
+  };
+
+  const hasDownloads = categories.some(cat => cat.downloads.length > 0);
+
   return (
     <>
       <Header />
@@ -98,42 +135,79 @@ export default function ResourcesPage() {
         {/* Resources */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4">
-            {resources.map((section, sectionIndex) => (
-              <div key={sectionIndex} className="mb-12 last:mb-0">
-                <h2 className="text-2xl font-bold text-[#4A4039] mb-6 flex items-center gap-3">
-                  <span className="w-1 h-6 bg-gradient-to-b from-[#B8956A] to-[#D4A574] rounded-full" />
-                  {section.category}
-                </h2>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {section.items.map((item, itemIndex) => (
-                    <div
-                      key={itemIndex}
-                      className="bg-white rounded-2xl p-6 border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group"
-                    >
-                      <div className="flex items-start gap-4">
-                        {getFileIcon(item.type)}
-                        <div className="flex-grow">
-                          <h3 className="font-medium text-[#4A4039] group-hover:text-[#B8956A] transition-colors mb-1">
-                            {item.title}
-                          </h3>
-                          <div className="flex items-center gap-2 text-sm text-[#6B5D53]">
-                            <span>{item.size}</span>
-                            <span>·</span>
-                            <span>{item.date}</span>
+            {loading ? (
+              <div className="space-y-12">
+                {[...Array(3)].map((_, i) => (
+                  <div key={i}>
+                    <div className="h-8 w-32 bg-gray-200 rounded mb-6 animate-pulse"></div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {[...Array(3)].map((_, j) => (
+                        <div key={j} className="bg-white rounded-2xl p-6 border border-[#E8DCC8] animate-pulse">
+                          <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 bg-gray-200 rounded-xl"></div>
+                            <div className="flex-grow">
+                              <div className="h-4 w-40 bg-gray-200 rounded mb-2"></div>
+                              <div className="h-3 w-24 bg-gray-200 rounded"></div>
+                            </div>
                           </div>
                         </div>
-                        <button className="flex-shrink-0 w-10 h-10 bg-[#B8956A]/10 rounded-full flex items-center justify-center text-[#B8956A] hover:bg-gradient-to-r hover:from-[#B8956A] hover:to-[#D4A574] hover:text-white transition-all duration-300">
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                          </svg>
-                        </button>
-                      </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            ) : hasDownloads ? (
+              categories.filter(cat => cat.downloads.length > 0).map((section) => (
+                <div key={section.id} className="mb-12 last:mb-0">
+                  <h2 className="text-2xl font-bold text-[#4A4039] mb-6 flex items-center gap-3">
+                    <span className="w-1 h-6 bg-gradient-to-b from-[#B8956A] to-[#D4A574] rounded-full" />
+                    {section.name}
+                  </h2>
+
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {section.downloads.map((item) => (
+                      <div
+                        key={item.id}
+                        className="bg-white rounded-2xl p-6 border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group"
+                      >
+                        <div className="flex items-start gap-4">
+                          {getFileIcon(item.fileType)}
+                          <div className="flex-grow min-w-0">
+                            <h3 className="font-medium text-[#4A4039] group-hover:text-[#B8956A] transition-colors mb-1 truncate">
+                              {item.title}
+                            </h3>
+                            <div className="flex items-center gap-2 text-sm text-[#6B5D53]">
+                              <span>{formatFileSize(item.fileSize)}</span>
+                              <span>·</span>
+                              <span>{formatDate(item.createdAt)}</span>
+                            </div>
+                          </div>
+                          <a
+                            href={item.fileUrl}
+                            download
+                            className="flex-shrink-0 w-10 h-10 bg-[#B8956A]/10 rounded-full flex items-center justify-center text-[#B8956A] hover:bg-gradient-to-r hover:from-[#B8956A] hover:to-[#D4A574] hover:text-white transition-all duration-300"
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="text-center py-20 bg-white rounded-2xl border border-[#E8DCC8]">
+                <div className="w-16 h-16 bg-[#B8956A]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-[#4A4039] mb-2">등록된 자료가 없습니다</h3>
+                <p className="text-[#6B5D53]">자료가 등록되면 이곳에 표시됩니다.</p>
+              </div>
+            )}
           </div>
         </section>
 

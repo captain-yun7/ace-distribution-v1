@@ -4,22 +4,24 @@ import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 
 const productUpdateSchema = z.object({
-  name: z.string().min(1, '제품명은 필수입니다').optional(),
-  code: z.string().optional().nullable(),
+  name: z.string().min(1).optional(),
+  code: z.string().optional(),
+  categoryId: z.string().optional(),
+  description: z.string().optional(),
   brand: z.string().optional().nullable(),
   manufacturer: z.string().optional().nullable(),
   origin: z.string().optional().nullable(),
-  description: z.string().optional().nullable(),
-  specification: z.string().optional().nullable(),
   price: z.number().optional().nullable(),
-  unit: z.string().optional().nullable(),
-  stockStatus: z.enum(['IN_STOCK', 'LOW_STOCK', 'OUT_OF_STOCK']).optional(),
+  specs: z.any().optional().nullable(),
+  features: z.any().optional().nullable(),
   imageUrl: z.string().optional().nullable(),
   thumbnailUrl: z.string().optional().nullable(),
+  images: z.any().optional().nullable(),
   brochureUrl: z.string().optional().nullable(),
+  order: z.number().optional(),
+  stock: z.number().optional(),
   isPublished: z.boolean().optional(),
   isFeatured: z.boolean().optional(),
-  categoryId: z.string().optional().nullable(),
 });
 
 // GET - Get single product
@@ -70,9 +72,17 @@ export async function PUT(
     const body = await request.json();
     const validatedData = productUpdateSchema.parse(body);
 
+    // Filter out undefined values
+    const updateData: Record<string, unknown> = {};
+    Object.entries(validatedData).forEach(([key, value]) => {
+      if (value !== undefined) {
+        updateData[key] = value;
+      }
+    });
+
     const product = await prisma.product.update({
       where: { id },
-      data: validatedData,
+      data: updateData,
       include: {
         category: {
           select: { id: true, name: true, displayName: true },
@@ -83,7 +93,7 @@ export async function PUT(
     return NextResponse.json(product);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.errors }, { status: 400 });
+      return NextResponse.json({ error: error.issues }, { status: 400 });
     }
     console.error('Error updating product:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
