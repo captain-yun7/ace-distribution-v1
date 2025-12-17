@@ -1,19 +1,28 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import FileUpload from '@/components/ui/FileUpload';
 
 interface Download {
   id: string;
   title: string;
   description: string | null;
+  fileName: string;
   fileUrl: string;
-  fileSize: string | null;
-  fileType: string | null;
-  category: string | null;
-  sortOrder: number;
-  isPublished: boolean;
-  downloadCount: number;
+  fileSize: number;
+  fileType: string;
+  categoryId: string;
+  category: { id: string; name: string } | null;
+  version: string | null;
+  requireAuth: boolean;
+  downloads: number;
   createdAt: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+  order: number;
 }
 
 interface Pagination {
@@ -25,6 +34,7 @@ interface Pagination {
 
 export default function AdminDownloadsPage() {
   const [downloads, setDownloads] = useState<Download[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [pagination, setPagination] = useState<Pagination | null>(null);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -34,11 +44,13 @@ export default function AdminDownloadsPage() {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
+    fileName: '',
     fileUrl: '',
-    fileSize: '',
+    fileSize: 0,
     fileType: '',
-    category: '',
-    isPublished: true,
+    categoryId: '',
+    version: '',
+    requireAuth: false,
   });
 
   const fetchDownloads = async () => {
@@ -60,19 +72,34 @@ export default function AdminDownloadsPage() {
     }
   };
 
+  const fetchCategories = async () => {
+    try {
+      const res = await fetch('/api/downloads/categories');
+      if (res.ok) {
+        const data = await res.json();
+        setCategories(data.categories || []);
+      }
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
   useEffect(() => {
     fetchDownloads();
+    fetchCategories();
   }, [page, search]);
 
   const resetForm = () => {
     setFormData({
       title: '',
       description: '',
+      fileName: '',
       fileUrl: '',
-      fileSize: '',
+      fileSize: 0,
       fileType: '',
-      category: '',
-      isPublished: true,
+      categoryId: categories[0]?.id || '',
+      version: '',
+      requireAuth: false,
     });
     setEditingId(null);
   };
@@ -83,11 +110,13 @@ export default function AdminDownloadsPage() {
       setFormData({
         title: download.title,
         description: download.description || '',
+        fileName: download.fileName,
         fileUrl: download.fileUrl,
-        fileSize: download.fileSize || '',
-        fileType: download.fileType || '',
-        category: download.category || '',
-        isPublished: download.isPublished,
+        fileSize: download.fileSize,
+        fileType: download.fileType,
+        categoryId: download.categoryId,
+        version: download.version || '',
+        requireAuth: download.requireAuth,
       });
     } else {
       resetForm();
@@ -95,8 +124,38 @@ export default function AdminDownloadsPage() {
     setShowModal(true);
   };
 
+  const handleFileChange = (data: { url: string; fileName: string; fileSize: number; fileType: string; publicId: string } | null) => {
+    if (data) {
+      setFormData({
+        ...formData,
+        fileName: data.fileName,
+        fileUrl: data.url,
+        fileSize: data.fileSize,
+        fileType: data.fileType,
+      });
+    } else {
+      setFormData({
+        ...formData,
+        fileName: '',
+        fileUrl: '',
+        fileSize: 0,
+        fileType: '',
+      });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.fileUrl) {
+      alert('파일을 업로드해주세요.');
+      return;
+    }
+
+    if (!formData.categoryId) {
+      alert('카테고리를 선택해주세요.');
+      return;
+    }
 
     try {
       const url = editingId
@@ -141,28 +200,23 @@ export default function AdminDownloadsPage() {
     }
   };
 
-  const togglePublished = async (download: Download) => {
-    try {
-      const res = await fetch(`/api/admin/downloads/${download.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ isPublished: !download.isPublished }),
-      });
-      if (res.ok) {
-        fetchDownloads();
-      }
-    } catch (error) {
-      console.error('Error toggling published:', error);
-    }
+  const formatFileSize = (bytes: number): string => {
+    if (!bytes || bytes === 0) return '-';
+    const k = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
-  const getFileIcon = (fileType: string | null) => {
+  const getFileIcon = (fileType: string | null): string => {
     if (!fileType) return '📄';
-    if (fileType.includes('pdf')) return '📕';
-    if (fileType.includes('word') || fileType.includes('doc')) return '📘';
-    if (fileType.includes('excel') || fileType.includes('xls')) return '📗';
-    if (fileType.includes('image') || fileType.includes('png') || fileType.includes('jpg')) return '🖼️';
-    if (fileType.includes('zip') || fileType.includes('rar')) return '📦';
+    const type = fileType.toLowerCase();
+    if (type === 'pdf') return '📕';
+    if (type === 'doc' || type === 'docx') return '📘';
+    if (type === 'xls' || type === 'xlsx') return '📗';
+    if (type === 'ppt' || type === 'pptx') return '📙';
+    if (type === 'zip' || type === 'rar' || type === '7z') return '📦';
+    if (type === 'hwp') return '📄';
     return '📄';
   };
 
@@ -206,7 +260,6 @@ export default function AdminDownloadsPage() {
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">카테고리</th>
                 <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">파일 크기</th>
                 <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">다운로드</th>
-                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">공개</th>
                 <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">관리</th>
               </tr>
             </thead>
@@ -218,34 +271,21 @@ export default function AdminDownloadsPage() {
                       <span className="text-2xl">{getFileIcon(download.fileType)}</span>
                       <div>
                         <div className="font-medium text-gray-900">{download.title}</div>
-                        {download.description && (
-                          <div className="text-sm text-gray-500 truncate max-w-xs">
-                            {download.description}
-                          </div>
-                        )}
+                        <div className="text-sm text-gray-500">
+                          {download.fileName}
+                          {download.version && <span className="ml-2 text-blue-600">v{download.version}</span>}
+                        </div>
                       </div>
                     </div>
                   </td>
                   <td className="px-4 py-3 text-sm text-gray-500">
-                    {download.category || '-'}
+                    {download.category?.name || '-'}
                   </td>
                   <td className="px-4 py-3 text-center text-sm text-gray-500">
-                    {download.fileSize || '-'}
+                    {formatFileSize(download.fileSize)}
                   </td>
                   <td className="px-4 py-3 text-center text-sm text-gray-500">
-                    {download.downloadCount}회
-                  </td>
-                  <td className="px-4 py-3 text-center">
-                    <button
-                      onClick={() => togglePublished(download)}
-                      className={`w-8 h-8 rounded-full ${
-                        download.isPublished
-                          ? 'bg-green-100 text-green-600'
-                          : 'bg-gray-100 text-gray-400'
-                      }`}
-                    >
-                      {download.isPublished ? '✓' : '○'}
-                    </button>
+                    {download.downloads}회
                   </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex justify-end gap-2">
@@ -323,6 +363,7 @@ export default function AdminDownloadsPage() {
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    placeholder="자료 제목"
                   />
                 </div>
                 <div>
@@ -334,67 +375,60 @@ export default function AdminDownloadsPage() {
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     rows={3}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    placeholder="자료 설명"
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    파일 URL <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="url"
-                    required
-                    value={formData.fileUrl}
-                    onChange={(e) => setFormData({ ...formData, fileUrl: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    placeholder="https://example.com/file.pdf"
-                  />
-                </div>
+
+                {/* 파일 업로드 */}
+                <FileUpload
+                  label="파일"
+                  value={formData.fileUrl}
+                  fileName={formData.fileName}
+                  fileSize={formData.fileSize}
+                  fileType={formData.fileType}
+                  onChange={handleFileChange}
+                  folder="downloads"
+                />
+
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      파일 크기
+                      카테고리 <span className="text-red-500">*</span>
                     </label>
-                    <input
-                      type="text"
-                      value={formData.fileSize}
-                      onChange={(e) => setFormData({ ...formData, fileSize: e.target.value })}
+                    <select
+                      value={formData.categoryId}
+                      onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                      placeholder="예: 2.5MB"
-                    />
+                    >
+                      <option value="">선택하세요</option>
+                      {categories.map((cat) => (
+                        <option key={cat.id} value={cat.id}>
+                          {cat.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      파일 형식
+                      버전
                     </label>
                     <input
                       type="text"
-                      value={formData.fileType}
-                      onChange={(e) => setFormData({ ...formData, fileType: e.target.value })}
+                      value={formData.version}
+                      onChange={(e) => setFormData({ ...formData, version: e.target.value })}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                      placeholder="예: PDF, DOCX"
+                      placeholder="예: 1.0"
                     />
                   </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    카테고리
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    placeholder="예: 카탈로그, 사용설명서"
-                  />
                 </div>
                 <label className="flex items-center gap-2">
                   <input
                     type="checkbox"
-                    checked={formData.isPublished}
-                    onChange={(e) => setFormData({ ...formData, isPublished: e.target.checked })}
+                    checked={formData.requireAuth}
+                    onChange={(e) => setFormData({ ...formData, requireAuth: e.target.checked })}
                     className="w-4 h-4 text-blue-600 rounded"
                   />
-                  <span className="text-sm text-gray-700">공개</span>
+                  <span className="text-sm text-gray-700">로그인 필요</span>
                 </label>
                 <div className="flex justify-end gap-4 pt-4">
                   <button
