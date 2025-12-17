@@ -80,9 +80,10 @@ export default function BusinessPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
                     </svg>
                   )},
-                  { title: '해외직수입 & 대량구매', desc: '구매원가 절감 → 거래처 출고단가 추가 인하효과', icon: (
+                  { title: '권역별 배송 시스템', desc: '서울/경기/춘천/강원 권역별 맞춤 배송 서비스', icon: (
                     <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   )},
                   { title: '전 상품 공급 시스템', desc: '국내 제조 모든 상품과 수입 베이커리 부자재 공급 가능', icon: (
@@ -153,10 +154,9 @@ export default function BusinessPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
               {[
                 { value: '20대', label: '배송차량 보유' },
-                { value: '1~2%', label: '전국 배송망 직접 구축 기업 비율' },
                 { value: '520평', label: '물류센터 면적' },
               ].map((stat, index) => (
                 <div key={index} className="text-center p-8 bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl border border-[#E8DCC8]">
@@ -169,16 +169,16 @@ export default function BusinessPage() {
             {/* Coverage Map */}
             <div className="bg-gradient-to-br from-[#FAF6F1] to-white border-2 border-[#E8DCC8] rounded-3xl p-8">
               <h4 className="text-xl font-bold text-[#4A4039] mb-8 text-center">주요 배송 권역</h4>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
-                {['서울/수도권', '춘천', '원주', '천안', '대전', '전주', '부산', '거제'].map((city, index) => (
-                  <div key={index} className="text-center p-4 bg-white rounded-xl border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group">
-                    <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {['서울', '경기', '춘천', '강원'].map((city, index) => (
+                  <div key={index} className="text-center p-6 bg-white rounded-xl border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </div>
-                    <p className="font-semibold text-[#4A4039] text-sm">{city}</p>
+                    <p className="font-bold text-[#4A4039] text-lg">{city}</p>
                   </div>
                 ))}
               </div>

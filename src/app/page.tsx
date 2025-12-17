@@ -164,7 +164,7 @@ export default function HomePage() {
       >
         <div className="flex flex-col items-center justify-center w-12 py-6 bg-[#4A4039] hover:bg-[#3A3029] transition-all duration-300 shadow-lg hover:shadow-xl rounded-l-lg">
           <span className="text-white text-sm font-semibold tracking-widest [writing-mode:vertical-rl]">
-            상담하기
+            상담 / 문의
           </span>
         </div>
       </Link>
@@ -339,13 +339,6 @@ export default function HomePage() {
         <div className="relative z-10 w-full h-full flex flex-col justify-center">
           <div className="max-w-[1400px] mx-auto px-6 lg:px-12 w-full">
             <div className="max-w-3xl">
-              {/* Premium Badge */}
-              <div className="mb-10 animate-fadeInUp">
-                <span className="inline-flex items-center gap-2 px-6 py-2.5 bg-white/10 backdrop-blur-md text-white text-sm font-medium tracking-widest uppercase border border-white/20">
-                  <span className="w-2 h-2 bg-[#D4A574] rounded-full"></span>
-                  Premium Bakery Ingredients
-                </span>
-              </div>
 
               {/* English Tagline */}
               <p className="italic text-xl md:text-2xl text-[#D4A574] mb-4 animate-fadeInUp animation-delay-200 tracking-wide">
@@ -434,18 +427,8 @@ export default function HomePage() {
                 {[
                   {
                     step: '01',
-                    title: '글로벌 소싱',
-                    desc: '전세계 우수 생산지',
-                    icon: (
-                      <svg className="w-12 h-12 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    )
-                  },
-                  {
-                    step: '02',
                     title: '품질 검증',
-                    desc: 'HACCP 인증 시스템',
+                    desc: '우수기술기업 인증',
                     icon: (
                       <svg className="w-12 h-12 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -453,17 +436,7 @@ export default function HomePage() {
                     )
                   },
                   {
-                    step: '03',
-                    title: '직수입 유통',
-                    desc: '가격 경쟁력 확보',
-                    icon: (
-                      <svg className="w-12 h-12 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                      </svg>
-                    )
-                  },
-                  {
-                    step: '04',
+                    step: '02',
                     title: '재고 관리',
                     desc: '실시간 재고 시스템',
                     icon: (
@@ -473,7 +446,7 @@ export default function HomePage() {
                     )
                   },
                   {
-                    step: '05',
+                    step: '03',
                     title: '신속 배송',
                     desc: '당일/익일 배송',
                     icon: (
@@ -483,7 +456,7 @@ export default function HomePage() {
                     )
                   },
                   {
-                    step: '06',
+                    step: '04',
                     title: '사후 관리',
                     desc: '지속적 품질 관리',
                     icon: (
@@ -731,553 +704,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Premium Product Showcase Section */}
-      <section
-        ref={(el) => (sectionsRef.current[2] = el)}
-        id="products"
-        className="py-32 bg-gradient-to-br from-[#FAF6F1] via-white to-[#FFF8F0] relative overflow-hidden"
-      >
-        {/* Premium Background Effects */}
-        <div className="absolute inset-0">
-          {/* Gradient Orbs */}
-          <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-gradient-to-br from-[#B8956A]/20 to-[#D4A574]/10 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-20 right-10 w-[400px] h-[400px] bg-gradient-to-tl from-[#D4A574]/20 to-[#B8956A]/10 rounded-full blur-3xl animate-float animation-delay-600"></div>
-
-          {/* Decorative Pattern */}
-          <div className="absolute inset-0 opacity-[0.02]" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8956A' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Premium Section Header */}
-          <div className={`text-center mb-20 ${isVisible.products ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <span className="inline-block text-sm font-bold text-[#B8956A] tracking-[0.3em] uppercase mb-4">
-              PREMIUM SELECTION
-            </span>
-            <h2 className="text-5xl lg:text-6xl font-black mb-6">
-              <span className="text-[#4A4039]">추천</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B8956A] to-[#D4A574]"> 제품</span>
-            </h2>
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <span className="w-20 h-[2px] bg-gradient-to-r from-transparent to-[#B8956A]"></span>
-              <p className="text-lg text-[#6B5D53] font-medium">고객님을 위한 엄선된 프리미엄 식자재</p>
-              <span className="w-20 h-[2px] bg-gradient-to-l from-transparent to-[#B8956A]"></span>
-            </div>
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            {/* Premium Tab Navigation with Badge */}
-            <div className="flex gap-4 mb-16 justify-center relative">
-              {[
-                { id: 'grain', name: '곡류가공품', badge: 'HOT' },
-                { id: 'nut', name: '견과가공품', badge: 'NEW' },
-                { id: 'sugar', name: '당류가공품', badge: null }
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`relative px-10 py-4 rounded-2xl font-bold transition-all duration-500 transform ${
-                    activeTab === tab.id
-                      ? 'bg-gradient-to-r from-[#B8956A] via-[#C5A474] to-[#D4A574] text-white shadow-2xl scale-105 border-2 border-white'
-                      : 'bg-white text-[#6B5D53] hover:text-[#4A4039] shadow-lg hover:shadow-xl border-2 border-[#F5EFE7]'
-                  }`}
-                >
-                  <span className="relative z-10">{tab.name}</span>
-                  {tab.badge && activeTab === tab.id && (
-                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded-full animate-pulse">
-                      {tab.badge}
-                    </span>
-                  )}
-                  {activeTab === tab.id && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#B8956A] to-[#D4A574] rounded-2xl blur opacity-50"></div>
-                  )}
-                </button>
-              ))}
-            </div>
-
-            {/* Modern Product Grid */}
-            <div className="grid md:grid-cols-3 gap-8">
-              {(activeTab === 'grain' ? [
-                {
-                  title: '프리미엄',
-                  subtitle: '제빵개량제',
-                  category: '제빵재료',
-                  categoryColor: 'from-amber-600 to-amber-500',
-                  productName: '아뺑드 DH PRO (제빵개량제)',
-                  tags: ['#식빵및과자빵', '#포카치아', '#밀가루100%대비'],
-                  image: '/images/product1.png',
-                  link: '/products/dhpro'
-                },
-                {
-                  title: '바게트, 치아바타',
-                  subtitle: '프랑스산 밀가루',
-                  category: '밀가루',
-                  categoryColor: 'from-orange-500 to-orange-400',
-                  productName: '아뺑드 밀가루 T55',
-                  tags: ['#바게트', '#치아바타', '#여러분야의빵'],
-                  image: '/images/product2.jpg',
-                  link: '/products/t55'
-                },
-                {
-                  title: '아티장 베이커를 위한',
-                  subtitle: '프리미엄 밀가루',
-                  category: '밀가루',
-                  categoryColor: 'from-red-600 to-red-500',
-                  productName: '아뺑드 밀가루 T65',
-                  tags: ['#르빵임태언셰프', '#공동연구개발', '#아티장베이커'],
-                  image: '/images/product3.jpg',
-                  link: '/products/t65'
-                }
-              ] : activeTab === 'nut' ? [
-                {
-                  title: '프리미엄',
-                  subtitle: '아몬드 슬라이스',
-                  category: '견과가공품',
-                  categoryColor: 'from-amber-700 to-amber-600',
-                  productName: '아몬드 슬라이스 (Almond Slice)',
-                  tags: ['#제과제빵', '#토핑', '#고소함'],
-                  image: '/images/GOODS2_1505956856.jpg',
-                  link: '/products/almond-slice'
-                },
-                {
-                  title: '고급',
-                  subtitle: '피칸',
-                  category: '견과가공품',
-                  categoryColor: 'from-amber-600 to-amber-500',
-                  productName: '피칸 (Pecan)',
-                  tags: ['#프리미엄', '#제과', '#건강간식'],
-                  image: '/images/GOODS2_1506042521.jpg',
-                  link: '/products/pecan'
-                },
-                {
-                  title: '천연',
-                  subtitle: '코코넛 파우더',
-                  category: '견과가공품',
-                  categoryColor: 'from-green-700 to-green-600',
-                  productName: '코코넛 파우더 (Coconut Powder)',
-                  tags: ['#천연재료', '#디저트', '#베이킹'],
-                  image: '/images/GOODS2_1619680932.png',
-                  link: '/products/coconut'
-                }
-              ] : [
-                {
-                  title: '업소용',
-                  subtitle: '물엿',
-                  category: '당류가공품',
-                  categoryColor: 'from-yellow-700 to-yellow-600',
-                  productName: '업소용 물엿',
-                  tags: ['#요리용', '#제과제빵', '#대용량'],
-                  image: '/images/GOODS2_1619681459.png',
-                  link: '/products/syrup'
-                },
-                {
-                  title: '제과제빵용',
-                  subtitle: '백설탕',
-                  category: '당류가공품',
-                  categoryColor: 'from-gray-100 to-gray-50',
-                  productName: '백설탕 (White Sugar)',
-                  tags: ['#제과제빵', '#요리', '#정제'],
-                  image: '/images/GOODS2_1619681613.png',
-                  link: '/products/white-sugar'
-                },
-                {
-                  title: '프리미엄',
-                  subtitle: '글루코스 시럽',
-                  category: '당류가공품',
-                  categoryColor: 'from-amber-500 to-amber-400',
-                  productName: '글루코스 시럽 (Glucose Syrup)',
-                  tags: ['#제과', '#글레이즈', '#고급'],
-                  image: '/images/GOODS2_1619681845.png',
-                  link: '/products/glucose'
-                }
-                ]).map((product, index) => (
-                  <Link
-                    key={index}
-                    href={product.link}
-                    className={`group block h-full ${isVisible.products ? `animate-fadeInScale animation-delay-${index * 200}` : 'opacity-0'}`}
-                  >
-                    <div className="relative h-full bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col">
-                      {/* Clean Image Section */}
-                      <div className="relative h-72 bg-gradient-to-b from-[#FAF6F1] to-white overflow-hidden">
-                        <div className="absolute inset-0 flex items-center justify-center p-8">
-                          <img
-                            src={product.image}
-                            alt={product.productName}
-                            className="max-w-full max-h-full object-contain transform group-hover:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-
-                        {/* Simple Category Badge */}
-                        <div className="absolute top-4 left-4">
-                          <span className={`inline-block bg-gradient-to-r ${product.categoryColor} text-white text-[11px] font-bold px-3 py-1.5 rounded-md`}>
-                            {product.category}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Clean Content Section */}
-                      <div className="p-6 flex-grow flex flex-col">
-                        {/* Title Area */}
-                        <div className="mb-4">
-                          <p className="text-xs text-[#B8956A] font-semibold tracking-wide uppercase mb-1">
-                            {product.title}
-                          </p>
-                          <h3 className="text-xl font-bold text-[#4A4039] leading-tight">
-                            {product.productName}
-                          </h3>
-                        </div>
-
-                        {/* Tags - Simple Style */}
-                        <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-[#F5EFE7]">
-                          {product.tags.map((tag, tagIndex) => (
-                            <span key={tagIndex} className="text-[11px] text-[#6B5D53] bg-[#FAF6F1] px-2.5 py-1 rounded">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-
-                        {/* Hover Indicator */}
-                        <div className="mt-4 flex items-center justify-between">
-                          <span className="text-xs text-[#8B7D73]">프랑스산</span>
-                          <svg className="w-5 h-5 text-[#B8956A] opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l2 4-2-4zM17 8l-2-4 2 4zm0 0l-6 8-6-8m6 8v8" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-            </div>
-
-            {/* Premium CTA Button */}
-            <div className="flex justify-center mt-20 relative">
-              {/* Decorative Elements */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-64 h-1 bg-gradient-to-r from-transparent via-[#B8956A]/20 to-transparent"></div>
-              </div>
-
-              <Link
-                href="/products/all"
-                className="group relative inline-flex items-center gap-4 px-12 py-6 transform transition-all duration-700 hover:scale-105"
-              >
-                {/* Button Background */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#B8956A] via-[#C5A474] to-[#D4A574] rounded-2xl transform transition-all duration-500 group-hover:rotate-1"></div>
-
-                {/* Shimmer Effect */}
-                <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                </div>
-
-                {/* Shadow and Glow */}
-                <div className="absolute inset-0 rounded-2xl shadow-2xl group-hover:shadow-[0_20px_60px_-10px_rgba(184,149,106,0.5)]"></div>
-
-                {/* Button Content */}
-                <span className="relative z-10 text-white font-black text-lg tracking-wide">모든 제품 보기</span>
-
-                {/* Animated Arrow */}
-                <div className="relative z-10 flex items-center">
-                  <svg className="w-6 h-6 text-white transform group-hover:translate-x-2 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </div>
-
-                {/* Pulse Ring */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-white/30 animate-pulse"></div>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* Premium News & Notice Section - Magazine Style */}
-      <section
-        ref={(el) => (sectionsRef.current[3] = el)}
-        id="notice"
-        className="py-32 bg-white relative overflow-hidden"
-      >
-        {/* Sophisticated Background */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-[#B8956A]/10 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#D4A574]/10 to-transparent rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Premium Section Header */}
-          <div className={`mb-16 ${isVisible.notice ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <div className="flex items-center justify-between mb-12">
-              <div>
-                <span className="inline-block text-xs font-bold text-[#B8956A] tracking-[0.4em] uppercase mb-3">NEWS & UPDATES</span>
-                <h2 className="text-4xl lg:text-5xl font-black text-[#4A4039]">
-                  최신 소식
-                </h2>
-              </div>
-              <Link
-                href="/content/news"
-                className="hidden md:flex items-center gap-2 px-6 py-3 border-2 border-[#B8956A] text-[#B8956A] rounded-full hover:bg-[#B8956A] hover:text-white transition-all duration-300 font-semibold"
-              >
-                전체보기
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-
-            {/* Modern Tab Navigation */}
-            <div className="flex gap-1 border-b border-gray-200">
-              {['전체', '공지사항', '보도자료', '이벤트'].map((tab, index) => (
-                <button
-                  key={tab}
-                  className={`px-6 py-3 text-sm font-semibold transition-all duration-300 relative ${
-                    index === 0
-                      ? 'text-[#B8956A]'
-                      : 'text-gray-500 hover:text-[#4A4039]'
-                  }`}
-                >
-                  {tab}
-                  {index === 0 && (
-                    <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#B8956A]"></div>
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Magazine-style Grid Layout */}
-          <div className="grid lg:grid-cols-12 gap-8">
-            {/* Featured Article - Large Card */}
-            <div className={`lg:col-span-7 ${isVisible.notice ? 'animate-fadeInScale' : 'opacity-0'}`}>
-              {news.length > 0 ? (
-                <Link href="/content/news" className="group block relative h-full">
-                  <div className="relative overflow-hidden rounded-3xl shadow-2xl h-full">
-                    {/* Featured Image */}
-                    <div className="relative h-[500px] overflow-hidden bg-gradient-to-br from-[#FAF6F1] to-[#F5EFE7]">
-                      <img
-                        src={news[0].imageUrl || news[0].thumbnailUrl || "https://images.unsplash.com/photo-1452195100486-9cc805987862?w=800&h=600&fit=crop"}
-                        alt={news[0].title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-
-                      {/* Featured Badge */}
-                      <div className="absolute top-6 left-6">
-                        <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-full">
-                          <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                          <span className="text-sm font-bold text-[#4A4039]">FEATURED</span>
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Content Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-10">
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-3 text-white/90 text-sm">
-                          <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full">{categoryLabels[news[0].category] || news[0].category}</span>
-                          <span>{new Date(news[0].publishedAt).toLocaleDateString('ko-KR')}</span>
-                        </div>
-                        <h3 className="text-3xl lg:text-4xl font-bold text-white leading-tight group-hover:text-[#FFE5CC] transition-colors duration-300">
-                          {news[0].title}
-                        </h3>
-                        <p className="text-white/90 text-lg line-clamp-2">
-                          {news[0].excerpt || news[0].content.substring(0, 100)}
-                        </p>
-                        <div className="flex items-center gap-2 text-white font-semibold">
-                          자세히 보기
-                          <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ) : (
-                <div className="relative overflow-hidden rounded-3xl shadow-2xl h-full bg-gradient-to-br from-[#FAF6F1] to-[#F5EFE7] flex items-center justify-center min-h-[500px]">
-                  <div className="text-center p-10">
-                    <div className="w-16 h-16 bg-[#B8956A]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                      </svg>
-                    </div>
-                    <p className="text-[#6B5D53]">등록된 소식이 없습니다.</p>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Side Articles - Modern List */}
-            <div className={`lg:col-span-5 ${isVisible.notice ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
-              <div className="space-y-6">
-                {/* Sub-featured Article */}
-                {news.length > 1 && (
-                  <Link href="/content/news" className="group block">
-                    <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-3">
-                            <span className="px-2.5 py-1 bg-[#B8956A] text-white text-xs font-bold rounded-md">{categoryLabels[news[1].category] || news[1].category}</span>
-                            <span className="text-xs text-gray-500">{new Date(news[1].publishedAt).toLocaleDateString('ko-KR')}</span>
-                          </div>
-                          <h4 className="text-lg font-bold text-[#4A4039] mb-2 group-hover:text-[#B8956A] transition-colors">
-                            {news[1].title}
-                          </h4>
-                          <p className="text-sm text-[#6B5D53] line-clamp-2">
-                            {news[1].excerpt || news[1].content.substring(0, 80)}
-                          </p>
-                        </div>
-                        <div className="w-20 h-20 bg-[#B8956A]/10 rounded-xl flex items-center justify-center group-hover:bg-[#B8956A]/20 transition-colors">
-                          <svg className="w-8 h-8 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                )}
-
-                {/* Article List with Modern Cards */}
-                <div className="space-y-4">
-                  {news.slice(2).map((item, index) => (
-                    <Link
-                      key={item.id}
-                      href="/content/news"
-                      className="group block bg-white rounded-xl p-5 hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-[#B8956A]/20"
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="text-xs font-semibold text-[#B8956A]">{categoryLabels[item.category] || item.category}</span>
-                            <span className="text-xs text-gray-400">·</span>
-                            <span className="text-xs text-gray-500">{new Date(item.publishedAt).toLocaleDateString('ko-KR')}</span>
-                            {item.isPinned && (
-                              <>
-                                <span className="text-xs text-gray-400">·</span>
-                                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-600">
-                                  주요
-                                </span>
-                              </>
-                            )}
-                          </div>
-                          <h4 className="font-semibold text-[#4A4039] group-hover:text-[#B8956A] transition-colors mb-1 line-clamp-1">
-                            {item.title}
-                          </h4>
-                          <p className="text-xs text-gray-500 line-clamp-1">{item.excerpt || item.content.substring(0, 50)}</p>
-                        </div>
-                        <svg className="w-5 h-5 text-gray-400 group-hover:text-[#B8956A] flex-shrink-0 mt-1 transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-
-                {/* View All Button - Mobile */}
-                <Link
-                  href="/content/news"
-                  className="md:hidden flex items-center justify-center gap-2 w-full px-6 py-3 border-2 border-[#B8956A] text-[#B8956A] rounded-full hover:bg-[#B8956A] hover:text-white transition-all duration-300 font-semibold"
-                >
-                  전체 소식 보기
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Modern CTA Section */}
-      <section className="py-32 relative overflow-hidden">
-        {/* Animated Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#A67C52] via-[#B8956A] to-[#D4A574] bg-gradient-animate"></div>
-
-        {/* Pattern Overlay */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}></div>
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-8 animate-fadeInUp">
-            최고의 식자재 파트너가<br />필요하신가요?
-          </h2>
-          <p className="text-2xl text-white/95 mb-12 animate-fadeInUp animation-delay-200">
-            15년 전통의 에이스유통이 귀사의 성공적인 비즈니스를 도와드립니다
-          </p>
-          <Link
-            href="/contact"
-            className="group relative inline-flex items-center gap-3 px-12 py-6 animate-fadeInUp animation-delay-400"
-          >
-            <div className="absolute inset-0 bg-white rounded-full transform transition-transform duration-500 group-hover:scale-110"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-white to-gray-100 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <span className="relative z-10 text-[#A67C52] font-bold text-xl">상담 신청하기</span>
-            <svg className="relative z-10 w-6 h-6 text-[#A67C52] group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
-        </div>
-      </section>
-
       {/* CEO Message Section */}
       <section className="py-24 bg-white relative">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* CEO Image Placeholder */}
-            <div className="relative">
-              <div className="aspect-[4/5] bg-gradient-to-br from-[#FAF6F1] to-[#F5EFE7] rounded-3xl overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-[#B8956A]/20 to-[#D4A574]/20 rounded-full flex items-center justify-center">
-                      <svg className="w-16 h-16 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                      </svg>
-                    </div>
-                    <p className="text-[#B8956A] font-semibold">대표이사 안종일</p>
-                  </div>
-                </div>
-              </div>
-              {/* Decorative Elements */}
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-[#B8956A]/20 to-[#D4A574]/20 rounded-2xl -z-10"></div>
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-[#D4A574]/20 to-[#B8956A]/20 rounded-full -z-10"></div>
-            </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">CEO MESSAGE</span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-8 leading-tight">
+              좋은 상품을 정직하게 유통하는<br />
+              <span className="text-[#B8956A]">신뢰받는 파트너</span>가 되겠습니다
+            </h2>
+          </div>
 
-            {/* CEO Message Content */}
-            <div>
-              <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">CEO MESSAGE</span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-8 leading-tight">
-                좋은 상품을 정직하게 유통하는<br />
-                <span className="text-[#B8956A]">신뢰받는 파트너</span>가 되겠습니다
-              </h2>
+          <div className="space-y-6 text-[#6B5D53] leading-relaxed text-center max-w-3xl mx-auto">
+            <p>
+              에이스유통주식회사는 카페·베이커리 산업을 위한 프리미엄 원재료 공급, 전문 소싱,
+              콜드체인 물류, 품질관리(QC)를 기반으로 성장해온 F&B B2B 솔루션 기업입니다.
+            </p>
+            <p>
+              2010년 설립 이후 자체 물류센터와 체계적인 유통 인프라를 구축하며 국내 프랜차이즈,
+              베이커리 카페, 전문 제과점 등 다양한 파트너에게 신뢰성 높은 제품을 안정적으로 공급해왔습니다.
+            </p>
+            <p>
+              당사는 원재료의 선별력과 정교한 품질관리, 신속한 공급망 운영을 통해 고객이 필요로 하는
+              제품을 정확하고 안정적으로 전달하는 데 집중해 왔으며, 업계에서 견고한 파트너십을 확보해 왔습니다.
+            </p>
+            <p className="font-medium text-[#4A4039]">
+              에이스유통은 앞으로도 고품질 원재료와 안정적인 공급 체계를 중심으로 고객의 비즈니스를
+              확실하게 지원하는 신뢰받는 유통 파트너로 자리매김하겠습니다.
+            </p>
+          </div>
 
-              <div className="space-y-6 text-[#6B5D53] leading-relaxed">
-                <p>
-                  에이스유통주식회사는 카페·베이커리 산업을 위한 프리미엄 원재료 공급, 전문 소싱,
-                  콜드체인 물류, 품질관리(QC)를 기반으로 성장해온 F&B B2B 솔루션 기업입니다.
-                </p>
-                <p>
-                  2010년 설립 이후 자체 물류센터와 체계적인 유통 인프라를 구축하며 국내 프랜차이즈,
-                  베이커리 카페, 전문 제과점 등 다양한 파트너에게 신뢰성 높은 제품을 안정적으로 공급해왔습니다.
-                </p>
-                <p>
-                  당사는 원재료의 선별력과 정교한 품질관리, 신속한 공급망 운영을 통해 고객이 필요로 하는
-                  제품을 정확하고 안정적으로 전달하는 데 집중해 왔으며, 업계에서 견고한 파트너십을 확보해 왔습니다.
-                </p>
-                <p className="font-medium text-[#4A4039]">
-                  에이스유통은 앞으로도 고품질 원재료와 안정적인 공급 체계를 중심으로 고객의 비즈니스를
-                  확실하게 지원하는 신뢰받는 유통 파트너로 자리매김하겠습니다.
-                </p>
-              </div>
-
-              {/* CEO Signature */}
-              <div className="mt-10 pt-8 border-t border-[#E8DCC8]">
-                <p className="text-[#B8956A] font-bold text-lg">에이스유통주식회사</p>
-                <p className="text-[#4A4039] font-bold text-xl mt-1">대표이사 안종일</p>
-              </div>
-            </div>
+          {/* CEO Signature */}
+          <div className="mt-12 pt-8 border-t border-[#E8DCC8] text-center">
+            <p className="text-[#B8956A] font-bold text-lg">에이스유통주식회사</p>
+            <p className="text-[#4A4039] font-bold text-xl mt-1">대표이사 안종일</p>
           </div>
         </div>
       </section>

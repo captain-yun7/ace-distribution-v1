@@ -5,42 +5,33 @@ import { useState } from 'react';
 
 const menuData = [
   { title: '회사 소개', items: [
-    { name: '기업소개', href: '/about/intro', desc: '에이스유통을 소개합니다' },
-    { name: '기업 연혁', href: '/about/history', desc: '15년의 발자취' },
-    { name: '경영철학', href: '/about/philosophy', desc: '우리의 가치와 비전' },
-    { name: '사업장 소개', href: '/about/business', desc: '전국 물류 네트워크' },
-    { name: '조직 및 인증서', href: '/about/certification', desc: '신뢰의 증명' },
-    { name: '주요 고객사', href: '/about/clients', desc: '파트너사 소개' }
+    { name: '기업소개', href: '/about/intro' },
+    { name: '기업 연혁', href: '/about/history' },
+    { name: '경영철학', href: '/about/philosophy' },
+    { name: '사업장 소개', href: '/about/business' },
+    { name: '조직 및 인증서', href: '/about/certification' }
   ]},
   { title: '판매 제품', items: [
-    { name: '전체', href: '/products/all', desc: '모든 제품 보기' },
-    { name: '두서류가공품', href: '/products/legume', desc: '콩류 가공식품' },
-    { name: '곡류가공품', href: '/products/grain', desc: '밀가루, 전분류' },
-    { name: '견과가공품', href: '/products/nut', desc: '아몬드, 호두 등' },
-    { name: '유지 및 유가공품', href: '/products/dairy', desc: '버터, 크림류' },
-    { name: '커피오가공품', href: '/products/coffee', desc: '커피, 코코아' },
-    { name: '당류가공품', href: '/products/sugar', desc: '설탕, 시럽류' },
-    { name: '냉동생지류', href: '/products/frozen', desc: '냉동 베이커리' },
-    { name: '잡가루', href: '/products/flour', desc: '특수 가루류' },
-    { name: '과채가공품', href: '/products/vegetable', desc: '과일, 채소류' },
-    { name: '축산가공품', href: '/products/meat', desc: '육류 가공품' }
+    { name: '전체', href: '/products/all' },
+    { name: '두서류가공품', href: '/products/legume' },
+    { name: '곡류가공품', href: '/products/grain' },
+    { name: '견과가공품', href: '/products/nut' },
+    { name: '유지 및 유가공품', href: '/products/dairy' },
+    { name: '커피오가공품', href: '/products/coffee' },
+    { name: '당류가공품', href: '/products/sugar' },
+    { name: '냉동생지류', href: '/products/frozen' },
+    { name: '잡가루', href: '/products/flour' },
+    { name: '과채가공품', href: '/products/vegetable' },
+    { name: '축산가공품', href: '/products/meat' }
   ]},
-  { title: '콘텐츠 / 홍보', items: [
-    { name: '레시피', href: '/content/recipe', desc: '셰프의 레시피' },
-    { name: '트렌드 리포트', href: '/content/trend', desc: '업계 최신 트렌드' },
-    { name: '언론보도', href: '/content/news', desc: '미디어 소식' }
-  ]},
-  { title: '기업 문화', items: [
-    { name: '사내 문화', href: '/culture/internal', desc: '함께 성장하는 문화' },
-    { name: '사회 공헌', href: '/culture/social', desc: '나눔의 가치 실현' },
-    { name: '협력 사례', href: '/culture/partnership', desc: '파트너십 스토리' }
+  { title: '에이스스토리', items: [
+    { name: '사내 문화', href: '/culture/internal' },
+    { name: '협력 사례', href: '/culture/partnership' },
+    { name: '언론 보도', href: '/content/news' }
   ]},
   { title: '고객 지원', items: [
-    { name: 'FAQ', href: '/support/faq', desc: '자주 묻는 질문' },
-    { name: '공지사항', href: '/support/notice', desc: '새로운 소식' },
-    { name: '자료실', href: '/support/resources', desc: '카탈로그, 인증서' },
-    { name: '고객문의', href: '/support/contact', desc: '1:1 상담 신청' },
-    { name: '찾아오시는 길', href: '/support/location', desc: '오시는 방법' }
+    { name: '고객문의', href: '/support/contact' },
+    { name: '찾아오시는 길', href: '/support/location' }
   ]}
 ];
 
@@ -93,21 +84,16 @@ export default function Header() {
                           <Link
                             key={item.name}
                             href={item.href}
-                            className="group/item flex items-start gap-4 p-4 rounded-2xl hover:bg-gradient-to-br hover:from-[#FAF6F1] hover:to-white transition-all duration-300 border border-transparent hover:border-[#B8956A]/10"
+                            className="group/item flex items-center gap-4 p-4 rounded-2xl hover:bg-gradient-to-br hover:from-[#FAF6F1] hover:to-white transition-all duration-300 border border-transparent hover:border-[#B8956A]/10"
                           >
                             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 flex items-center justify-center flex-shrink-0 group-hover/item:from-[#B8956A] group-hover/item:to-[#D4A574] transition-all duration-300">
                               <svg className="w-5 h-5 text-[#B8956A] group-hover/item:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                               </svg>
                             </div>
-                            <div className="flex-1 min-w-0">
-                              <span className="block text-[15px] font-semibold text-[#4A4039] group-hover/item:text-[#B8956A] transition-colors duration-300 mb-1">
-                                {item.name}
-                              </span>
-                              <span className="block text-xs text-[#8B7D73] truncate">
-                                {item.desc}
-                              </span>
-                            </div>
+                            <span className="text-[15px] font-semibold text-[#4A4039] group-hover/item:text-[#B8956A] transition-colors duration-300">
+                              {item.name}
+                            </span>
                           </Link>
                         ))}
                       </div>

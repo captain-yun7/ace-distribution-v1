@@ -10,7 +10,7 @@ export default function HistoryPage() {
     { year: '2020.09', title: '창립 10주년', desc: '에이스유통 창립 10주년 기념' },
     { year: '2020.07', title: '특허 취득 및 차량 증차', desc: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 취득, 배송차량 20대 증차' },
     { year: '2019.06', title: '우수기술기업 인증', desc: '제과제빵 재료 유통물류 및 기술마케팅 부문 우수기술기업 인증 획득' },
-    { year: '2018.01', title: 'HACCP 협력업체 인증', desc: 'HACCP 협력업체 인증 취득, 콜드체인 시스템 도입' },
+    { year: '2018.01', title: '콜드체인 시스템 도입', desc: '냉동/냉장 콜드체인 시스템 구축' },
     { year: '2015.06', title: '본사 사옥 신축 이전', desc: '경기도 하남시 천현동에 자체 물류센터 보유 사옥 신축, 냉동/냉장 운송 인증 취득' },
     { year: '2012.04', title: '물류창고 확장', desc: '물류창고 확장 이전' },
     { year: '2010.03', title: '에이스유통㈜ 법인 설립', desc: '카페·베이커리 원재료 유통 사업 시작' },
@@ -110,20 +110,11 @@ export default function HistoryPage() {
               {
                 icon: (
                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 ),
-                title: '품질 인증 획득',
-                description: 'HACCP 협력업체 인증, 콜드체인 인증으로 신뢰도 제고',
-              },
-              {
-                icon: (
-                  <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                ),
-                title: '자체 브랜드 런칭',
-                description: '에이스베이커리 브랜드로 B2B 제빵 시장 진출',
+                title: '매출 245억 달성',
+                description: '지속적인 성장으로 연매출 245억원 달성',
               },
             ].map((milestone, index) => (
               <div key={index} className="bg-[#FAF6F1] rounded-3xl p-10 text-center hover:shadow-xl transition-all duration-300 group">
@@ -134,35 +125,6 @@ export default function HistoryPage() {
                 <p className="text-[#6B5D53] leading-relaxed">{milestone.description}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Future Vision */}
-      <section className="py-20 bg-gradient-to-r from-[#4A4039] to-[#6B5D53] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}></div>
-        </div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <span className="text-sm font-medium text-[#D4A574] tracking-[0.3em] uppercase mb-4 block">FUTURE VISION</span>
-          <h2 className="text-4xl font-bold mb-6">미래 비전</h2>
-          <p className="text-xl text-white/90 mb-12">
-            에이스유통은 다음 15년을 향해 더 큰 도약을 준비합니다
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-              <div className="text-5xl font-black text-[#D4A574] mb-4">2030</div>
-              <h3 className="text-xl font-bold mb-3">연 매출 500억 달성</h3>
-              <p className="text-white/80">지속적인 성장을 통한 중견기업 도약</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-              <div className="text-5xl font-black text-[#D4A574] mb-4">1000+</div>
-              <h3 className="text-xl font-bold mb-3">전국 거래처 확대</h3>
-              <p className="text-white/80">수도권을 넘어 전국 네트워크 구축</p>
-            </div>
           </div>
         </div>
       </section>

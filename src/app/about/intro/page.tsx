@@ -92,124 +92,50 @@ export default function AboutIntroPage() {
             ))}
           </div>
 
-          {/* Business Overview */}
+          {/* Business Overview - Single Row KPI */}
           <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-3xl p-8 lg:p-12 mb-32">
             <div className="text-center mb-12">
               <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">BUSINESS OVERVIEW</span>
               <h3 className="text-3xl font-bold text-[#4A4039]">사업 현황</h3>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                { label: '사업분야', value: '베이커리·카페 원재료 유통', icon: (
-                  <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                  </svg>
-                )},
-                { label: '본사 위치', value: '경기도 하남시', icon: (
-                  <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                )},
-                { label: '직원수', value: '16명', icon: (
-                  <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                )},
-                { label: '주요 고객수', value: '전국 420+ 업체', icon: (
-                  <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                )},
-              ].map((item, index) => (
-                <div key={index} className="text-center group">
-                  <div className="w-20 h-20 mx-auto mb-4 bg-white rounded-2xl shadow-lg flex items-center justify-center text-[#B8956A] group-hover:shadow-xl transition-shadow">
-                    {item.icon}
+            <div className="flex justify-center">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-16">
+                {[
+                  { label: '사업분야', value: '베이커리·카페 원재료 유통' },
+                  { label: '본사 위치', value: '경기도 하남시' },
+                  { label: '직원수', value: '35명' },
+                  { label: '주요 고객수', value: '전국 420+ 업체' },
+                ].map((item, index) => (
+                  <div key={index} className="text-center">
+                    <p className="text-sm text-[#6B5D53] mb-2">{item.label}</p>
+                    <p className="text-[#4A4039] font-bold text-lg">{item.value}</p>
                   </div>
-                  <p className="text-sm text-[#6B5D53] mb-2">{item.label}</p>
-                  <p className="text-[#4A4039] font-bold text-lg">{item.value}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Management Status */}
-          <div className="mb-32">
+          {/* Management Status - Without Icons, Unified Font */}
+          <div>
             <div className="text-center mb-12">
               <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">ACHIEVEMENTS</span>
               <h3 className="text-3xl font-bold text-[#4A4039]">경영 현황</h3>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white border-2 border-[#F5EFE7] rounded-3xl p-10 text-center hover:border-[#B8956A] hover:shadow-2xl transition-all duration-300 group">
-                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-full flex items-center justify-center">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <p className="text-sm text-[#6B5D53] mb-2">2024년 매출</p>
-                <p className="text-4xl font-black text-[#B8956A] mb-2">245.7<span className="text-xl">억원</span></p>
-                <p className="text-xs text-[#8B7D73]">전년 대비 15% 성장</p>
+              <div className="bg-white border-2 border-[#F5EFE7] rounded-3xl p-10 text-center hover:border-[#B8956A] hover:shadow-2xl transition-all duration-300">
+                <p className="text-base text-[#6B5D53] mb-3">2024년 매출</p>
+                <p className="text-3xl font-bold text-[#B8956A] mb-2">245.7억원</p>
+                <p className="text-sm text-[#8B7D73]">전년 대비 15% 성장</p>
               </div>
-              <div className="bg-white border-2 border-[#F5EFE7] rounded-3xl p-10 text-center hover:border-[#B8956A] hover:shadow-2xl transition-all duration-300 group">
-                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-full flex items-center justify-center">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                  </svg>
-                </div>
-                <p className="text-sm text-[#6B5D53] mb-2">기술인증</p>
-                <p className="text-2xl font-bold text-[#4A4039] mb-2">우수기술기업</p>
-                <p className="text-xs text-[#8B7D73]">2019년 인증 획득</p>
+              <div className="bg-white border-2 border-[#F5EFE7] rounded-3xl p-10 text-center hover:border-[#B8956A] hover:shadow-2xl transition-all duration-300">
+                <p className="text-base text-[#6B5D53] mb-3">기술인증</p>
+                <p className="text-3xl font-bold text-[#B8956A] mb-2">우수기술기업</p>
+                <p className="text-sm text-[#8B7D73]">2019년 인증 획득</p>
               </div>
-              <div className="bg-white border-2 border-[#F5EFE7] rounded-3xl p-10 text-center hover:border-[#B8956A] hover:shadow-2xl transition-all duration-300 group">
-                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-full flex items-center justify-center">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                  </svg>
-                </div>
-                <p className="text-sm text-[#6B5D53] mb-2">특허 보유</p>
-                <p className="text-lg font-bold text-[#4A4039] mb-2">냉장/냉동장치</p>
-                <p className="text-xs text-[#8B7D73]">제과제빵류 운반/보관용</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Info */}
-          <div className="bg-gradient-to-r from-[#4A4039] to-[#6B5D53] rounded-3xl p-8 lg:p-12 text-white relative overflow-hidden">
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              }}></div>
-            </div>
-            <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-8 text-center">연락처 정보</h3>
-              <div className="grid md:grid-cols-3 gap-8 text-center">
-                <div>
-                  <div className="w-14 h-14 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <p className="text-white/60 text-sm mb-2">전화번호</p>
-                  <p className="font-bold text-xl">02) 471-1644~6</p>
-                </div>
-                <div>
-                  <div className="w-14 h-14 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <p className="text-white/60 text-sm mb-2">이메일</p>
-                  <p className="font-bold text-xl">ace32865@hanmail.net</p>
-                </div>
-                <div>
-                  <div className="w-14 h-14 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
-                  <p className="text-white/60 text-sm mb-2">팩스</p>
-                  <p className="font-bold text-xl">02) 476-1372</p>
-                </div>
+              <div className="bg-white border-2 border-[#F5EFE7] rounded-3xl p-10 text-center hover:border-[#B8956A] hover:shadow-2xl transition-all duration-300">
+                <p className="text-base text-[#6B5D53] mb-3">특허 보유</p>
+                <p className="text-3xl font-bold text-[#B8956A] mb-2">냉장/냉동장치</p>
+                <p className="text-sm text-[#8B7D73]">제과제빵류 운반/보관용</p>
               </div>
             </div>
           </div>

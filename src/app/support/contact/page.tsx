@@ -46,7 +46,7 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-xl font-bold text-[#4A4039] mb-2">전화 문의</h3>
                 <p className="text-2xl font-bold text-[#B8956A] mb-2">02-471-1644~6</p>
-                <p className="text-sm text-[#6B5D53]">평일 08:00 - 18:00</p>
+                <p className="text-sm text-[#6B5D53]">평일 09:00 - 18:00</p>
               </div>
 
               <div className="text-center p-8 bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
@@ -67,8 +67,8 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-[#4A4039] mb-2">팩스</h3>
-                <p className="text-xl font-bold text-[#B8956A] mb-2">02-476-7949</p>
-                <p className="text-sm text-[#6B5D53]">24시간 접수 가능</p>
+                <p className="text-xl font-bold text-[#B8956A] mb-2">02-476-1372</p>
+                <p className="text-sm text-[#6B5D53]">평일 09:00 - 18:00</p>
               </div>
             </div>
           </div>
@@ -211,54 +211,6 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* Quick Links */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">QUICK LINKS</span>
-              <h2 className="text-3xl font-bold text-[#4A4039] mb-4">빠른 링크</h2>
-              <p className="text-[#6B5D53]">자주 찾는 정보를 바로 확인하세요</p>
-            </div>
-
-            <div className="grid md:grid-cols-4 gap-6">
-              {[
-                { title: 'FAQ', desc: '자주 묻는 질문', href: '/support/faq', icon: (
-                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                )},
-                { title: '공지사항', desc: '새로운 소식', href: '/support/notice', icon: (
-                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
-                  </svg>
-                )},
-                { title: '자료실', desc: '다운로드 자료', href: '/support/resources', icon: (
-                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                )},
-                { title: '오시는 길', desc: '위치 안내', href: '/support/location', icon: (
-                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                )},
-              ].map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.href}
-                  className="block p-6 bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 text-center group"
-                >
-                  <div className="w-14 h-14 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-xl flex items-center justify-center mx-auto mb-4 text-white group-hover:scale-110 transition-transform duration-300">
-                    {link.icon}
-                  </div>
-                  <h3 className="font-bold text-[#4A4039] mb-1 group-hover:text-[#B8956A] transition-colors">{link.title}</h3>
-                  <p className="text-sm text-[#6B5D53]">{link.desc}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
     </>

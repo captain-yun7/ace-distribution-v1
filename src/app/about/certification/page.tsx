@@ -28,9 +28,9 @@ export default function CertificationPage() {
       date: '2019년 등록',
     },
     {
-      title: 'HACCP 협력업체 인증',
-      description: '식품 안전관리 기준 충족 인증',
-      date: '2018년 취득',
+      title: '메인비즈 인증',
+      description: '중소기업 경영혁신 인증',
+      date: '2019년 취득',
     },
   ];
 
@@ -124,7 +124,7 @@ export default function CertificationPage() {
             <div className="text-center mt-12">
               <div className="inline-block bg-gradient-to-br from-[#4A4039] to-[#6B5D53] text-white px-10 py-6 rounded-2xl shadow-lg">
                 <p className="text-sm text-white/80">총 직원 수</p>
-                <p className="text-4xl font-bold">16명</p>
+                <p className="text-4xl font-bold">35명</p>
               </div>
             </div>
           </div>
@@ -183,30 +183,6 @@ export default function CertificationPage() {
           </div>
         </section>
 
-        {/* Quality Policy */}
-        <section className="py-20 bg-gradient-to-br from-[#4A4039] to-[#6B5D53] text-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="text-sm font-medium text-[#D4A574] tracking-[0.3em] uppercase mb-4 block">QUALITY POLICY</span>
-            <h2 className="text-3xl lg:text-4xl font-bold mb-8">품질 방침</h2>
-            <p className="text-lg text-white/80 mb-12 max-w-3xl mx-auto">
-              에이스유통은 &quot;고객에게 최상의 품질 제품을&quot;이라는 신념 아래,
-              철저한 품질 관리 시스템을 운영하고 있습니다.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                { value: '100%', label: '콜드체인 유지율' },
-                { value: '매일', label: '품질 점검 실시' },
-                { value: '0건', label: '식품 사고 이력' },
-              ].map((stat, index) => (
-                <div key={index} className="border border-white/20 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300">
-                  <div className="text-4xl lg:text-5xl font-bold text-[#D4A574] mb-2">{stat.value}</div>
-                  <p className="text-white/80">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
     </>
