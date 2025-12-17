@@ -3,34 +3,34 @@ import { Header, Footer, PageHero } from '@/components/layout';
 export default function CertificationPage() {
   const certifications = [
     {
-      title: '사업자등록증',
-      description: '정식 등록된 식품 유통 전문 기업',
-      date: '2010년 발급',
-    },
-    {
-      title: '식품위생교육 이수증',
-      description: '식품 위생 관련 법정 교육 이수 완료',
-      date: '매년 갱신',
-    },
-    {
       title: '특허증 (냉장/냉동 장치)',
-      description: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허',
+      description: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 (제 10-2445173호)',
       date: '2020년 취득',
-    },
-    {
-      title: '우수기술기업 인증서',
-      description: '제과제빵 재료 유통물류 및 기술마케팅 부문',
-      date: '2019년 취득',
     },
     {
       title: '상표등록증 (에이스제빵소)',
       description: '에이스제빵소 브랜드 상표권 등록',
-      date: '2019년 등록',
+      date: '2021년 등록',
+    },
+    {
+      title: '우수기술기업 인증서',
+      description: '제과제빵 재료 유통물류 및 기술마케팅 부문 기술력 인증',
+      date: '2019년 취득',
     },
     {
       title: '메인비즈 인증',
-      description: '중소기업 경영혁신 인증',
-      date: '2019년 취득',
+      description: '중소벤처기업부 경영혁신형 중소기업 인증',
+      date: '2016년 취득',
+    },
+    {
+      title: '일터혁신 사업장',
+      description: '노사발전재단 일터혁신 사업장 선정, 직무 분석 및 평가체계 개선 추진',
+      date: '2023년 선정',
+    },
+    {
+      title: '청년 디지털 일자리사업',
+      description: '미래청년육성사업 참여기업, 청년 인재 채용 및 고용 유지',
+      date: '2021년 선정',
     },
   ];
 

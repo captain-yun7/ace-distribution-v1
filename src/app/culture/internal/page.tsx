@@ -2,10 +2,26 @@ import { Header, Footer, PageHero } from '@/components/layout';
 import Link from 'next/link';
 
 const cultureItems = [
-  { title: '연말 단합 행사', desc: '매년 연말 전 직원이 함께하는 송년회와 시상식을 통해 한 해를 마무리합니다.' },
-  { title: '팀 빌딩 활동', desc: '분기별 워크숍, 체육대회 등 다양한 팀 빌딩 활동으로 화합을 도모합니다.' },
-  { title: '쾌적한 근무환경', desc: '깨끗하고 안전한 물류센터와 사무환경을 유지합니다.' },
-  { title: '워라밸 존중', desc: '정시 퇴근을 권장하고 연차 사용을 적극 권장합니다.' },
+  {
+    title: '창립멤버 포상',
+    desc: '창립멤버 4인에게 1천만원의 포상금 수여 (총 4천만원), 10년 이상 근속자 금 10돈 지급',
+    year: '2020년'
+  },
+  {
+    title: '인재양성 교육비 지원',
+    desc: '대학원 등록금 전액 지원 (한양대 경영학과정 2명 지원 중), 유통전문관리사 교육비 전액 지원',
+    year: '진행중'
+  },
+  {
+    title: '직무역량 강화',
+    desc: '감정노동관리사 교육 전직원 수료, 지게차 자격증 교육비 지원, 직무 관련 자격증 취득 전액 지원',
+    year: '진행중'
+  },
+  {
+    title: '마라톤동아리 운영',
+    desc: '직원 자발적 참여 단체 마라톤 참가, 참가 직원 전원 나이키 러닝화 제공',
+    year: '2023년~'
+  },
 ];
 
 const benefits = [
@@ -13,10 +29,10 @@ const benefits = [
   { title: '퇴직금', desc: '근속 1년 이상 퇴직금 지급' },
   { title: '명절 상여', desc: '설, 추석 명절 상여금 지급' },
   { title: '경조사 지원', desc: '경조금 및 경조휴가 제공' },
-  { title: '교육 지원', desc: '직무 관련 교육비 지원' },
+  { title: '교육비 전액 지원', desc: '대학원, 자격증 등 교육비 전액 지원' },
   { title: '식대 지원', desc: '중식 및 석식 식대 지원' },
   { title: '건강검진', desc: '연 1회 종합 건강검진' },
-  { title: '우수사원 포상', desc: '분기/연간 우수사원 포상' },
+  { title: '장기근속 포상', desc: '10년 근속자 금 지급' },
 ];
 
 export default function InternalCulturePage() {
@@ -43,16 +59,23 @@ export default function InternalCulturePage() {
               <p className="text-[#6B5D53]">사람 중심의 기업 문화를 만들어갑니다</p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               {cultureItems.map((item, index) => (
-                <div key={index} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-8 text-center border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-                    </svg>
+                <div key={index} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-8 border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
+                  <div className="flex items-start gap-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="text-xl font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors">{item.title}</h3>
+                        <span className="text-xs font-medium text-[#B8956A] bg-[#B8956A]/10 px-2 py-1 rounded-full">{item.year}</span>
+                      </div>
+                      <p className="text-[#6B5D53] text-sm leading-relaxed">{item.desc}</p>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-[#4A4039] mb-3 group-hover:text-[#B8956A] transition-colors">{item.title}</h3>
-                  <p className="text-[#6B5D53] text-sm">{item.desc}</p>
                 </div>
               ))}
             </div>

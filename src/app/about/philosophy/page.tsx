@@ -39,11 +39,11 @@ export default function PhilosophyPage() {
                   </div>
                   <span className="text-sm font-bold text-[#B8956A] tracking-widest">VISION</span>
                   <h3 className="text-2xl lg:text-3xl font-bold text-[#4A4039] mt-2 mb-4">
-                    식자재 유통업계의<br />리딩기업
+                    고객·상품·임직원이<br />함께 성장하는 기업
                   </h3>
                   <p className="text-[#6B5D53] leading-relaxed">
-                    에이스유통은 카페·베이커리 식자재 유통 분야에서 선도적인 위치를 확보하고,
-                    업계를 이끌어가는 기업이 되겠습니다.
+                    고객 만족을 통해 새로운 가치를 만들고, 그 성과를 바탕으로 임직원이 행복하게 일할 수 있는
+                    기업 문화를 구축하며, 지속 가능한 F&B 생태계를 선도하는 국내 대표 F&B 유통 솔루션 기업을 지향합니다.
                   </p>
                 </div>
               </div>
@@ -59,11 +59,11 @@ export default function PhilosophyPage() {
                   </div>
                   <span className="text-sm font-bold text-[#D4A574] tracking-widest">MISSION</span>
                   <h3 className="text-2xl lg:text-3xl font-bold mt-2 mb-4">
-                    고객사들과 함께 성장하며<br />고객 만족도 1위
+                    좋은 상품을 정확하게,<br />정직하게 전달
                   </h3>
                   <p className="text-white/80 leading-relaxed">
-                    고객의 성공이 곧 우리의 성공입니다. 최상의 품질과 서비스로
-                    고객 만족도 1위를 달성하고, 함께 성장하는 파트너가 되겠습니다.
+                    고객에게 신뢰할 수 있는 가치를 제공합니다. 에이스유통은 편리하고 유용한 제품을 안정적으로 공급함으로써
+                    고객의 성장과 일상의 품질 향상에 기여합니다.
                   </p>
                 </div>
               </div>
