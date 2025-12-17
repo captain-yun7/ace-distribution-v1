@@ -167,7 +167,11 @@ export default function ProductsAllPage() {
             ) : featuredProducts.length > 0 ? (
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {featuredProducts.map((product) => (
-                  <div key={product.id} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:shadow-xl transition-all duration-300 group">
+                  <Link
+                    key={product.id}
+                    href={`/products/${product.category?.name}/${product.id}`}
+                    className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:shadow-xl transition-all duration-300 group block"
+                  >
                     <div className="aspect-[4/3] bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 flex items-center justify-center">
                       <div className="w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <svg className="w-12 h-12 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,7 +184,7 @@ export default function ProductsAllPage() {
                       <h3 className="text-lg font-bold text-[#4A4039] mt-1 mb-2 group-hover:text-[#B8956A] transition-colors">{product.name}</h3>
                       <p className="text-sm text-[#6B5D53]">{product.brand || product.code}</p>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             ) : (

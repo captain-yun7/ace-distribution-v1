@@ -1,6 +1,7 @@
 'use client';
 
 import { Header, Footer, PageHero } from '@/components/layout';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 interface NewsItem {
@@ -92,7 +93,7 @@ export default function NewsPage() {
             ) : featuredNews.length > 0 ? (
               <div className="grid md:grid-cols-2 gap-8">
                 {featuredNews.slice(0, 2).map((item) => (
-                  <div key={item.id} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
+                  <Link key={item.id} href={`/content/news/${item.id}`} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group block">
                     <div className="aspect-[2/1] relative overflow-hidden">
                       <img
                         src={item.imageUrl || item.thumbnailUrl || defaultImage}
@@ -108,7 +109,7 @@ export default function NewsPage() {
                       <h3 className="text-xl font-bold text-[#4A4039] mb-3 group-hover:text-[#B8956A] transition-colors">{item.title}</h3>
                       <p className="text-[#6B5D53]">{item.excerpt || item.content.substring(0, 100)}...</p>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             ) : (
@@ -139,7 +140,7 @@ export default function NewsPage() {
             ) : news.length > 0 ? (
               <div className="space-y-4">
                 {news.map((item) => (
-                  <div key={item.id} className="bg-white rounded-xl p-6 border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group flex flex-col sm:flex-row sm:items-center gap-4">
+                  <Link key={item.id} href={`/content/news/${item.id}`} className="bg-white rounded-xl p-6 border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group flex flex-col sm:flex-row sm:items-center gap-4 block">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
                         <span className="text-xs bg-[#B8956A]/10 text-[#B8956A] px-3 py-1 rounded-full font-medium">
@@ -158,7 +159,7 @@ export default function NewsPage() {
                     <svg className="w-6 h-6 text-[#B8956A] flex-shrink-0 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                  </div>
+                  </Link>
                 ))}
               </div>
             ) : (

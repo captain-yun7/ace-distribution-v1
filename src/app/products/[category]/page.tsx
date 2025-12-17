@@ -154,7 +154,11 @@ export default function CategoryPage() {
             ) : products.length > 0 ? (
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {products.map((product) => (
-                  <div key={product.id} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
+                  <Link
+                    key={product.id}
+                    href={`/products/${product.category.name}/${product.id}`}
+                    className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group block"
+                  >
                     <div className="aspect-square bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 flex items-center justify-center">
                       {product.imageUrl ? (
                         <img
@@ -175,7 +179,7 @@ export default function CategoryPage() {
                       <h3 className="text-lg font-bold text-[#4A4039] mt-1 mb-2 group-hover:text-[#B8956A] transition-colors">{product.name}</h3>
                       <p className="text-sm text-[#6B5D53] line-clamp-2">{product.description}</p>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             ) : (

@@ -1,6 +1,7 @@
 'use client';
 
 import { Header, Footer, PageHero } from '@/components/layout';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 interface Notice {
@@ -150,9 +151,10 @@ export default function NoticePage() {
                 {importantNotices.length > 0 && (
                   <div className="mb-8">
                     {importantNotices.map((notice) => (
-                      <div
+                      <Link
                         key={notice.id}
-                        className="bg-gradient-to-r from-[#B8956A]/10 to-[#D4A574]/10 border-l-4 border-[#B8956A] rounded-r-xl p-6 mb-4 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                        href={`/content/news/${notice.id}`}
+                        className="block bg-gradient-to-r from-[#B8956A]/10 to-[#D4A574]/10 border-l-4 border-[#B8956A] rounded-r-xl p-6 mb-4 hover:shadow-lg transition-all duration-300 cursor-pointer"
                       >
                         <div className="flex flex-col md:flex-row md:items-center gap-4">
                           <div className="flex items-center gap-3">
@@ -168,7 +170,7 @@ export default function NoticePage() {
                           </h3>
                           <span className="text-sm text-[#6B5D53]">{formatDate(notice.publishedAt)}</span>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -190,6 +192,7 @@ export default function NoticePage() {
                           <tr
                             key={notice.id}
                             className="border-b border-[#E8DCC8] hover:bg-[#FAF6F1] transition-colors cursor-pointer group"
+                            onClick={() => window.location.href = `/content/news/${notice.id}`}
                           >
                             <td className="py-4 px-6 text-[#6B5D53]">{regularNotices.length - index}</td>
                             <td className="py-4 px-6">
@@ -198,9 +201,9 @@ export default function NoticePage() {
                               </span>
                             </td>
                             <td className="py-4 px-6">
-                              <span className="text-[#4A4039] group-hover:text-[#B8956A] transition-colors">
+                              <Link href={`/content/news/${notice.id}`} className="text-[#4A4039] group-hover:text-[#B8956A] transition-colors">
                                 {notice.title}
-                              </span>
+                              </Link>
                             </td>
                             <td className="py-4 px-6 text-right text-[#6B5D53] text-sm">{formatDate(notice.publishedAt)}</td>
                           </tr>
