@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import ImageUpload from '@/components/ui/ImageUpload';
 
 interface Category {
   id: string;
@@ -125,15 +126,12 @@ export default function NewProductPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              썸네일 URL
-            </label>
-            <input
-              type="url"
+            <ImageUpload
+              label="제품 이미지"
               value={formData.thumbnailUrl}
-              onChange={(e) => setFormData({ ...formData, thumbnailUrl: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-              placeholder="https://example.com/image.jpg"
+              onChange={(url) => setFormData({ ...formData, thumbnailUrl: url || '' })}
+              folder="products"
+              aspectRatio="square"
             />
           </div>
 
