@@ -29,7 +29,13 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    return NextResponse.json(categories);
+    // 프론트엔드가 기대하는 형식으로 변환 (sortOrder 필드 추가)
+    const formattedCategories = categories.map(cat => ({
+      ...cat,
+      sortOrder: cat.order,
+    }));
+
+    return NextResponse.json({ categories: formattedCategories });
   } catch (error) {
     console.error('Error fetching categories:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
