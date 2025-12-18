@@ -200,20 +200,10 @@ export default function HomePage() {
                   { name: '조직 및 인증서', href: '/about/certification', desc: '신뢰의 증명' }
                 ]},
                 { title: '판매 제품', items: [
-                  { name: '전체', href: '/products/all', desc: '모든 제품 보기' },
-                  { name: '두서류가공품', href: '/products/legume', desc: '콩류 가공식품' },
-                  { name: '곡류가공품', href: '/products/grain', desc: '밀가루, 전분류' },
-                  { name: '견과가공품', href: '/products/nut', desc: '아몬드, 호두 등' },
-                  { name: '유지 및 유가공품', href: '/products/dairy', desc: '버터, 크림류' },
-                  { name: '커피오가공품', href: '/products/coffee', desc: '커피, 코코아' },
-                  { name: '당류가공품', href: '/products/sugar', desc: '설탕, 시럽류' },
-                  { name: '냉동생지류', href: '/products/frozen', desc: '냉동 베이커리' },
-                  { name: '잡가루', href: '/products/flour', desc: '특수 가루류' },
-                  { name: '과채가공품', href: '/products/vegetable', desc: '과일, 채소류' },
-                  { name: '축산가공품', href: '/products/meat', desc: '육류 가공품' }
+                  { name: '판매 제품', href: '/products/all', desc: '전체 제품 보기' },
+                  { name: '레시피', href: '/content/recipe', desc: '셰프의 레시피' }
                 ]},
                 { title: '콘텐츠 / 홍보', items: [
-                  { name: '레시피', href: '/content/recipe', desc: '셰프의 레시피' },
                   { name: '트렌드 리포트', href: '/content/trend', desc: '업계 최신 트렌드' },
                   { name: '언론보도', href: '/content/news', desc: '미디어 소식' }
                 ]},
@@ -266,12 +256,9 @@ export default function HomePage() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                               </svg>
                             </div>
-                            <div className="flex-1 min-w-0">
-                              <span className="block text-[15px] font-semibold text-[#4A4039] group-hover/item:text-[#B8956A] transition-colors duration-300 mb-1">
+                            <div className="flex-1 min-w-0 flex items-center">
+                              <span className="block text-[15px] font-semibold text-[#4A4039] group-hover/item:text-[#B8956A] transition-colors duration-300">
                                 {item.name}
-                              </span>
-                              <span className="block text-xs text-[#8B7D73] truncate">
-                                {item.desc}
                               </span>
                             </div>
                           </Link>
@@ -295,24 +282,35 @@ export default function HomePage() {
 
       {/* Hero Section with Image Slider */}
       <section className="relative h-screen overflow-hidden">
-        {/* Background Image Slider */}
+        {/* Background Image Slider - 책 넘김 효과 */}
         <div className="absolute inset-0 overflow-hidden">
-          {heroSlides.map((slide, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                index === currentSlide
-                  ? 'opacity-100 scale-100'
-                  : 'opacity-0 scale-105'
-              }`}
-            >
-              <img
-                src={slide.image}
-                alt={slide.alt}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
+          {heroSlides.map((slide, index) => {
+            const isActive = index === currentSlide;
+            const isPrev = index === (currentSlide - 1 + heroSlides.length) % heroSlides.length;
+
+            return (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-all duration-[2000ms] ease-in-out origin-left ${
+                  isActive
+                    ? 'translate-x-0 opacity-100 z-10'
+                    : isPrev
+                    ? 'translate-x-full opacity-0 z-0'
+                    : '-translate-x-full opacity-0 z-0'
+                }`}
+                style={{
+                  transformStyle: 'preserve-3d',
+                  backfaceVisibility: 'hidden',
+                }}
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.alt}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            );
+          })}
 
           {/* Warm Bakery Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#4A4039]/90 via-[#4A4039]/60 to-transparent" />
@@ -339,11 +337,6 @@ export default function HomePage() {
         <div className="relative z-10 w-full h-full flex flex-col justify-center">
           <div className="max-w-[1400px] mx-auto px-6 lg:px-12 w-full">
             <div className="max-w-3xl">
-
-              {/* English Tagline */}
-              <p className="italic text-xl md:text-2xl text-[#D4A574] mb-4 animate-fadeInUp animation-delay-200 tracking-wide">
-                Freshly Baked Excellence
-              </p>
 
               {/* Main Title - Korean */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8 animate-fadeInUp animation-delay-200">
@@ -389,11 +382,12 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 text-white text-center hidden lg:block">
-          <div className="text-xs font-light tracking-[0.3em] mb-3 uppercase opacity-70">Scroll</div>
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/80 rounded-full mt-2 animate-bounce"></div>
+        {/* Scroll Down Indicator */}
+        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 text-white text-center hidden lg:block">
+          <div className="w-12 h-12 border-2 border-white/80 rounded-full flex items-center justify-center mx-auto animate-bounce">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
           </div>
         </div>
       </section>
@@ -419,11 +413,11 @@ export default function HomePage() {
           {/* Process Flow Section */}
           <div className={`mb-32 ${isVisible.mission ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
             <div className="relative">
-              {/* Connection Line */}
-              <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#E8DCC8] to-transparent -translate-y-1/2"></div>
+              {/* Connection Line - 원 아이콘 중앙에 맞춤 (top-12 = 원 높이 절반) */}
+              <div className="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-[2px] bg-gradient-to-r from-transparent via-[#E8DCC8] to-transparent"></div>
 
               {/* Process Steps */}
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {[
                   {
                     step: '01',

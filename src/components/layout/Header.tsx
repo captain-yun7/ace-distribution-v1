@@ -12,24 +12,22 @@ const menuData = [
     { name: '조직 및 인증서', href: '/about/certification' }
   ]},
   { title: '판매 제품', items: [
-    { name: '전체', href: '/products/all' },
-    { name: '두서류가공품', href: '/products/legume' },
-    { name: '곡류가공품', href: '/products/grain' },
-    { name: '견과가공품', href: '/products/nut' },
-    { name: '유지 및 유가공품', href: '/products/dairy' },
-    { name: '커피오가공품', href: '/products/coffee' },
-    { name: '당류가공품', href: '/products/sugar' },
-    { name: '냉동생지류', href: '/products/frozen' },
-    { name: '잡가루', href: '/products/flour' },
-    { name: '과채가공품', href: '/products/vegetable' },
-    { name: '축산가공품', href: '/products/meat' }
+    { name: '판매 제품', href: '/products/all' },
+    { name: '레시피', href: '/content/recipe' }
   ]},
-  { title: '에이스스토리', items: [
+  { title: '콘텐츠 / 홍보', items: [
+    { name: '트렌드 리포트', href: '/content/trend' },
+    { name: '언론보도', href: '/content/news' }
+  ]},
+  { title: '기업 문화', items: [
     { name: '사내 문화', href: '/culture/internal' },
-    { name: '협력 사례', href: '/culture/partnership' },
-    { name: '언론 보도', href: '/content/news' }
+    { name: '사회 공헌', href: '/culture/social' },
+    { name: '협력 사례', href: '/culture/partnership' }
   ]},
   { title: '고객 지원', items: [
+    { name: 'FAQ', href: '/support/faq' },
+    { name: '공지사항', href: '/support/notice' },
+    { name: '자료실', href: '/support/resources' },
     { name: '고객문의', href: '/support/contact' },
     { name: '찾아오시는 길', href: '/support/location' }
   ]}
