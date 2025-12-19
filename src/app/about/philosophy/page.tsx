@@ -86,47 +86,24 @@ export default function PhilosophyPage() {
                   title: '고객 만족',
                   subtitle: 'CUSTOMER',
                   description: '고객의 성공이 곧 우리의 성공, 고객 만족을 최우선으로',
-                  icon: (
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  ),
                 },
                 {
                   title: '신뢰',
                   subtitle: 'TRUST',
                   description: '정직한 거래와 약속 이행으로 쌓아온 15년의 신뢰',
-                  icon: (
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  ),
                 },
                 {
                   title: '품질',
                   subtitle: 'QUALITY',
                   description: '엄격한 품질 관리로 최상의 제품만을 공급',
-                  icon: (
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                    </svg>
-                  ),
                 },
                 {
                   title: '성장',
                   subtitle: 'GROWTH',
                   description: '고객과 함께 성장하는 지속 가능한 파트너십',
-                  icon: (
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                  ),
                 },
               ].map((value, index) => (
                 <div key={index} className="bg-white rounded-2xl p-8 text-center border border-[#E8DCC8] hover:shadow-xl hover:border-[#B8956A]/30 transition-all duration-300 group">
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-[#B8956A] group-hover:from-[#B8956A] group-hover:to-[#D4A574] group-hover:text-white transition-all duration-300">
-                    {value.icon}
-                  </div>
                   <h3 className="text-2xl font-bold text-[#4A4039] mb-1">{value.title}</h3>
                   <p className="text-sm text-[#B8956A] font-medium mb-3">{value.subtitle}</p>
                   <p className="text-[#6B5D53]">{value.description}</p>

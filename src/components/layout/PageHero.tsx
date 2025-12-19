@@ -31,9 +31,6 @@ export default function PageHero({ title, subtitle, badge, breadcrumb, backgroun
           </div>
         )}
 
-        {/* Decorative Elements */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FAF6F1] to-transparent"></div>
-
         {/* Content */}
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
           {badge && (

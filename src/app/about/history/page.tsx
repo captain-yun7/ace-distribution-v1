@@ -111,7 +111,7 @@ export default function HistoryPage() {
                   </svg>
                 ),
                 title: '물류 인프라 구축',
-                description: '하남시 물류센터 확장으로 수도권 전역 당일 배송 체계 확립',
+                description: '하남시 물류센터 확장으로 배송 권역 당일 배송 체계 확립',
               },
               {
                 icon: (

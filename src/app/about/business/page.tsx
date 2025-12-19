@@ -108,40 +108,6 @@ export default function BusinessPage() {
           </div>
         </section>
 
-        {/* Ace Bakery Brand */}
-        <section className="py-20 bg-[#FAF6F1]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gradient-to-r from-[#B8956A] to-[#D4A574] rounded-3xl p-8 lg:p-12 text-white overflow-hidden relative">
-              <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/10 rounded-full"></div>
-              <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-white/5 rounded-full"></div>
-
-              <div className="relative grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <span className="text-sm font-medium text-white/80 tracking-[0.3em] uppercase mb-4 block">OUR BRAND</span>
-                  <h3 className="text-3xl font-bold mb-6">에이스제빵소</h3>
-                  <p className="text-white/90 leading-relaxed mb-4">
-                    &apos;에이스제빵소&apos;는 에이스유통의 베이커리 전문성을 대표하는 공식 브랜드로,
-                    2019년 상표 등록을 통해 품질 보증과 브랜드 신뢰성을 확보했습니다.
-                  </p>
-                  <p className="text-white/90 leading-relaxed">
-                    해당 마크는 에이스유통의 기준을 충족한 제품에만 사용되며,
-                    고객에게 안정적인 품질과 차별화된 가치를 제공합니다.
-                  </p>
-                </div>
-                <div className="flex justify-center">
-                  <div className="w-48 h-48 bg-white rounded-full flex items-center justify-center shadow-2xl">
-                    <div className="text-center">
-                      <span className="text-4xl font-black text-[#B8956A]">ACE</span>
-                      <p className="text-[#4A4039] font-bold text-sm mt-1">제빵소</p>
-                      <p className="text-[#6B5D53] text-xs">Since 2019</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Delivery Network */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
