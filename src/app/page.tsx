@@ -204,7 +204,7 @@ export default function HomePage() {
                   { name: '판매 제품', href: '/products/all', desc: '전체 제품 보기' },
                   { name: '레시피', href: '/content/recipe', desc: '셰프의 레시피' }
                 ]},
-                { title: '에이스스토리', items: [
+                { title: 'ACE 스토리', items: [
                   { name: '사내 문화', href: '/culture/internal', desc: '함께 성장하는 문화' },
                   { name: '사회 공헌', href: '/culture/social', desc: '나눔의 가치 실현' },
                   { name: '협력 사례', href: '/culture/partnership', desc: '파트너십 스토리' },

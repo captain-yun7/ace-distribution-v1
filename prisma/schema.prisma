@@ -270,6 +270,18 @@ model CompanyInfo {
   @@map("company_info")
 }
 
+// 회사 KPI (관리자 수정 가능)
+model CompanyKPI {
+  id        String   @id @default(cuid())
+  key       String   @unique // revenue, employees, clients, deliveryVehicles, warehouseSize
+  value     String   // 245.7억원, 35명, 420+, 20대, 520평
+  label     String   // 연매출, 직원수, 주요 고객수, 배송차량, 물류센터 면적
+  order     Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@map("company_kpi")
+}
+
 // ===========================
 // 배너 & 슬라이드
 // ===========================

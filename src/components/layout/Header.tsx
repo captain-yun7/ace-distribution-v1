@@ -15,7 +15,7 @@ const menuData = [
     { name: '판매 제품', href: '/products/all' },
     { name: '레시피', href: '/content/recipe' }
   ]},
-  { title: '에이스스토리', items: [
+  { title: 'ACE 스토리', items: [
     { name: '사내 문화', href: '/culture/internal' },
     { name: '사회 공헌', href: '/culture/social' },
     { name: '협력 사례', href: '/culture/partnership' },
@@ -57,11 +57,11 @@ export default function Header() {
             <ul className="flex items-center gap-2">
               {menuData.map((menu) => (
                 <li key={menu.title} className="relative group">
-                  <button className="relative px-5 py-3 text-[15px] font-semibold text-[#4A4039] transition-all duration-500 tracking-wide">
+                  <Link href={menu.items[0].href} className="relative px-5 py-3 text-[15px] font-semibold text-[#4A4039] transition-all duration-500 tracking-wide block">
                     <span className="relative z-10">{menu.title}</span>
                     <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[#B8956A] to-[#D4A574] group-hover:w-[calc(100%-20px)] transition-all duration-500 rounded-full"></span>
                     <span className="absolute inset-0 rounded-xl bg-[#B8956A]/0 group-hover:bg-[#B8956A]/5 transition-all duration-500"></span>
-                  </button>
+                  </Link>
 
                   {/* Dropdown Menu */}
                   <div className="fixed left-0 right-0 top-20 lg:top-24 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
