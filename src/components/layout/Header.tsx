@@ -17,8 +17,7 @@ const menuData = [
   ]},
   { title: 'ACE 스토리', items: [
     { name: '사내 문화', href: '/culture/internal' },
-    { name: '협력 사례', href: '/culture/partnership' },
-    { name: '언론보도', href: '/content/news' }
+    { name: '스토리', href: '/culture/story' }
   ]},
   { title: '고객 지원', items: [
     { name: '고객문의', href: '/support/contact' },

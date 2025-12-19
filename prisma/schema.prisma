@@ -387,6 +387,37 @@ model Recipe {
 }
 
 // ===========================
+// 스토리 (협력 사례 + 언론보도)
+// ===========================
+
+model Story {
+  id          String        @id @default(cuid())
+  title       String
+  category    StoryCategory
+  description String        @db.Text
+  content     String?       @db.Text  // 상세 내용 (HTML)
+  imageUrl    String?
+  thumbnailUrl String?
+  tags        Json?         // 태그 목록 (JSON array)
+  order       Int           @default(0)
+  isPublished Boolean       @default(true)
+  isFeatured  Boolean       @default(false)
+  views       Int           @default(0)
+  publishedAt DateTime      @default(now())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("stories")
+  @@index([category])
+  @@index([publishedAt])
+}
+
+enum StoryCategory {
+  PARTNERSHIP  // 협력 사례
+  PRESS        // 언론 보도
+}
+
+// ===========================
 // 트렌드 리포트
 // ===========================
 

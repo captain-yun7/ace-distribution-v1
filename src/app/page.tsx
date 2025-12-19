@@ -206,8 +206,7 @@ export default function HomePage() {
                 ]},
                 { title: 'ACE 스토리', items: [
                   { name: '사내 문화', href: '/culture/internal', desc: '함께 성장하는 문화' },
-                  { name: '협력 사례', href: '/culture/partnership', desc: '파트너십 스토리' },
-                  { name: '언론보도', href: '/content/news', desc: '미디어 소식' }
+                  { name: '스토리', href: '/culture/story', desc: '협력 사례와 언론 보도' }
                 ]},
                 { title: '고객 지원', items: [
                   { name: '고객문의', href: '/support/contact', desc: '1:1 상담 신청' },
