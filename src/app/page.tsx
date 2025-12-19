@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
 interface Category {
@@ -731,7 +732,16 @@ export default function HomePage() {
           {/* CEO Signature */}
           <div className="mt-12 pt-8 border-t border-[#E8DCC8] text-center">
             <p className="text-[#B8956A] font-bold text-lg">에이스유통주식회사</p>
-            <p className="text-[#4A4039] font-bold text-xl mt-1">대표이사 안종일</p>
+            <div className="flex items-center justify-center gap-3 mt-1">
+              <p className="text-[#4A4039] font-bold text-xl">대표이사 안종일</p>
+              <Image
+                src="/sign.png"
+                alt="대표이사 서명"
+                width={80}
+                height={32}
+                className="h-8 w-auto"
+              />
+            </div>
           </div>
         </div>
       </section>
