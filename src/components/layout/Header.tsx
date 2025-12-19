@@ -17,7 +17,6 @@ const menuData = [
   ]},
   { title: 'ACE 스토리', items: [
     { name: '사내 문화', href: '/culture/internal' },
-    { name: '사회 공헌', href: '/culture/social' },
     { name: '협력 사례', href: '/culture/partnership' },
     { name: '언론보도', href: '/content/news' }
   ]},

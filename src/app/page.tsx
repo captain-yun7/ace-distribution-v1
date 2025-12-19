@@ -206,7 +206,6 @@ export default function HomePage() {
                 ]},
                 { title: 'ACE 스토리', items: [
                   { name: '사내 문화', href: '/culture/internal', desc: '함께 성장하는 문화' },
-                  { name: '사회 공헌', href: '/culture/social', desc: '나눔의 가치 실현' },
                   { name: '협력 사례', href: '/culture/partnership', desc: '파트너십 스토리' },
                   { name: '언론보도', href: '/content/news', desc: '미디어 소식' }
                 ]},
