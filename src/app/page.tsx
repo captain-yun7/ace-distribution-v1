@@ -204,19 +204,13 @@ export default function HomePage() {
                   { name: '판매 제품', href: '/products/all', desc: '전체 제품 보기' },
                   { name: '레시피', href: '/content/recipe', desc: '셰프의 레시피' }
                 ]},
-                { title: '콘텐츠 / 홍보', items: [
-                  { name: '트렌드 리포트', href: '/content/trend', desc: '업계 최신 트렌드' },
-                  { name: '언론보도', href: '/content/news', desc: '미디어 소식' }
-                ]},
-                { title: '기업 문화', items: [
+                { title: '에이스스토리', items: [
                   { name: '사내 문화', href: '/culture/internal', desc: '함께 성장하는 문화' },
                   { name: '사회 공헌', href: '/culture/social', desc: '나눔의 가치 실현' },
-                  { name: '협력 사례', href: '/culture/partnership', desc: '파트너십 스토리' }
+                  { name: '협력 사례', href: '/culture/partnership', desc: '파트너십 스토리' },
+                  { name: '언론보도', href: '/content/news', desc: '미디어 소식' }
                 ]},
                 { title: '고객 지원', items: [
-                  { name: 'FAQ', href: '/support/faq', desc: '자주 묻는 질문' },
-                  { name: '공지사항', href: '/support/notice', desc: '새로운 소식' },
-                  { name: '자료실', href: '/support/resources', desc: '카탈로그, 인증서' },
                   { name: '고객문의', href: '/support/contact', desc: '1:1 상담 신청' },
                   { name: '찾아오시는 길', href: '/support/location', desc: '오시는 방법' }
                 ]}
@@ -750,7 +744,7 @@ export default function HomePage() {
       <footer className="bg-gradient-to-b from-[#4A4039] to-[#3A3029] py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Footer Top */}
-          <div className="grid md:grid-cols-3 gap-12 pb-12 border-b border-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto] gap-8 md:gap-16 pb-12 border-b border-white/10">
             {/* Logo & Company Info */}
             <div>
               <div className="flex items-center gap-3 mb-6">

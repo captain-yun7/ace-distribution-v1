@@ -15,19 +15,13 @@ const menuData = [
     { name: '판매 제품', href: '/products/all' },
     { name: '레시피', href: '/content/recipe' }
   ]},
-  { title: '콘텐츠 / 홍보', items: [
-    { name: '트렌드 리포트', href: '/content/trend' },
-    { name: '언론보도', href: '/content/news' }
-  ]},
-  { title: '기업 문화', items: [
+  { title: '에이스스토리', items: [
     { name: '사내 문화', href: '/culture/internal' },
     { name: '사회 공헌', href: '/culture/social' },
-    { name: '협력 사례', href: '/culture/partnership' }
+    { name: '협력 사례', href: '/culture/partnership' },
+    { name: '언론보도', href: '/content/news' }
   ]},
   { title: '고객 지원', items: [
-    { name: 'FAQ', href: '/support/faq' },
-    { name: '공지사항', href: '/support/notice' },
-    { name: '자료실', href: '/support/resources' },
     { name: '고객문의', href: '/support/contact' },
     { name: '찾아오시는 길', href: '/support/location' }
   ]}
