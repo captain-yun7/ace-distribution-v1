@@ -148,8 +148,6 @@ export default function StoryPage() {
     ? stories
     : stories.filter(s => s.category === activeCategory);
 
-  const featuredStories = filteredStories.filter(s => s.isFeatured);
-
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
     return date.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -207,60 +205,6 @@ export default function StoryPage() {
           </div>
         </section>
 
-        {/* Featured Stories */}
-        {featuredStories.length > 0 && (
-          <section className="py-16 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">FEATURED</span>
-                <h2 className="text-3xl font-bold text-[#4A4039]">주요 스토리</h2>
-              </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {featuredStories.slice(0, 3).map((story) => (
-                  <Link
-                    key={story.id}
-                    href={`/culture/story/${story.id}`}
-                    className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group block"
-                  >
-                    <div className="aspect-[4/3] relative overflow-hidden">
-                      <img
-                        src={story.imageUrl || story.thumbnailUrl || defaultImages[story.category]}
-                        alt={story.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute top-4 left-4 flex gap-2">
-                        <span className="bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
-                          {categoryLabels[story.category]}
-                        </span>
-                        <span className="bg-[#4A4039] text-white text-xs font-bold px-3 py-1 rounded-full">
-                          주요
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <div className="text-xs text-[#6B5D53] mb-2">{formatDate(story.publishedAt)}</div>
-                      <h3 className="text-xl font-bold text-[#4A4039] mb-3 group-hover:text-[#B8956A] transition-colors line-clamp-2">
-                        {story.title}
-                      </h3>
-                      <p className="text-[#6B5D53] text-sm line-clamp-2">{story.description}</p>
-                      {story.tags && story.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-4">
-                          {(story.tags as string[]).slice(0, 3).map((tag, i) => (
-                            <span key={i} className="text-xs bg-[#B8956A]/10 text-[#B8956A] px-2 py-1 rounded-full">
-                              #{tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
         {/* All Stories */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -295,9 +239,16 @@ export default function StoryPage() {
                         alt={story.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <span className="absolute top-3 left-3 bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
-                        {categoryLabels[story.category]}
-                      </span>
+                      <div className="absolute top-3 left-3 flex gap-2">
+                        <span className="bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
+                          {categoryLabels[story.category]}
+                        </span>
+                        {story.isFeatured && (
+                          <span className="bg-[#4A4039] text-white text-xs font-bold px-3 py-1 rounded-full">
+                            주요
+                          </span>
+                        )}
+                      </div>
                     </div>
                     <div className="p-5">
                       <div className="text-xs text-[#6B5D53] mb-2">{formatDate(story.publishedAt)}</div>
