@@ -33,12 +33,11 @@ const timeline = [
 
 // 인증서 데이터
 const certifications = [
-  { title: '특허증 (냉장/냉동 장치)', description: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 (제 10-2445173호)', date: '2020년 취득' },
-  { title: '상표등록증 (에이스제빵소)', description: '에이스제빵소 브랜드 상표권 등록', date: '2021년 등록' },
-  { title: '우수기술기업 인증서', description: '제과제빵 재료 유통물류 및 기술마케팅 부문 기술력 인증', date: '2019년 취득' },
-  { title: '메인비즈 인증', description: '중소벤처기업부 경영혁신형 중소기업 인증', date: '2016년 취득' },
-  { title: '일터혁신 사업장', description: '노사발전재단 일터혁신 사업장 선정, 직무 분석 및 평가체계 개선 추진', date: '2023년 선정' },
-  { title: '청년 디지털 일자리사업', description: '미래청년육성사업 참여기업, 청년 인재 채용 및 고용 유지', date: '2021년 선정' },
+  { title: '특허증 (냉장/냉동 장치)', description: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 (제 10-2445173호)', date: '2020년 취득', image: '/images/certificates/patent.png' },
+  { title: '상표등록증 (에이스제빵소)', description: '에이스제빵소 브랜드 상표권 등록', date: '2021년 등록', image: '/images/certificates/trademark.png' },
+  { title: '우수기술기업 인증서', description: '제과제빵 재료 유통물류 및 기술마케팅 부문 기술력 인증', date: '2019년 취득', image: '/images/certificates/tech-company.png' },
+  { title: '메인비즈 인증', description: '중소벤처기업부 경영혁신형 중소기업 인증', date: '2016년 취득', image: '/images/certificates/mainbiz.png' },
+  { title: '일터혁신 사업장', description: '노사발전재단 일터혁신 사업장 선정, 직무 분석 및 평가체계 개선 추진', date: '2023년 선정', image: '/images/certificates/workplace-innovation.png' },
 ];
 
 // 핵심 가치 데이터
@@ -153,7 +152,7 @@ export default function AboutIntroPage() {
             <div className="relative">
               <div className="aspect-[4/3] bg-gradient-to-br from-[#FAF6F1] to-[#F5EFE7] rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1608198093002-ad4e005571d1?w=800&h=600&fit=crop"
+                  src="/images/company-building.png"
                   alt="에이스유통 물류센터"
                   className="w-full h-full object-cover"
                 />
@@ -229,14 +228,6 @@ export default function AboutIntroPage() {
             </div>
           </div>
 
-          <div className="text-center mt-12">
-            <Link href="/about/history" className="inline-flex items-center gap-2 text-[#B8956A] font-medium hover:underline">
-              전체 연혁 보기
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -322,7 +313,7 @@ export default function AboutIntroPage() {
               </div>
               <div className="aspect-video bg-[#FAF6F1] rounded-2xl overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop"
+                  src="/images/company-building.png"
                   alt="에이스유통 물류센터"
                   className="w-full h-full object-cover"
                 />
@@ -337,20 +328,68 @@ export default function AboutIntroPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">CERTIFICATION</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-4">조직 및 인증서</h2>
-            <p className="text-[#6B5D53]">신뢰의 증명</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-4">보유 인증서</h2>
+            <p className="text-[#6B5D53]">신뢰할 수 있는 기업 인증 현황</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
             {certifications.map((cert, index) => (
-              <div key={index} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-8 border border-[#E8DCC8] hover:shadow-xl transition-all duration-300">
-                <h3 className="text-lg font-bold text-[#4A4039] mb-3">{cert.title}</h3>
-                <p className="text-[#6B5D53] text-sm mb-4">{cert.description}</p>
-                <span className="inline-block px-3 py-1 bg-[#B8956A]/10 text-[#B8956A] text-xs font-medium rounded-full">
-                  {cert.date}
-                </span>
+              <div key={index} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A]/50 hover:shadow-xl transition-all duration-300 group">
+                <div className="aspect-[4/3] bg-gradient-to-br from-[#FAF6F1] to-white flex items-center justify-center p-4 overflow-hidden">
+                  <img
+                    src={cert.image}
+                    alt={cert.title}
+                    className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-[#4A4039] mb-2 group-hover:text-[#B8956A] transition-colors">{cert.title}</h3>
+                  <p className="text-[#6B5D53] text-sm mb-3">{cert.description}</p>
+                  <span className="text-sm text-[#B8956A] font-medium">{cert.date}</span>
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* 주요 고객사 */}
+          <div className="text-center mb-12">
+            <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">CLIENTS</span>
+            <h3 className="text-2xl lg:text-3xl font-bold text-[#4A4039] mb-4">주요 고객사</h3>
+            <p className="text-[#6B5D53]">에이스유통과 함께하는 믿음직한 파트너</p>
+          </div>
+
+          {/* 고객사 목록 */}
+          <div className="mb-10">
+            <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-[#4A4039]">
+              <li className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E8DCC8]">
+                <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
+                <span>스파필드 팥고당 입점 (하남, 고양 외 8개 지점)</span>
+              </li>
+              <li className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E8DCC8]">
+                <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
+                <span>롯데 백화점 한나식빵 입점 (롯데백화점 외 20여개 지점)</span>
+              </li>
+              <li className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E8DCC8]">
+                <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
+                <span>지하철 역사 내 더베이크 (17여개 지점)</span>
+              </li>
+              <li className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E8DCC8]">
+                <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
+                <span>곤트란쉐리에 (30여개 지점)</span>
+              </li>
+              <li className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E8DCC8] md:col-span-2 lg:col-span-2">
+                <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
+                <span>그 외 기타 개인제과 (전국 420여개 이상 거래처 보유/관리)</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-8 border border-[#E8DCC8]">
+            <img
+              src="/images/certificates/clients.png"
+              alt="주요 고객사"
+              className="w-full h-auto"
+            />
           </div>
         </div>
       </section>

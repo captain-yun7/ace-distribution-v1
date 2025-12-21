@@ -5,11 +5,11 @@ import { useState } from 'react';
 
 const menuData = [
   { title: '회사 소개', items: [
-    { name: '기업소개', href: '/about/intro' },
-    { name: '기업 연혁', href: '/about/history' },
-    { name: '경영철학', href: '/about/philosophy' },
-    { name: '사업장 소개', href: '/about/business' },
-    { name: '조직 및 인증서', href: '/about/certification' }
+    { name: '기업소개', href: '/about/intro#overview' },
+    { name: '기업 연혁', href: '/about/intro#history' },
+    { name: '경영철학', href: '/about/intro#philosophy' },
+    { name: '사업장 소개', href: '/about/intro#business' },
+    { name: '조직 및 인증서', href: '/about/intro#certification' }
   ]},
   { title: '판매 제품', items: [
     { name: '판매 제품', href: '/products/all' },
