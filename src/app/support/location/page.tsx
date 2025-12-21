@@ -22,10 +22,10 @@ export default function LocationPage() {
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12">
-              {/* Naver Map Embed */}
-              <div className="aspect-square lg:aspect-auto lg:h-full min-h-[400px] rounded-2xl border border-[#E8DCC8] overflow-hidden">
+              {/* Google Map Embed - 경기도 하남시 샘재로 119번길 31 (천현동 392-3) */}
+              <div className="aspect-square lg:aspect-auto lg:h-full min-h-[400px] rounded-2xl border border-[#E8DCC8] overflow-hidden bg-[#FAF6F1]">
                 <iframe
-                  src="https://map.naver.com/p/entry/place/13304508?c=15.00,0,0,0,dh"
+                  src="https://maps.google.com/maps?q=37.536397,127.213611&t=&z=17&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0, minHeight: '400px' }}

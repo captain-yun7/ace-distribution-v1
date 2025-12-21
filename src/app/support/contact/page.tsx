@@ -1,7 +1,6 @@
 'use client';
 
 import { Header, Footer, PageHero } from '@/components/layout';
-import Link from 'next/link';
 import { useState } from 'react';
 
 export default function ContactPage() {
@@ -14,10 +13,70 @@ export default function ContactPage() {
     message: '',
     agree: false,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitResult, setSubmitResult] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('문의가 접수되었습니다. 빠른 시일 내에 답변 드리겠습니다.');
+
+    if (!formData.agree) {
+      alert('개인정보 수집 및 이용에 동의해주세요.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitResult(null);
+
+    try {
+      const response = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: formData.type,
+          company: formData.company,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitResult({
+          success: true,
+          message: '문의가 정상적으로 접수되었습니다. 빠른 시일 내에 답변 드리겠습니다.',
+        });
+        // Reset form
+        setFormData({
+          type: '일반문의',
+          company: '',
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+          agree: false,
+        });
+      } else {
+        setSubmitResult({
+          success: false,
+          message: data.error || '문의 접수 중 오류가 발생했습니다.',
+        });
+      }
+    } catch {
+      setSubmitResult({
+        success: false,
+        message: '네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -79,7 +138,7 @@ export default function ContactPage() {
           <div className="max-w-4xl mx-auto px-4">
             <div className="text-center mb-12">
               <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">INQUIRY</span>
-              <h2 className="text-3xl font-bold text-[#4A4039] mb-4">문의하기</h2>
+              <h2 className="text-3xl font-bold text-[#4A4039] mb-4">문의 양식</h2>
               <p className="text-[#6B5D53]">아래 양식을 작성해 주시면 담당자가 빠르게 연락드리겠습니다.</p>
             </div>
 
@@ -195,16 +254,53 @@ export default function ContactPage() {
                 </label>
               </div>
 
+              {/* Submit Result */}
+              {submitResult && (
+                <div
+                  className={`mb-6 p-4 rounded-xl ${
+                    submitResult.success
+                      ? 'bg-green-50 border border-green-200 text-green-800'
+                      : 'bg-red-50 border border-red-200 text-red-800'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    {submitResult.success ? (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    )}
+                    {submitResult.message}
+                  </div>
+                </div>
+              )}
+
               {/* Submit Button */}
               <div className="text-center">
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-[#B8956A] to-[#D4A574] text-white px-12 py-4 rounded-xl font-bold hover:shadow-lg transition-all duration-300 text-lg"
+                  disabled={isSubmitting}
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-[#B8956A] to-[#D4A574] text-white px-12 py-4 rounded-xl font-bold hover:shadow-lg transition-all duration-300 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  문의 접수하기
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+                  {isSubmitting ? (
+                    <>
+                      <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      접수 중...
+                    </>
+                  ) : (
+                    <>
+                      문의 접수
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </>
+                  )}
                 </button>
               </div>
             </form>

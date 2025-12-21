@@ -195,7 +195,7 @@ export default function CategoryPage() {
                   href="/support/contact"
                   className="inline-flex items-center gap-2 bg-[#B8956A] text-white px-6 py-3 rounded-xl font-medium hover:bg-[#A07D58] transition-colors"
                 >
-                  제품 문의하기
+                  제품 문의
                 </Link>
               </div>
             )}
@@ -231,7 +231,7 @@ export default function CategoryPage() {
               href="/support/contact"
               className="inline-flex items-center gap-2 bg-white text-[#4A4039] px-6 py-3 rounded-xl font-bold hover:bg-[#FAF6F1] transition-colors"
             >
-              문의하기
+              문의
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>

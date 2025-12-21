@@ -56,6 +56,9 @@ body {
   line-height: 1.6;
   font-weight: 400;
   letter-spacing: -0.01em; /* 한글 최적화 */
+  /* 한글 줄바꿈 자연스럽게 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* 헤딩 폰트 최적화 */

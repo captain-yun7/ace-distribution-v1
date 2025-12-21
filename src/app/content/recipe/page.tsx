@@ -179,7 +179,7 @@ export default function RecipePage() {
                 className="flex-1 px-4 py-3 rounded-xl text-[#4A4039] placeholder:text-[#6B5D53] focus:outline-none focus:ring-2 focus:ring-[#B8956A]"
               />
               <button className="bg-[#B8956A] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#D4A574] transition-colors">
-                구독하기
+                구독
               </button>
             </div>
           </div>

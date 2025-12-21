@@ -286,7 +286,7 @@ export default function ResourcesPage() {
                     type="submit"
                     className="inline-flex items-center gap-2 bg-gradient-to-r from-[#B8956A] to-[#D4A574] text-white px-8 py-4 rounded-xl font-bold hover:shadow-lg transition-all duration-300"
                   >
-                    자료 요청하기
+                    자료 요청
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
