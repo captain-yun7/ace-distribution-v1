@@ -17,7 +17,7 @@ export default function PageHero({ title, subtitle, badge, breadcrumb, backgroun
   return (
     <>
       {/* Page Hero */}
-      <section className="relative h-[320px] lg:h-[400px] overflow-hidden">
+      <section className="relative h-[240px] sm:h-[320px] lg:h-[400px] overflow-hidden">
         {/* Background */}
         {backgroundImage ? (
           <div className="absolute inset-0">
@@ -34,10 +34,10 @@ export default function PageHero({ title, subtitle, badge, breadcrumb, backgroun
         {/* Content */}
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
           {badge && (
-            <span className="text-sm font-medium text-[#D4A574] tracking-[0.3em] uppercase mb-4 animate-fadeInUp">{badge}</span>
+            <span className="text-xs sm:text-sm font-medium text-[#D4A574] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 sm:mb-4 animate-fadeInUp">{badge}</span>
           )}
-          <h1 className="text-4xl lg:text-6xl font-bold text-white mb-4 animate-fadeInUp animation-delay-200">{title}</h1>
-          <p className="text-white/80 text-lg lg:text-xl max-w-2xl animate-fadeInUp animation-delay-400">{subtitle}</p>
+          <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold text-white mb-2 sm:mb-4 animate-fadeInUp animation-delay-200">{title}</h1>
+          <p className="text-white/80 text-sm sm:text-lg lg:text-xl max-w-2xl px-2 animate-fadeInUp animation-delay-400">{subtitle}</p>
         </div>
       </section>
 

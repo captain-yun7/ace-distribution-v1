@@ -105,7 +105,7 @@ export default function AboutIntroPage() {
       {/* Navigation Tabs */}
       <nav className="sticky top-20 lg:top-24 bg-white border-b border-[#E8DCC8] z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex overflow-x-auto gap-1 py-2">
+          <div className="flex overflow-x-auto gap-1 py-2 scrollbar-hide">
             {[
               { id: 'overview', label: '기업 개요' },
               { id: 'history', label: '기업 연혁' },
@@ -116,7 +116,7 @@ export default function AboutIntroPage() {
               <a
                 key={tab.id}
                 href={`#${tab.id}`}
-                className="px-6 py-3 text-sm font-medium text-[#6B5D53] hover:text-[#B8956A] whitespace-nowrap transition-colors"
+                className="px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium text-[#6B5D53] hover:text-[#B8956A] whitespace-nowrap transition-colors"
               >
                 {tab.label}
               </a>
@@ -126,13 +126,13 @@ export default function AboutIntroPage() {
       </nav>
 
       {/* Section 1: 기업 개요 */}
-      <section id="overview" className="py-20 lg:py-32 scroll-mt-40">
+      <section id="overview" className="py-12 sm:py-20 lg:py-32 scroll-mt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Company Overview */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-16 items-center mb-16 sm:mb-32">
             <div>
-              <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">COMPANY OVERVIEW</span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-6 leading-tight">
+              <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">COMPANY OVERVIEW</span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-4 sm:mb-6 leading-tight">
                 카페·베이커리 원재료 유통의<br />
                 <span className="text-[#B8956A]">새로운 기준</span>을 만들어갑니다
               </h2>
@@ -161,27 +161,27 @@ export default function AboutIntroPage() {
           </div>
 
           {/* Company Info Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-12 sm:mb-20">
             {[
               { label: '회사명', value: '에이스유통주식회사' },
               { label: '설립년도', value: '2010년' },
               { label: '대표이사', value: '안종일' },
               { label: '업력', value: `${yearsInBusiness}년` },
             ].map((item, index) => (
-              <div key={index} className="bg-white border-2 border-[#F5EFE7] rounded-2xl p-8 text-center hover:border-[#B8956A]/30 hover:shadow-xl transition-all duration-300">
-                <p className="text-sm text-[#6B5D53] mb-2">{item.label}</p>
-                <p className="text-lg font-bold text-[#4A4039]">{item.value}</p>
+              <div key={index} className="bg-white border-2 border-[#F5EFE7] rounded-xl sm:rounded-2xl p-4 sm:p-8 text-center hover:border-[#B8956A]/30 hover:shadow-xl transition-all duration-300">
+                <p className="text-xs sm:text-sm text-[#6B5D53] mb-1 sm:mb-2">{item.label}</p>
+                <p className="text-sm sm:text-lg font-bold text-[#4A4039]">{item.value}</p>
               </div>
             ))}
           </div>
 
           {/* Business KPI */}
-          <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-3xl p-8 lg:p-12">
-            <div className="text-center mb-12">
-              <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">BUSINESS OVERVIEW</span>
-              <h3 className="text-3xl font-bold text-[#4A4039]">사업 현황</h3>
+          <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12">
+            <div className="text-center mb-8 sm:mb-12">
+              <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">BUSINESS OVERVIEW</span>
+              <h3 className="text-xl sm:text-3xl font-bold text-[#4A4039]">사업 현황</h3>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
               {[
                 { label: '연매출', value: getKPIValue('revenue', defaultKPI.revenue) },
                 { label: '직원수', value: getKPIValue('employees', defaultKPI.employees) },
@@ -189,8 +189,8 @@ export default function AboutIntroPage() {
                 { label: '배송차량', value: getKPIValue('deliveryVehicles', defaultKPI.deliveryVehicles) },
               ].map((item, index) => (
                 <div key={index} className="text-center">
-                  <p className="text-3xl lg:text-4xl font-bold text-[#B8956A] mb-2">{item.value}</p>
-                  <p className="text-sm text-[#6B5D53]">{item.label}</p>
+                  <p className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#B8956A] mb-1 sm:mb-2">{item.value}</p>
+                  <p className="text-xs sm:text-sm text-[#6B5D53]">{item.label}</p>
                 </div>
               ))}
             </div>
@@ -199,28 +199,28 @@ export default function AboutIntroPage() {
       </section>
 
       {/* Section 2: 기업 연혁 */}
-      <section id="history" className="py-20 lg:py-32 bg-gradient-to-b from-[#FAF6F1] to-white scroll-mt-40">
+      <section id="history" className="py-12 sm:py-20 lg:py-32 bg-gradient-to-b from-[#FAF6F1] to-white scroll-mt-40">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">HISTORY</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-6">
+          <div className="text-center mb-12 sm:mb-20">
+            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">HISTORY</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-4 sm:mb-6">
               신뢰와 품질로 쌓아온 <span className="text-[#B8956A]">{yearsInBusiness}년의 역사</span>
             </h2>
           </div>
 
           {/* Timeline */}
           <div className="relative">
-            <div className="absolute left-8 lg:left-1/2 transform lg:-translate-x-1/2 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#B8956A] via-[#D4A574] to-[#B8956A]"></div>
-            <div className="space-y-12">
+            <div className="absolute left-6 sm:left-8 lg:left-1/2 transform lg:-translate-x-1/2 top-0 bottom-0 w-[2px] sm:w-[3px] bg-gradient-to-b from-[#B8956A] via-[#D4A574] to-[#B8956A]"></div>
+            <div className="space-y-6 sm:space-y-12">
               {timeline.slice(0, 8).map((item, index) => (
                 <div key={index} className={`relative flex items-start ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-                  <div className="absolute left-8 lg:left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10">
-                    <span className="text-sm">{item.year}</span>
+                  <div className="absolute left-6 sm:left-8 lg:left-1/2 transform -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10">
+                    <span className="text-xs sm:text-sm">{item.year}</span>
                   </div>
-                  <div className={`ml-28 lg:ml-0 lg:w-5/12 ${index % 2 === 0 ? 'lg:pr-16' : 'lg:pl-16'}`}>
-                    <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-[#F5EFE7]">
-                      <h3 className="text-xl font-bold text-[#4A4039] mb-3">{item.title}</h3>
-                      <p className="text-[#6B5D53] leading-relaxed">{item.desc}</p>
+                  <div className={`ml-20 sm:ml-28 lg:ml-0 lg:w-5/12 ${index % 2 === 0 ? 'lg:pr-16' : 'lg:pl-16'}`}>
+                    <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-[#F5EFE7]">
+                      <h3 className="text-base sm:text-xl font-bold text-[#4A4039] mb-2 sm:mb-3">{item.title}</h3>
+                      <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 </div>
@@ -232,32 +232,32 @@ export default function AboutIntroPage() {
       </section>
 
       {/* Section 3: 경영철학 */}
-      <section id="philosophy" className="py-20 lg:py-32 bg-white scroll-mt-40">
+      <section id="philosophy" className="py-12 sm:py-20 lg:py-32 bg-white scroll-mt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">PHILOSOPHY</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-4">경영철학</h2>
-            <p className="text-[#6B5D53]">에이스유통이 추구하는 가치</p>
+          <div className="text-center mb-10 sm:mb-16">
+            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">PHILOSOPHY</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">경영철학</h2>
+            <p className="text-sm sm:text-base text-[#6B5D53]">에이스유통이 추구하는 가치</p>
           </div>
 
           {/* Vision & Mission */}
-          <div className="grid md:grid-cols-2 gap-8 mb-20">
-            <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-3xl p-8 lg:p-12 border border-[#E8DCC8]">
-              <span className="text-sm font-bold text-[#B8956A] tracking-widest">VISION</span>
-              <h3 className="text-2xl lg:text-3xl font-bold text-[#4A4039] mt-2 mb-4">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-8 mb-12 sm:mb-20">
+            <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 border border-[#E8DCC8]">
+              <span className="text-xs sm:text-sm font-bold text-[#B8956A] tracking-widest">VISION</span>
+              <h3 className="text-lg sm:text-2xl lg:text-3xl font-bold text-[#4A4039] mt-2 mb-3 sm:mb-4">
                 고객·상품·임직원이<br />함께 성장하는 기업
               </h3>
-              <p className="text-[#6B5D53] leading-relaxed">
+              <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">
                 고객 만족을 통해 새로운 가치를 만들고, 그 성과를 바탕으로 임직원이 행복하게 일할 수 있는
                 기업 문화를 구축하며, 지속 가능한 F&B 생태계를 선도합니다.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-[#4A4039] to-[#6B5D53] rounded-3xl p-8 lg:p-12 text-white">
-              <span className="text-sm font-bold text-[#D4A574] tracking-widest">MISSION</span>
-              <h3 className="text-2xl lg:text-3xl font-bold mt-2 mb-4">
+            <div className="bg-gradient-to-br from-[#4A4039] to-[#6B5D53] rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 text-white">
+              <span className="text-xs sm:text-sm font-bold text-[#D4A574] tracking-widest">MISSION</span>
+              <h3 className="text-lg sm:text-2xl lg:text-3xl font-bold mt-2 mb-3 sm:mb-4">
                 좋은 상품을 정확하게,<br />정직하게 전달
               </h3>
-              <p className="text-white/80 leading-relaxed">
+              <p className="text-sm sm:text-base text-white/80 leading-relaxed">
                 고객에게 신뢰할 수 있는 가치를 제공합니다. 편리하고 유용한 제품을 안정적으로 공급함으로써
                 고객의 성장과 일상의 품질 향상에 기여합니다.
               </p>
@@ -265,12 +265,12 @@ export default function AboutIntroPage() {
           </div>
 
           {/* Core Values */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {coreValues.map((value, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 text-center border border-[#E8DCC8] hover:shadow-xl hover:border-[#B8956A]/30 transition-all duration-300">
-                <h3 className="text-2xl font-bold text-[#4A4039] mb-1">{value.title}</h3>
-                <p className="text-sm text-[#B8956A] font-medium mb-3">{value.subtitle}</p>
-                <p className="text-[#6B5D53]">{value.description}</p>
+              <div key={index} className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 text-center border border-[#E8DCC8] hover:shadow-xl hover:border-[#B8956A]/30 transition-all duration-300">
+                <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-1">{value.title}</h3>
+                <p className="text-xs sm:text-sm text-[#B8956A] font-medium mb-2 sm:mb-3">{value.subtitle}</p>
+                <p className="text-xs sm:text-base text-[#6B5D53]">{value.description}</p>
               </div>
             ))}
           </div>
@@ -278,40 +278,40 @@ export default function AboutIntroPage() {
       </section>
 
       {/* Section 4: 사업장 소개 */}
-      <section id="business" className="py-20 lg:py-32 bg-[#FAF6F1] scroll-mt-40">
+      <section id="business" className="py-12 sm:py-20 lg:py-32 bg-[#FAF6F1] scroll-mt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">BUSINESS</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-4">사업장 소개</h2>
-            <p className="text-[#6B5D53]">전국 유통망과 물류 인프라</p>
+          <div className="text-center mb-10 sm:mb-16">
+            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">BUSINESS</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">사업장 소개</h2>
+            <p className="text-sm sm:text-base text-[#6B5D53]">전국 유통망과 물류 인프라</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white rounded-3xl p-8 text-center border border-[#E8DCC8]">
-              <p className="text-5xl font-bold text-[#B8956A] mb-2">{getKPIValue('deliveryVehicles', defaultKPI.deliveryVehicles)}</p>
-              <p className="text-[#4A4039] font-semibold">배송차량 보유</p>
+          <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-8 sm:mb-12">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-center border border-[#E8DCC8]">
+              <p className="text-2xl sm:text-5xl font-bold text-[#B8956A] mb-1 sm:mb-2">{getKPIValue('deliveryVehicles', defaultKPI.deliveryVehicles)}</p>
+              <p className="text-xs sm:text-base text-[#4A4039] font-semibold">배송차량 보유</p>
             </div>
-            <div className="bg-white rounded-3xl p-8 text-center border border-[#E8DCC8]">
-              <p className="text-5xl font-bold text-[#B8956A] mb-2">{getKPIValue('warehouseSize', defaultKPI.warehouseSize)}</p>
-              <p className="text-[#4A4039] font-semibold">물류센터 면적</p>
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-center border border-[#E8DCC8]">
+              <p className="text-2xl sm:text-5xl font-bold text-[#B8956A] mb-1 sm:mb-2">{getKPIValue('warehouseSize', defaultKPI.warehouseSize)}</p>
+              <p className="text-xs sm:text-base text-[#4A4039] font-semibold">물류센터 면적</p>
             </div>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 lg:p-12 border border-[#E8DCC8]">
-            <h3 className="text-2xl font-bold text-[#4A4039] mb-6">본사 / 물류센터</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <p className="text-[#6B5D53] mb-4">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 border border-[#E8DCC8]">
+            <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-4 sm:mb-6">본사 / 물류센터</h3>
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+              <div className="text-sm sm:text-base">
+                <p className="text-[#6B5D53] mb-3 sm:mb-4">
                   <strong className="text-[#4A4039]">주소:</strong> 경기도 하남시 천현동 520-2
                 </p>
-                <p className="text-[#6B5D53] mb-4">
+                <p className="text-[#6B5D53] mb-3 sm:mb-4">
                   <strong className="text-[#4A4039]">대표전화:</strong> 031-793-8258
                 </p>
                 <p className="text-[#6B5D53]">
                   <strong className="text-[#4A4039]">팩스:</strong> 031-793-8259
                 </p>
               </div>
-              <div className="aspect-video bg-[#FAF6F1] rounded-2xl overflow-hidden">
+              <div className="aspect-video bg-[#FAF6F1] rounded-xl sm:rounded-2xl overflow-hidden">
                 <img
                   src="/images/company-building.png"
                   alt="에이스유통 물류센터"
@@ -324,37 +324,37 @@ export default function AboutIntroPage() {
       </section>
 
       {/* Section 5: 조직 및 인증서 */}
-      <section id="certification" className="py-20 lg:py-32 bg-white scroll-mt-40">
+      <section id="certification" className="py-12 sm:py-20 lg:py-32 bg-white scroll-mt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">CERTIFICATION</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-4">보유 인증서</h2>
-            <p className="text-[#6B5D53]">신뢰할 수 있는 기업 인증 현황</p>
+          <div className="text-center mb-10 sm:mb-16">
+            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CERTIFICATION</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">보유 인증서</h2>
+            <p className="text-sm sm:text-base text-[#6B5D53]">신뢰할 수 있는 기업 인증 현황</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 mb-12 sm:mb-20">
             {certifications.map((cert, index) => (
-              <div key={index} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A]/50 hover:shadow-xl transition-all duration-300 group">
-                <div className="aspect-[4/3] bg-gradient-to-br from-[#FAF6F1] to-white flex items-center justify-center p-4 overflow-hidden">
+              <div key={index} className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A]/50 hover:shadow-xl transition-all duration-300 group">
+                <div className="aspect-[4/3] bg-gradient-to-br from-[#FAF6F1] to-white flex items-center justify-center p-2 sm:p-4 overflow-hidden">
                   <img
                     src={cert.image}
                     alt={cert.title}
                     className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-bold text-[#4A4039] mb-2 group-hover:text-[#B8956A] transition-colors">{cert.title}</h3>
-                  <p className="text-[#6B5D53] text-sm mb-3">{cert.description}</p>
-                  <span className="text-sm text-[#B8956A] font-medium">{cert.date}</span>
+                <div className="p-3 sm:p-6">
+                  <h3 className="text-sm sm:text-lg font-bold text-[#4A4039] mb-1 sm:mb-2 group-hover:text-[#B8956A] transition-colors line-clamp-1">{cert.title}</h3>
+                  <p className="text-[#6B5D53] text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2">{cert.description}</p>
+                  <span className="text-xs sm:text-sm text-[#B8956A] font-medium">{cert.date}</span>
                 </div>
               </div>
             ))}
           </div>
 
           {/* 주요 고객사 */}
-          <div className="text-center mb-12">
-            <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">CLIENTS</span>
-            <h3 className="text-2xl lg:text-3xl font-bold text-[#4A4039] mb-4">주요 고객사</h3>
+          <div className="text-center mb-8 sm:mb-12">
+            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CLIENTS</span>
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#4A4039] mb-3 sm:mb-4">주요 고객사</h3>
             <p className="text-[#6B5D53]">에이스유통과 함께하는 믿음직한 파트너</p>
           </div>
 

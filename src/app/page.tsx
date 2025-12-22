@@ -72,6 +72,8 @@ export default function HomePage() {
   const [scrollY, setScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState({});
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const sectionsRef = useRef([]);
 
   // DB data states
@@ -158,10 +160,10 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
 
-      {/* Premium Vertical Consultation Button */}
+      {/* Premium Vertical Consultation Button - Hidden on mobile */}
       <Link
         href="/support/contact"
-        className="fixed right-0 top-1/2 -translate-y-1/2 z-40 group"
+        className="fixed right-0 top-1/2 -translate-y-1/2 z-40 group hidden md:block"
       >
         <div className="flex flex-col items-center justify-center w-12 py-6 bg-[#4A4039] hover:bg-[#3A3029] transition-all duration-300 shadow-lg hover:shadow-xl rounded-l-lg">
           <span className="text-white text-sm font-semibold tracking-widest [writing-mode:vertical-rl]">
@@ -265,13 +267,78 @@ export default function HomePage() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button className="lg:hidden p-2 text-white group-hover/header:text-[#4A4039] transition-colors duration-500">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 text-white group-hover/header:text-[#4A4039] transition-colors duration-500"
+          >
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              {mobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
             </svg>
           </button>
         </div>
       </header>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden">
+          <div className="fixed inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)}></div>
+          <div className="fixed top-20 left-0 right-0 bottom-0 bg-white overflow-y-auto">
+            <div className="p-6">
+              {[
+                { title: '회사 소개', items: [
+                  { name: '기업소개', href: '/about/intro' },
+                  { name: '기업 연혁', href: '/about/intro#history' },
+                  { name: '경영철학', href: '/about/intro#philosophy' },
+                  { name: '사업장 소개', href: '/about/intro#business' },
+                  { name: '조직 및 인증서', href: '/about/intro#certification' }
+                ]},
+                { title: '판매 제품', items: [
+                  { name: '판매 제품', href: '/products/all' },
+                  { name: '레시피', href: '/content/recipe' }
+                ]},
+                { title: 'ACE 스토리', items: [
+                  { name: '사내 문화', href: '/culture/internal' },
+                  { name: '스토리', href: '/culture/story' }
+                ]},
+                { title: '고객 지원', items: [
+                  { name: '고객문의', href: '/support/contact' },
+                  { name: '찾아오시는 길', href: '/support/location' }
+                ]}
+              ].map((menu) => (
+                <div key={menu.title} className="mb-6">
+                  <button
+                    onClick={() => setActiveMenu(activeMenu === menu.title ? null : menu.title)}
+                    className="w-full flex items-center justify-between py-3 text-lg font-bold text-[#4A4039] border-b border-gray-100"
+                  >
+                    {menu.title}
+                    <svg className={`w-5 h-5 transition-transform ${activeMenu === menu.title ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {activeMenu === menu.title && (
+                    <div className="py-2">
+                      {menu.items.map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-3 px-4 text-[#6B5D53] hover:text-[#B8956A] hover:bg-[#FAF6F1] rounded-lg transition-colors"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section with Image Slider */}
       <section className="relative h-screen overflow-hidden">
@@ -332,29 +399,29 @@ export default function HomePage() {
             <div className="max-w-3xl">
 
               {/* Main Title - Korean */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8 animate-fadeInUp animation-delay-200">
-                <span className="block mb-2">최상의 원재료로</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 sm:mb-8 animate-fadeInUp animation-delay-200">
+                <span className="block mb-1 sm:mb-2">최상의 원재료로</span>
                 <span className="block text-white/90">완성하는 <span className="text-[#D4A574]">프리미엄</span> 베이킹</span>
               </h1>
 
               {/* Decorative Line */}
-              <div className="flex items-center gap-6 mb-10 animate-fadeInUp animation-delay-400">
-                <div className="w-20 h-[1px] bg-gradient-to-r from-[#D4A574] to-transparent"></div>
-                <span className="italic text-white/60 text-sm tracking-wider">Since 2010</span>
-                <div className="w-20 h-[1px] bg-gradient-to-l from-[#D4A574] to-transparent"></div>
+              <div className="flex items-center gap-4 sm:gap-6 mb-8 sm:mb-10 animate-fadeInUp animation-delay-400">
+                <div className="w-12 sm:w-20 h-[1px] bg-gradient-to-r from-[#D4A574] to-transparent"></div>
+                <span className="italic text-white/60 text-xs sm:text-sm tracking-wider">Since 2010</span>
+                <div className="w-12 sm:w-20 h-[1px] bg-gradient-to-l from-[#D4A574] to-transparent"></div>
               </div>
 
               {/* Description */}
-              <p className="text-lg text-white/80 leading-relaxed mb-12 max-w-lg animate-fadeInUp animation-delay-400 font-light">
-                15년간 축적된 노하우와 엄격한 품질 관리로<br />
+              <p className="text-base sm:text-lg text-white/80 leading-relaxed mb-8 sm:mb-12 max-w-lg animate-fadeInUp animation-delay-400 font-light">
+                15년간 축적된 노하우와 엄격한 품질 관리로<br className="hidden sm:block" />
                 최고의 베이커리 원재료를 공급합니다.
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-wrap gap-5 animate-fadeInUp animation-delay-600">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 animate-fadeInUp animation-delay-600">
                 <Link
                   href="/products/all"
-                  className="group inline-flex items-center gap-3 px-10 py-4 bg-[#B8956A] text-white font-semibold tracking-wide hover:bg-[#A67C52] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 rounded-lg"
+                  className="group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-3 sm:py-4 bg-[#B8956A] text-white font-semibold tracking-wide hover:bg-[#A67C52] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 rounded-lg text-sm sm:text-base"
                 >
                   제품 보기
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -363,7 +430,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="/about/intro"
-                  className="group inline-flex items-center gap-3 px-10 py-4 border border-white/40 text-white font-semibold tracking-wide hover:bg-white/10 backdrop-blur-sm transition-all duration-300 rounded-lg"
+                  className="group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-3 sm:py-4 border border-white/40 text-white font-semibold tracking-wide hover:bg-white/10 backdrop-blur-sm transition-all duration-300 rounded-lg text-sm sm:text-base"
                 >
                   회사 소개
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -389,28 +456,28 @@ export default function HomePage() {
       <section
         ref={(el) => (sectionsRef.current[0] = el)}
         id="mission"
-        className="py-24 bg-white relative"
+        className="py-16 sm:py-24 bg-white relative"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header - Clean & Minimal */}
-          <div className={`text-center mb-20 ${isVisible.mission ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">Our Mission</span>
-            <h2 className="text-4xl lg:text-5xl font-bold text-[#4A4039] mb-6">
+          <div className={`text-center mb-12 sm:mb-20 ${isVisible.mission ? 'animate-fadeInUp' : 'opacity-0'}`}>
+            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">Our Mission</span>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#4A4039] mb-4 sm:mb-6 px-2">
               최고의 품질로 성공을 만들어갑니다
             </h2>
-            <p className="text-lg text-[#6B5D53] max-w-2xl mx-auto">
+            <p className="text-sm sm:text-lg text-[#6B5D53] max-w-2xl mx-auto px-2">
               15년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다
             </p>
           </div>
 
           {/* Process Flow Section */}
-          <div className={`mb-32 ${isVisible.mission ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
+          <div className={`mb-16 sm:mb-32 ${isVisible.mission ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
             <div className="relative">
               {/* Connection Line - 원 아이콘 중앙에 맞춤 (top-12 = 원 높이 절반) */}
               <div className="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-[2px] bg-gradient-to-r from-transparent via-[#E8DCC8] to-transparent"></div>
 
               {/* Process Steps */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
                 {[
                   {
                     step: '01',
@@ -455,16 +522,16 @@ export default function HomePage() {
                 ].map((item, idx) => (
                   <div key={idx} className="relative text-center group">
                     {/* Icon Circle */}
-                    <div className="relative z-10 w-24 h-24 mx-auto mb-6 bg-white border-4 border-[#F5EFE7] rounded-full flex items-center justify-center group-hover:border-[#B8956A] transition-all duration-300 shadow-lg">
-                      {item.icon}
+                    <div className="relative z-10 w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-6 bg-white border-2 sm:border-4 border-[#F5EFE7] rounded-full flex items-center justify-center group-hover:border-[#B8956A] transition-all duration-300 shadow-lg">
+                      <div className="scale-75 sm:scale-100">{item.icon}</div>
                     </div>
                     {/* Step Number */}
-                    <span className="absolute top-0 right-1/2 translate-x-1/2 text-xs font-bold text-[#B8956A] bg-white px-2 py-1 rounded-full shadow-md">
+                    <span className="absolute top-0 right-1/2 translate-x-1/2 text-[10px] sm:text-xs font-bold text-[#B8956A] bg-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-md">
                       {item.step}
                     </span>
                     {/* Content */}
-                    <h4 className="text-base font-bold text-[#4A4039] mb-2">{item.title}</h4>
-                    <p className="text-sm text-[#8B7D73]">{item.desc}</p>
+                    <h4 className="text-sm sm:text-base font-bold text-[#4A4039] mb-1 sm:mb-2">{item.title}</h4>
+                    <p className="text-xs sm:text-sm text-[#8B7D73]">{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -472,7 +539,7 @@ export default function HomePage() {
           </div>
 
           {/* Core Values - Card Grid */}
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
             {[
               {
                 title: '품질 최우선',
@@ -510,14 +577,14 @@ export default function HomePage() {
                 </div>
 
                 {/* Content */}
-                <div className="relative p-8 h-80 flex flex-col justify-end">
-                  <span className="text-[#FFE5CC] text-xs font-medium tracking-wider uppercase mb-2">{value.subtitle}</span>
-                  <h3 className="text-white text-2xl font-bold mb-3">{value.title}</h3>
-                  <p className="text-white/90 text-sm leading-relaxed">{value.desc}</p>
+                <div className="relative p-4 sm:p-8 h-48 sm:h-80 flex flex-col justify-end">
+                  <span className="text-[#FFE5CC] text-[10px] sm:text-xs font-medium tracking-wider uppercase mb-1 sm:mb-2">{value.subtitle}</span>
+                  <h3 className="text-white text-base sm:text-2xl font-bold mb-1 sm:mb-3">{value.title}</h3>
+                  <p className="text-white/90 text-xs sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-none">{value.desc}</p>
                 </div>
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#B8956A]/90 to-[#B8956A]/40 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
+                {/* Hover Overlay - Hidden on mobile */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#B8956A]/90 to-[#B8956A]/40 opacity-0 group-hover:opacity-100 transition-all duration-500 hidden sm:flex items-center justify-center">
                   <div className="text-center text-white p-8">
                     <div className="w-16 h-16 mx-auto mb-4 border-2 border-white rounded-full flex items-center justify-center">
                       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -537,7 +604,7 @@ export default function HomePage() {
       <section
         ref={(el) => (sectionsRef.current[1] = el)}
         id="story"
-        className="py-24 bg-gradient-to-b from-[#FAF6F1] to-white relative overflow-hidden"
+        className="py-16 sm:py-24 bg-gradient-to-b from-[#FAF6F1] to-white relative overflow-hidden"
       >
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -549,24 +616,24 @@ export default function HomePage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
-          <div className={`text-center mb-20 ${isVisible.story ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">Our Story</span>
-            <h2 className="text-4xl lg:text-5xl font-bold text-[#4A4039] mb-6">
+          <div className={`text-center mb-12 sm:mb-20 ${isVisible.story ? 'animate-fadeInUp' : 'opacity-0'}`}>
+            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">Our Story</span>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#4A4039] mb-4 sm:mb-6">
               15년 전통의 신뢰와 혁신
             </h2>
-            <p className="text-lg text-[#6B5D53] max-w-2xl mx-auto">
+            <p className="text-sm sm:text-lg text-[#6B5D53] max-w-2xl mx-auto px-2">
               2010년 창립 이래, 카페·베이커리 원재료 유통의 새로운 기준을 만들어가고 있습니다
             </p>
           </div>
 
           {/* Timeline Section */}
-          <div className={`mb-32 ${isVisible.story ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
+          <div className={`mb-16 sm:mb-32 ${isVisible.story ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
             <div className="relative">
               {/* Vertical Line */}
               <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#B8956A] via-[#D4A574] to-[#B8956A]"></div>
 
               {/* Timeline Items */}
-              <div className="space-y-24">
+              <div className="space-y-8 sm:space-y-24">
                 {[
                   {
                     year: '2010',
@@ -612,9 +679,9 @@ export default function HomePage() {
 
                     {/* Content Card */}
                     <div className={`w-full lg:w-5/12 ${item.position === 'right' ? 'lg:ml-auto lg:pl-12' : 'lg:mr-auto lg:pr-12'}`}>
-                      <div className="bg-white rounded-2xl shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
+                      <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
                         {/* Image */}
-                        <div className="h-56 overflow-hidden">
+                        <div className="h-40 sm:h-56 overflow-hidden">
                           <img
                             src={item.image}
                             alt={item.title}
@@ -622,12 +689,12 @@ export default function HomePage() {
                           />
                         </div>
                         {/* Content */}
-                        <div className="p-8">
-                          <span className="lg:hidden inline-block bg-[#B8956A] text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
+                        <div className="p-4 sm:p-8">
+                          <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">
                             {item.year}
                           </span>
-                          <h3 className="text-2xl font-bold text-[#4A4039] mb-3">{item.title}</h3>
-                          <p className="text-[#6B5D53] leading-relaxed">{item.desc}</p>
+                          <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">{item.title}</h3>
+                          <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">{item.desc}</p>
                         </div>
                       </div>
                     </div>
@@ -638,7 +705,7 @@ export default function HomePage() {
           </div>
 
           {/* Achievement Numbers */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
             {[
               {
                 number: '15년',
@@ -680,11 +747,11 @@ export default function HomePage() {
             ].map((stat, index) => (
               <div
                 key={index}
-                className={`text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 ${isVisible.story ? `animate-fadeInScale animation-delay-${index * 100}` : 'opacity-0'}`}
+                className={`text-center p-4 sm:p-8 bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 ${isVisible.story ? `animate-fadeInScale animation-delay-${index * 100}` : 'opacity-0'}`}
               >
-                <div className="mb-4">{stat.icon}</div>
-                <div className="text-3xl font-bold text-[#B8956A] mb-2">{stat.number}</div>
-                <div className="text-sm text-[#6B5D53] font-medium">{stat.label}</div>
+                <div className="mb-2 sm:mb-4 scale-75 sm:scale-100">{stat.icon}</div>
+                <div className="text-xl sm:text-3xl font-bold text-[#B8956A] mb-1 sm:mb-2">{stat.number}</div>
+                <div className="text-xs sm:text-sm text-[#6B5D53] font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -692,17 +759,17 @@ export default function HomePage() {
       </section>
 
       {/* CEO Message Section */}
-      <section className="py-24 bg-white relative">
+      <section className="py-16 sm:py-24 bg-white relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">CEO MESSAGE</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-8 leading-tight">
+          <div className="text-center mb-8 sm:mb-12">
+            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CEO MESSAGE</span>
+            <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-6 sm:mb-8 leading-tight">
               좋은 상품을 정직하게 유통하는<br />
               <span className="text-[#B8956A]">신뢰받는 파트너</span>가 되겠습니다
             </h2>
           </div>
 
-          <div className="space-y-6 text-[#6B5D53] leading-relaxed text-center max-w-3xl mx-auto">
+          <div className="space-y-4 sm:space-y-6 text-sm sm:text-base text-[#6B5D53] leading-relaxed text-center max-w-3xl mx-auto">
             <p>
               에이스유통주식회사는 카페·베이커리 산업을 위한 프리미엄 원재료 공급, 전문 소싱,
               콜드체인 물류, 품질관리(QC)를 기반으로 성장해온 F&B B2B 솔루션 기업입니다.

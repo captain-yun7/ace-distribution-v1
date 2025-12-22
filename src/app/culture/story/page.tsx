@@ -2,7 +2,7 @@
 
 import { Header, Footer, PageHero } from '@/components/layout';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 interface Story {
@@ -104,7 +104,7 @@ const dummyStories: Story[] = [
   },
 ];
 
-export default function StoryPage() {
+function StoryPageContent() {
   const searchParams = useSearchParams();
   const [stories, setStories] = useState<Story[]>([]);
   const [loading, setLoading] = useState(true);
@@ -168,12 +168,12 @@ export default function StoryPage() {
         />
 
         {/* Category Tabs */}
-        <section className="py-12 bg-white border-b border-[#E8DCC8]">
+        <section className="py-8 sm:py-12 bg-white border-b border-[#E8DCC8]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
               <button
                 onClick={() => setActiveCategory('all')}
-                className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
                   activeCategory === 'all'
                     ? 'bg-[#B8956A] text-white shadow-lg'
                     : 'bg-white text-[#6B5D53] border border-[#E8DCC8] hover:border-[#B8956A] hover:text-[#B8956A]'
@@ -183,7 +183,7 @@ export default function StoryPage() {
               </button>
               <button
                 onClick={() => setActiveCategory('PARTNERSHIP')}
-                className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
                   activeCategory === 'PARTNERSHIP'
                     ? 'bg-[#B8956A] text-white shadow-lg'
                     : 'bg-white text-[#6B5D53] border border-[#E8DCC8] hover:border-[#B8956A] hover:text-[#B8956A]'
@@ -193,7 +193,7 @@ export default function StoryPage() {
               </button>
               <button
                 onClick={() => setActiveCategory('PRESS')}
-                className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
                   activeCategory === 'PRESS'
                     ? 'bg-[#B8956A] text-white shadow-lg'
                     : 'bg-white text-[#6B5D53] border border-[#E8DCC8] hover:border-[#B8956A] hover:text-[#B8956A]'
@@ -206,18 +206,18 @@ export default function StoryPage() {
         </section>
 
         {/* All Stories */}
-        <section className="py-16">
+        <section className="py-10 sm:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-[#4A4039] mb-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#4A4039] mb-6 sm:mb-8">
               {activeCategory === 'all' ? '전체 스토리' : categoryLabels[activeCategory]}
             </h2>
 
             {loading ? (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
                 {[...Array(8)].map((_, i) => (
-                  <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] animate-pulse">
+                  <div key={i} className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E8DCC8] animate-pulse">
                     <div className="aspect-[4/3] bg-gray-200"></div>
-                    <div className="p-5">
+                    <div className="p-3 sm:p-5">
                       <div className="h-3 bg-gray-200 rounded w-1/4 mb-2"></div>
                       <div className="h-5 bg-gray-200 rounded w-3/4 mb-2"></div>
                       <div className="h-3 bg-gray-200 rounded w-full"></div>
@@ -226,12 +226,12 @@ export default function StoryPage() {
                 ))}
               </div>
             ) : filteredStories.length > 0 ? (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
                 {filteredStories.map((story) => (
                   <Link
                     key={story.id}
                     href={`/culture/story/${story.id}`}
-                    className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group block"
+                    className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group block"
                   >
                     <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-[#FAF6F1] to-white">
                       <img
@@ -239,23 +239,23 @@ export default function StoryPage() {
                         alt={story.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-3 left-3 flex gap-2">
-                        <span className="bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
+                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex gap-1 sm:gap-2">
+                        <span className="bg-[#B8956A] text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
                           {categoryLabels[story.category]}
                         </span>
                         {story.isFeatured && (
-                          <span className="bg-[#4A4039] text-white text-xs font-bold px-3 py-1 rounded-full">
+                          <span className="bg-[#4A4039] text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
                             주요
                           </span>
                         )}
                       </div>
                     </div>
-                    <div className="p-5">
-                      <div className="text-xs text-[#6B5D53] mb-2">{formatDate(story.publishedAt)}</div>
-                      <h3 className="text-lg font-bold text-[#4A4039] mb-2 group-hover:text-[#B8956A] transition-colors line-clamp-2">
+                    <div className="p-3 sm:p-5">
+                      <div className="text-[10px] sm:text-xs text-[#6B5D53] mb-1 sm:mb-2">{formatDate(story.publishedAt)}</div>
+                      <h3 className="text-sm sm:text-lg font-bold text-[#4A4039] mb-1 sm:mb-2 group-hover:text-[#B8956A] transition-colors line-clamp-2">
                         {story.title}
                       </h3>
-                      <p className="text-sm text-[#6B5D53] line-clamp-2">{story.description}</p>
+                      <p className="text-xs sm:text-sm text-[#6B5D53] line-clamp-2 hidden sm:block">{story.description}</p>
                     </div>
                   </Link>
                 ))}
@@ -275,41 +275,41 @@ export default function StoryPage() {
         </section>
 
         {/* Major Clients */}
-        <section className="py-16 bg-white">
+        <section className="py-10 sm:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">CLIENTS</span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-4">주요 고객사</h2>
-              <p className="text-[#6B5D53]">에이스유통과 함께하는 믿음직한 파트너</p>
+            <div className="text-center mb-8 sm:mb-12">
+              <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CLIENTS</span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">주요 고객사</h2>
+              <p className="text-sm sm:text-base text-[#6B5D53]">에이스유통과 함께하는 믿음직한 파트너</p>
             </div>
 
             {/* 고객사 목록 */}
-            <div className="mb-10">
-              <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-[#4A4039]">
-                <li className="flex items-start gap-3 bg-[#FAF6F1] rounded-xl p-4 border border-[#E8DCC8]">
-                  <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
-                  <span>스파필드 팥고당 입점 (하남, 고양 외 8개 지점)</span>
+            <div className="mb-6 sm:mb-10">
+              <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 text-[#4A4039]">
+                <li className="flex items-start gap-2 sm:gap-3 bg-[#FAF6F1] rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#E8DCC8]">
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#B8956A] rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></span>
+                  <span className="text-xs sm:text-base">스파필드 팥고당 입점 (하남, 고양 외 8개 지점)</span>
                 </li>
-                <li className="flex items-start gap-3 bg-[#FAF6F1] rounded-xl p-4 border border-[#E8DCC8]">
-                  <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
-                  <span>롯데 백화점 한나식빵 입점 (롯데백화점 외 20여개 지점)</span>
+                <li className="flex items-start gap-2 sm:gap-3 bg-[#FAF6F1] rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#E8DCC8]">
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#B8956A] rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></span>
+                  <span className="text-xs sm:text-base">롯데 백화점 한나식빵 입점 (롯데백화점 외 20여개 지점)</span>
                 </li>
-                <li className="flex items-start gap-3 bg-[#FAF6F1] rounded-xl p-4 border border-[#E8DCC8]">
-                  <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
-                  <span>지하철 역사 내 더베이크 (17여개 지점)</span>
+                <li className="flex items-start gap-2 sm:gap-3 bg-[#FAF6F1] rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#E8DCC8]">
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#B8956A] rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></span>
+                  <span className="text-xs sm:text-base">지하철 역사 내 더베이크 (17여개 지점)</span>
                 </li>
-                <li className="flex items-start gap-3 bg-[#FAF6F1] rounded-xl p-4 border border-[#E8DCC8]">
-                  <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
-                  <span>곤트란쉐리에 (30여개 지점)</span>
+                <li className="flex items-start gap-2 sm:gap-3 bg-[#FAF6F1] rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#E8DCC8]">
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#B8956A] rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></span>
+                  <span className="text-xs sm:text-base">곤트란쉐리에 (30여개 지점)</span>
                 </li>
-                <li className="flex items-start gap-3 bg-[#FAF6F1] rounded-xl p-4 border border-[#E8DCC8] md:col-span-2 lg:col-span-2">
-                  <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
-                  <span>그 외 기타 개인제과 (전국 420여개 이상 거래처 보유/관리)</span>
+                <li className="flex items-start gap-2 sm:gap-3 bg-[#FAF6F1] rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#E8DCC8] md:col-span-2 lg:col-span-2">
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#B8956A] rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></span>
+                  <span className="text-xs sm:text-base">그 외 기타 개인제과 (전국 420여개 이상 거래처 보유/관리)</span>
                 </li>
               </ul>
             </div>
 
-            <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-8 border border-[#E8DCC8]">
+            <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-[#E8DCC8]">
               <img
                 src="/images/certificates/clients.png"
                 alt="주요 고객사"
@@ -320,18 +320,18 @@ export default function StoryPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-gradient-to-br from-[#4A4039] to-[#6B5D53] text-white">
+        <section className="py-10 sm:py-16 bg-gradient-to-br from-[#4A4039] to-[#6B5D53] text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl lg:text-3xl font-bold mb-4">파트너가 되어주세요</h2>
-            <p className="text-white/80 mb-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">파트너가 되어주세요</h2>
+            <p className="text-sm sm:text-base text-white/80 mb-6 sm:mb-8">
               에이스유통과 함께 성장할 파트너를 기다립니다
             </p>
             <Link
               href="/support/contact"
-              className="inline-flex items-center gap-2 bg-white text-[#4A4039] px-8 py-4 rounded-xl font-bold hover:bg-[#FAF6F1] transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-[#4A4039] px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base hover:bg-[#FAF6F1] transition-colors"
             >
               파트너십 문의
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
@@ -340,5 +340,17 @@ export default function StoryPage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function StoryPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#FAF6F1] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#B8956A]"></div>
+      </div>
+    }>
+      <StoryPageContent />
+    </Suspense>
   );
 }

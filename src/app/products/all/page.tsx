@@ -103,20 +103,20 @@ export default function ProductsAllPage() {
         </section>
 
         {/* Category Tabs + Products */}
-        <section className="py-20">
+        <section className="py-12 sm:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="text-sm font-medium text-[#B8956A] tracking-[0.3em] uppercase mb-4 block">CATEGORIES</span>
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#4A4039] mb-4">제품 카테고리</h2>
-              <p className="text-[#6B5D53]">다양한 베이커리·카페 원재료를 카테고리별로 만나보세요</p>
+            <div className="text-center mb-8 sm:mb-12">
+              <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CATEGORIES</span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">제품 카테고리</h2>
+              <p className="text-sm sm:text-base text-[#6B5D53]">다양한 베이커리·카페 원재료를 카테고리별로 만나보세요</p>
             </div>
 
             {/* Category Tab Menu */}
-            <div className="mb-12">
-              <div className="flex flex-wrap justify-center gap-3">
+            <div className="mb-8 sm:mb-12">
+              <div className="flex overflow-x-auto pb-2 sm:flex-wrap sm:justify-center gap-2 sm:gap-3 scrollbar-hide">
                 <button
                   onClick={() => setActiveCategory('all')}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                  className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
                     activeCategory === 'all'
                       ? 'bg-[#B8956A] text-white shadow-lg'
                       : 'bg-white text-[#6B5D53] border border-[#E8DCC8] hover:border-[#B8956A] hover:text-[#B8956A]'
@@ -128,7 +128,7 @@ export default function ProductsAllPage() {
                   <button
                     key={category.id}
                     onClick={() => setActiveCategory(category.name)}
-                    className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                    className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
                       activeCategory === category.name
                         ? 'bg-[#B8956A] text-white shadow-lg'
                         : 'bg-white text-[#6B5D53] border border-[#E8DCC8] hover:border-[#B8956A] hover:text-[#B8956A]'
@@ -142,7 +142,7 @@ export default function ProductsAllPage() {
 
             {/* Product Cards Grid */}
             {loading ? (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
                 {[...Array(8)].map((_, i) => (
                   <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] animate-pulse">
                     <div className="aspect-square bg-gray-200"></div>
@@ -155,12 +155,12 @@ export default function ProductsAllPage() {
                 ))}
               </div>
             ) : filteredProducts.length > 0 ? (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
                 {filteredProducts.map((product) => (
                   <Link
                     key={product.id}
                     href={`/products/${product.category?.name}/${product.id}`}
-                    className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group block"
+                    className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group block"
                   >
                     <div className="aspect-square bg-gradient-to-br from-[#FAF6F1] to-white flex items-center justify-center overflow-hidden">
                       {product.imageUrl ? (
@@ -170,21 +170,21 @@ export default function ProductsAllPage() {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
-                        <div className="w-20 h-20 bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <svg className="w-10 h-10 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="w-12 sm:w-20 h-12 sm:h-20 bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <svg className="w-6 sm:w-10 h-6 sm:h-10 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                           </svg>
                         </div>
                       )}
                     </div>
-                    <div className="p-5">
-                      <span className="inline-block px-3 py-1 bg-[#B8956A]/10 text-[#B8956A] text-xs font-medium rounded-full mb-2">
+                    <div className="p-3 sm:p-5">
+                      <span className="inline-block px-2 sm:px-3 py-0.5 sm:py-1 bg-[#B8956A]/10 text-[#B8956A] text-[10px] sm:text-xs font-medium rounded-full mb-1 sm:mb-2">
                         {product.category?.displayName}
                       </span>
-                      <h3 className="text-lg font-bold text-[#4A4039] mb-1 group-hover:text-[#B8956A] transition-colors line-clamp-1">
+                      <h3 className="text-sm sm:text-lg font-bold text-[#4A4039] mb-0.5 sm:mb-1 group-hover:text-[#B8956A] transition-colors line-clamp-1">
                         {product.name}
                       </h3>
-                      <p className="text-sm text-[#6B5D53] line-clamp-1">{product.brand || product.code}</p>
+                      <p className="text-xs sm:text-sm text-[#6B5D53] line-clamp-1">{product.brand || product.code}</p>
                     </div>
                   </Link>
                 ))}
@@ -203,11 +203,11 @@ export default function ProductsAllPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-20 bg-gradient-to-br from-[#4A4039] to-[#6B5D53] text-white">
+        <section className="py-12 sm:py-20 bg-gradient-to-br from-[#4A4039] to-[#6B5D53] text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">원하시는 제품을 찾지 못하셨나요?</h2>
-            <p className="text-white/80 mb-8 text-lg">
-              에이스유통은 고객의 니즈에 맞는 다양한 제품을 소싱해 드립니다.<br />
+            <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">원하시는 제품을 찾지 못하셨나요?</h2>
+            <p className="text-white/80 mb-6 sm:mb-8 text-sm sm:text-lg">
+              에이스유통은 고객의 니즈에 맞는 다양한 제품을 소싱해 드립니다.<br className="hidden sm:block" />
               문의 주시면 최적의 제품을 찾아 제안해 드리겠습니다.
             </p>
             <Link

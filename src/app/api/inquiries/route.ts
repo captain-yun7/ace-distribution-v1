@@ -2,7 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy initialization to avoid build-time errors
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    return null;
+  }
+  return new Resend(apiKey);
+}
 
 const INQUIRY_TYPE_MAP: Record<string, 'PRODUCT' | 'PURCHASE' | 'PARTNERSHIP' | 'SUPPORT' | 'OTHER'> = {
   '일반문의': 'OTHER',
@@ -40,10 +47,16 @@ export async function POST(request: NextRequest) {
     });
 
     // Send email notification
+    const resend = getResendClient();
     const adminEmail = process.env.ADMIN_EMAIL || 'ace32865@hanmail.net';
     const fromEmail = process.env.FROM_EMAIL || 'onboarding@resend.dev';
 
     try {
+      if (!resend) {
+        console.log('Resend API key not configured, skipping email notification');
+        throw new Error('Resend not configured');
+      }
+
       // Send to admin
       await resend.emails.send({
         from: `에이스유통 문의접수 <${fromEmail}>`,
