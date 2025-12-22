@@ -282,6 +282,109 @@ model CompanyKPI {
   @@map("company_kpi")
 }
 
+// 기업 연혁 (CRUD 관리)
+model CompanyTimeline {
+  id          String   @id @default(cuid())
+  year        String   // 2025, 2024 등
+  title       String
+  desc        String   @db.Text
+  imageUrl    String?
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("company_timeline")
+  @@index([year])
+  @@index([order])
+}
+
+// 인증서
+model CompanyCertificate {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @db.Text
+  date        String   // "2020년 취득"
+  imageUrl    String
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("company_certificates")
+  @@index([order])
+}
+
+// 주요 고객사
+model CompanyClient {
+  id          String   @id @default(cuid())
+  name        String
+  description String?  @db.Text
+  logoUrl     String?
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("company_clients")
+  @@index([order])
+}
+
+// 핵심가치
+model CompanyCoreValue {
+  id          String   @id @default(cuid())
+  title       String   // "품질 최우선"
+  subtitle    String   // "Quality First"
+  description String   @db.Text
+  imageUrl    String?
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("company_core_values")
+  @@index([order])
+}
+
+// 사내문화 항목
+model CompanyCulture {
+  id          String      @id @default(cuid())
+  type        CultureType // CULTURE, BENEFIT, CSR
+  title       String
+  desc        String      @db.Text
+  year        String?     // "2020년", "진행중"
+  imageUrl    String?
+  order       Int         @default(0)
+  isPublished Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@map("company_culture")
+  @@index([type])
+  @@index([order])
+}
+
+enum CultureType {
+  CULTURE  // 문화 항목
+  BENEFIT  // 복리후생
+  CSR      // 사회공헌
+}
+
+// 기부 내역
+model CompanyDonation {
+  id        String   @id @default(cuid())
+  year      String
+  amount    String   // "1,200만원"
+  desc      String   @db.Text
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("company_donations")
+  @@index([year])
+  @@index([order])
+}
+
 // ===========================
 // 배너 & 슬라이드
 // ===========================
