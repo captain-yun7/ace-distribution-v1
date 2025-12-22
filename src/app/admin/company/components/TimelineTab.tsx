@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import ImageUpload from '@/components/ui/ImageUpload';
 
 interface Timeline {
   id: string;
@@ -278,18 +279,13 @@ export default function TimelineTab() {
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  이미지 URL
-                </label>
-                <input
-                  type="url"
-                  value={formData.imageUrl}
-                  onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  placeholder="https://..."
-                />
-              </div>
+              <ImageUpload
+                label="이미지"
+                value={formData.imageUrl || null}
+                onChange={(url) => setFormData({ ...formData, imageUrl: url || '' })}
+                folder="ace-distribution/timeline"
+                aspectRatio="video"
+              />
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import ImageUpload from '@/components/ui/ImageUpload';
 
 interface Client {
   id: string;
@@ -271,27 +272,13 @@ export default function ClientsTab() {
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  로고 URL
-                </label>
-                <input
-                  type="url"
-                  value={formData.logoUrl}
-                  onChange={(e) => setFormData({ ...formData, logoUrl: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  placeholder="https://..."
-                />
-                {formData.logoUrl && (
-                  <div className="mt-2">
-                    <img
-                      src={formData.logoUrl}
-                      alt="미리보기"
-                      className="max-h-20 object-contain"
-                    />
-                  </div>
-                )}
-              </div>
+              <ImageUpload
+                label="로고"
+                value={formData.logoUrl || null}
+                onChange={(url) => setFormData({ ...formData, logoUrl: url || '' })}
+                folder="ace-distribution/clients"
+                aspectRatio="auto"
+              />
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
