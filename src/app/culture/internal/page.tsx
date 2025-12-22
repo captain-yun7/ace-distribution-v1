@@ -1,53 +1,63 @@
+'use client';
+
 import { Header, Footer, PageHero } from '@/components/layout';
-
-const cultureItems = [
-  {
-    title: '창립멤버 포상',
-    desc: '창립멤버 4인에게 1천만원의 포상금 수여 (총 4천만원), 10년 이상 근속자 금 10돈 지급',
-    year: '2020년'
-  },
-  {
-    title: '인재양성 교육비 지원',
-    desc: '대학원 등록금 전액 지원 (한양대 경영학과정 2명 지원 중), 유통전문관리사 교육비 전액 지원',
-    year: '진행중'
-  },
-  {
-    title: '직무역량 강화',
-    desc: '감정노동관리사 교육 전직원 수료, 지게차 자격증 교육비 지원, 직무 관련 자격증 취득 전액 지원',
-    year: '진행중'
-  },
-  {
-    title: '마라톤동아리 운영',
-    desc: '직원 자발적 참여 단체 마라톤 참가, 참가 직원 전원 나이키 러닝화 제공',
-    year: '2023년~'
-  },
-];
-
-const benefits = [
-  { title: '4대 보험', desc: '국민연금, 건강보험, 고용보험, 산재보험 완비' },
-  { title: '퇴직금', desc: '근속 1년 이상 퇴직금 지급' },
-  { title: '명절 상여', desc: '설, 추석 명절 상여금 지급' },
-  { title: '경조사 지원', desc: '경조금 및 경조휴가 제공' },
-  { title: '교육비 전액 지원', desc: '대학원, 자격증 등 교육비 전액 지원' },
-  { title: '식대 지원', desc: '중식 및 석식 식대 지원' },
-  { title: '건강검진', desc: '연 1회 종합 건강검진' },
-  { title: '장기근속 포상', desc: '10년 근속자 금 지급' },
-];
-
-const csrActivities = [
-  { title: '취약계층 제빵재료 지원', desc: '취약계층 및 소상공인에게 제빵재료를 지원하여 자립을 돕고 있습니다.', stats: '연간 지속 지원' },
-  { title: '지역아동센터 후원', desc: '지역 아동센터에 빵과 간식 재료를 정기적으로 후원합니다.', stats: '월 1회 정기 후원' },
-  { title: '지역 상생', desc: '지역 베이커리 및 소상공인과의 협력을 통해 지역 경제 활성화에 기여', stats: '지역 업체 상생 협력' },
-];
-
-const donationHistory = [
-  { year: '2024', amount: '1,200만원', desc: '지역 아동센터 빵 기부, 무료 급식소 식품 지원' },
-  { year: '2023', amount: '1,000만원', desc: '독거노인 명절 선물 세트, 지역 복지관 식품 기부' },
-  { year: '2022', amount: '800만원', desc: '수해 지역 긴급 식품 지원, 아동 급식 후원' },
-  { year: '2021', amount: '600만원', desc: '코로나 취약계층 식품 꾸러미 전달' },
-];
+import Image from 'next/image';
+import { useCompanyCulture, useCompanyDonations } from '@/hooks/company';
 
 export default function InternalCulturePage() {
+  // Fetch DB data
+  const { culture: dbCultureItems } = useCompanyCulture('CULTURE');
+  const { culture: dbBenefits } = useCompanyCulture('BENEFIT');
+  const { culture: dbCsrActivities } = useCompanyCulture('CSR');
+  const { donations: dbDonations } = useCompanyDonations();
+
+  // Fallback data
+  const cultureItems = dbCultureItems.length > 0 ? dbCultureItems : [
+    {
+      title: '창립멤버 포상',
+      desc: '창립멤버 4인에게 1천만원의 포상금 수여 (총 4천만원), 10년 이상 근속자 금 10돈 지급',
+      year: '2020년'
+    },
+    {
+      title: '인재양성 교육비 지원',
+      desc: '대학원 등록금 전액 지원 (한양대 경영학과정 2명 지원 중), 유통전문관리사 교육비 전액 지원',
+      year: '진행중'
+    },
+    {
+      title: '직무역량 강화',
+      desc: '감정노동관리사 교육 전직원 수료, 지게차 자격증 교육비 지원, 직무 관련 자격증 취득 전액 지원',
+      year: '진행중'
+    },
+    {
+      title: '마라톤동아리 운영',
+      desc: '직원 자발적 참여 단체 마라톤 참가, 참가 직원 전원 나이키 러닝화 제공',
+      year: '2023년~'
+    },
+  ];
+
+  const benefits = dbBenefits.length > 0 ? dbBenefits : [
+    { title: '4대 보험', desc: '국민연금, 건강보험, 고용보험, 산재보험 완비' },
+    { title: '퇴직금', desc: '근속 1년 이상 퇴직금 지급' },
+    { title: '명절 상여', desc: '설, 추석 명절 상여금 지급' },
+    { title: '경조사 지원', desc: '경조금 및 경조휴가 제공' },
+    { title: '교육비 전액 지원', desc: '대학원, 자격증 등 교육비 전액 지원' },
+    { title: '식대 지원', desc: '중식 및 석식 식대 지원' },
+    { title: '건강검진', desc: '연 1회 종합 건강검진' },
+    { title: '장기근속 포상', desc: '10년 근속자 금 지급' },
+  ];
+
+  const csrActivities = dbCsrActivities.length > 0 ? dbCsrActivities : [
+    { title: '취약계층 제빵재료 지원', desc: '취약계층 및 소상공인에게 제빵재료를 지원하여 자립을 돕고 있습니다.' },
+    { title: '지역아동센터 후원', desc: '지역 아동센터에 빵과 간식 재료를 정기적으로 후원합니다.' },
+    { title: '지역 상생', desc: '지역 베이커리 및 소상공인과의 협력을 통해 지역 경제 활성화에 기여' },
+  ];
+
+  const donationHistory = dbDonations.length > 0 ? dbDonations : [
+    { year: '2024', amount: '1,200만원', desc: '지역 아동센터 빵 기부, 무료 급식소 식품 지원' },
+    { year: '2023', amount: '1,000만원', desc: '독거노인 명절 선물 세트, 지역 복지관 식품 기부' },
+    { year: '2022', amount: '800만원', desc: '수해 지역 긴급 식품 지원, 아동 급식 후원' },
+    { year: '2021', amount: '600만원', desc: '코로나 취약계층 식품 꾸러미 전달' },
+  ];
   return (
     <>
       <Header />
@@ -90,6 +100,25 @@ export default function InternalCulturePage() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* 창립멤버 포상 사진 */}
+            <div className="mt-10 sm:mt-16">
+              <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-[#E8DCC8] overflow-hidden">
+                <div className="text-center mb-4 sm:mb-6">
+                  <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2">창립멤버 포상 현장</h3>
+                  <p className="text-sm sm:text-base text-[#6B5D53]">2020년 창립멤버 4인에게 각 1천만원의 포상금을 수여했습니다</p>
+                </div>
+                <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] rounded-lg sm:rounded-xl overflow-hidden">
+                  <Image
+                    src="/포상금.png"
+                    alt="창립멤버 포상 - 에이스유통 직원들이 포상금을 수여받는 모습"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -138,9 +167,11 @@ export default function InternalCulturePage() {
                   </div>
                   <h3 className="text-base sm:text-xl font-bold text-[#4A4039] mb-2 sm:mb-3">{activity.title}</h3>
                   <p className="text-xs sm:text-base text-[#6B5D53] mb-3 sm:mb-4">{activity.desc}</p>
-                  <span className="inline-block bg-[#B8956A]/10 text-[#B8956A] font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm">
-                    {activity.stats}
-                  </span>
+                  {activity.year && (
+                    <span className="inline-block bg-[#B8956A]/10 text-[#B8956A] font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm">
+                      {activity.year}
+                    </span>
+                  )}
                 </div>
               ))}
             </div>
@@ -170,6 +201,27 @@ export default function InternalCulturePage() {
             <div className="mt-6 sm:mt-8 p-5 sm:p-8 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-xl sm:rounded-2xl text-white text-center">
               <p className="text-sm sm:text-lg text-white/80 mb-1 sm:mb-2">누적 기부 총액</p>
               <p className="text-2xl sm:text-4xl font-bold">3,600만원+</p>
+            </div>
+
+            {/* 후원 증서 */}
+            <div className="mt-8 sm:mt-12">
+              <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-[#E8DCC8] overflow-hidden">
+                <div className="text-center mb-4 sm:mb-6">
+                  <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2">희망브릿지 후원 증서</h3>
+                  <p className="text-sm sm:text-base text-[#6B5D53]">사회 공헌 활동의 일환으로 희망브릿지에 정기 후원하고 있습니다</p>
+                </div>
+                <div className="flex justify-center">
+                  <div className="relative w-full max-w-md aspect-[3/4] rounded-lg sm:rounded-xl overflow-hidden shadow-lg border border-[#E8DCC8]">
+                    <Image
+                      src="/후원증서.png"
+                      alt="희망브릿지 후원 증서 - 에이스유통 기부 인증"
+                      fill
+                      className="object-contain bg-white"
+                      sizes="(max-width: 768px) 100vw, 400px"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

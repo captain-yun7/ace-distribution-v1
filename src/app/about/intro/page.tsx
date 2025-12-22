@@ -3,6 +3,12 @@
 import { Header, Footer, PageHero } from '@/components/layout';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import {
+  useCompanyTimeline,
+  useCompanyCertificates,
+  useCompanyCoreValues,
+  useCompanyClients,
+} from '@/hooks/company';
 
 // 업력 자동 계산 함수
 const calculateYearsInBusiness = () => {
@@ -10,43 +16,6 @@ const calculateYearsInBusiness = () => {
   const currentYear = new Date().getFullYear();
   return currentYear - foundingYear;
 };
-
-// 연혁 데이터
-const timeline = [
-  { year: '2026', title: '신사옥 신축 및 이전 예정', desc: '하남시 감북동 소재 신사옥 신축 및 이전 예정' },
-  { year: '2025', title: '전략적 파트너십 체결', desc: 'IP 굿즈 및 에듀 콘텐츠 기업 ㈜토이트론과 전략적 계약 체결' },
-  { year: '2024', title: '연매출 245억 달성', desc: '지속적인 성장으로 연매출 245억원 달성' },
-  { year: '2023', title: '일터혁신 사업장 선정', desc: '노사발전재단 일터혁신 사업장으로 선정' },
-  { year: '2022', title: '물류센터 확장 이전', desc: '하남시 물류센터 확장 이전, 물류 역량 강화' },
-  { year: '2022', title: '중소기업 경영인상 수상', desc: '경기도 하남시 중소기업 경영인상 수상' },
-  { year: '2021', title: '에이스제빵소 상표권 등록', desc: '에이스제빵소 브랜드 상표권 등록' },
-  { year: '2020', title: '창립 10주년', desc: '에이스유통 창립 10주년 기념행사 개최' },
-  { year: '2020', title: '특허 취득 및 차량 증차', desc: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 취득, 배송차량 20대 증차' },
-  { year: '2019', title: '우수기술기업 인증', desc: '제과제빵 재료 유통물류 및 기술마케팅 부문 우수기술기업 인증 획득' },
-  { year: '2019', title: '매출 200억 달성', desc: '베이커리 소상공인 무료 세미나 개최, 에이스제빵소 운영 시작' },
-  { year: '2018', title: '기업인 협의회 인증', desc: '경기도 하남시 기업인 협의회 인증' },
-  { year: '2016', title: '메인비즈 인증', desc: '중소기업청 메인비즈(경영혁신형 중소기업) 인증' },
-  { year: '2015', title: '본사 사옥 신축 이전', desc: '경기도 하남시 천현동에 자체 물류센터 보유 사옥 신축' },
-  { year: '2012', title: '매출 100억 달성', desc: '물류창고 확장 이전, 연매출 100억원 달성' },
-  { year: '2010', title: '에이스유통㈜ 법인 설립', desc: '카페·베이커리 원재료 유통 사업 시작 (직원 5명)' },
-];
-
-// 인증서 데이터
-const certifications = [
-  { title: '특허증 (냉장/냉동 장치)', description: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 (제 10-2445173호)', date: '2020년 취득', image: '/images/certificates/patent.png' },
-  { title: '상표등록증 (에이스제빵소)', description: '에이스제빵소 브랜드 상표권 등록', date: '2021년 등록', image: '/images/certificates/trademark.png' },
-  { title: '우수기술기업 인증서', description: '제과제빵 재료 유통물류 및 기술마케팅 부문 기술력 인증', date: '2019년 취득', image: '/images/certificates/tech-company.png' },
-  { title: '메인비즈 인증', description: '중소벤처기업부 경영혁신형 중소기업 인증', date: '2016년 취득', image: '/images/certificates/mainbiz.png' },
-  { title: '일터혁신 사업장', description: '노사발전재단 일터혁신 사업장 선정, 직무 분석 및 평가체계 개선 추진', date: '2023년 선정', image: '/images/certificates/workplace-innovation.png' },
-];
-
-// 핵심 가치 데이터
-const coreValues = [
-  { title: '고객 만족', subtitle: 'CUSTOMER', description: '고객의 성공이 곧 우리의 성공, 고객 만족을 최우선으로' },
-  { title: '신뢰', subtitle: 'TRUST', description: '정직한 거래와 약속 이행으로 쌓아온 15년의 신뢰' },
-  { title: '품질', subtitle: 'QUALITY', description: '엄격한 품질 관리로 최상의 제품만을 공급' },
-  { title: '성장', subtitle: 'GROWTH', description: '고객과 함께 성장하는 지속 가능한 파트너십' },
-];
 
 interface CompanyKPI {
   id: string;
@@ -58,6 +27,47 @@ interface CompanyKPI {
 export default function AboutIntroPage() {
   const yearsInBusiness = calculateYearsInBusiness();
   const [kpiData, setKpiData] = useState<CompanyKPI[]>([]);
+
+  // Company DB data with hooks
+  const { timeline: dbTimeline } = useCompanyTimeline();
+  const { certificates: dbCertificates } = useCompanyCertificates();
+  const { coreValues: dbCoreValues } = useCompanyCoreValues();
+  const { clients: dbClients } = useCompanyClients();
+
+  // Fallback data
+  const timeline = dbTimeline.length > 0 ? dbTimeline : [
+    { year: '2026', title: '신사옥 신축 및 이전 예정', desc: '하남시 감북동 소재 신사옥 신축 및 이전 예정' },
+    { year: '2025', title: '전략적 파트너십 체결', desc: '하남시 감북동 소재 신사옥 신축 및 이전 예정' },
+    { year: '2024', title: '연매출 245억 달성', desc: '지속적인 성장으로 연매출 245억원 달성' },
+    { year: '2023', title: '일터혁신 사업장 선정', desc: '노사발전재단 일터혁신 사업장으로 선정' },
+    { year: '2022', title: '물류센터 확장 이전', desc: '하남시 물류센터 확장 이전, 물류 역량 강화' },
+    { year: '2022', title: '중소기업 경영인상 수상', desc: '경기도 하남시 중소기업 경영인상 수상' },
+    { year: '2021', title: '에이스제빵소 상표권 등록', desc: '에이스제빵소 브랜드 상표권 등록' },
+    { year: '2020', title: '창립 10주년', desc: '에이스유통 창립 10주년 기념행사 개최' },
+    { year: '2020', title: '특허 취득 및 차량 증차', desc: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 취득, 배송차량 20대 증차' },
+    { year: '2019', title: '우수기술기업 인증', desc: '제과제빵 재료 유통물류 및 기술마케팅 부문 우수기술기업 인증 획득' },
+    { year: '2019', title: '매출 200억 달성', desc: '베이커리 소상공인 무료 세미나 개최, 에이스제빵소 운영 시작' },
+    { year: '2018', title: '기업인 협의회 인증', desc: '경기도 하남시 기업인 협의회 인증' },
+    { year: '2016', title: '메인비즈 인증', desc: '중소기업청 메인비즈(경영혁신형 중소기업) 인증' },
+    { year: '2015', title: '본사 사옥 신축 이전', desc: '경기도 하남시 천현동에 자체 물류센터 보유 사옥 신축' },
+    { year: '2012', title: '매출 100억 달성', desc: '물류창고 확장 이전, 연매출 100억원 달성' },
+    { year: '2010', title: '에이스유통㈜ 법인 설립', desc: '카페·베이커리 원재료 유통 사업 시작 (직원 5명)' },
+  ];
+
+  const certifications = dbCertificates.length > 0 ? dbCertificates : [
+    { title: '특허증 (냉장/냉동 장치)', description: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 (제 10-2445173호)', date: '2020년 취득', imageUrl: '/images/certificates/patent.png' },
+    { title: '상표등록증 (에이스제빵소)', description: '에이스제빵소 브랜드 상표권 등록', date: '2021년 등록', imageUrl: '/images/certificates/trademark.png' },
+    { title: '우수기술기업 인증서', description: '제과제빵 재료 유통물류 및 기술마케팅 부문 기술력 인증', date: '2019년 취득', imageUrl: '/images/certificates/tech-company.png' },
+    { title: '메인비즈 인증', description: '중소벤처기업부 경영혁신형 중소기업 인증', date: '2016년 취득', imageUrl: '/images/certificates/mainbiz.png' },
+    { title: '일터혁신 사업장', description: '노사발전재단 일터혁신 사업장 선정, 직무 분석 및 평가체계 개선 추진', date: '2023년 선정', imageUrl: '/images/certificates/workplace-innovation.png' },
+  ];
+
+  const coreValues = dbCoreValues.length > 0 ? dbCoreValues : [
+    { title: '고객 만족', subtitle: 'CUSTOMER', description: '고객의 성공이 곧 우리의 성공, 고객 만족을 최우선으로' },
+    { title: '신뢰', subtitle: 'TRUST', description: '정직한 거래와 약속 이행으로 쌓아온 15년의 신뢰' },
+    { title: '품질', subtitle: 'QUALITY', description: '엄격한 품질 관리로 최상의 제품만을 공급' },
+    { title: '성장', subtitle: 'GROWTH', description: '고객과 함께 성장하는 지속 가능한 파트너십' },
+  ];
 
   // KPI 데이터 fetch (관리자 페이지에서 수정 가능)
   useEffect(() => {
@@ -337,7 +347,7 @@ export default function AboutIntroPage() {
               <div key={index} className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A]/50 hover:shadow-xl transition-all duration-300 group">
                 <div className="aspect-[4/3] bg-gradient-to-br from-[#FAF6F1] to-white flex items-center justify-center p-2 sm:p-4 overflow-hidden">
                   <img
-                    src={cert.image}
+                    src={cert.imageUrl || ''}
                     alt={cert.title}
                     className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
                   />
@@ -361,26 +371,23 @@ export default function AboutIntroPage() {
           {/* 고객사 목록 */}
           <div className="mb-10">
             <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-[#4A4039]">
-              <li className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E8DCC8]">
-                <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
-                <span>스파필드 팥고당 입점 (하남, 고양 외 8개 지점)</span>
-              </li>
-              <li className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E8DCC8]">
-                <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
-                <span>롯데 백화점 한나식빵 입점 (롯데백화점 외 20여개 지점)</span>
-              </li>
-              <li className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E8DCC8]">
-                <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
-                <span>지하철 역사 내 더베이크 (17여개 지점)</span>
-              </li>
-              <li className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E8DCC8]">
-                <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
-                <span>곤트란쉐리에 (30여개 지점)</span>
-              </li>
-              <li className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E8DCC8] md:col-span-2 lg:col-span-2">
-                <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
-                <span>그 외 기타 개인제과 (전국 420여개 이상 거래처 보유/관리)</span>
-              </li>
+              {(dbClients.length > 0 ? dbClients : [
+                { name: '스파필드 팥고당 입점 (하남, 고양 외 8개 지점)', description: null },
+                { name: '롯데 백화점 한나식빵 입점 (롯데백화점 외 20여개 지점)', description: null },
+                { name: '지하철 역사 내 더베이크 (17여개 지점)', description: null },
+                { name: '곤트란쉐리에 (30여개 지점)', description: null },
+                { name: '그 외 기타 개인제과 (전국 420여개 이상 거래처 보유/관리)', description: null },
+              ]).map((client, index) => (
+                <li key={index} className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E8DCC8]">
+                  <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
+                  <div>
+                    <span className="font-medium">{client.name}</span>
+                    {client.description && (
+                      <p className="text-sm text-[#6B5D53] mt-1">{client.description}</p>
+                    )}
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
 

@@ -3,6 +3,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
+import {
+  useCompanyContent,
+  useCompanyTimeline,
+  useCompanyCoreValues,
+} from '@/hooks/company';
 
 interface Category {
   id: string;
@@ -70,17 +75,24 @@ const categoryLabels: Record<string, string> = {
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('grain');
   const [scrollY, setScrollY] = useState(0);
-  const [isVisible, setIsVisible] = useState({});
+  const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
   const [currentSlide, setCurrentSlide] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const sectionsRef = useRef([]);
+  const sectionsRef = useRef<(HTMLElement | null)[]>([]);
 
   // DB data states
   const [categories, setCategories] = useState<Category[]>([]);
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [news, setNews] = useState<NewsItem[]>([]);
   const [dataLoading, setDataLoading] = useState(true);
+
+  // Company content from DB
+  const { content: heroContent } = useCompanyContent('hero_section');
+  const { content: missionContent } = useCompanyContent('mission_vision');
+  const { content: ceoContent } = useCompanyContent('ceo_message');
+  const { timeline } = useCompanyTimeline();
+  const { coreValues } = useCompanyCoreValues();
 
   // Parallax scroll effect
   useEffect(() => {
@@ -400,39 +412,52 @@ export default function HomePage() {
 
               {/* Main Title - Korean */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 sm:mb-8 animate-fadeInUp animation-delay-200">
-                <span className="block mb-1 sm:mb-2">최상의 원재료로</span>
-                <span className="block text-white/90">완성하는 <span className="text-[#D4A574]">프리미엄</span> 베이킹</span>
+                <span className="block mb-1 sm:mb-2">
+                  {heroContent?.data?.mainTitle || '최상의 원재료로'}
+                </span>
+                <span
+                  className="block text-white/90"
+                  dangerouslySetInnerHTML={{
+                    __html: heroContent?.data?.subTitle || '완성하는 <span class="text-[#D4A574]">프리미엄</span> 베이킹'
+                  }}
+                />
               </h1>
 
               {/* Decorative Line */}
               <div className="flex items-center gap-4 sm:gap-6 mb-8 sm:mb-10 animate-fadeInUp animation-delay-400">
                 <div className="w-12 sm:w-20 h-[1px] bg-gradient-to-r from-[#D4A574] to-transparent"></div>
-                <span className="italic text-white/60 text-xs sm:text-sm tracking-wider">Since 2010</span>
+                <span className="italic text-white/60 text-xs sm:text-sm tracking-wider">
+                  {heroContent?.data?.since || 'Since 2010'}
+                </span>
                 <div className="w-12 sm:w-20 h-[1px] bg-gradient-to-l from-[#D4A574] to-transparent"></div>
               </div>
 
               {/* Description */}
               <p className="text-base sm:text-lg text-white/80 leading-relaxed mb-8 sm:mb-12 max-w-lg animate-fadeInUp animation-delay-400 font-light">
-                15년간 축적된 노하우와 엄격한 품질 관리로<br className="hidden sm:block" />
-                최고의 베이커리 원재료를 공급합니다.
+                {heroContent?.data?.description || (
+                  <>
+                    15년간 축적된 노하우와 엄격한 품질 관리로<br className="hidden sm:block" />
+                    최고의 베이커리 원재료를 공급합니다.
+                  </>
+                )}
               </p>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 animate-fadeInUp animation-delay-600">
                 <Link
-                  href="/products/all"
+                  href={heroContent?.data?.cta1Link || '/products/all'}
                   className="group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-3 sm:py-4 bg-[#B8956A] text-white font-semibold tracking-wide hover:bg-[#A67C52] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 rounded-lg text-sm sm:text-base"
                 >
-                  제품 보기
+                  {heroContent?.data?.cta1Text || '제품 보기'}
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
                 <Link
-                  href="/about/intro"
+                  href={heroContent?.data?.cta2Link || '/about/intro'}
                   className="group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-3 sm:py-4 border border-white/40 text-white font-semibold tracking-wide hover:bg-white/10 backdrop-blur-sm transition-all duration-300 rounded-lg text-sm sm:text-base"
                 >
-                  회사 소개
+                  {heroContent?.data?.cta2Text || '회사 소개'}
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -463,10 +488,10 @@ export default function HomePage() {
           <div className={`text-center mb-12 sm:mb-20 ${isVisible.mission ? 'animate-fadeInUp' : 'opacity-0'}`}>
             <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">Our Mission</span>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#4A4039] mb-4 sm:mb-6 px-2">
-              최고의 품질로 성공을 만들어갑니다
+              {missionContent?.data?.title || '최고의 품질로 성공을 만들어갑니다'}
             </h2>
             <p className="text-sm sm:text-lg text-[#6B5D53] max-w-2xl mx-auto px-2">
-              15년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다
+              {missionContent?.data?.description || '15년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다'}
             </p>
           </div>
 
@@ -540,39 +565,39 @@ export default function HomePage() {
 
           {/* Core Values - Card Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
-            {[
+            {(coreValues.length > 0 ? coreValues : [
               {
                 title: '품질 최우선',
                 subtitle: 'Quality First',
-                desc: '엄격한 품질관리 시스템으로 최고의 제품만을 선별합니다',
-                bgImage: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&h=400&fit=crop'
+                description: '엄격한 품질관리 시스템으로 최고의 제품만을 선별합니다',
+                imageUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&h=400&fit=crop'
               },
               {
                 title: '고객 중심',
                 subtitle: 'Customer Focus',
-                desc: '고객의 니즈를 정확히 파악하여 맞춤형 솔루션을 제공합니다',
-                bgImage: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=600&h=400&fit=crop'
+                description: '고객의 니즈를 정확히 파악하여 맞춤형 솔루션을 제공합니다',
+                imageUrl: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=600&h=400&fit=crop'
               },
               {
                 title: '전문성',
                 subtitle: 'Expertise',
-                desc: '15년간 축적된 노하우와 전문 지식을 바탕으로 서비스합니다',
-                bgImage: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&h=400&fit=crop'
+                description: '15년간 축적된 노하우와 전문 지식을 바탕으로 서비스합니다',
+                imageUrl: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&h=400&fit=crop'
               },
               {
                 title: '혁신 추구',
                 subtitle: 'Innovation',
-                desc: '시장 트렌드를 선도하며 새로운 가치를 창출합니다',
-                bgImage: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&h=400&fit=crop'
+                description: '시장 트렌드를 선도하며 새로운 가치를 창출합니다',
+                imageUrl: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&h=400&fit=crop'
               }
-            ].map((value, index) => (
+            ]).map((value, index) => (
               <div
                 key={index}
                 className={`group relative overflow-hidden rounded-2xl shadow-xl cursor-pointer ${isVisible.mission ? `animate-fadeInScale animation-delay-${index * 100}` : 'opacity-0'}`}
               >
                 {/* Background Image */}
                 <div className="absolute inset-0">
-                  <img src={value.bgImage} alt={value.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <img src={value.imageUrl || ''} alt={value.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                 </div>
 
@@ -580,7 +605,7 @@ export default function HomePage() {
                 <div className="relative p-4 sm:p-8 h-48 sm:h-80 flex flex-col justify-end">
                   <span className="text-[#FFE5CC] text-[10px] sm:text-xs font-medium tracking-wider uppercase mb-1 sm:mb-2">{value.subtitle}</span>
                   <h3 className="text-white text-base sm:text-2xl font-bold mb-1 sm:mb-3">{value.title}</h3>
-                  <p className="text-white/90 text-xs sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-none">{value.desc}</p>
+                  <p className="text-white/90 text-xs sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-none">{value.description}</p>
                 </div>
 
                 {/* Hover Overlay - Hidden on mobile */}
@@ -591,7 +616,7 @@ export default function HomePage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <p className="text-lg font-medium">{value.desc}</p>
+                    <p className="text-lg font-medium">{value.description}</p>
                   </div>
                 </div>
               </div>
@@ -634,72 +659,70 @@ export default function HomePage() {
 
               {/* Timeline Items */}
               <div className="space-y-8 sm:space-y-24">
-                {[
+                {(timeline.length > 0 ? timeline.slice(0, 5) : [
                   {
                     year: '2010',
                     title: '에이스유통㈜ 창립',
                     desc: '직원 5명으로 카페·베이커리 원재료 유통 사업 시작',
-                    image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=800&h=600&fit=crop',
-                    position: 'left'
+                    imageUrl: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=800&h=600&fit=crop',
                   },
                   {
                     year: '2015',
                     title: '본사 사옥 신축 이전',
                     desc: '경기도 하남시 천현동에 자체 물류센터 보유 사옥 신축',
-                    image: '/사업장.png',
-                    position: 'right'
+                    imageUrl: '/사업장.png',
                   },
                   {
                     year: '2019',
                     title: '우수기술기업 인증',
                     desc: '제과제빵 재료 유통물류 및 기술마케팅 부문 우수기술기업 인증 획득',
-                    image: '/우수기술기업 인증서.png',
-                    position: 'left'
+                    imageUrl: '/우수기술기업 인증서.png',
                   },
                   {
                     year: '2020',
                     title: '창립 10주년 & 특허 취득',
                     desc: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 취득',
-                    image: '/특허증.png',
-                    position: 'right'
+                    imageUrl: '/특허증.png',
                   },
                   {
                     year: '2025',
                     title: '전략적 파트너십 체결',
                     desc: 'IP 굿즈 및 에듀 콘텐츠 기업 ㈜토이트론과 전략적 계약 체결',
-                    image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop',
-                    position: 'left'
+                    imageUrl: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop',
                   }
-                ].map((item, index) => (
-                  <div key={index} className={`relative flex items-center ${item.position === 'right' ? 'lg:flex-row-reverse' : ''}`}>
-                    {/* Year Badge */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">
-                      {item.year}
-                    </div>
+                ]).map((item, index) => {
+                  const position = index % 2 === 0 ? 'left' : 'right';
+                  return (
+                    <div key={index} className={`relative flex items-center ${position === 'right' ? 'lg:flex-row-reverse' : ''}`}>
+                      {/* Year Badge */}
+                      <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">
+                        {item.year}
+                      </div>
 
-                    {/* Content Card */}
-                    <div className={`w-full lg:w-5/12 ${item.position === 'right' ? 'lg:ml-auto lg:pl-12' : 'lg:mr-auto lg:pr-12'}`}>
-                      <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
-                        {/* Image */}
-                        <div className="h-40 sm:h-56 overflow-hidden bg-white flex items-center justify-center p-4">
-                          <img
-                            src={item.image}
-                            alt={item.title}
-                            className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                          />
-                        </div>
-                        {/* Content */}
-                        <div className="p-4 sm:p-8">
-                          <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">
-                            {item.year}
-                          </span>
-                          <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">{item.title}</h3>
-                          <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">{item.desc}</p>
+                      {/* Content Card */}
+                      <div className={`w-full lg:w-5/12 ${position === 'right' ? 'lg:ml-auto lg:pl-12' : 'lg:mr-auto lg:pr-12'}`}>
+                        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
+                          {/* Image */}
+                          <div className="h-40 sm:h-56 overflow-hidden bg-white flex items-center justify-center p-4">
+                            <img
+                              src={item.imageUrl || ''}
+                              alt={item.title}
+                              className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                            />
+                          </div>
+                          {/* Content */}
+                          <div className="p-4 sm:p-8">
+                            <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">
+                              {item.year}
+                            </span>
+                            <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">{item.title}</h3>
+                            <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">{item.desc}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -763,38 +786,54 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
             <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CEO MESSAGE</span>
-            <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-6 sm:mb-8 leading-tight">
-              좋은 상품을 정직하게 유통하는<br />
-              <span className="text-[#B8956A]">신뢰받는 파트너</span>가 되겠습니다
-            </h2>
+            <h2
+              className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-6 sm:mb-8 leading-tight"
+              dangerouslySetInnerHTML={{
+                __html: ceoContent?.data?.title || '좋은 상품을 정직하게 유통하는<br /><span class="text-[#B8956A]">신뢰받는 파트너</span>가 되겠습니다'
+              }}
+            />
           </div>
 
           <div className="space-y-4 sm:space-y-6 text-sm sm:text-base text-[#6B5D53] leading-relaxed text-center max-w-3xl mx-auto">
-            <p>
-              에이스유통주식회사는 카페·베이커리 산업을 위한 프리미엄 원재료 공급, 전문 소싱,
-              콜드체인 물류, 품질관리(QC)를 기반으로 성장해온 F&B B2B 솔루션 기업입니다.
-            </p>
-            <p>
-              2010년 설립 이후 자체 물류센터와 체계적인 유통 인프라를 구축하며 국내 프랜차이즈,
-              베이커리 카페, 전문 제과점 등 다양한 파트너에게 신뢰성 높은 제품을 안정적으로 공급해왔습니다.
-            </p>
-            <p>
-              당사는 원재료의 선별력과 정교한 품질관리, 신속한 공급망 운영을 통해 고객이 필요로 하는
-              제품을 정확하고 안정적으로 전달하는 데 집중해 왔으며, 업계에서 견고한 파트너십을 확보해 왔습니다.
-            </p>
-            <p className="font-medium text-[#4A4039]">
-              에이스유통은 앞으로도 고품질 원재료와 안정적인 공급 체계를 중심으로 고객의 비즈니스를
-              확실하게 지원하는 신뢰받는 유통 파트너로 자리매김하겠습니다.
-            </p>
+            {ceoContent?.data?.paragraphs && ceoContent.data.paragraphs.length > 0 ? (
+              ceoContent.data.paragraphs.map((paragraph: string, index: number) => (
+                <p key={index} className={index === ceoContent.data.paragraphs.length - 1 ? 'font-medium text-[#4A4039]' : ''}>
+                  {paragraph}
+                </p>
+              ))
+            ) : (
+              <>
+                <p>
+                  에이스유통주식회사는 카페·베이커리 산업을 위한 프리미엄 원재료 공급, 전문 소싱,
+                  콜드체인 물류, 품질관리(QC)를 기반으로 성장해온 F&B B2B 솔루션 기업입니다.
+                </p>
+                <p>
+                  2010년 설립 이후 자체 물류센터와 체계적인 유통 인프라를 구축하며 국내 프랜차이즈,
+                  베이커리 카페, 전문 제과점 등 다양한 파트너에게 신뢰성 높은 제품을 안정적으로 공급해왔습니다.
+                </p>
+                <p>
+                  당사는 원재료의 선별력과 정교한 품질관리, 신속한 공급망 운영을 통해 고객이 필요로 하는
+                  제품을 정확하고 안정적으로 전달하는 데 집중해 왔으며, 업계에서 견고한 파트너십을 확보해 왔습니다.
+                </p>
+                <p className="font-medium text-[#4A4039]">
+                  에이스유통은 앞으로도 고품질 원재료와 안정적인 공급 체계를 중심으로 고객의 비즈니스를
+                  확실하게 지원하는 신뢰받는 유통 파트너로 자리매김하겠습니다.
+                </p>
+              </>
+            )}
           </div>
 
           {/* CEO Signature */}
           <div className="mt-12 pt-8 border-t border-[#E8DCC8] text-center">
-            <p className="text-[#B8956A] font-bold text-lg">에이스유통주식회사</p>
+            <p className="text-[#B8956A] font-bold text-lg">
+              {ceoContent?.data?.company || '에이스유통주식회사'}
+            </p>
             <div className="flex items-center justify-center gap-3 mt-1">
-              <p className="text-[#4A4039] font-bold text-xl">대표이사 안종일</p>
+              <p className="text-[#4A4039] font-bold text-xl">
+                {ceoContent?.data?.ceo || '대표이사 안종일'}
+              </p>
               <Image
-                src="/sign.png"
+                src={ceoContent?.data?.signatureUrl || '/sign.png'}
                 alt="대표이사 서명"
                 width={80}
                 height={32}
