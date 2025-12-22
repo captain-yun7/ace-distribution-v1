@@ -646,21 +646,21 @@ export default function HomePage() {
                     year: '2015',
                     title: '본사 사옥 신축 이전',
                     desc: '경기도 하남시 천현동에 자체 물류센터 보유 사옥 신축',
-                    image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&h=600&fit=crop',
+                    image: '/사업장.png',
                     position: 'right'
                   },
                   {
                     year: '2019',
                     title: '우수기술기업 인증',
                     desc: '제과제빵 재료 유통물류 및 기술마케팅 부문 우수기술기업 인증 획득',
-                    image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=600&fit=crop',
+                    image: '/우수기술기업 인증서.png',
                     position: 'left'
                   },
                   {
                     year: '2020',
                     title: '창립 10주년 & 특허 취득',
                     desc: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 취득',
-                    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&h=600&fit=crop',
+                    image: '/특허증.png',
                     position: 'right'
                   },
                   {
@@ -681,11 +681,11 @@ export default function HomePage() {
                     <div className={`w-full lg:w-5/12 ${item.position === 'right' ? 'lg:ml-auto lg:pl-12' : 'lg:mr-auto lg:pr-12'}`}>
                       <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
                         {/* Image */}
-                        <div className="h-40 sm:h-56 overflow-hidden">
+                        <div className="h-40 sm:h-56 overflow-hidden bg-white flex items-center justify-center p-4">
                           <img
                             src={item.image}
                             alt={item.title}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
                           />
                         </div>
                         {/* Content */}
