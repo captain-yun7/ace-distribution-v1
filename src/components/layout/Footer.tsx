@@ -7,7 +7,7 @@ export default function Footer() {
         {/* Footer Top */}
         <div className="grid md:grid-cols-3 gap-8 sm:gap-12 pb-8 sm:pb-12 border-b border-white/10">
           {/* Logo & Company Info */}
-          <div>
+          <div className="md:justify-self-start">
             <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
               <span className="text-2xl sm:text-3xl font-black text-white">ACE</span>
               <div className="flex flex-col">
@@ -23,7 +23,7 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className="md:justify-self-center md:ml-12 lg:ml-16">
             <h4 className="text-sm sm:text-base text-white font-bold mb-3 sm:mb-4">Contact</h4>
             <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/70">
               <p className="flex items-start gap-2">
@@ -55,7 +55,7 @@ export default function Footer() {
           </div>
 
           {/* Business Info */}
-          <div>
+          <div className="md:justify-self-end md:text-right">
             <h4 className="text-sm sm:text-base text-white font-bold mb-3 sm:mb-4">Business Info</h4>
             <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-white/70">
               <p>대표이사 : 안종일</p>
