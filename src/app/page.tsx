@@ -703,13 +703,15 @@ export default function HomePage() {
                       <div className={`w-full lg:w-5/12 ${position === 'right' ? 'lg:ml-auto lg:pl-12' : 'lg:mr-auto lg:pr-12'}`}>
                         <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
                           {/* Image */}
-                          <div className="h-40 sm:h-56 overflow-hidden bg-white flex items-center justify-center p-4">
-                            <img
-                              src={item.imageUrl || ''}
-                              alt={item.title}
-                              className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                            />
-                          </div>
+                          {item.imageUrl && (
+                            <div className="h-40 sm:h-56 overflow-hidden bg-white flex items-center justify-center p-4">
+                              <img
+                                src={item.imageUrl}
+                                alt={item.title}
+                                className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                              />
+                            </div>
+                          )}
                           {/* Content */}
                           <div className="p-4 sm:p-8">
                             <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">
@@ -795,32 +797,28 @@ export default function HomePage() {
           </div>
 
           <div className="space-y-4 sm:space-y-6 text-sm sm:text-base text-[#6B5D53] leading-relaxed text-center max-w-3xl mx-auto">
-            {ceoContent?.data?.paragraphs && ceoContent.data.paragraphs.length > 0 ? (
-              ceoContent.data.paragraphs.map((paragraph: string, index: number) => (
-                <p key={index} className={index === ceoContent.data.paragraphs.length - 1 ? 'font-medium text-[#4A4039]' : ''}>
-                  {paragraph}
-                </p>
-              ))
-            ) : (
-              <>
-                <p>
-                  에이스유통주식회사는 카페·베이커리 산업을 위한 프리미엄 원재료 공급, 전문 소싱,
-                  콜드체인 물류, 품질관리(QC)를 기반으로 성장해온 F&B B2B 솔루션 기업입니다.
-                </p>
-                <p>
-                  2010년 설립 이후 자체 물류센터와 체계적인 유통 인프라를 구축하며 국내 프랜차이즈,
-                  베이커리 카페, 전문 제과점 등 다양한 파트너에게 신뢰성 높은 제품을 안정적으로 공급해왔습니다.
-                </p>
-                <p>
-                  당사는 원재료의 선별력과 정교한 품질관리, 신속한 공급망 운영을 통해 고객이 필요로 하는
-                  제품을 정확하고 안정적으로 전달하는 데 집중해 왔으며, 업계에서 견고한 파트너십을 확보해 왔습니다.
-                </p>
-                <p className="font-medium text-[#4A4039]">
-                  에이스유통은 앞으로도 고품질 원재료와 안정적인 공급 체계를 중심으로 고객의 비즈니스를
-                  확실하게 지원하는 신뢰받는 유통 파트너로 자리매김하겠습니다.
-                </p>
-              </>
-            )}
+            <p>
+              에이스유통주식회사는 카페·베이커리 산업을 위한<br className="hidden sm:block" />
+              프리미엄 원재료 공급, 전문 소싱, 콜드체인 물류,<br className="hidden sm:block" />
+              품질관리(QC)를 기반으로 성장해온 F&B B2B 솔루션 기업입니다.
+            </p>
+            <p>
+              2010년 설립 이후 자체 물류센터와<br className="hidden sm:block" />
+              체계적인 유통 인프라를 구축하며 국내 프랜차이즈,<br className="hidden sm:block" />
+              베이커리 카페, 전문 제과점 등 다양한 파트너에게<br className="hidden sm:block" />
+              신뢰성 높은 제품을 안정적으로 공급해왔습니다.
+            </p>
+            <p>
+              당사는 원재료의 선별력과 정교한 품질관리,<br className="hidden sm:block" />
+              신속한 공급망 운영을 통해 고객이 필요로 하는 제품을<br className="hidden sm:block" />
+              정확하고 안정적으로 전달하는 데 집중해 왔으며,<br className="hidden sm:block" />
+              업계에서 견고한 파트너십을 확보해 왔습니다.
+            </p>
+            <p className="font-medium text-[#4A4039]">
+              에이스유통은 앞으로도 고품질 원재료와<br className="hidden sm:block" />
+              안정적인 공급 체계를 중심으로 고객의 비즈니스를<br className="hidden sm:block" />
+              확실하게 지원하는 신뢰받는 유통 파트너로 자리매김하겠습니다.
+            </p>
           </div>
 
           {/* CEO Signature */}
