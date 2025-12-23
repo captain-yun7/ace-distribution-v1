@@ -609,7 +609,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Hover Overlay - Hidden on mobile */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#B8956A]/90 to-[#B8956A]/40 opacity-0 group-hover:opacity-100 transition-all duration-500 hidden sm:flex items-center justify-center">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-[#B8956A]/50 opacity-0 group-hover:opacity-100 transition-all duration-500 hidden sm:flex items-center justify-center">
                   <div className="text-center text-white p-8">
                     <div className="w-16 h-16 mx-auto mb-4 border-2 border-white rounded-full flex items-center justify-center">
                       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
