@@ -113,7 +113,7 @@ export default function ProductsAllPage() {
 
             {/* Category Tab Menu */}
             <div className="mb-8 sm:mb-12">
-              <div className="flex overflow-x-auto pb-2 sm:flex-wrap sm:justify-center gap-2 sm:gap-3 scrollbar-hide">
+              <div className="flex overflow-x-auto pb-2 sm:flex-wrap sm:justify-start gap-2 sm:gap-3 scrollbar-hide">
                 <button
                   onClick={() => setActiveCategory('all')}
                   className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 whitespace-nowrap flex-shrink-0 ${

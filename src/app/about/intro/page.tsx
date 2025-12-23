@@ -373,8 +373,8 @@ export default function AboutIntroPage() {
           </div>
 
           {/* 고객사 목록 */}
-          <div className="mb-10">
-            <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-[#4A4039]">
+          <div className="mb-10 overflow-x-auto pb-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 min-w-max lg:min-w-0">
               {(dbClients.length > 0 ? dbClients : [
                 { name: '스파필드 팥고당 입점 (하남, 고양 외 8개 지점)', description: null },
                 { name: '롯데 백화점 한나식빵 입점 (롯데백화점 외 20여개 지점)', description: null },
@@ -382,17 +382,24 @@ export default function AboutIntroPage() {
                 { name: '곤트란쉐리에 (30여개 지점)', description: null },
                 { name: '그 외 기타 개인제과 (전국 420여개 이상 거래처 보유/관리)', description: null },
               ]).map((client, index) => (
-                <li key={index} className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[#E8DCC8]">
-                  <span className="w-2 h-2 bg-[#B8956A] rounded-full mt-2 flex-shrink-0"></span>
-                  <div>
-                    <span className="font-medium">{client.name}</span>
+                <div key={index} className="group bg-gradient-to-br from-white to-[#FAF6F1] rounded-2xl p-6 border-2 border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 min-w-[240px] lg:min-w-0">
+                  <div className="flex flex-col h-full">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                    </div>
+                    <p className="text-sm font-bold text-[#4A4039] leading-relaxed group-hover:text-[#B8956A] transition-colors">
+                      {client.name.split('(')[0]}<br />
+                      {client.name.includes('(') && `(${client.name.split('(')[1]}`}
+                    </p>
                     {client.description && (
-                      <p className="text-sm text-[#6B5D53] mt-1">{client.description}</p>
+                      <p className="text-xs text-[#6B5D53] mt-2">{client.description}</p>
                     )}
                   </div>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
           <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-8 border border-[#E8DCC8]">
