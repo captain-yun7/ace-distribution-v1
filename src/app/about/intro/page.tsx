@@ -353,7 +353,7 @@ export default function AboutIntroPage() {
                   <img
                     src={cert.imageUrl || ''}
                     alt={cert.title}
-                    className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                    className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300 border border-black"
                   />
                 </div>
                 <div className="p-3 sm:p-6">
