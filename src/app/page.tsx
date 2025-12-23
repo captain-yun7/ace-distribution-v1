@@ -210,7 +210,7 @@ export default function HomePage() {
                 { title: '회사 소개', items: [
                   { name: '기업소개', href: '/about/intro', desc: '에이스유통을 소개합니다' },
                   { name: '기업 연혁', href: '/about/history', desc: '30년의 발자취' },
-                  { name: '경영철학', href: '/about/philosophy', desc: '우리의 가치와 비전' },
+                  { name: '경영 철학', href: '/about/philosophy', desc: '우리의 가치와 비전' },
                   { name: '사업장 소개', href: '/about/business', desc: '전국 물류 네트워크' },
                   { name: '조직 및 인증서', href: '/about/certification', desc: '신뢰의 증명' }
                 ]},
@@ -304,7 +304,7 @@ export default function HomePage() {
                 { title: '회사 소개', items: [
                   { name: '기업소개', href: '/about/intro' },
                   { name: '기업 연혁', href: '/about/intro#history' },
-                  { name: '경영철학', href: '/about/intro#philosophy' },
+                  { name: '경영 철학', href: '/about/intro#philosophy' },
                   { name: '사업장 소개', href: '/about/intro#business' },
                   { name: '조직 및 인증서', href: '/about/intro#certification' }
                 ]},

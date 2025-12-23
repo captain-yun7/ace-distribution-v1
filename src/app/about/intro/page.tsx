@@ -119,7 +119,7 @@ export default function AboutIntroPage() {
             {[
               { id: 'overview', label: '기업 개요' },
               { id: 'history', label: '기업 연혁' },
-              { id: 'philosophy', label: '경영철학' },
+              { id: 'philosophy', label: '경영 철학' },
               { id: 'business', label: '사업장 소개' },
               { id: 'certification', label: '조직 및 인증서' },
             ].map((tab) => (
@@ -243,12 +243,12 @@ export default function AboutIntroPage() {
         </div>
       </section>
 
-      {/* Section 3: 경영철학 */}
+      {/* Section 3: 경영 철학 */}
       <section id="philosophy" className="py-12 sm:py-20 lg:py-32 bg-white scroll-mt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-16">
             <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">PHILOSOPHY</span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">경영철학</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">경영 철학</h2>
             <p className="text-sm sm:text-base text-[#6B5D53]">에이스유통이 추구하는 가치</p>
           </div>
 
