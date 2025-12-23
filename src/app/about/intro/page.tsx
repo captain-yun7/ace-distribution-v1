@@ -148,13 +148,15 @@ export default function AboutIntroPage() {
               </h2>
               <div className="space-y-6 text-[#6B5D53] leading-relaxed">
                 <p>
-                  에이스유통주식회사는 카페·베이커리 산업을 위한 프리미엄 원재료 공급,
-                  전문 소싱, 콜드체인 물류, 품질관리(QC)를 기반으로 성장해온
+                  에이스유통주식회사는 카페·베이커리 산업을 위한<br className="hidden sm:block" />
+                  프리미엄 원재료 공급, 전문 소싱, 콜드체인 물류,<br className="hidden sm:block" />
+                  품질관리(QC)를 기반으로 성장해온
                   <strong className="text-[#4A4039]"> F&B B2B 솔루션 기업</strong>입니다.
                 </p>
                 <p>
-                  2010년 설립 이후 자체 물류센터와 체계적인 유통 인프라를 구축하며
-                  국내 프랜차이즈, 베이커리 카페, 전문 제과점 등 다양한 파트너에게
+                  2010년 설립 이후 자체 물류센터와<br className="hidden sm:block" />
+                  체계적인 유통 인프라를 구축하며 국내 프랜차이즈,<br className="hidden sm:block" />
+                  베이커리 카페, 전문 제과점 등 다양한 파트너에게<br className="hidden sm:block" />
                   신뢰성 높은 제품을 안정적으로 공급해왔습니다.
                 </p>
               </div>
@@ -258,7 +260,8 @@ export default function AboutIntroPage() {
                 고객·상품·임직원이<br />함께 성장하는 기업
               </h3>
               <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">
-                고객 만족을 통해 새로운 가치를 만들고, 그 성과를 바탕으로 임직원이 행복하게 일할 수 있는
+                고객 만족을 통해 새로운 가치를 만들고,<br className="hidden sm:block" />
+                그 성과를 바탕으로 임직원이 행복하게 일할 수 있는<br className="hidden sm:block" />
                 기업 문화를 구축하며, 지속 가능한 F&B 생태계를 선도합니다.
               </p>
             </div>
@@ -268,7 +271,8 @@ export default function AboutIntroPage() {
                 좋은 상품을 정확하게,<br />정직하게 전달
               </h3>
               <p className="text-sm sm:text-base text-white/80 leading-relaxed">
-                고객에게 신뢰할 수 있는 가치를 제공합니다. 편리하고 유용한 제품을 안정적으로 공급함으로써
+                고객에게 신뢰할 수 있는 가치를 제공합니다.<br className="hidden sm:block" />
+                편리하고 유용한 제품을 안정적으로 공급함으로써<br className="hidden sm:block" />
                 고객의 성장과 일상의 품질 향상에 기여합니다.
               </p>
             </div>
