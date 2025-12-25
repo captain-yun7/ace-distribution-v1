@@ -63,10 +63,10 @@ export default function AboutIntroPage() {
   ];
 
   const coreValues = dbCoreValues.length > 0 ? dbCoreValues : [
-    { title: '고객 만족', subtitle: 'CUSTOMER', description: '고객의 성공이 곧 우리의 성공, 고객 만족을 최우선으로' },
-    { title: '신뢰', subtitle: 'TRUST', description: '정직한 거래와 약속 이행으로 쌓아온 15년의 신뢰' },
-    { title: '품질', subtitle: 'QUALITY', description: '엄격한 품질 관리로 최상의 제품만을 공급' },
-    { title: '성장', subtitle: 'GROWTH', description: '고객과 함께 성장하는 지속 가능한 파트너십' },
+    { title: '고객 만족', subtitle: 'CUSTOMER', description: '고객의 성공이 곧 우리의 성공\n고객 만족을 최우선으로' },
+    { title: '신뢰', subtitle: 'TRUST', description: '정직한 거래와 약속 이행으로\n쌓아온 15년의 신뢰' },
+    { title: '품질', subtitle: 'QUALITY', description: '엄격한 품질 관리로\n최상의 제품만을 공급' },
+    { title: '성장', subtitle: 'GROWTH', description: '고객과 함께 성장하는\n지속 가능한 파트너십' },
   ];
 
   // KPI 데이터 fetch (관리자 페이지에서 수정 가능)
@@ -188,7 +188,7 @@ export default function AboutIntroPage() {
           </div>
 
           {/* Business KPI */}
-          <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12">
+          <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 border border-[#E8DCC8]">
             <div className="text-center mb-8 sm:mb-12">
               <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">BUSINESS OVERVIEW</span>
               <h3 className="text-xl sm:text-3xl font-bold text-[#4A4039]">사업 현황</h3>
@@ -196,9 +196,9 @@ export default function AboutIntroPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
               {[
                 { label: '연매출', value: getKPIValue('revenue', defaultKPI.revenue) },
-                { label: '직원수', value: getKPIValue('employees', defaultKPI.employees) },
-                { label: '주요 고객수', value: getKPIValue('clients', defaultKPI.clients) },
-                { label: '배송차량', value: getKPIValue('deliveryVehicles', defaultKPI.deliveryVehicles) },
+                { label: '직원 수', value: getKPIValue('employees', defaultKPI.employees) },
+                { label: '주요 고객 수', value: getKPIValue('clients', defaultKPI.clients) },
+                { label: '배송 차량', value: getKPIValue('deliveryVehicles', defaultKPI.deliveryVehicles) },
               ].map((item, index) => (
                 <div key={index} className="text-center">
                   <p className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#B8956A] mb-1 sm:mb-2">{item.value}</p>
@@ -284,7 +284,7 @@ export default function AboutIntroPage() {
               <div key={index} className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 text-center border border-[#E8DCC8] hover:shadow-xl hover:border-[#B8956A]/30 transition-all duration-300">
                 <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-1">{value.title}</h3>
                 <p className="text-xs sm:text-sm text-[#B8956A] font-medium mb-2 sm:mb-3">{value.subtitle}</p>
-                <p className="text-xs sm:text-base text-[#6B5D53]">{value.description}</p>
+                <p className="text-xs sm:text-base text-[#6B5D53] whitespace-pre-line">{value.description}</p>
               </div>
             ))}
           </div>
@@ -312,9 +312,9 @@ export default function AboutIntroPage() {
           </div>
 
           <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 border border-[#E8DCC8]">
-            <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-4 sm:mb-6">본사 / 물류센터</h3>
-            <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
-              <div className="text-sm sm:text-base">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
+              <div className="text-sm sm:text-base text-center">
+                <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-4 sm:mb-6">본사 / 물류센터</h3>
                 <p className="text-[#6B5D53] mb-3 sm:mb-4">
                   <strong className="text-[#4A4039]">주소:</strong> 경기도 하남시 천현동 520-2
                 </p>

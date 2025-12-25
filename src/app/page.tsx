@@ -56,7 +56,7 @@ const heroSlides = [
     alt: '프리미엄 베이커리'
   },
   {
-    image: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=3000&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=3000&auto=format&fit=crop',
     alt: '신선한 빵'
   },
   {
