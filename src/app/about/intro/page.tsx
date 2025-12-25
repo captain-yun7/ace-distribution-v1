@@ -55,11 +55,11 @@ export default function AboutIntroPage() {
   ];
 
   const certifications = dbCertificates.length > 0 ? dbCertificates : [
-    { title: '특허증 (냉장/냉동 장치)', description: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 (제 10-2445173호)', date: '2020년 취득', imageUrl: '/images/certificates/patent.png' },
+    { title: '특허증 (냉장/냉동 장치)', description: '제과제빵류 운반 및 보관용\n냉장/냉동장치 특허 (제 10-2445173호)', date: '2020년 취득', imageUrl: '/images/certificates/patent.png' },
     { title: '상표등록증 (에이스제빵소)', description: '에이스제빵소 브랜드 상표권 등록', date: '2021년 등록', imageUrl: '/images/certificates/trademark.png' },
-    { title: '우수기술기업 인증서', description: '제과제빵 재료 유통물류 및 기술마케팅 부문 기술력 인증', date: '2019년 취득', imageUrl: '/images/certificates/tech-company.png' },
+    { title: '우수기술기업 인증서', description: '제과제빵 재료 유통물류 및\n기술마케팅 부문 기술력 인증', date: '2019년 취득', imageUrl: '/images/certificates/tech-company.png' },
     { title: '메인비즈 인증', description: '중소벤처기업부 경영혁신형 중소기업 인증', date: '2016년 취득', imageUrl: '/images/certificates/mainbiz.png' },
-    { title: '일터혁신 사업장', description: '노사발전재단 일터혁신 사업장 선정, 직무 분석 및 평가체계 개선 추진', date: '2023년 선정', imageUrl: '/images/certificates/workplace-innovation.png' },
+    { title: '일터혁신 사업장', description: '노사발전재단 일터혁신 사업장 선정\n직무 분석 및 평가체계 개선 추진', date: '2023년 선정', imageUrl: '/images/certificates/workplace-innovation.png' },
   ];
 
   const coreValues = dbCoreValues.length > 0 ? dbCoreValues : [
@@ -358,7 +358,7 @@ export default function AboutIntroPage() {
                 </div>
                 <div className="p-3 sm:p-6 flex flex-col flex-grow">
                   <h3 className="text-sm sm:text-lg font-bold text-[#4A4039] mb-1 sm:mb-2 group-hover:text-[#B8956A] transition-colors line-clamp-1">{cert.title}</h3>
-                  <p className="text-[#6B5D53] text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2 flex-grow">{cert.description}</p>
+                  <p className="text-[#6B5D53] text-xs sm:text-sm mb-2 sm:mb-3 flex-grow whitespace-pre-line">{cert.description}</p>
                   <span className="text-xs sm:text-sm text-[#B8956A] font-medium mt-auto">{cert.date}</span>
                 </div>
               </div>
