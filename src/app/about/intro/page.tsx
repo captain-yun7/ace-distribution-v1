@@ -348,7 +348,7 @@ export default function AboutIntroPage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 mb-12 sm:mb-20">
             {certifications.map((cert, index) => (
-              <div key={index} className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A]/50 hover:shadow-xl transition-all duration-300 group">
+              <div key={index} className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A]/50 hover:shadow-xl transition-all duration-300 group flex flex-col">
                 <div className="aspect-[4/3] bg-gradient-to-br from-[#FAF6F1] to-white flex items-center justify-center p-2 sm:p-4 overflow-hidden">
                   <img
                     src={cert.imageUrl || ''}
@@ -356,10 +356,10 @@ export default function AboutIntroPage() {
                     className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300 border border-black"
                   />
                 </div>
-                <div className="p-3 sm:p-6">
+                <div className="p-3 sm:p-6 flex flex-col flex-grow">
                   <h3 className="text-sm sm:text-lg font-bold text-[#4A4039] mb-1 sm:mb-2 group-hover:text-[#B8956A] transition-colors line-clamp-1">{cert.title}</h3>
-                  <p className="text-[#6B5D53] text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2">{cert.description}</p>
-                  <span className="text-xs sm:text-sm text-[#B8956A] font-medium">{cert.date}</span>
+                  <p className="text-[#6B5D53] text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2 flex-grow">{cert.description}</p>
+                  <span className="text-xs sm:text-sm text-[#B8956A] font-medium mt-auto">{cert.date}</span>
                 </div>
               </div>
             ))}
