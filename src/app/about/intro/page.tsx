@@ -162,11 +162,11 @@ export default function AboutIntroPage() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-[4/3] bg-gradient-to-br from-[#FAF6F1] to-[#F5EFE7] rounded-3xl overflow-hidden shadow-2xl">
+              <div className="bg-gradient-to-br from-[#FAF6F1] to-[#F5EFE7] rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="/images/company-building.png"
+                  src="/images/business-location.png"
                   alt="에이스유통 물류센터"
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -220,23 +220,114 @@ export default function AboutIntroPage() {
             </h2>
           </div>
 
-          {/* Timeline */}
+          {/* Timeline with Images */}
           <div className="relative">
-            <div className="absolute left-6 sm:left-8 lg:left-1/2 transform lg:-translate-x-1/2 top-0 bottom-0 w-[2px] sm:w-[3px] bg-gradient-to-b from-[#B8956A] via-[#D4A574] to-[#B8956A]"></div>
-            <div className="space-y-6 sm:space-y-12">
-              {timeline.slice(0, 8).map((item, index) => (
-                <div key={index} className={`relative flex items-start ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-                  <div className="absolute left-6 sm:left-8 lg:left-1/2 transform -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-full flex items-center justify-center text-white font-bold shadow-lg z-10">
-                    <span className="text-xs sm:text-sm">{item.year}</span>
-                  </div>
-                  <div className={`ml-20 sm:ml-28 lg:ml-0 lg:w-5/12 ${index % 2 === 0 ? 'lg:pr-16' : 'lg:pl-16'}`}>
-                    <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-[#F5EFE7]">
-                      <h3 className="text-base sm:text-xl font-bold text-[#4A4039] mb-2 sm:mb-3">{item.title}</h3>
-                      <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">{item.desc}</p>
+            <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#B8956A] via-[#D4A574] to-[#B8956A] hidden lg:block"></div>
+            <div className="space-y-8 sm:space-y-16 lg:space-y-24">
+              {/* 2010 - 창립 */}
+              <div className="relative flex items-center">
+                <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">2010</div>
+                <div className="w-full lg:w-5/12 lg:mr-auto lg:pr-12">
+                  <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
+                    <div className="h-40 sm:h-56 overflow-hidden bg-[#FAF6F1] flex items-center justify-center p-4">
+                      <img
+                        src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=800&h=600&fit=crop"
+                        alt="에이스유통㈜ 창립"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+                    <div className="p-4 sm:p-8">
+                      <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">2010</span>
+                      <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">에이스유통㈜ 창립</h3>
+                      <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">직원 5명으로 카페·베이커리 원재료 유통 사업 시작</p>
                     </div>
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* 2015 - 본사 사옥 신축 */}
+              <div className="relative flex items-center lg:flex-row-reverse">
+                <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">2015</div>
+                <div className="w-full lg:w-5/12 lg:ml-auto lg:pl-12">
+                  <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
+                    <div className="h-40 sm:h-56 overflow-hidden bg-[#FAF6F1] flex items-center justify-center p-4">
+                      <img
+                        src="/images/business-location.png"
+                        alt="본사 사옥 신축 이전"
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+                    <div className="p-4 sm:p-8">
+                      <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">2015</span>
+                      <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">본사 사옥 신축 이전</h3>
+                      <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">경기도 하남시 천현동에 자체 물류센터 보유 사옥 신축</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2019 - 우수기술기업 인증 */}
+              <div className="relative flex items-center">
+                <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">2019</div>
+                <div className="w-full lg:w-5/12 lg:mr-auto lg:pr-12">
+                  <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
+                    <div className="h-40 sm:h-56 overflow-hidden bg-white flex items-center justify-center p-4">
+                      <img
+                        src="/images/certificates/tech-company.png"
+                        alt="우수기술기업 인증"
+                        className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+                    <div className="p-4 sm:p-8">
+                      <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">2019</span>
+                      <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">우수기술기업 인증</h3>
+                      <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">제과제빵 재료 유통물류 및 기술마케팅 부문 우수기술기업 인증 획득</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2020 - 창립 10주년 & 특허 취득 */}
+              <div className="relative flex items-center lg:flex-row-reverse">
+                <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">2020</div>
+                <div className="w-full lg:w-5/12 lg:ml-auto lg:pl-12">
+                  <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
+                    <div className="h-40 sm:h-56 overflow-hidden bg-white flex items-center justify-center p-4">
+                      <img
+                        src="/images/certificates/patent.png"
+                        alt="창립 10주년 & 특허 취득"
+                        className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+                    <div className="p-4 sm:p-8">
+                      <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">2020</span>
+                      <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">창립 10주년 & 특허 취득</h3>
+                      <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">제과제빵류 운반 및 보관용 냉장/냉동장치 특허 취득</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2025 - 전략적 파트너십 체결 */}
+              <div className="relative flex items-center">
+                <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">2025</div>
+                <div className="w-full lg:w-5/12 lg:mr-auto lg:pr-12">
+                  <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
+                    <div className="h-40 sm:h-56 overflow-hidden bg-[#FAF6F1] flex items-center justify-center p-4">
+                      <img
+                        src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop"
+                        alt="전략적 파트너십 체결"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+                    <div className="p-4 sm:p-8">
+                      <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">2025</span>
+                      <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">전략적 파트너십 체결</h3>
+                      <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">IP 굿즈 및 에듀 콘텐츠 기업 ㈜토이트론과 전략적 계약 체결</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -313,23 +404,26 @@ export default function AboutIntroPage() {
 
           <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 border border-[#E8DCC8]">
             <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
-              <div className="text-sm sm:text-base text-center">
+              <div className="text-sm sm:text-base text-left">
                 <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-4 sm:mb-6">본사 / 물류센터</h3>
                 <p className="text-[#6B5D53] mb-3 sm:mb-4">
-                  <strong className="text-[#4A4039]">주소:</strong> 경기도 하남시 천현동 520-2
+                  <strong className="text-[#4A4039]">주소:</strong> 경기도 하남시 샘재로 119번길 31(천현동 392-3)
                 </p>
                 <p className="text-[#6B5D53] mb-3 sm:mb-4">
-                  <strong className="text-[#4A4039]">대표전화:</strong> 031-793-8258
+                  <strong className="text-[#4A4039]">대표전화:</strong> 02) 471-1644~6
+                </p>
+                <p className="text-[#6B5D53] mb-3 sm:mb-4">
+                  <strong className="text-[#4A4039]">이메일:</strong> ace32865@hanmail.net
                 </p>
                 <p className="text-[#6B5D53]">
-                  <strong className="text-[#4A4039]">팩스:</strong> 031-793-8259
+                  <strong className="text-[#4A4039]">팩스:</strong> 02) 476-1372
                 </p>
               </div>
-              <div className="aspect-video bg-[#FAF6F1] rounded-xl sm:rounded-2xl overflow-hidden">
+              <div className="bg-[#FAF6F1] rounded-xl sm:rounded-2xl overflow-hidden">
                 <img
-                  src="/images/company-building.png"
+                  src="/images/business-location.png"
                   alt="에이스유통 물류센터"
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -402,12 +496,64 @@ export default function AboutIntroPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-8 border border-[#E8DCC8]">
-            <img
-              src="/images/certificates/clients.png"
-              alt="주요 고객사"
-              className="w-full h-auto"
-            />
+          {/* 협력사 로고 그리드 */}
+          <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-6 sm:p-8 border border-[#E8DCC8]">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 gap-4">
+              {[
+                { src: '/images/000. 협력사 로고/1. CJ.png', alt: 'CJ' },
+                { src: '/images/000. 협력사 로고/2. 롯데푸드.png', alt: '롯데푸드' },
+                { src: '/images/000. 협력사 로고/3. 동원.png', alt: '동원' },
+                { src: '/images/000. 협력사 로고/4. 오뚜기.png', alt: '오뚜기' },
+                { src: '/images/000. 협력사 로고/5. 삼양식품.png', alt: '삼양식품' },
+                { src: '/images/000. 협력사 로고/6. 매일.png', alt: '매일' },
+                { src: '/images/000. 협력사 로고/7. 빙그레.png', alt: '빙그레' },
+                { src: '/images/000. 협력사 로고/8. 동서식품', alt: '동서식품' },
+                { src: '/images/000. 협력사 로고/9. 사조동아원.png', alt: '사조동아원' },
+                { src: '/images/000. 협력사 로고/10. 대한제분.png', alt: '대한제분' },
+                { src: '/images/000. 협력사 로고/11. tjsdls.png', alt: '선일' },
+                { src: '/images/000. 협력사 로고/12. 서울식품.png', alt: '서울식품' },
+                { src: '/images/000. 협력사 로고/13. 제니코.png', alt: '제니코' },
+                { src: '/images/000. 협력사 로고/14. 대두식품.png', alt: '대두식품' },
+                { src: '/images/000. 협력사 로고/15. 주식회사 조흥.png', alt: '주식회사 조흥' },
+                { src: '/images/000. 협력사 로고/16. 구르메.png', alt: '구르메' },
+                { src: '/images/000. 협력사 로고/17. (주)지성비엔씨.png', alt: '(주)지성비엔씨' },
+                { src: '/images/000. 협력사 로고/18. GALIM.png', alt: 'GALIM' },
+                { src: '/images/000. 협력사 로고/19. 경일포장.png', alt: '경일포장' },
+                { src: '/images/000. 협력사 로고/20. 굿모닝서울.png', alt: '굿모닝서울' },
+                { src: '/images/000. 협력사 로고/21. 꼬미다.png', alt: '꼬미다' },
+                { src: '/images/000. 협력사 로고/22. 네이처F&B.png', alt: '네이처F&B' },
+                { src: '/images/000. 협력사 로고/23. 트라이이.png', alt: '트라이이' },
+                { src: '/images/000. 협력사 로고/24. 정우유통.png', alt: '정우유통' },
+                { src: '/images/000. 협력사 로고/25. 미스터푸드.png', alt: '미스터푸드' },
+                { src: '/images/000. 협력사 로고/26. 에스푸드.png', alt: '에스푸드' },
+                { src: '/images/000. 협력사 로고/27. teabreak.png', alt: 'Teabreak' },
+                { src: '/images/000. 협력사 로고/28. 떡의친구.png', alt: '떡의친구' },
+                { src: '/images/000. 협력사 로고/29. 오트리푸드.png', alt: '오트리푸드' },
+                { src: '/images/000. 협력사 로고/30. 제원인터네셔널.png', alt: '제원인터네셔널' },
+                { src: '/images/000. 협력사 로고/31. ek코퍼레이션.png', alt: 'EK코퍼레이션' },
+                { src: '/images/000. 협력사 로고/32. 베이크플러스.png', alt: '베이크플러스' },
+                { src: '/images/000. 협력사 로고/33. 웰넛.png', alt: '웰넛' },
+                { src: '/images/000. 협력사 로고/34. 새로피엔엘.png', alt: '새로피엔엘' },
+                { src: '/images/000. 협력사 로고/35. 석강.png', alt: '석강' },
+                { src: '/images/000. 협력사 로고/36. 보라티알.png', alt: '보라티알' },
+                { src: '/images/000. 협력사 로고/37. 솜인터네셔널.png', alt: '솜인터네셔널' },
+                { src: '/images/000. 협력사 로고/38. egg solutions.png', alt: 'Egg Solutions' },
+                { src: '/images/000. 협력사 로고/39. 엘홀딩스.png', alt: '엘홀딩스' },
+                { src: '/images/000. 협력사 로고/40. LOLUX.png', alt: 'LOLUX' },
+                { src: '/images/000. 협력사 로고/41. 오뗄.png', alt: '오뗄' },
+                { src: '/images/000. 협력사 로고/42. 리치스.png', alt: '리치스' },
+                { src: '/images/000. 협력사 로고/43. 디벨라.png', alt: '디벨라' },
+                { src: '/images/000. 협력사 로고/44. 마루비시.png', alt: '마루비시' },
+              ].map((logo, index) => (
+                <div key={index} className="bg-white rounded-lg p-2 sm:p-3 border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-md transition-all duration-300 flex items-center justify-center aspect-square">
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
