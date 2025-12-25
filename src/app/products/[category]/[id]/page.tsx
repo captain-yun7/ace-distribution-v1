@@ -178,72 +178,72 @@ export default function ProductDetailPage({ params }: { params: Promise<{ catego
                   )}
                 </div>
 
-                {/* Basic Info */}
-                <div className="bg-white rounded-xl border border-[#E8DCC8] p-6 mb-6">
-                  <h2 className="font-bold text-[#4A4039] mb-4">제품 정보</h2>
-                  <dl className="space-y-3">
-                    <div className="flex">
-                      <dt className="w-24 text-[#6B5D53] flex-shrink-0">제품코드</dt>
-                      <dd className="text-[#4A4039] font-medium">{product.code}</dd>
-                    </div>
-                    {product.manufacturer && (
-                      <div className="flex">
-                        <dt className="w-24 text-[#6B5D53] flex-shrink-0">제조사</dt>
-                        <dd className="text-[#4A4039]">{product.manufacturer}</dd>
-                      </div>
-                    )}
-                    {product.origin && (
-                      <div className="flex">
-                        <dt className="w-24 text-[#6B5D53] flex-shrink-0">원산지</dt>
-                        <dd className="text-[#4A4039]">{product.origin}</dd>
-                      </div>
-                    )}
-                  </dl>
-                </div>
-
-                {/* Description */}
-                <div className="mb-6">
-                  <h2 className="font-bold text-[#4A4039] mb-3">제품 설명</h2>
-                  <p className="text-[#6B5D53] whitespace-pre-line">{product.description}</p>
-                </div>
-
-                {/* Features */}
-                {product.features && product.features.length > 0 && (
+                {/* Usage / Specs - 사용량 및 상세 정보 */}
+                {product.specs && Object.keys(product.specs).length > 0 && (
                   <div className="mb-6">
-                    <h2 className="font-bold text-[#4A4039] mb-3">주요 특징</h2>
-                    <ul className="space-y-2">
-                      {product.features.map((feature, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <svg className="w-5 h-5 text-[#B8956A] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                          <span className="text-[#6B5D53]">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <h2 className="font-bold text-[#4A4039] mb-3 flex items-center gap-2">
+                      <svg className="w-5 h-5 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                      </svg>
+                      사용량 및 상세 정보
+                    </h2>
+                    <div className="bg-white rounded-xl border border-[#E8DCC8] overflow-hidden">
+                      <table className="w-full">
+                        <tbody className="divide-y divide-[#E8DCC8]">
+                          {Object.entries(product.specs).map(([key, value]) => (
+                            <tr key={key}>
+                              <th className="px-4 py-3 bg-[#FAF6F1] text-left text-sm font-medium text-[#4A4039] w-32">{key}</th>
+                              <td className="px-4 py-3 text-sm text-[#6B5D53]">{value}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 )}
 
-                {/* Specs */}
-                {product.specs && Object.keys(product.specs).length > 0 && (
+                {/* Features - 제품 특징 */}
+                {product.features && product.features.length > 0 && (
                   <div className="mb-6">
-                    <h2 className="font-bold text-[#4A4039] mb-3">상세 스펙</h2>
-                    <div className="bg-[#FAF6F1] rounded-xl p-4">
-                      <dl className="grid grid-cols-2 gap-3">
-                        {Object.entries(product.specs).map(([key, value]) => (
-                          <div key={key}>
-                            <dt className="text-xs text-[#6B5D53]">{key}</dt>
-                            <dd className="text-sm text-[#4A4039] font-medium">{value}</dd>
-                          </div>
+                    <h2 className="font-bold text-[#4A4039] mb-3 flex items-center gap-2">
+                      <svg className="w-5 h-5 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      제품 특징
+                    </h2>
+                    <div className="bg-white rounded-xl border border-[#E8DCC8] p-4">
+                      <ul className="space-y-3">
+                        {product.features.map((feature, index) => (
+                          <li key={index} className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-6 h-6 bg-[#B8956A]/10 text-[#B8956A] rounded-full flex items-center justify-center text-xs font-bold">
+                              {index + 1}
+                            </span>
+                            <span className="text-[#6B5D53] text-sm leading-relaxed">{feature}</span>
+                          </li>
                         ))}
-                      </dl>
+                      </ul>
+                    </div>
+                  </div>
+                )}
+
+                {/* Description - 제품 설명 */}
+                {product.description && (
+                  <div className="mb-6">
+                    <h2 className="font-bold text-[#4A4039] mb-3 flex items-center gap-2">
+                      <svg className="w-5 h-5 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      제품 설명
+                    </h2>
+                    <div className="bg-white rounded-xl border border-[#E8DCC8] p-4">
+                      <p className="text-[#6B5D53] text-sm leading-relaxed whitespace-pre-line">{product.description}</p>
                     </div>
                   </div>
                 )}
 
                 {/* Actions */}
-                <div className="flex gap-4">
-                  {product.brochureUrl && (
+                {product.brochureUrl && (
+                  <div className="flex gap-4">
                     <a
                       href={product.brochureUrl}
                       target="_blank"
@@ -255,17 +255,8 @@ export default function ProductDetailPage({ params }: { params: Promise<{ catego
                       </svg>
                       브로셔 다운로드
                     </a>
-                  )}
-                  <Link
-                    href="/support/contact"
-                    className="flex-1 flex items-center justify-center gap-2 bg-[#B8956A] text-white px-6 py-3 rounded-xl font-medium hover:bg-[#A07D58] transition-colors"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                    제품 문의
-                  </Link>
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
