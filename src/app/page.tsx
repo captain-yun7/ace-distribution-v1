@@ -664,31 +664,31 @@ export default function HomePage() {
                     year: '2010',
                     title: '에이스유통㈜ 창립',
                     desc: '직원 5명으로 카페·베이커리 원재료 유통 사업 시작',
-                    imageUrl: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=800&h=600&fit=crop',
+                    imageUrl: '/images/founding.jpg',
                   },
                   {
                     year: '2015',
                     title: '본사 사옥 신축 이전',
                     desc: '경기도 하남시 천현동에 자체 물류센터 보유 사옥 신축',
-                    imageUrl: '/사업장.png',
+                    imageUrl: '/images/business-location.png',
                   },
                   {
                     year: '2019',
                     title: '우수기술기업 인증',
                     desc: '제과제빵 재료 유통물류 및 기술마케팅 부문 우수기술기업 인증 획득',
-                    imageUrl: '/우수기술기업 인증서.png',
+                    imageUrl: '/images/certificates/tech-company.png',
                   },
                   {
                     year: '2020',
                     title: '창립 10주년 & 특허 취득',
                     desc: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 취득',
-                    imageUrl: '/특허증.png',
+                    imageUrl: '/images/certificates/patent.png',
                   },
                   {
                     year: '2025',
                     title: '전략적 파트너십 체결',
                     desc: 'IP 굿즈 및 에듀 콘텐츠 기업 ㈜토이트론과 전략적 계약 체결',
-                    imageUrl: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop',
+                    imageUrl: '/images/partnership.jpg',
                   }
                 ]).map((item, index) => {
                   const position = index % 2 === 0 ? 'left' : 'right';
@@ -708,7 +708,9 @@ export default function HomePage() {
                               <img
                                 src={item.imageUrl}
                                 alt={item.title}
-                                className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                                className={`group-hover:scale-105 transition-transform duration-700 ${
+                                  item.imageUrl.includes('/certificates/') ? 'max-w-full max-h-full object-contain' : 'w-full h-full object-cover'
+                                }`}
                               />
                             </div>
                           )}
