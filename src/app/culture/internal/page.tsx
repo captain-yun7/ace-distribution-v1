@@ -2,14 +2,13 @@
 
 import { Header, Footer, PageHero } from '@/components/layout';
 import Image from 'next/image';
-import { useCompanyCulture, useCompanyDonations } from '@/hooks/company';
+import { useCompanyCulture } from '@/hooks/company';
 
 export default function InternalCulturePage() {
   // Fetch DB data
   const { culture: dbCultureItems } = useCompanyCulture('CULTURE');
   const { culture: dbBenefits } = useCompanyCulture('BENEFIT');
   const { culture: dbCsrActivities } = useCompanyCulture('CSR');
-  const { donations: dbDonations } = useCompanyDonations();
 
   // Icon mappings
   const cultureIconMap: Record<string, string> = {
@@ -87,12 +86,6 @@ export default function InternalCulturePage() {
     { title: '지역 상생', desc: '지역 베이커리 및 소상공인과의 협력을 통해 지역 경제 활성화에 기여', icon: 'M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11' },
   ];
 
-  const donationHistory = dbDonations.length > 0 ? dbDonations : [
-    { year: '2024', amount: '1,200만원', desc: '지역 아동센터 빵 기부, 무료 급식소 식품 지원' },
-    { year: '2023', amount: '1,000만원', desc: '독거노인 명절 선물 세트, 지역 복지관 식품 기부' },
-    { year: '2022', amount: '800만원', desc: '수해 지역 긴급 식품 지원, 아동 급식 후원' },
-    { year: '2021', amount: '600만원', desc: '코로나 취약계층 식품 꾸러미 전달' },
-  ];
   return (
     <>
       <Header />
@@ -144,14 +137,16 @@ export default function InternalCulturePage() {
                   <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2">창립멤버 포상 현장</h3>
                   <p className="text-sm sm:text-base text-[#6B5D53]">2020년 창립멤버 4인에게 각 1천만원의 포상금을 수여했습니다</p>
                 </div>
-                <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] rounded-lg sm:rounded-xl overflow-hidden">
-                  <Image
-                    src="/포상금.png"
-                    alt="창립멤버 포상 - 에이스유통 직원들이 포상금을 수여받는 모습"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                  />
+                <div className="flex justify-center">
+                  <div className="relative w-full max-w-2xl aspect-[16/9] rounded-lg sm:rounded-xl overflow-hidden">
+                    <Image
+                      src="/images/posang.png"
+                      alt="창립멤버 포상 - 에이스유통 직원들이 포상금을 수여받는 모습"
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 768px) 100vw, 672px"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -221,23 +216,6 @@ export default function InternalCulturePage() {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">기부 현황</h2>
             </div>
 
-            <div className="space-y-3 sm:space-y-4">
-              {donationHistory.map((item, index) => (
-                <div key={index} className="flex flex-col md:flex-row md:items-center gap-3 sm:gap-4 p-4 sm:p-6 bg-white rounded-xl border border-[#E8DCC8]">
-                  <span className="inline-block bg-[#B8956A] text-white text-base sm:text-xl font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg w-fit">
-                    {item.year}
-                  </span>
-                  <p className="flex-grow text-sm sm:text-base text-[#6B5D53]">{item.desc}</p>
-                  <span className="text-xl sm:text-2xl font-bold text-[#B8956A]">{item.amount}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 sm:mt-8 p-5 sm:p-8 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-xl sm:rounded-2xl text-white text-center">
-              <p className="text-sm sm:text-lg text-white/80 mb-1 sm:mb-2">누적 기부 총액</p>
-              <p className="text-2xl sm:text-4xl font-bold">3,600만원+</p>
-            </div>
-
             {/* 후원 증서 */}
             <div className="mt-8 sm:mt-12">
               <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-[#E8DCC8] overflow-hidden">
@@ -246,13 +224,13 @@ export default function InternalCulturePage() {
                   <p className="text-sm sm:text-base text-[#6B5D53]">사회 공헌 활동의 일환으로 희망브릿지에 정기 후원하고 있습니다</p>
                 </div>
                 <div className="flex justify-center">
-                  <div className="relative w-full max-w-md aspect-[3/4] rounded-lg sm:rounded-xl overflow-hidden shadow-lg border border-[#E8DCC8]">
+                  <div className="relative w-full max-w-xs aspect-[3/4] rounded-lg sm:rounded-xl overflow-hidden shadow-lg border border-[#E8DCC8]">
                     <Image
-                      src="/후원증서.png"
+                      src="/images/patron.png"
                       alt="희망브릿지 후원 증서 - 에이스유통 기부 인증"
                       fill
                       className="object-contain bg-white"
-                      sizes="(max-width: 768px) 100vw, 400px"
+                      sizes="(max-width: 768px) 280px, 320px"
                     />
                   </div>
                 </div>

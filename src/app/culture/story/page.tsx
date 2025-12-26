@@ -1,6 +1,7 @@
 'use client';
 
 import { Header, Footer, PageHero } from '@/components/layout';
+import { ClientsSection } from '@/components/sections';
 import Link from 'next/link';
 import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -275,49 +276,7 @@ function StoryPageContent() {
         </section>
 
         {/* Major Clients */}
-        <section className="py-10 sm:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8 sm:mb-12">
-              <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CLIENTS</span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">주요 고객사</h2>
-              <p className="text-sm sm:text-base text-[#6B5D53]">에이스유통과 함께하는 믿음직한 파트너</p>
-            </div>
-
-            {/* 고객사 목록 */}
-            <div className="mb-6 sm:mb-10">
-              <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 text-[#4A4039]">
-                <li className="flex items-start gap-2 sm:gap-3 bg-[#FAF6F1] rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#E8DCC8]">
-                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#B8956A] rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></span>
-                  <span className="text-xs sm:text-base">스파필드 팥고당 입점 (하남, 고양 외 8개 지점)</span>
-                </li>
-                <li className="flex items-start gap-2 sm:gap-3 bg-[#FAF6F1] rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#E8DCC8]">
-                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#B8956A] rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></span>
-                  <span className="text-xs sm:text-base">롯데 백화점 한나식빵 입점 (롯데백화점 외 20여개 지점)</span>
-                </li>
-                <li className="flex items-start gap-2 sm:gap-3 bg-[#FAF6F1] rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#E8DCC8]">
-                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#B8956A] rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></span>
-                  <span className="text-xs sm:text-base">지하철 역사 내 더베이크 (17여개 지점)</span>
-                </li>
-                <li className="flex items-start gap-2 sm:gap-3 bg-[#FAF6F1] rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#E8DCC8]">
-                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#B8956A] rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></span>
-                  <span className="text-xs sm:text-base">곤트란쉐리에 (30여개 지점)</span>
-                </li>
-                <li className="flex items-start gap-2 sm:gap-3 bg-[#FAF6F1] rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#E8DCC8] md:col-span-2 lg:col-span-2">
-                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#B8956A] rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></span>
-                  <span className="text-xs sm:text-base">그 외 기타 개인제과 (전국 420여개 이상 거래처 보유/관리)</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-[#E8DCC8]">
-              <img
-                src="/images/certificates/clients.png"
-                alt="주요 고객사"
-                className="w-full h-auto"
-              />
-            </div>
-          </div>
-        </section>
+        <ClientsSection />
 
         {/* CTA */}
         <section className="py-10 sm:py-16 bg-gradient-to-br from-[#4A4039] to-[#6B5D53] text-white">

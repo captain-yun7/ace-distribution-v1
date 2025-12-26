@@ -1,6 +1,7 @@
 'use client';
 
 import { Header, Footer, PageHero } from '@/components/layout';
+import { ClientsSection } from '@/components/sections';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
@@ -458,105 +459,11 @@ export default function AboutIntroPage() {
               </div>
             ))}
           </div>
-
-          {/* 주요 고객사 */}
-          <div className="text-center mb-8 sm:mb-12">
-            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CLIENTS</span>
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#4A4039] mb-3 sm:mb-4">주요 고객사</h3>
-            <p className="text-[#6B5D53]">에이스유통과 함께하는 믿음직한 파트너</p>
-          </div>
-
-          {/* 고객사 목록 */}
-          <div className="mb-10 overflow-x-auto pb-4">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 min-w-max lg:min-w-0">
-              {(dbClients.length > 0 ? dbClients : [
-                { name: '스파필드 팥고당 입점 (하남, 고양 외 8개 지점)', description: null },
-                { name: '롯데 백화점 한나식빵 입점 (롯데백화점 외 20여개 지점)', description: null },
-                { name: '지하철 역사 내 더베이크 (17여개 지점)', description: null },
-                { name: '곤트란쉐리에 (30여개 지점)', description: null },
-                { name: '그 외 기타 개인제과 (전국 420여개 이상 거래처 보유/관리)', description: null },
-              ]).map((client, index) => (
-                <div key={index} className="group bg-gradient-to-br from-white to-[#FAF6F1] rounded-2xl p-6 border-2 border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 min-w-[240px] lg:min-w-0">
-                  <div className="flex flex-col h-full">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                      </svg>
-                    </div>
-                    <p className="text-sm font-bold text-[#4A4039] leading-relaxed group-hover:text-[#B8956A] transition-colors">
-                      {client.name.split('(')[0]}<br />
-                      {client.name.includes('(') && `(${client.name.split('(')[1]}`}
-                    </p>
-                    {client.description && (
-                      <p className="text-xs text-[#6B5D53] mt-2">{client.description}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 협력사 로고 그리드 */}
-          <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-6 sm:p-8 border border-[#E8DCC8]">
-            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 gap-4">
-              {[
-                { src: '/images/000. 협력사 로고/1. CJ.png', alt: 'CJ' },
-                { src: '/images/000. 협력사 로고/2. 롯데푸드.png', alt: '롯데푸드' },
-                { src: '/images/000. 협력사 로고/3. 동원.png', alt: '동원' },
-                { src: '/images/000. 협력사 로고/4. 오뚜기.png', alt: '오뚜기' },
-                { src: '/images/000. 협력사 로고/5. 삼양식품.png', alt: '삼양식품' },
-                { src: '/images/000. 협력사 로고/6. 매일.png', alt: '매일' },
-                { src: '/images/000. 협력사 로고/7. 빙그레.png', alt: '빙그레' },
-                { src: '/images/000. 협력사 로고/8. 동서식품', alt: '동서식품' },
-                { src: '/images/000. 협력사 로고/9. 사조동아원.png', alt: '사조동아원' },
-                { src: '/images/000. 협력사 로고/10. 대한제분.png', alt: '대한제분' },
-                { src: '/images/000. 협력사 로고/11. tjsdls.png', alt: '선일' },
-                { src: '/images/000. 협력사 로고/12. 서울식품.png', alt: '서울식품' },
-                { src: '/images/000. 협력사 로고/13. 제니코.png', alt: '제니코' },
-                { src: '/images/000. 협력사 로고/14. 대두식품.png', alt: '대두식품' },
-                { src: '/images/000. 협력사 로고/15. 주식회사 조흥.png', alt: '주식회사 조흥' },
-                { src: '/images/000. 협력사 로고/16. 구르메.png', alt: '구르메' },
-                { src: '/images/000. 협력사 로고/17. (주)지성비엔씨.png', alt: '(주)지성비엔씨' },
-                { src: '/images/000. 협력사 로고/18. GALIM.png', alt: 'GALIM' },
-                { src: '/images/000. 협력사 로고/19. 경일포장.png', alt: '경일포장' },
-                { src: '/images/000. 협력사 로고/20. 굿모닝서울.png', alt: '굿모닝서울' },
-                { src: '/images/000. 협력사 로고/21. 꼬미다.png', alt: '꼬미다' },
-                { src: '/images/000. 협력사 로고/22. 네이처F&B.png', alt: '네이처F&B' },
-                { src: '/images/000. 협력사 로고/23. 트라이이.png', alt: '트라이이' },
-                { src: '/images/000. 협력사 로고/24. 정우유통.png', alt: '정우유통' },
-                { src: '/images/000. 협력사 로고/25. 미스터푸드.png', alt: '미스터푸드' },
-                { src: '/images/000. 협력사 로고/26. 에스푸드.png', alt: '에스푸드' },
-                { src: '/images/000. 협력사 로고/27. teabreak.png', alt: 'Teabreak' },
-                { src: '/images/000. 협력사 로고/28. 떡의친구.png', alt: '떡의친구' },
-                { src: '/images/000. 협력사 로고/29. 오트리푸드.png', alt: '오트리푸드' },
-                { src: '/images/000. 협력사 로고/30. 제원인터네셔널.png', alt: '제원인터네셔널' },
-                { src: '/images/000. 협력사 로고/31. ek코퍼레이션.png', alt: 'EK코퍼레이션' },
-                { src: '/images/000. 협력사 로고/32. 베이크플러스.png', alt: '베이크플러스' },
-                { src: '/images/000. 협력사 로고/33. 웰넛.png', alt: '웰넛' },
-                { src: '/images/000. 협력사 로고/34. 새로피엔엘.png', alt: '새로피엔엘' },
-                { src: '/images/000. 협력사 로고/35. 석강.png', alt: '석강' },
-                { src: '/images/000. 협력사 로고/36. 보라티알.png', alt: '보라티알' },
-                { src: '/images/000. 협력사 로고/37. 솜인터네셔널.png', alt: '솜인터네셔널' },
-                { src: '/images/000. 협력사 로고/38. egg solutions.png', alt: 'Egg Solutions' },
-                { src: '/images/000. 협력사 로고/39. 엘홀딩스.png', alt: '엘홀딩스' },
-                { src: '/images/000. 협력사 로고/40. LOLUX.png', alt: 'LOLUX' },
-                { src: '/images/000. 협력사 로고/41. 오뗄.png', alt: '오뗄' },
-                { src: '/images/000. 협력사 로고/42. 리치스.png', alt: '리치스' },
-                { src: '/images/000. 협력사 로고/43. 디벨라.png', alt: '디벨라' },
-                { src: '/images/000. 협력사 로고/44. 마루비시.png', alt: '마루비시' },
-              ].map((logo, index) => (
-                <div key={index} className="bg-white rounded-lg p-2 sm:p-3 border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-md transition-all duration-300 flex items-center justify-center aspect-square">
-                  <img
-                    src={logo.src}
-                    alt={logo.alt}
-                    className="max-w-full max-h-full object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
+
+      {/* 주요 고객사 */}
+      <ClientsSection />
 
       <Footer />
     </div>
