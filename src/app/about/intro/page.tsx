@@ -65,7 +65,7 @@ export default function AboutIntroPage() {
 
   const coreValues = dbCoreValues.length > 0 ? dbCoreValues : [
     { title: '고객 만족', subtitle: 'CUSTOMER', description: '고객의 성공이 곧 우리의 성공\n고객 만족을 최우선으로' },
-    { title: '신뢰', subtitle: 'TRUST', description: '정직한 거래와 약속 이행으로\n쌓아온 15년의 신뢰' },
+    { title: '신뢰', subtitle: 'TRUST', description: '정직한 거래와 약속 이행으로\n쌓아온 16년의 신뢰' },
     { title: '품질', subtitle: 'QUALITY', description: '엄격한 품질 관리로\n최상의 제품만을 공급' },
     { title: '성장', subtitle: 'GROWTH', description: '고객과 함께 성장하는\n지속 가능한 파트너십' },
   ];
@@ -92,7 +92,7 @@ export default function AboutIntroPage() {
     employees: '35명',
     clients: '420+',
     deliveryVehicles: '20대',
-    warehouseSize: '520평',
+    warehouseSize: '900평',
   };
 
   const getKPIValue = (key: string, defaultValue: string) => {

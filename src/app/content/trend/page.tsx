@@ -61,7 +61,7 @@ export default function TrendPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               {[
                 { value: '50+', label: '발행 리포트' },
-                { value: '15년', label: '업계 경험' },
+                { value: '16년', label: '업계 경험' },
                 { value: '월간', label: '발행 주기' },
                 { value: '무료', label: '구독 비용' },
               ].map((stat, index) => (

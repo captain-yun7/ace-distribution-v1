@@ -436,7 +436,7 @@ export default function HomePage() {
               <p className="text-base sm:text-lg text-white/80 leading-relaxed mb-8 sm:mb-12 max-w-lg animate-fadeInUp animation-delay-400 font-light">
                 {heroContent?.data?.description || (
                   <>
-                    15년간 축적된 노하우와 엄격한 품질 관리로<br className="hidden sm:block" />
+                    16년간 축적된 노하우와 엄격한 품질 관리로<br className="hidden sm:block" />
                     최고의 베이커리 원재료를 공급합니다.
                   </>
                 )}
@@ -491,7 +491,7 @@ export default function HomePage() {
               {missionContent?.data?.title || '최고의 품질로 성공을 만들어갑니다'}
             </h2>
             <p className="text-sm sm:text-lg text-[#6B5D53] max-w-2xl mx-auto px-2">
-              {missionContent?.data?.description || '15년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다'}
+              {missionContent?.data?.description || '16년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다'}
             </p>
           </div>
 
@@ -581,7 +581,7 @@ export default function HomePage() {
               {
                 title: '전문성',
                 subtitle: 'Expertise',
-                description: '15년간 축적된 노하우와 전문 지식을 바탕으로 서비스합니다',
+                description: '16년간 축적된 노하우와 전문 지식을 바탕으로 서비스합니다',
                 imageUrl: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&h=400&fit=crop'
               },
               {
@@ -644,90 +644,64 @@ export default function HomePage() {
           <div className={`text-center mb-12 sm:mb-20 ${isVisible.story ? 'animate-fadeInUp' : 'opacity-0'}`}>
             <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">Our Story</span>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#4A4039] mb-4 sm:mb-6">
-              15년 전통의 신뢰와 혁신
+              16년 전통의 신뢰와 혁신
             </h2>
             <p className="text-sm sm:text-lg text-[#6B5D53] max-w-2xl mx-auto px-2">
               2010년 창립 이래, 카페·베이커리 원재료 유통의 새로운 기준을 만들어가고 있습니다
             </p>
           </div>
 
-          {/* Timeline Section */}
+          {/* Timeline Section - 세로 구분선 타임라인 */}
           <div className={`mb-16 sm:mb-32 ${isVisible.story ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
-            <div className="relative">
-              {/* Vertical Line */}
-              <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#B8956A] via-[#D4A574] to-[#B8956A]"></div>
-
-              {/* Timeline Items */}
-              <div className="space-y-8 sm:space-y-24">
-                {(timeline.length > 0 ? timeline.slice(0, 5) : [
-                  {
-                    year: '2010',
-                    title: '에이스유통㈜ 창립',
-                    desc: '직원 5명으로 카페·베이커리 원재료 유통 사업 시작',
-                    imageUrl: '/images/founding.jpg',
-                  },
-                  {
-                    year: '2015',
-                    title: '본사 사옥 신축 이전',
-                    desc: '경기도 하남시 천현동에 자체 물류센터 보유 사옥 신축',
-                    imageUrl: '/images/business-location.png',
-                  },
-                  {
-                    year: '2019',
-                    title: '우수기술기업 인증',
-                    desc: '제과제빵 재료 유통물류 및 기술마케팅 부문 우수기술기업 인증 획득',
-                    imageUrl: '/images/certificates/tech-company.png',
-                  },
-                  {
-                    year: '2020',
-                    title: '창립 10주년 & 특허 취득',
-                    desc: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 취득',
-                    imageUrl: '/images/certificates/patent.png',
-                  },
-                  {
-                    year: '2025',
-                    title: '전략적 파트너십 체결',
-                    desc: 'IP 굿즈 및 에듀 콘텐츠 기업 ㈜토이트론과 전략적 계약 체결',
-                    imageUrl: '/images/partnership.jpg',
-                  }
-                ]).map((item, index) => {
-                  const position = index % 2 === 0 ? 'left' : 'right';
-                  return (
-                    <div key={index} className={`relative flex items-center ${position === 'right' ? 'lg:flex-row-reverse' : ''}`}>
-                      {/* Year Badge */}
-                      <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">
-                        {item.year}
-                      </div>
-
-                      {/* Content Card */}
-                      <div className={`w-full lg:w-5/12 ${position === 'right' ? 'lg:ml-auto lg:pl-12' : 'lg:mr-auto lg:pr-12'}`}>
-                        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
-                          {/* Image */}
-                          {item.imageUrl && (
-                            <div className="h-40 sm:h-56 overflow-hidden bg-white flex items-center justify-center p-4">
-                              <img
-                                src={item.imageUrl}
-                                alt={item.title}
-                                className={`group-hover:scale-105 transition-transform duration-700 ${
-                                  item.imageUrl.includes('/certificates/') ? 'max-w-full max-h-full object-contain' : 'w-full h-full object-cover'
-                                }`}
-                              />
-                            </div>
-                          )}
-                          {/* Content */}
-                          <div className="p-4 sm:p-8">
-                            <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">
-                              {item.year}
-                            </span>
-                            <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">{item.title}</h3>
-                            <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">{item.desc}</p>
-                          </div>
-                        </div>
-                      </div>
+            <div className="flex justify-center flex-wrap md:flex-nowrap">
+              {[
+                {
+                  year: '2010',
+                  title: '회사 설립',
+                  desc: '카페·베이커리 원재료 유통 사업 시작',
+                  icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'
+                },
+                {
+                  year: '2015',
+                  title: '사옥 신축',
+                  desc: '하남시 천현동 자체 물류센터 사옥 신축',
+                  icon: 'M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z'
+                },
+                {
+                  year: '2020',
+                  title: '창립 10주년',
+                  desc: '특허 취득 및 배송차량 20대 증차',
+                  icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z'
+                },
+                {
+                  year: '2025',
+                  title: '연매출 245억',
+                  desc: '전략적 파트너십 체결 및 신사옥 이전 예정',
+                  icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'
+                }
+              ].map((item, index, arr) => (
+                <div key={index} className="flex items-stretch">
+                  {/* 타임라인 아이템 */}
+                  <div className="text-center group px-6 sm:px-12 lg:px-16 py-6">
+                    {/* 아이콘 */}
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto bg-[#FAF6F1] rounded-full flex items-center justify-center group-hover:bg-[#B8956A] transition-all duration-300">
+                      <svg className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#B8956A] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
+                      </svg>
                     </div>
-                  );
-                })}
-              </div>
+                    {/* 제목 */}
+                    <h4 className="text-sm sm:text-base lg:text-lg font-bold text-[#4A4039] mt-4 sm:mt-5 mb-2">{item.title}</h4>
+                    {/* 설명 */}
+                    <p className="text-xs sm:text-sm text-[#6B5D53] mb-4 px-1 line-clamp-2 max-w-[140px] sm:max-w-[160px] lg:max-w-[180px] mx-auto">{item.desc}</p>
+                    {/* 연도 */}
+                    <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#B8956A]">{item.year}</span>
+                  </div>
+                  {/* 세로 구분선 (마지막 아이템 제외) */}
+                  {index < arr.length - 1 && (
+                    <div className="hidden md:block w-[1px] bg-[#E8DCC8] self-stretch my-6"></div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
 
@@ -735,7 +709,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
             {[
               {
-                number: '15년',
+                number: '16년',
                 label: '업계 경력',
                 icon: (
                   <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="currentColor" viewBox="0 0 24 24">

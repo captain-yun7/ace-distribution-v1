@@ -91,7 +91,7 @@ export default function ProductsAllPage() {
                 { value: totalProducts > 0 ? `${totalProducts}+` : '400+', label: '취급 제품' },
                 { value: '50+', label: '협력 브랜드' },
                 { value: categories.length || 10, label: '제품 카테고리' },
-                { value: '15년', label: '유통 노하우' },
+                { value: '16년', label: '유통 노하우' },
               ].map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="text-3xl lg:text-4xl font-bold text-[#B8956A]">{stat.value}</div>
