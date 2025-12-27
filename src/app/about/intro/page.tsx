@@ -122,7 +122,8 @@ export default function AboutIntroPage() {
               { id: 'history', label: '기업 연혁' },
               { id: 'philosophy', label: '경영 철학' },
               { id: 'business', label: '사업장 소개' },
-              { id: 'certification', label: '조직 및 인증서' },
+              { id: 'organization', label: '조직도' },
+              { id: 'certification', label: '인증서' },
             ].map((tab) => (
               <a
                 key={tab.id}
@@ -432,8 +433,101 @@ export default function AboutIntroPage() {
         </div>
       </section>
 
-      {/* Section 5: 조직 및 인증서 */}
-      <section id="certification" className="py-12 sm:py-20 lg:py-32 bg-white scroll-mt-40">
+      {/* Section 5: 조직도 */}
+      <section id="organization" className="py-12 sm:py-20 lg:py-32 bg-white scroll-mt-40">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-16">
+            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">ORGANIZATION</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">조직도</h2>
+            <p className="text-sm sm:text-base text-[#6B5D53]">에이스유통의 조직 구성</p>
+          </div>
+
+          {/* 조직도 */}
+          <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border border-[#E8DCC8]">
+            {/* CEO */}
+            <div className="flex justify-center">
+              <div className="bg-[#B8956A] text-white px-8 sm:px-12 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg">
+                <p className="text-lg sm:text-2xl font-bold text-center">CEO</p>
+              </div>
+            </div>
+
+            {/* 연결선 - CEO에서 아래로 (끊김없이) */}
+            <div className="flex justify-center">
+              <div className="w-[2px] h-10 sm:h-14 bg-[#D4A574]"></div>
+            </div>
+
+            {/* 데스크톱: 가로 연결선 + 세로 연결선 + 부서 카드 */}
+            <div className="hidden lg:block">
+              {/* 가로 연결선 */}
+              <div className="relative mx-auto" style={{ width: 'calc(100% - 80px)' }}>
+                <div className="h-[2px] bg-[#D4A574]"></div>
+                {/* 세로 연결선들 (가로선 위에서 바로 내려오도록) */}
+                <div className="absolute top-0 left-0 right-0 flex justify-between">
+                  {[0, 1, 2, 3, 4, 5].map((i) => (
+                    <div key={i} className="w-[2px] h-8 bg-[#D4A574]"></div>
+                  ))}
+                </div>
+              </div>
+
+              {/* 부서 카드들 */}
+              <div className="grid grid-cols-6 gap-4 mt-8">
+                {[
+                  { name: '경영관리팀', count: 5 },
+                  { name: '사업기획팀', count: 3 },
+                  { name: '영업관리팀', count: 4 },
+                  { name: '영업배송팀', count: 16 },
+                  { name: '물류관리팀', count: 6 },
+                  { name: '법무팀', count: 1 },
+                ].map((dept, index) => (
+                  <div
+                    key={index}
+                    className="bg-white border-2 border-[#E8DCC8] rounded-2xl p-5 text-center hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group"
+                  >
+                    <p className="text-base font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors mb-2">{dept.name}</p>
+                    <p className="text-2xl font-bold text-[#B8956A]">({dept.count}명)</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 태블릿/모바일: 단순 그리드 */}
+            <div className="lg:hidden mt-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                {[
+                  { name: '경영관리팀', count: 5 },
+                  { name: '사업기획팀', count: 3 },
+                  { name: '영업관리팀', count: 4 },
+                  { name: '영업배송팀', count: 16 },
+                  { name: '물류관리팀', count: 6 },
+                  { name: '법무팀', count: 1 },
+                ].map((dept, index) => (
+                  <div
+                    key={index}
+                    className="bg-white border-2 border-[#E8DCC8] rounded-xl p-3 sm:p-5 text-center hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group"
+                  >
+                    <p className="text-sm sm:text-base font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors mb-1 sm:mb-2">{dept.name}</p>
+                    <p className="text-lg sm:text-2xl font-bold text-[#B8956A]">({dept.count}명)</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 총 인원 */}
+            <div className="flex justify-end mt-6 sm:mt-10">
+              <div className="bg-[#4A4039] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg">
+                <p className="text-base sm:text-xl">
+                  <span className="font-medium">총</span>
+                  <span className="text-2xl sm:text-3xl font-bold text-[#D4A574] ml-2">35</span>
+                  <span className="font-bold ml-1">명</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 6: 보유 인증서 */}
+      <section id="certification" className="py-12 sm:py-20 lg:py-32 bg-[#FAF6F1] scroll-mt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-16">
             <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CERTIFICATION</span>
