@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const menuData = [
-  { title: '회사 소개', items: [
-    { name: '기업소개', href: '/about/intro#overview' },
+  { title: '기업 개요', items: [
+    { name: '기업 소개', href: '/about/intro#overview' },
     { name: '기업 연혁', href: '/about/intro#history' },
     { name: '경영 철학', href: '/about/intro#philosophy' },
     { name: '사업장 소개', href: '/about/intro#business' },

@@ -207,8 +207,8 @@ export default function HomePage() {
           <nav className="hidden lg:flex items-center">
             <ul className="flex items-center gap-2">
               {[
-                { title: '회사 소개', items: [
-                  { name: '기업소개', href: '/about/intro', desc: '에이스유통을 소개합니다' },
+                { title: '기업 개요', items: [
+                  { name: '기업 소개', href: '/about/intro', desc: '에이스유통을 소개합니다' },
                   { name: '기업 연혁', href: '/about/history', desc: '30년의 발자취' },
                   { name: '경영 철학', href: '/about/philosophy', desc: '우리의 가치와 비전' },
                   { name: '사업장 소개', href: '/about/business', desc: '전국 물류 네트워크' },
@@ -301,8 +301,8 @@ export default function HomePage() {
           <div className="fixed top-20 left-0 right-0 bottom-0 bg-white overflow-y-auto">
             <div className="p-6">
               {[
-                { title: '회사 소개', items: [
-                  { name: '기업소개', href: '/about/intro' },
+                { title: '기업 개요', items: [
+                  { name: '기업 소개', href: '/about/intro' },
                   { name: '기업 연혁', href: '/about/intro#history' },
                   { name: '경영 철학', href: '/about/intro#philosophy' },
                   { name: '사업장 소개', href: '/about/intro#business' },
@@ -764,56 +764,39 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
             <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CEO MESSAGE</span>
-            <h2
-              className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-6 sm:mb-8 leading-tight"
-              dangerouslySetInnerHTML={{
-                __html: ceoContent?.data?.title || '좋은 상품을 정직하게 유통하는<br /><span class="text-[#B8956A]">신뢰받는 파트너</span>가 되겠습니다'
-              }}
-            />
+            <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-6 sm:mb-8 leading-tight">
+              정직한 유통으로 신뢰를 쌓아가는<br />
+              카페·베이커리 유통 파트너가 되겠습니다
+            </h2>
           </div>
 
           <div className="space-y-4 sm:space-y-6 text-sm sm:text-base text-[#6B5D53] leading-relaxed text-center max-w-3xl mx-auto">
             <p>
-              에이스유통주식회사는 카페·베이커리 산업을 위한<br className="hidden sm:block" />
-              프리미엄 원재료 공급, 전문 소싱, 콜드체인 물류,<br className="hidden sm:block" />
-              품질관리(QC)를 기반으로 성장해온 F&B B2B 솔루션 기업입니다.
+              에이스유통주식회사는 카페·베이커리 산업을 위한 프리미엄 원재료 공급, 전문 소싱,<br className="hidden sm:block" />
+              콜드체인 물류, 품질관리(QC)를 기반으로 성장해온 F&B B2B 솔루션 기업입니다.
             </p>
             <p>
-              2010년 설립 이후 자체 물류센터와<br className="hidden sm:block" />
-              체계적인 유통 인프라를 구축하며 국내 프랜차이즈,<br className="hidden sm:block" />
-              베이커리 카페, 전문 제과점 등 다양한 파트너에게<br className="hidden sm:block" />
-              신뢰성 높은 제품을 안정적으로 공급해왔습니다.
+              2010년 설립 이후 자체 물류센터와 체계적인 유통 인프라를 구축하며 국내 프랜차이즈,<br className="hidden sm:block" />
+              베이커리 카페, 전문 제과점 등 다양한 파트너에게 신뢰성 높은 제품을 안정적으로 공급해왔습니다.
             </p>
             <p>
-              당사는 원재료의 선별력과 정교한 품질관리,<br className="hidden sm:block" />
-              신속한 공급망 운영을 통해 고객이 필요로 하는 제품을<br className="hidden sm:block" />
-              정확하고 안정적으로 전달하는 데 집중해 왔으며,<br className="hidden sm:block" />
-              업계에서 견고한 파트너십을 확보해 왔습니다.
+              당사는 원재료의 선별력과 정교한 품질관리, 신속한 공급망 운영을 통해 고객이 필요로 하는 제품을<br className="hidden sm:block" />
+              정확하고 안정적으로 전달하는 데 집중해왔으며 업계에서 견고한 파트너십을 확보해 왔습니다.
             </p>
             <p className="font-medium text-[#4A4039]">
-              에이스유통은 앞으로도 고품질 원재료와<br className="hidden sm:block" />
-              안정적인 공급 체계를 중심으로 고객의 비즈니스를<br className="hidden sm:block" />
-              확실하게 지원하는 신뢰받는 유통 파트너로 자리매김하겠습니다.
+              에이스유통은 앞으로도 고품질 원재료와 안정적인 공급 체계를 중심으로 고객의<br className="hidden sm:block" />
+              비즈니스를 확실하게 지원하며 신뢰받는 유통 파트너로 자리매김하겠습니다.
             </p>
           </div>
 
           {/* CEO Signature */}
           <div className="mt-12 pt-8 border-t border-[#E8DCC8] text-center">
             <p className="text-[#B8956A] font-bold text-lg">
-              {ceoContent?.data?.company || '에이스유통주식회사'}
+              에이스유통주식회사
             </p>
-            <div className="flex items-center justify-center gap-3 mt-1">
-              <p className="text-[#4A4039] font-bold text-xl">
-                {ceoContent?.data?.ceo || '대표이사 안종일'}
-              </p>
-              <Image
-                src={ceoContent?.data?.signatureUrl || '/sign.png'}
-                alt="대표이사 서명"
-                width={80}
-                height={32}
-                className="h-8 w-auto"
-              />
-            </div>
+            <p className="text-[#4A4039] font-bold text-xl mt-1">
+              대표이사 안종일
+            </p>
           </div>
         </div>
       </section>
@@ -822,10 +805,10 @@ export default function HomePage() {
       <footer className="bg-gradient-to-b from-[#4A4039] to-[#3A3029] py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Footer Top */}
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto] gap-8 md:gap-16 pb-12 border-b border-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pb-12 border-b border-white/10">
             {/* Logo & Company Info */}
-            <div>
-              <div className="flex items-center gap-3 mb-6">
+            <div className="text-center md:text-left">
+              <div className="flex items-center gap-3 mb-6 justify-center md:justify-start">
                 <span className="text-3xl font-black text-white">ACE</span>
                 <div className="flex flex-col">
                   <span className="text-sm font-bold text-white leading-tight">에이스유통</span>
@@ -840,9 +823,9 @@ export default function HomePage() {
             </div>
 
             {/* Contact Info */}
-            <div>
+            <div className="text-center">
               <h4 className="text-white font-bold mb-4">Contact</h4>
-              <div className="space-y-3 text-sm text-white/70">
+              <div className="space-y-3 text-sm text-white/70 inline-block text-left">
                 <p className="flex items-center gap-2">
                   <svg className="w-4 h-4 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -872,7 +855,7 @@ export default function HomePage() {
             </div>
 
             {/* Business Info */}
-            <div>
+            <div className="text-center md:text-right">
               <h4 className="text-white font-bold mb-4">Business Info</h4>
               <div className="space-y-2 text-sm text-white/70">
                 <p>대표이사 : 안종일</p>

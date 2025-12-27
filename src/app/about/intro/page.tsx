@@ -201,7 +201,7 @@ export default function AboutIntroPage() {
                 { label: '주요 고객 수', value: getKPIValue('clients', defaultKPI.clients) },
                 { label: '배송 차량', value: getKPIValue('deliveryVehicles', defaultKPI.deliveryVehicles) },
               ].map((item, index) => (
-                <div key={index} className="text-center">
+                <div key={index} className="text-center bg-white border border-[#E8DCC8] rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:border-[#B8956A]/50 hover:shadow-lg transition-all duration-300">
                   <p className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#B8956A] mb-1 sm:mb-2">{item.value}</p>
                   <p className="text-xs sm:text-sm text-[#6B5D53]">{item.label}</p>
                 </div>
