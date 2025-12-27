@@ -159,7 +159,7 @@ async function main() {
     {
       type: 'CULTURE' as const,
       title: '창립멤버 포상',
-      desc: '창립멤버 4인에게 1천만원의 포상금 수여 (총 4천만원), 10년 이상 근속자 금 10돈 지급',
+      desc: '창립멤버 4인에게 1천만원의 포상금 수여 (총 4천만원)\n10년 이상 근속자 금 10돈 지급\n전직원 금 1돈 지급',
       year: '2020년',
       imageUrl: '/포상금.png',
       order: 1,
@@ -167,21 +167,21 @@ async function main() {
     {
       type: 'CULTURE' as const,
       title: '인재양성 교육비 지원',
-      desc: '대학원 등록금 전액 지원 (한양대 경영학과정 2명 지원 중), 유통전문관리사 교육비 전액 지원',
+      desc: '대학원 등록금 전액 지원 (한양대 경영학과정 2명 지원 중)\n유통전문관리사 교육비 전액 지원',
       year: '진행중',
       order: 2,
     },
     {
       type: 'CULTURE' as const,
       title: '직무역량 강화',
-      desc: '감정노동관리사 교육 전직원 수료, 지게차 자격증 교육비 지원, 직무 관련 자격증 취득 전액 지원',
+      desc: '감정노동관리사 교육 전직원 수료\n지게차 자격증 교육비 지원\n직무 관련 자격증 취득 전액 지원',
       year: '진행중',
       order: 3,
     },
     {
       type: 'CULTURE' as const,
       title: '마라톤동아리 운영',
-      desc: '직원 자발적 참여 단체 마라톤 참가, 참가 직원 전원 나이키 러닝화 제공',
+      desc: '직원 자발적 참여 단체 마라톤 참가\n참가 직원 전원 나이키 러닝화 제공',
       year: '2023년~',
       order: 4,
     },
@@ -200,14 +200,14 @@ async function main() {
 
   // 6. 사내문화 - 복리후생
   const benefitsData = [
-    { type: 'BENEFIT' as const, title: '4대 보험', desc: '국민연금, 건강보험, 고용보험, 산재보험 가입', order: 1 },
-    { type: 'BENEFIT' as const, title: '퇴직금', desc: '법정 퇴직금 지급', order: 2 },
-    { type: 'BENEFIT' as const, title: '명절 상여', desc: '설날, 추석 상여금 지급', order: 3 },
-    { type: 'BENEFIT' as const, title: '경조사 지원', desc: '경조사비 지원 및 경조 휴가 제공', order: 4 },
-    { type: 'BENEFIT' as const, title: '교육비 지원', desc: '직무 관련 교육 및 자격증 취득 비용 전액 지원', order: 5 },
-    { type: 'BENEFIT' as const, title: '식대 지원', desc: '중식 제공 또는 식대 지원', order: 6 },
-    { type: 'BENEFIT' as const, title: '건강검진', desc: '연 1회 종합건강검진 실시', order: 7 },
-    { type: 'BENEFIT' as const, title: '장기근속 포상', desc: '5년, 10년 근속 포상금 및 금 지급', order: 8 },
+    { type: 'BENEFIT' as const, title: '4대 보험', desc: '국민연금, 건강보험,\n고용보험, 산재보험\n완비', order: 1 },
+    { type: 'BENEFIT' as const, title: '퇴직금', desc: '근속 1년 이상\n퇴직금 지급', order: 2 },
+    { type: 'BENEFIT' as const, title: '명절 상여', desc: '설, 추석 명절\n상여금 지급', order: 3 },
+    { type: 'BENEFIT' as const, title: '경조사 지원', desc: '경조금 및\n경조휴가 제공', order: 4 },
+    { type: 'BENEFIT' as const, title: '교육비 전액 지원', desc: '대학원, 자격증 등\n교육비 전액 지원', order: 5 },
+    { type: 'BENEFIT' as const, title: '식대 지원', desc: '중식 및 석식\n식대 지원', order: 6 },
+    { type: 'BENEFIT' as const, title: '건강검진', desc: '연 1회 종합\n건강검진', order: 7 },
+    { type: 'BENEFIT' as const, title: '장기근속 포상', desc: '10년 근속자\n금 지급', order: 8 },
   ];
 
   for (const data of benefitsData) {
@@ -226,21 +226,38 @@ async function main() {
     {
       type: 'CSR' as const,
       title: '취약계층 제빵재료 지원',
-      desc: '지역 사회 취약계층에 제빵 재료 정기 기부 (연간 지속 지원)',
+      desc: '취약계층 및 소상공인에게 제빵재료를\n지원하여 자립을 돕고 있습니다.',
       order: 1,
     },
     {
       type: 'CSR' as const,
       title: '지역아동센터 후원',
-      desc: '하남시 지역아동센터 정기 후원 (월 1회)',
-      imageUrl: '/후원증서.png',
+      desc: '지역 아동센터에 빵과 간식 재료를\n정기적으로 후원합니다.',
       order: 2,
     },
     {
       type: 'CSR' as const,
       title: '지역 상생',
-      desc: '지역 중소기업 및 소상공인과의 상생 협력',
+      desc: '지역 베이커리 및 소상공인과의 협력을 통해\n지역 경제 활성화에 기여',
       order: 3,
+    },
+    {
+      type: 'CSR' as const,
+      title: '베이커리 세미나 개최',
+      desc: '소상공인 매출 증대를 위한 무료 세미나를\n6년째 연 2회 개최하며 지역 경제 활성화를 지원합니다.',
+      order: 4,
+    },
+    {
+      type: 'CSR' as const,
+      title: '재해 이웃돕기 후원',
+      desc: '산불 피해 이재민의 일상 회복을 위해\n희망브릿지를 통해 긴급 구호 성금을 기부합니다.',
+      order: 5,
+    },
+    {
+      type: 'CSR' as const,
+      title: '지역 상생 협력',
+      desc: '지역 베이커리 및 소상공인과 협력하여\n매출 다각화와 지역 경제 활성화에 기여합니다.',
+      order: 6,
     },
   ];
 

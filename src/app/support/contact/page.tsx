@@ -104,7 +104,7 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <h3 className="text-base sm:text-xl font-bold text-[#4A4039] mb-1 sm:mb-2">전화 문의</h3>
-                <p className="text-lg sm:text-2xl font-bold text-[#B8956A] mb-1 sm:mb-2">02-471-1644~6</p>
+                <p className="text-base sm:text-xl font-bold text-[#B8956A] mb-1 sm:mb-2">02-471-1644~6</p>
                 <p className="text-xs sm:text-sm text-[#6B5D53]">평일 09:00 - 18:00</p>
               </div>
 
@@ -126,7 +126,7 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <h3 className="text-base sm:text-xl font-bold text-[#4A4039] mb-1 sm:mb-2">팩스</h3>
-                <p className="text-lg sm:text-xl font-bold text-[#B8956A] mb-1 sm:mb-2">02-476-1372</p>
+                <p className="text-base sm:text-xl font-bold text-[#B8956A] mb-1 sm:mb-2">02-476-1372</p>
                 <p className="text-xs sm:text-sm text-[#6B5D53]">평일 09:00 - 18:00</p>
               </div>
             </div>

@@ -32,7 +32,10 @@ export default function InternalCulturePage() {
   const csrIconMap: Record<string, string> = {
     '취약계층 제빵재료 지원': 'M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11',
     '지역아동센터 후원': 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
-    '지역 상생': 'M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11',
+    '지역 상생': 'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9',
+    '베이커리 세미나 개최': 'M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z',
+    '재해 이웃돕기 후원': 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+    '지역 상생 협력': 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
   };
 
   // Fallback data
@@ -41,25 +44,25 @@ export default function InternalCulturePage() {
     : [
     {
       title: '창립멤버 포상',
-      desc: '창립멤버 4인에게 1천만원의 포상금 수여 (총 4천만원), 10년 이상 근속자 금 10돈 지급',
+      desc: '창립멤버 4인에게 1천만원의 포상금 수여 (총 4천만원)\n10년 이상 근속자 금 10돈 지급\n전직원 금 1돈 지급',
       year: '2020년',
       icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z'
     },
     {
       title: '인재양성 교육비 지원',
-      desc: '대학원 등록금 전액 지원 (한양대 경영학과정 2명 지원 중), 유통전문관리사 교육비 전액 지원',
+      desc: '대학원 등록금 전액 지원 (한양대 경영학과정 2명 지원 중)\n유통전문관리사 교육비 전액 지원',
       year: '진행중',
       icon: 'M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222'
     },
     {
       title: '직무역량 강화',
-      desc: '감정노동관리사 교육 전직원 수료, 지게차 자격증 교육비 지원, 직무 관련 자격증 취득 전액 지원',
+      desc: '감정노동관리사 교육 전직원 수료\n지게차 자격증 교육비 지원\n직무 관련 자격증 취득 전액 지원',
       year: '진행중',
       icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'
     },
     {
       title: '마라톤동아리 운영',
-      desc: '직원 자발적 참여 단체 마라톤 참가, 참가 직원 전원 나이키 러닝화 제공',
+      desc: '직원 자발적 참여 단체 마라톤 참가\n참가 직원 전원 나이키 러닝화 제공',
       year: '2023년~',
       icon: 'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1'
     },
@@ -123,33 +126,13 @@ export default function InternalCulturePage() {
                         <h3 className="text-base sm:text-xl font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors">{item.title}</h3>
                         <span className="text-[10px] sm:text-xs font-medium text-[#B8956A] bg-[#B8956A]/10 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">{item.year}</span>
                       </div>
-                      <p className="text-[#6B5D53] text-xs sm:text-sm leading-relaxed">{item.desc}</p>
+                      <p className="text-[#6B5D53] text-xs sm:text-sm leading-relaxed whitespace-pre-line">{item.desc}</p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* 창립멤버 포상 사진 */}
-            <div className="mt-10 sm:mt-16">
-              <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-[#E8DCC8] overflow-hidden">
-                <div className="text-center mb-4 sm:mb-6">
-                  <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2">창립멤버 포상 현장</h3>
-                  <p className="text-sm sm:text-base text-[#6B5D53]">2020년 창립멤버 4인에게 각 1천만원의 포상금을 수여했습니다</p>
-                </div>
-                <div className="flex justify-center">
-                  <div className="relative w-full max-w-2xl aspect-[16/9] rounded-lg sm:rounded-xl overflow-hidden">
-                    <Image
-                      src="/images/posang.png"
-                      alt="창립멤버 포상 - 에이스유통 직원들이 포상금을 수여받는 모습"
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 768px) 100vw, 672px"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -171,7 +154,7 @@ export default function InternalCulturePage() {
                     </svg>
                   </div>
                   <h3 className="text-sm sm:text-base font-bold text-[#4A4039] mb-0.5 sm:mb-1">{benefit.title}</h3>
-                  <p className="text-xs sm:text-sm text-[#6B5D53]">{benefit.desc}</p>
+                  <p className="text-xs sm:text-sm text-[#6B5D53] whitespace-pre-line">{benefit.desc}</p>
                 </div>
               ))}
             </div>
@@ -187,21 +170,16 @@ export default function InternalCulturePage() {
               <p className="text-sm sm:text-base text-[#6B5D53]">나눔으로 함께하는 에이스유통</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 sm:gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {csrActivities.map((activity, index) => (
-                <div key={index} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-xl sm:rounded-2xl p-4 sm:p-8 text-center border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div key={index} className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#B8956A] to-[#D4A574] rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={activity.icon || 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z'} />
                     </svg>
                   </div>
-                  <h3 className="text-base sm:text-xl font-bold text-[#4A4039] mb-2 sm:mb-3">{activity.title}</h3>
-                  <p className="text-xs sm:text-base text-[#6B5D53] mb-3 sm:mb-4">{activity.desc}</p>
-                  {activity.year && (
-                    <span className="inline-block bg-[#B8956A]/10 text-[#B8956A] font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm">
-                      {activity.year}
-                    </span>
-                  )}
+                  <h3 className="text-sm sm:text-base font-bold text-[#4A4039] mb-2">{activity.title}</h3>
+                  <p className="text-xs sm:text-sm text-[#6B5D53] whitespace-pre-line">{activity.desc}</p>
                 </div>
               ))}
             </div>
@@ -221,16 +199,16 @@ export default function InternalCulturePage() {
               <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-[#E8DCC8] overflow-hidden">
                 <div className="text-center mb-4 sm:mb-6">
                   <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2">희망브릿지 후원 증서</h3>
-                  <p className="text-sm sm:text-base text-[#6B5D53]">사회 공헌 활동의 일환으로 희망브릿지에 정기 후원하고 있습니다</p>
+                  <p className="text-sm sm:text-base text-[#6B5D53] whitespace-pre-line">에이스유통(주)는 2025년 4월 15일 산불로 피해를 입은 이웃들의 조속한 일상 회복을 돕기 위해{'\n'}희망브릿지 전국재해구호협회를 통해 산불 피해 이웃돕기 성금 기부를 완료했습니다.</p>
                 </div>
                 <div className="flex justify-center">
-                  <div className="relative w-full max-w-xs aspect-[3/4] rounded-lg sm:rounded-xl overflow-hidden shadow-lg border border-[#E8DCC8]">
+                  <div className="relative w-full max-w-sm aspect-square rounded-lg sm:rounded-xl overflow-hidden shadow-lg">
                     <Image
-                      src="/images/patron.png"
-                      alt="희망브릿지 후원 증서 - 에이스유통 기부 인증"
+                      src="/images/후원증서.png"
+                      alt="희망브릿지 후원 증서 - 에이스유통 산불 피해 이웃돕기 성금 기부"
                       fill
-                      className="object-contain bg-white"
-                      sizes="(max-width: 768px) 280px, 320px"
+                      className="object-contain"
+                      sizes="(max-width: 768px) 320px, 384px"
                     />
                   </div>
                 </div>
