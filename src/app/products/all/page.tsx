@@ -29,11 +29,14 @@ interface Product {
   };
 }
 
+const ITEMS_PER_PAGE = 12;
+
 export default function ProductsAllPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,6 +71,16 @@ export default function ProductsAllPage() {
   const filteredProducts = activeCategory === 'all'
     ? products
     : products.filter(p => p.category?.name === activeCategory);
+
+  // 페이지네이션
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedProducts = filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  // 카테고리 변경 시 페이지 리셋
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory]);
 
   return (
     <>
@@ -140,55 +153,92 @@ export default function ProductsAllPage() {
               </div>
             </div>
 
-            {/* Product Cards Grid */}
+            {/* Product Grid */}
             {loading ? (
-              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {[...Array(8)].map((_, i) => (
-                  <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] animate-pulse">
-                    <div className="aspect-square bg-gray-200"></div>
-                    <div className="p-5">
-                      <div className="h-3 bg-gray-200 rounded w-1/4 mb-2"></div>
-                      <div className="h-5 bg-gray-200 rounded w-3/4 mb-2"></div>
-                      <div className="h-3 bg-gray-200 rounded w-1/2"></div>
-                    </div>
+                  <div key={i} className="bg-white rounded-xl border border-[#E8DCC8] p-5 animate-pulse">
+                    <div className="h-3 bg-gray-200 rounded w-16 mb-3"></div>
+                    <div className="h-5 bg-gray-200 rounded w-full mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded w-2/3"></div>
                   </div>
                 ))}
               </div>
             ) : filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
-                {filteredProducts.map((product) => (
-                  <Link
-                    key={product.id}
-                    href={`/products/${product.category?.name}/${product.id}`}
-                    className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group block"
-                  >
-                    <div className="aspect-square bg-gradient-to-br from-[#FAF6F1] to-white flex items-center justify-center overflow-hidden">
-                      {product.imageUrl ? (
-                        <img
-                          src={product.imageUrl}
-                          alt={product.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className="w-12 sm:w-20 h-12 sm:h-20 bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <svg className="w-6 sm:w-10 h-6 sm:h-10 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-3 sm:p-5">
-                      <span className="inline-block px-2 sm:px-3 py-0.5 sm:py-1 bg-[#B8956A]/10 text-[#B8956A] text-[10px] sm:text-xs font-medium rounded-full mb-1 sm:mb-2">
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  {paginatedProducts.map((product) => (
+                    <Link
+                      key={product.id}
+                      href={`/products/${product.category?.name}/${product.id}`}
+                      className="bg-white rounded-xl border border-[#E8DCC8] p-5 hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group block"
+                    >
+                      <span className="inline-block px-2.5 py-1 bg-[#B8956A]/10 text-[#B8956A] text-[11px] font-medium rounded-full mb-3">
                         {product.category?.displayName}
                       </span>
-                      <h3 className="text-sm sm:text-lg font-bold text-[#4A4039] mb-0.5 sm:mb-1 group-hover:text-[#B8956A] transition-colors line-clamp-1">
+                      <h3 className="text-base font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors mb-1.5 line-clamp-2">
                         {product.name}
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#6B5D53] line-clamp-1">{product.brand || product.code}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+                      <p className="text-sm text-[#6B5D53]">{product.brand || product.code}</p>
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="flex justify-center items-center gap-2 mt-10">
+                    <button
+                      onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#E8DCC8] text-[#6B5D53] hover:border-[#B8956A] hover:text-[#B8956A] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+
+                    {Array.from({ length: totalPages }, (_, i) => i + 1)
+                      .filter(page => {
+                        if (totalPages <= 7) return true;
+                        if (page === 1 || page === totalPages) return true;
+                        if (Math.abs(page - currentPage) <= 1) return true;
+                        return false;
+                      })
+                      .map((page, idx, arr) => (
+                        <div key={page} className="flex items-center">
+                          {idx > 0 && arr[idx - 1] !== page - 1 && (
+                            <span className="px-2 text-[#6B5D53]">...</span>
+                          )}
+                          <button
+                            onClick={() => setCurrentPage(page)}
+                            className={`w-10 h-10 flex items-center justify-center rounded-lg font-medium transition-colors ${
+                              currentPage === page
+                                ? 'bg-[#B8956A] text-white'
+                                : 'border border-[#E8DCC8] text-[#6B5D53] hover:border-[#B8956A] hover:text-[#B8956A]'
+                            }`}
+                          >
+                            {page}
+                          </button>
+                        </div>
+                      ))}
+
+                    <button
+                      onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                      className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#E8DCC8] text-[#6B5D53] hover:border-[#B8956A] hover:text-[#B8956A] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                )}
+
+                {/* Page Info */}
+                <p className="text-center text-sm text-[#6B5D53] mt-4">
+                  총 {filteredProducts.length}개 제품 중 {startIndex + 1}-{Math.min(startIndex + ITEMS_PER_PAGE, filteredProducts.length)}개 표시
+                </p>
+              </>
             ) : (
               <div className="text-center py-20">
                 <div className="w-20 h-20 bg-[#E8DCC8] rounded-full flex items-center justify-center mx-auto mb-6">

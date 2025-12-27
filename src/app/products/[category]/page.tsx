@@ -26,6 +26,8 @@ interface Product {
   };
 }
 
+const ITEMS_PER_PAGE = 12;
+
 export default function CategoryPage() {
   const params = useParams();
   const categoryName = params.category as string;
@@ -35,6 +37,7 @@ export default function CategoryPage() {
   const [relatedCategories, setRelatedCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,8 +79,14 @@ export default function CategoryPage() {
 
     if (categoryName) {
       fetchData();
+      setCurrentPage(1);
     }
   }, [categoryName]);
+
+  // 페이지네이션
+  const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedProducts = products.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   if (notFound) {
     return (
@@ -139,49 +148,86 @@ export default function CategoryPage() {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {loading ? (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {[...Array(8)].map((_, i) => (
-                  <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] animate-pulse">
-                    <div className="aspect-square bg-gray-200"></div>
-                    <div className="p-5">
-                      <div className="h-3 bg-gray-200 rounded w-1/4 mb-2"></div>
-                      <div className="h-5 bg-gray-200 rounded w-3/4 mb-2"></div>
-                      <div className="h-3 bg-gray-200 rounded w-1/2"></div>
-                    </div>
+                  <div key={i} className="bg-white rounded-xl border border-[#E8DCC8] p-5 animate-pulse">
+                    <div className="h-5 bg-gray-200 rounded w-full mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded w-2/3"></div>
                   </div>
                 ))}
               </div>
             ) : products.length > 0 ? (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {products.map((product) => (
-                  <Link
-                    key={product.id}
-                    href={`/products/${product.category.name}/${product.id}`}
-                    className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group block"
-                  >
-                    <div className="aspect-square bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10 flex items-center justify-center">
-                      {product.imageUrl ? (
-                        <img
-                          src={product.imageUrl}
-                          alt={product.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <svg className="w-10 h-10 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                          </svg>
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  {paginatedProducts.map((product) => (
+                    <Link
+                      key={product.id}
+                      href={`/products/${product.category.name}/${product.id}`}
+                      className="bg-white rounded-xl border border-[#E8DCC8] p-5 hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group block"
+                    >
+                      <h3 className="text-base font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors mb-1.5 line-clamp-2">
+                        {product.name}
+                      </h3>
+                      <p className="text-sm text-[#6B5D53]">{product.brand || product.code}</p>
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="flex justify-center items-center gap-2 mt-10">
+                    <button
+                      onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#E8DCC8] text-[#6B5D53] hover:border-[#B8956A] hover:text-[#B8956A] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+
+                    {Array.from({ length: totalPages }, (_, i) => i + 1)
+                      .filter(page => {
+                        if (totalPages <= 7) return true;
+                        if (page === 1 || page === totalPages) return true;
+                        if (Math.abs(page - currentPage) <= 1) return true;
+                        return false;
+                      })
+                      .map((page, idx, arr) => (
+                        <div key={page} className="flex items-center">
+                          {idx > 0 && arr[idx - 1] !== page - 1 && (
+                            <span className="px-2 text-[#6B5D53]">...</span>
+                          )}
+                          <button
+                            onClick={() => setCurrentPage(page)}
+                            className={`w-10 h-10 flex items-center justify-center rounded-lg font-medium transition-colors ${
+                              currentPage === page
+                                ? 'bg-[#B8956A] text-white'
+                                : 'border border-[#E8DCC8] text-[#6B5D53] hover:border-[#B8956A] hover:text-[#B8956A]'
+                            }`}
+                          >
+                            {page}
+                          </button>
                         </div>
-                      )}
-                    </div>
-                    <div className="p-5">
-                      <span className="text-xs text-[#B8956A] font-medium">{product.brand || product.code}</span>
-                      <h3 className="text-lg font-bold text-[#4A4039] mt-1 mb-2 group-hover:text-[#B8956A] transition-colors">{product.name}</h3>
-                      <p className="text-sm text-[#6B5D53] line-clamp-2">{product.description}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+                      ))}
+
+                    <button
+                      onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                      className="w-10 h-10 flex items-center justify-center rounded-lg border border-[#E8DCC8] text-[#6B5D53] hover:border-[#B8956A] hover:text-[#B8956A] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                )}
+
+                {/* Page Info */}
+                <p className="text-center text-sm text-[#6B5D53] mt-4">
+                  총 {products.length}개 제품 중 {startIndex + 1}-{Math.min(startIndex + ITEMS_PER_PAGE, products.length)}개 표시
+                </p>
+              </>
             ) : (
               <div className="text-center py-20">
                 <div className="w-20 h-20 bg-[#B8956A]/10 rounded-full flex items-center justify-center mx-auto mb-6">

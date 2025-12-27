@@ -30,7 +30,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ catego
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -39,7 +38,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ catego
         if (res.ok) {
           const data = await res.json();
           setProduct(data);
-          setSelectedImage(data.imageUrl || data.thumbnailUrl);
         } else {
           setNotFound(true);
         }
@@ -105,12 +103,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ catego
     );
   }
 
-  const allImages = [
-    product.imageUrl,
-    product.thumbnailUrl,
-    ...(product.images || []),
-  ].filter((img): img is string => !!img);
-
   return (
     <>
       <Header />
@@ -128,46 +120,9 @@ export default function ProductDetailPage({ params }: { params: Promise<{ catego
 
         {/* Product Detail */}
         <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12">
-              {/* Image Section */}
-              <div>
-                <div className="aspect-square bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] mb-4">
-                  {selectedImage ? (
-                    <img
-                      src={selectedImage}
-                      alt={product.name}
-                      className="w-full h-full object-contain p-4"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10">
-                      <svg className="w-24 h-24 text-[#B8956A]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                      </svg>
-                    </div>
-                  )}
-                </div>
-
-                {/* Thumbnail Gallery */}
-                {allImages.length > 1 && (
-                  <div className="flex gap-2 overflow-x-auto pb-2">
-                    {allImages.map((img, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setSelectedImage(img)}
-                        className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                          selectedImage === img ? 'border-[#B8956A]' : 'border-[#E8DCC8] hover:border-[#B8956A]/50'
-                        }`}
-                      >
-                        <img src={img} alt="" className="w-full h-full object-cover" />
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Info Section */}
-              <div>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Info Section */}
+            <div>
                 <div className="mb-6">
                   <span className="inline-block bg-[#B8956A]/10 text-[#B8956A] text-sm font-medium px-3 py-1 rounded-full mb-3">
                     {product.category.displayName}
@@ -257,7 +212,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ catego
                     </a>
                   </div>
                 )}
-              </div>
             </div>
           </div>
         </section>

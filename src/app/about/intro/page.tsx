@@ -56,11 +56,11 @@ export default function AboutIntroPage() {
   ];
 
   const certifications = dbCertificates.length > 0 ? dbCertificates : [
-    { title: '특허증 (냉장/냉동 장치)', description: '제과제빵류 운반 및 보관용\n냉장/냉동장치 특허 (제 10-2445173호)', date: '2020년 취득', imageUrl: '/images/certificates/patent.png' },
-    { title: '상표등록증 (에이스제빵소)', description: '에이스제빵소 브랜드 상표권 등록', date: '2021년 등록', imageUrl: '/images/certificates/trademark.png' },
-    { title: '우수기술기업 인증서', description: '제과제빵 재료 유통물류 및\n기술마케팅 부문 기술력 인증', date: '2019년 취득', imageUrl: '/images/certificates/tech-company.png' },
+    { title: '특허증 (냉장/냉동 장치)', description: '제과제빵류 운반 및 보관용\n냉장/냉동장치 특허 (제 10-2445173호)', date: '2020년 취득', imageUrl: '/images/인증서/특허증.png' },
+    { title: '상표등록증 (에이스제빵소)', description: '에이스제빵소 브랜드 상표권 등록', date: '2021년 등록', imageUrl: '/images/인증서/상표등록증.png' },
+    { title: '우수기술기업 인증서', description: '제과제빵 재료 유통물류 및\n기술마케팅 부문 기술력 인증', date: '2019년 취득', imageUrl: '/images/인증서/우수기술기업인증서.png' },
     { title: '메인비즈 인증', description: '중소벤처기업부 경영혁신형 중소기업 인증', date: '2016년 취득', imageUrl: '/images/certificates/mainbiz.png' },
-    { title: '일터혁신 사업장', description: '노사발전재단 일터혁신 사업장 선정\n직무 분석 및 평가체계 개선 추진', date: '2023년 선정', imageUrl: '/images/certificates/workplace-innovation.png' },
+    { title: '일터혁신 사업장', description: '노사발전재단 일터혁신 사업장 선정\n직무 분석 및 평가체계 개선 추진', date: '2023년 선정', imageUrl: '/images/인증서/일터혁신.png' },
   ];
 
   const coreValues = dbCoreValues.length > 0 ? dbCoreValues : [
@@ -215,121 +215,124 @@ export default function AboutIntroPage() {
       {/* Section 2: 기업 연혁 */}
       <section id="history" className="py-12 sm:py-20 lg:py-32 bg-gradient-to-b from-[#FAF6F1] to-white scroll-mt-40">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-20">
+          <div className="text-center mb-12 sm:mb-16">
             <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">HISTORY</span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-4 sm:mb-6">
               신뢰와 품질로 쌓아온 <span className="text-[#B8956A]">{yearsInBusiness}년의 역사</span>
             </h2>
           </div>
 
-          {/* Timeline with Images */}
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#B8956A] via-[#D4A574] to-[#B8956A] hidden lg:block"></div>
-            <div className="space-y-8 sm:space-y-16 lg:space-y-24">
-              {/* 2010 - 창립 */}
-              <div className="relative flex items-center">
-                <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">2010</div>
-                <div className="w-full lg:w-5/12 lg:mr-auto lg:pr-12">
-                  <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
-                    <div className="h-40 sm:h-56 overflow-hidden bg-[#FAF6F1] flex items-center justify-center p-4">
-                      <img
-                        src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=800&h=600&fit=crop"
-                        alt="에이스유통㈜ 창립"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                    </div>
-                    <div className="p-4 sm:p-8">
-                      <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">2010</span>
-                      <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">에이스유통㈜ 창립</h3>
-                      <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">직원 5명으로 카페·베이커리 원재료 유통 사업 시작</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          {/* Timeline - 중앙 세로선 + 좌우 교차 배치 (Desktop) */}
+          <div className="hidden md:block relative">
+            {/* 중앙 세로선 */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-[2px] bg-[#D4C4B0]"></div>
 
-              {/* 2015 - 본사 사옥 신축 */}
-              <div className="relative flex items-center lg:flex-row-reverse">
-                <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">2015</div>
-                <div className="w-full lg:w-5/12 lg:ml-auto lg:pl-12">
-                  <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
-                    <div className="h-40 sm:h-56 overflow-hidden bg-[#FAF6F1] flex items-center justify-center p-4">
-                      <img
-                        src="/images/business-location.png"
-                        alt="본사 사옥 신축 이전"
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                      />
-                    </div>
-                    <div className="p-4 sm:p-8">
-                      <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">2015</span>
-                      <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">본사 사옥 신축 이전</h3>
-                      <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">경기도 하남시 천현동에 자체 물류센터 보유 사옥 신축</p>
-                    </div>
+            <div className="relative">
+              {[
+                { year: '2026', items: ['에이스유통㈜ 신사옥 신축 및 이전 (하남시 감북동 소재)'], side: 'left' },
+                { year: '2025', items: ['IP 굿즈 및 에듀 콘텐츠 전문 기업 ㈜토이트론과 전략적 계약 체결'], side: 'right' },
+                { year: '2024', items: ['매출 260억원 달성'], side: 'left' },
+                { year: '2023', items: ['일터혁신 사업장으로 선정'], side: 'right' },
+                { year: '2022', items: ['경기도 하남시 중소기업 경영인상 수상'], side: 'left' },
+                { year: '2021', items: ['에이스제빵소 상표권 등록'], side: 'right' },
+                { year: '2020', items: [
+                  '제과제빵류 운반 및 보관용 냉장&냉동장치에 대한 특허 취득',
+                  '에이스유통㈜ 창립 10주년 기념행사 개최'
+                ], side: 'left' },
+                { year: '2019', items: [
+                  '제과제빵 재료의 유통물류 및 기술마케팅 부문 우수기술기업 인증서 획득',
+                  '베이커리 소상공인을 위한 무료 세미나 개최 (매년 1회 개최)',
+                  '매출 200억원 달성',
+                  '에이스제빵소 운영 (베이커리샵)'
+                ], side: 'right' },
+                { year: '2018', items: ['경기도 하남시 기업인 협의회 인증'], side: 'left' },
+                { year: '2016', items: ['중소기업청 메인비즈 인증'], side: 'right' },
+                { year: '2015', items: ['에이스유통㈜ 신사옥 신축 및 이전 (하남시 천현동 소재)'], side: 'left' },
+                { year: '2012', items: ['매출 100억원 달성'], side: 'right' },
+                { year: '2010', items: ['에이스유통㈜ 창립 (직원 5명)'], side: 'left' },
+              ].map((yearData, yearIndex) => (
+                <div key={yearIndex} className="relative flex items-center min-h-[80px] mb-4">
+                  {/* 왼쪽 영역 */}
+                  <div className="w-[calc(50%-60px)] pr-6 flex justify-end">
+                    {yearData.side === 'left' && (
+                      <div className="text-right">
+                        {yearData.items.map((item, itemIndex) => (
+                          <p key={itemIndex} className="text-sm lg:text-base text-[#4A4039] leading-relaxed">
+                            {item}
+                          </p>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                </div>
-              </div>
 
-              {/* 2019 - 우수기술기업 인증 */}
-              <div className="relative flex items-center">
-                <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">2019</div>
-                <div className="w-full lg:w-5/12 lg:mr-auto lg:pr-12">
-                  <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
-                    <div className="h-40 sm:h-56 overflow-hidden bg-white flex items-center justify-center p-4">
-                      <img
-                        src="/images/certificates/tech-company.png"
-                        alt="우수기술기업 인증"
-                        className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                      />
-                    </div>
-                    <div className="p-4 sm:p-8">
-                      <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">2019</span>
-                      <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">우수기술기업 인증</h3>
-                      <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">제과제빵 재료 유통물류 및 기술마케팅 부문 우수기술기업 인증 획득</p>
+                  {/* 중앙 연도 영역 */}
+                  <div className="w-[120px] flex justify-center relative z-10">
+                    <div className="bg-white px-4 py-1.5 rounded-full border border-[#D4C4B0]">
+                      <span className="text-base lg:text-lg font-bold text-[#B8956A]">{yearData.year}</span>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              {/* 2020 - 창립 10주년 & 특허 취득 */}
-              <div className="relative flex items-center lg:flex-row-reverse">
-                <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">2020</div>
-                <div className="w-full lg:w-5/12 lg:ml-auto lg:pl-12">
-                  <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
-                    <div className="h-40 sm:h-56 overflow-hidden bg-white flex items-center justify-center p-4">
-                      <img
-                        src="/images/certificates/patent.png"
-                        alt="창립 10주년 & 특허 취득"
-                        className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                      />
-                    </div>
-                    <div className="p-4 sm:p-8">
-                      <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">2020</span>
-                      <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">창립 10주년 & 특허 취득</h3>
-                      <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">제과제빵류 운반 및 보관용 냉장/냉동장치 특허 취득</p>
-                    </div>
+                  {/* 오른쪽 영역 */}
+                  <div className="w-[calc(50%-60px)] pl-6 flex justify-start">
+                    {yearData.side === 'right' && (
+                      <div className="text-left">
+                        {yearData.items.map((item, itemIndex) => (
+                          <p key={itemIndex} className="text-sm lg:text-base text-[#4A4039] leading-relaxed">
+                            {item}
+                          </p>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
-              </div>
+              ))}
+            </div>
+          </div>
 
-              {/* 2025 - 전략적 파트너십 체결 */}
-              <div className="relative flex items-center">
-                <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#B8956A] text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl z-10 hidden lg:block">2025</div>
-                <div className="w-full lg:w-5/12 lg:mr-auto lg:pr-12">
-                  <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl overflow-hidden group hover:shadow-3xl transition-shadow duration-500">
-                    <div className="h-40 sm:h-56 overflow-hidden bg-[#FAF6F1] flex items-center justify-center p-4">
-                      <img
-                        src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop"
-                        alt="전략적 파트너십 체결"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                    </div>
-                    <div className="p-4 sm:p-8">
-                      <span className="lg:hidden inline-block bg-[#B8956A] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-4">2025</span>
-                      <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2 sm:mb-3">전략적 파트너십 체결</h3>
-                      <p className="text-sm sm:text-base text-[#6B5D53] leading-relaxed">IP 굿즈 및 에듀 콘텐츠 기업 ㈜토이트론과 전략적 계약 체결</p>
-                    </div>
+          {/* Timeline - Mobile (세로 리스트) */}
+          <div className="md:hidden relative pl-6">
+            {/* 왼쪽 세로선 */}
+            <div className="absolute left-2 top-0 bottom-0 w-[2px] bg-[#D4C4B0]"></div>
+
+            <div className="space-y-6">
+              {[
+                { year: '2026', items: ['에이스유통㈜ 신사옥 신축 및 이전 (하남시 감북동 소재)'] },
+                { year: '2025', items: ['IP 굿즈 및 에듀 콘텐츠 전문 기업 ㈜토이트론과 전략적 계약 체결'] },
+                { year: '2024', items: ['매출 260억원 달성'] },
+                { year: '2023', items: ['일터혁신 사업장으로 선정'] },
+                { year: '2022', items: ['경기도 하남시 중소기업 경영인상 수상'] },
+                { year: '2021', items: ['에이스제빵소 상표권 등록'] },
+                { year: '2020', items: [
+                  '제과제빵류 운반 및 보관용 냉장&냉동장치에 대한 특허 취득',
+                  '에이스유통㈜ 창립 10주년 기념행사 개최'
+                ] },
+                { year: '2019', items: [
+                  '제과제빵 재료의 유통물류 및 기술마케팅 부문 우수기술기업 인증서 획득',
+                  '베이커리 소상공인을 위한 무료 세미나 개최 (매년 1회 개최)',
+                  '매출 200억원 달성',
+                  '에이스제빵소 운영 (베이커리샵)'
+                ] },
+                { year: '2018', items: ['경기도 하남시 기업인 협의회 인증'] },
+                { year: '2016', items: ['중소기업청 메인비즈 인증'] },
+                { year: '2015', items: ['에이스유통㈜ 신사옥 신축 및 이전 (하남시 천현동 소재)'] },
+                { year: '2012', items: ['매출 100억원 달성'] },
+                { year: '2010', items: ['에이스유통㈜ 창립 (직원 5명)'] },
+              ].map((yearData, yearIndex) => (
+                <div key={yearIndex} className="relative">
+                  {/* 점 */}
+                  <div className="absolute -left-6 top-1 w-3 h-3 bg-[#B8956A] rounded-full border-2 border-white shadow-sm z-10"></div>
+
+                  {/* 연도 및 내용 */}
+                  <div>
+                    <span className="text-lg font-bold text-[#B8956A] mb-1 block">{yearData.year}</span>
+                    {yearData.items.map((item, itemIndex) => (
+                      <p key={itemIndex} className="text-sm text-[#4A4039] leading-relaxed">
+                        {item}
+                      </p>
+                    ))}
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
 
@@ -535,14 +538,34 @@ export default function AboutIntroPage() {
             <p className="text-sm sm:text-base text-[#6B5D53]">신뢰할 수 있는 기업 인증 현황</p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 mb-12 sm:mb-20">
-            {certifications.map((cert, index) => (
+          {/* 1행: 3개 */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 mb-3 sm:mb-6">
+            {certifications.slice(0, 3).map((cert, index) => (
               <div key={index} className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A]/50 hover:shadow-xl transition-all duration-300 group flex flex-col">
                 <div className="aspect-[4/3] bg-gradient-to-br from-[#FAF6F1] to-white flex items-center justify-center p-2 sm:p-4 overflow-hidden">
                   <img
                     src={cert.imageUrl || ''}
                     alt={cert.title}
-                    className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300 border border-black"
+                    className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300 border border-[#E8DCC8]"
+                  />
+                </div>
+                <div className="p-3 sm:p-6 flex flex-col flex-grow">
+                  <h3 className="text-sm sm:text-lg font-bold text-[#4A4039] mb-1 sm:mb-2 group-hover:text-[#B8956A] transition-colors line-clamp-1">{cert.title}</h3>
+                  <p className="text-[#6B5D53] text-xs sm:text-sm mb-2 sm:mb-3 flex-grow whitespace-pre-line">{cert.description}</p>
+                  <span className="text-xs sm:text-sm text-[#B8956A] font-medium mt-auto">{cert.date}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* 2행: 2개 (가운데 정렬) */}
+          <div className="flex justify-center gap-3 sm:gap-6 mb-12 sm:mb-20">
+            {certifications.slice(3, 5).map((cert, index) => (
+              <div key={index} className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A]/50 hover:shadow-xl transition-all duration-300 group flex flex-col w-[calc(50%-6px)] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+                <div className="aspect-[4/3] bg-gradient-to-br from-[#FAF6F1] to-white flex items-center justify-center p-2 sm:p-4 overflow-hidden">
+                  <img
+                    src={cert.imageUrl || ''}
+                    alt={cert.title}
+                    className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300 border border-[#E8DCC8]"
                   />
                 </div>
                 <div className="p-3 sm:p-6 flex flex-col flex-grow">

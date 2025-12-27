@@ -47,22 +47,40 @@ const partnerLogos = [
   { src: '/images/000. 협력사 로고/44. 마루비시.png', alt: '마루비시' },
 ];
 
+const clientInfo = [
+  { text: '스타필드 빵고당 입점', detail: '하남, 고양 외 8개 지점' },
+  { text: '롯데 백화점 하나식빵 입점', detail: '롯데백화점 외 20여개 지점' },
+  { text: '지하철 역사 내 던베이크', detail: '17여개 지점' },
+  { text: '콘트라쎄리에', detail: '30여개 지점' },
+  { text: '그 외 기타 개인제과', detail: '전국 420여개 이상 거래처 보유/관리' },
+];
+
 export default function ClientsSection() {
   return (
     <section className="py-16 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 주요 고객사 */}
+        {/* 주요 협력사 */}
         <div className="text-center mb-8 sm:mb-12">
-          <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CLIENTS</span>
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#4A4039] mb-3 sm:mb-4">주요 고객사</h3>
-          <p className="text-[#6B5D53]">에이스유통과 함께하는 믿음직한 파트너</p>
+          <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">PARTNERS</span>
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#4A4039] mb-3 sm:mb-4">주요 협력사</h3>
+          <p className="text-[#6B5D53] mb-6 sm:mb-8">에이스유통과 함께하는 믿음직한 파트너</p>
+
+          {/* 주요 협력사 세부 정보 */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 max-w-4xl mx-auto mb-8 sm:mb-12">
+            {clientInfo.map((item, index) => (
+              <div key={index} className="bg-[#FAF6F1] px-3 sm:px-4 py-2 rounded-lg border border-[#E8DCC8]">
+                <span className="text-xs sm:text-sm text-[#4A4039] font-medium">{item.text}</span>
+                <span className="text-xs sm:text-sm text-[#B8956A] ml-1">({item.detail})</span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* 협력사 로고 그리드 */}
-        <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-6 sm:p-8 border border-[#E8DCC8]">
-          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-11 gap-4">
+        {/* 협력사 로고 그리드 - 1행당 5~6개, 크게 */}
+        <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl p-6 sm:p-10 border border-[#E8DCC8]">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 sm:gap-6">
             {partnerLogos.map((logo, index) => (
-              <div key={index} className="bg-white rounded-lg p-2 sm:p-3 border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-md transition-all duration-300 flex items-center justify-center aspect-square">
+              <div key={index} className="bg-white rounded-xl p-3 sm:p-4 border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 flex items-center justify-center aspect-square">
                 <img
                   src={logo.src}
                   alt={logo.alt}
