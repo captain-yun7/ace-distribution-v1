@@ -1,7 +1,6 @@
 'use client';
 
 import { Header, Footer, PageHero } from '@/components/layout';
-import { ClientsSection } from '@/components/sections';
 import Link from 'next/link';
 import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -274,9 +273,6 @@ function StoryPageContent() {
             )}
           </div>
         </section>
-
-        {/* Major Clients */}
-        <ClientsSection />
 
         {/* CTA */}
         <section className="py-10 sm:py-16 bg-gradient-to-br from-[#4A4039] to-[#6B5D53] text-white">

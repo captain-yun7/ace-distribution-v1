@@ -251,9 +251,9 @@ export default function AboutIntroPage() {
                 { year: '2012', items: ['매출 100억원 달성'], side: 'right' },
                 { year: '2010', items: ['에이스유통㈜ 창립 (직원 5명)'], side: 'left' },
               ].map((yearData, yearIndex) => (
-                <div key={yearIndex} className="relative flex items-center min-h-[80px] mb-4">
+                <div key={yearIndex} className={`relative flex items-start min-h-[80px] ${yearData.items.length > 2 ? 'mb-8' : 'mb-4'}`}>
                   {/* 왼쪽 영역 */}
-                  <div className="w-[calc(50%-60px)] pr-6 flex justify-end">
+                  <div className="w-[calc(50%-60px)] pr-6 flex justify-end pt-1">
                     {yearData.side === 'left' && (
                       <div className="text-right">
                         {yearData.items.map((item, itemIndex) => (
@@ -273,7 +273,7 @@ export default function AboutIntroPage() {
                   </div>
 
                   {/* 오른쪽 영역 */}
-                  <div className="w-[calc(50%-60px)] pl-6 flex justify-start">
+                  <div className="w-[calc(50%-60px)] pl-6 flex justify-start pt-1">
                     {yearData.side === 'right' && (
                       <div className="text-left">
                         {yearData.items.map((item, itemIndex) => (

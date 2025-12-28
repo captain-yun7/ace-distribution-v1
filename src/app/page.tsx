@@ -654,25 +654,25 @@ export default function HomePage() {
                 {
                   year: '2010',
                   title: '회사 설립',
-                  desc: '카페·베이커리 원재료 유통 사업 시작',
+                  desc: '카페·베이커리\n원재료 유통 사업 시작',
                   icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'
                 },
                 {
                   year: '2015',
                   title: '사옥 신축',
-                  desc: '하남시 천현동 자체 물류센터 사옥 신축',
+                  desc: '하남시 천현동\n물류센터 사옥 신축',
                   icon: 'M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z'
                 },
                 {
                   year: '2020',
                   title: '창립 10주년',
-                  desc: '특허 취득 및 배송차량 20대 증차',
+                  desc: '특허 취득 및\n배송차량 20대 증차',
                   icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z'
                 },
                 {
                   year: '2025',
                   title: '연매출 245억',
-                  desc: '전략적 파트너십 체결 및 신사옥 이전 예정',
+                  desc: '전략적 파트너십 체결 및\n신사옥 이전 예정',
                   icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'
                 }
               ].map((item, index, arr) => (
@@ -688,7 +688,7 @@ export default function HomePage() {
                     {/* 제목 */}
                     <h4 className="text-sm sm:text-base lg:text-lg font-bold text-[#4A4039] mt-4 sm:mt-5 mb-2">{item.title}</h4>
                     {/* 설명 */}
-                    <p className="text-xs sm:text-sm text-[#6B5D53] mb-4 px-1 line-clamp-2 max-w-[140px] sm:max-w-[160px] lg:max-w-[180px] mx-auto">{item.desc}</p>
+                    <p className="text-xs sm:text-sm text-[#6B5D53] mb-4 px-1 max-w-[140px] sm:max-w-[160px] lg:max-w-[180px] mx-auto whitespace-pre-line">{item.desc}</p>
                     {/* 연도 */}
                     <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#B8956A]">{item.year}</span>
                   </div>

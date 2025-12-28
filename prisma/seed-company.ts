@@ -225,39 +225,21 @@ async function main() {
   const csrData = [
     {
       type: 'CSR' as const,
-      title: '취약계층 제빵재료 지원',
-      desc: '취약계층 및 소상공인에게 제빵재료를\n지원하여 자립을 돕고 있습니다.',
+      title: '베이커리 세미나 개최',
+      desc: '소상공인 매출 증대를 위한 무료 세미나를\n6년째 연 2회 개최하며 지역 경제 활성화를 지원합니다.',
       order: 1,
     },
     {
       type: 'CSR' as const,
-      title: '지역아동센터 후원',
-      desc: '지역 아동센터에 빵과 간식 재료를\n정기적으로 후원합니다.',
-      order: 2,
-    },
-    {
-      type: 'CSR' as const,
-      title: '지역 상생',
-      desc: '지역 베이커리 및 소상공인과의 협력을 통해\n지역 경제 활성화에 기여',
-      order: 3,
-    },
-    {
-      type: 'CSR' as const,
-      title: '베이커리 세미나 개최',
-      desc: '소상공인 매출 증대를 위한 무료 세미나를\n6년째 연 2회 개최하며 지역 경제 활성화를 지원합니다.',
-      order: 4,
-    },
-    {
-      type: 'CSR' as const,
       title: '재해 이웃돕기 후원',
-      desc: '산불 피해 이재민의 일상 회복을 위해\n희망브릿지를 통해 긴급 구호 성금을 기부합니다.',
-      order: 5,
+      desc: '산불 피해 이재민의 일상 회복을 위해\n희망브리지를 통해 긴급 구호 성금을 기부합니다.',
+      order: 2,
     },
     {
       type: 'CSR' as const,
       title: '지역 상생 협력',
       desc: '지역 베이커리 및 소상공인과 협력하여\n매출 다각화와 지역 경제 활성화에 기여합니다.',
-      order: 6,
+      order: 3,
     },
   ];
 
