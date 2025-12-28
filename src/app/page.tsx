@@ -45,23 +45,19 @@ interface NewsItem {
   publishedAt: string;
 }
 
-// Hero slide images - Premium bakery images
+// Hero slide images - Premium bakery theme
 const heroSlides = [
   {
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=3000&auto=format&fit=crop',
-    alt: '갓 구운 크로와상'
+    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1920&h=1080&fit=crop',
+    alt: '신선한 크로와상과 빵'
   },
   {
-    image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=3000&auto=format&fit=crop',
-    alt: '프리미엄 베이커리'
+    image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1920&h=1080&fit=crop',
+    alt: '베이커리 원재료'
   },
   {
-    image: 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=3000&auto=format&fit=crop',
-    alt: '신선한 빵'
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=3000&auto=format&fit=crop',
-    alt: '아티장 브레드'
+    image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=1920&h=1080&fit=crop',
+    alt: '프리미엄 베이킹'
   }
 ];
 

@@ -11,11 +11,11 @@ import {
   useCompanyClients,
 } from '@/hooks/company';
 
-// 업력 자동 계산 함수
+// 업력 자동 계산 함수 (설립년도 포함하여 계산)
 const calculateYearsInBusiness = () => {
   const foundingYear = 2010;
   const currentYear = new Date().getFullYear();
-  return currentYear - foundingYear;
+  return currentYear - foundingYear + 1;
 };
 
 interface CompanyKPI {
@@ -424,11 +424,11 @@ export default function AboutIntroPage() {
                   <strong className="text-[#4A4039]">팩스:</strong> 02) 476-1372
                 </p>
               </div>
-              <div className="bg-[#FAF6F1] rounded-xl sm:rounded-2xl overflow-hidden">
+              <div className="flex items-center justify-end">
                 <img
-                  src="/images/business-location.png"
+                  src="/images/사업장2.png"
                   alt="에이스유통 물류센터"
-                  className="w-full h-auto"
+                  className="w-auto h-auto max-h-[250px] sm:max-h-[300px] object-contain"
                 />
               </div>
             </div>

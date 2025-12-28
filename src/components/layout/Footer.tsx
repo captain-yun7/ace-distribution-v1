@@ -23,7 +23,7 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div className="md:justify-self-center md:ml-12 lg:ml-16">
+          <div className="md:justify-self-start">
             <h4 className="text-sm sm:text-base text-white font-bold mb-3 sm:mb-4">Contact</h4>
             <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/70">
               <p className="flex items-start gap-2">
@@ -55,7 +55,7 @@ export default function Footer() {
           </div>
 
           {/* Business Info */}
-          <div className="md:justify-self-end md:text-right">
+          <div className="md:justify-self-start">
             <h4 className="text-sm sm:text-base text-white font-bold mb-3 sm:mb-4">Business Info</h4>
             <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-white/70">
               <p>대표이사 : 안종일</p>
