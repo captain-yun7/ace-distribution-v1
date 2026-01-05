@@ -38,17 +38,20 @@ export default function AboutIntroPage() {
   // Fallback data
   const timeline = dbTimeline.length > 0 ? dbTimeline : [
     { year: '2026', title: '신사옥 신축 및 이전 예정', desc: '하남시 감북동 소재 신사옥 신축 및 이전 예정' },
-    { year: '2025', title: '전략적 파트너십 체결', desc: '하남시 감북동 소재 신사옥 신축 및 이전 예정' },
+    { year: '2025', title: '중기부 장관 표창장 수상', desc: '중기부 장관 표창장 수상' },
+    { year: '2025', title: '서울대 경영인상 수상', desc: '서울대 경영인상 수상' },
+    { year: '2025', title: '하남시 의장 표창장 수상', desc: '하남시 의장 표창장 수상' },
+    { year: '2025', title: '토이트론 전략적 신주인수 계약', desc: 'IP 굿즈 및 에듀 콘텐츠 전문기업 ㈜토이트론과 전략적 신주인수 계약체결' },
     { year: '2024', title: '연매출 245억 달성', desc: '지속적인 성장으로 연매출 245억원 달성' },
     { year: '2023', title: '일터혁신 사업장 선정', desc: '노사발전재단 일터혁신 사업장으로 선정' },
-    { year: '2022', title: '물류센터 확장 이전', desc: '하남시 물류센터 확장 이전, 물류 역량 강화' },
-    { year: '2022', title: '중소기업 경영인상 수상', desc: '경기도 하남시 중소기업 경영인상 수상' },
+    { year: '2022', title: '하남 시장 표창장 수상', desc: '하남 시장 표창장 수상' },
     { year: '2021', title: '에이스제빵소 상표권 등록', desc: '에이스제빵소 브랜드 상표권 등록' },
     { year: '2020', title: '창립 10주년', desc: '에이스유통 창립 10주년 기념행사 개최' },
     { year: '2020', title: '특허 취득 및 차량 증차', desc: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 취득, 배송차량 20대 증차' },
     { year: '2019', title: '우수기술기업 인증', desc: '제과제빵 재료 유통물류 및 기술마케팅 부문 우수기술기업 인증 획득' },
     { year: '2019', title: '매출 200억 달성', desc: '베이커리 소상공인 무료 세미나 개최, 에이스제빵소 운영 시작' },
     { year: '2018', title: '기업인 협의회 인증', desc: '경기도 하남시 기업인 협의회 인증' },
+    { year: '2017', title: '삼양사 감사패 수상', desc: '㈜삼양사 식자재유통사업부문 감사패 수상' },
     { year: '2016', title: '메인비즈 인증', desc: '중소기업청 메인비즈(경영혁신형 중소기업) 인증' },
     { year: '2015', title: '본사 사옥 신축 이전', desc: '경기도 하남시 천현동에 자체 물류센터 보유 사옥 신축' },
     { year: '2012', title: '매출 100억 달성', desc: '물류창고 확장 이전, 연매출 100억원 달성' },
@@ -230,10 +233,15 @@ export default function AboutIntroPage() {
             <div className="relative">
               {[
                 { year: '2026', items: ['에이스유통㈜ 신사옥 신축 및 이전 (하남시 감북동 소재)'], side: 'left' },
-                { year: '2025', items: ['IP 굿즈 및 에듀 콘텐츠 전문 기업 ㈜토이트론과 전략적 계약 체결'], side: 'right' },
-                { year: '2024', items: ['매출 260억원 달성'], side: 'left' },
+                { year: '2025', items: [
+                  '중기부 장관 표창장 수상',
+                  '서울대 경영인상 수상',
+                  '하남시 의장 표창장 수상',
+                  'IP 굿즈 및 에듀 콘텐츠 전문기업 ㈜토이트론과 전략적 신주인수 계약체결'
+                ], side: 'right' },
+                { year: '2024', items: ['매출 245억 달성'], side: 'left' },
                 { year: '2023', items: ['일터혁신 사업장으로 선정'], side: 'right' },
-                { year: '2022', items: ['경기도 하남시 중소기업 경영인상 수상'], side: 'left' },
+                { year: '2022', items: ['하남 시장 표창장 수상'], side: 'left' },
                 { year: '2021', items: ['에이스제빵소 상표권 등록'], side: 'right' },
                 { year: '2020', items: [
                   '제과제빵류 운반 및 보관용 냉장&냉동장치에 대한 특허 취득',
@@ -246,10 +254,11 @@ export default function AboutIntroPage() {
                   '에이스제빵소 운영 (베이커리샵)'
                 ], side: 'right' },
                 { year: '2018', items: ['경기도 하남시 기업인 협의회 인증'], side: 'left' },
-                { year: '2016', items: ['중소기업청 메인비즈 인증'], side: 'right' },
-                { year: '2015', items: ['에이스유통㈜ 신사옥 신축 및 이전 (하남시 천현동 소재)'], side: 'left' },
-                { year: '2012', items: ['매출 100억원 달성'], side: 'right' },
-                { year: '2010', items: ['에이스유통㈜ 창립 (직원 5명)'], side: 'left' },
+                { year: '2017', items: ['㈜삼양사 식자재유통사업부문 감사패 수상'], side: 'right' },
+                { year: '2016', items: ['중소기업청 메인비즈 인증'], side: 'left' },
+                { year: '2015', items: ['에이스유통㈜ 신사옥 신축 및 이전 (하남시 천현동 소재)'], side: 'right' },
+                { year: '2012', items: ['매출 100억원 달성'], side: 'left' },
+                { year: '2010', items: ['에이스유통㈜ 창립 (직원 5명)'], side: 'right' },
               ].map((yearData, yearIndex) => (
                 <div key={yearIndex} className={`relative flex items-start min-h-[80px] ${yearData.items.length > 2 ? 'mb-8' : 'mb-4'}`}>
                   {/* 왼쪽 영역 */}
@@ -297,10 +306,15 @@ export default function AboutIntroPage() {
             <div className="space-y-6">
               {[
                 { year: '2026', items: ['에이스유통㈜ 신사옥 신축 및 이전 (하남시 감북동 소재)'] },
-                { year: '2025', items: ['IP 굿즈 및 에듀 콘텐츠 전문 기업 ㈜토이트론과 전략적 계약 체결'] },
-                { year: '2024', items: ['매출 260억원 달성'] },
+                { year: '2025', items: [
+                  '중기부 장관 표창장 수상',
+                  '서울대 경영인상 수상',
+                  '하남시 의장 표창장 수상',
+                  'IP 굿즈 및 에듀 콘텐츠 전문기업 ㈜토이트론과 전략적 신주인수 계약체결'
+                ] },
+                { year: '2024', items: ['매출 245억 달성'] },
                 { year: '2023', items: ['일터혁신 사업장으로 선정'] },
-                { year: '2022', items: ['경기도 하남시 중소기업 경영인상 수상'] },
+                { year: '2022', items: ['하남 시장 표창장 수상'] },
                 { year: '2021', items: ['에이스제빵소 상표권 등록'] },
                 { year: '2020', items: [
                   '제과제빵류 운반 및 보관용 냉장&냉동장치에 대한 특허 취득',
@@ -313,6 +327,7 @@ export default function AboutIntroPage() {
                   '에이스제빵소 운영 (베이커리샵)'
                 ] },
                 { year: '2018', items: ['경기도 하남시 기업인 협의회 인증'] },
+                { year: '2017', items: ['㈜삼양사 식자재유통사업부문 감사패 수상'] },
                 { year: '2016', items: ['중소기업청 메인비즈 인증'] },
                 { year: '2015', items: ['에이스유통㈜ 신사옥 신축 및 이전 (하남시 천현동 소재)'] },
                 { year: '2012', items: ['매출 100억원 달성'] },
