@@ -237,7 +237,7 @@ export default function AboutIntroPage() {
                   '중기부 장관 표창장 수상',
                   '서울대 경영인상 수상',
                   '하남시 의장 표창장 수상',
-                  'IP 굿즈 및 에듀 콘텐츠 전문기업 ㈜토이트론과 전략적 신주인수 계약체결'
+                  'IP 굿즈 및 에듀 콘텐츠 전문기업\n㈜토이트론과 전략적 신주인수 계약체결'
                 ], side: 'right' },
                 { year: '2024', items: ['매출 245억 달성'], side: 'left' },
                 { year: '2023', items: ['일터혁신 사업장으로 선정'], side: 'right' },
@@ -266,7 +266,7 @@ export default function AboutIntroPage() {
                     {yearData.side === 'left' && (
                       <div className="text-right">
                         {yearData.items.map((item, itemIndex) => (
-                          <p key={itemIndex} className="text-sm lg:text-base text-[#4A4039] leading-relaxed">
+                          <p key={itemIndex} className="text-sm lg:text-base text-[#4A4039] leading-relaxed whitespace-pre-line">
                             {item}
                           </p>
                         ))}
@@ -286,7 +286,7 @@ export default function AboutIntroPage() {
                     {yearData.side === 'right' && (
                       <div className="text-left">
                         {yearData.items.map((item, itemIndex) => (
-                          <p key={itemIndex} className="text-sm lg:text-base text-[#4A4039] leading-relaxed">
+                          <p key={itemIndex} className="text-sm lg:text-base text-[#4A4039] leading-relaxed whitespace-pre-line">
                             {item}
                           </p>
                         ))}
@@ -310,7 +310,7 @@ export default function AboutIntroPage() {
                   '중기부 장관 표창장 수상',
                   '서울대 경영인상 수상',
                   '하남시 의장 표창장 수상',
-                  'IP 굿즈 및 에듀 콘텐츠 전문기업 ㈜토이트론과 전략적 신주인수 계약체결'
+                  'IP 굿즈 및 에듀 콘텐츠 전문기업\n㈜토이트론과 전략적 신주인수 계약체결'
                 ] },
                 { year: '2024', items: ['매출 245억 달성'] },
                 { year: '2023', items: ['일터혁신 사업장으로 선정'] },
@@ -341,7 +341,7 @@ export default function AboutIntroPage() {
                   <div>
                     <span className="text-lg font-bold text-[#B8956A] mb-1 block">{yearData.year}</span>
                     {yearData.items.map((item, itemIndex) => (
-                      <p key={itemIndex} className="text-sm text-[#4A4039] leading-relaxed">
+                      <p key={itemIndex} className="text-sm text-[#4A4039] leading-relaxed whitespace-pre-line">
                         {item}
                       </p>
                     ))}
