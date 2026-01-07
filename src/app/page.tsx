@@ -205,10 +205,12 @@ export default function HomePage() {
               {[
                 { title: '기업 개요', items: [
                   { name: '기업 소개', href: '/about/intro', desc: '에이스유통을 소개합니다' },
-                  { name: '기업 연혁', href: '/about/history', desc: '30년의 발자취' },
-                  { name: '경영 철학', href: '/about/philosophy', desc: '우리의 가치와 비전' },
-                  { name: '사업장 소개', href: '/about/business', desc: '전국 물류 네트워크' },
-                  { name: '조직 및 인증서', href: '/about/certification', desc: '신뢰의 증명' }
+                  { name: '기업 연혁', href: '/about/intro#history', desc: '16년의 발자취' },
+                  { name: '경영 철학', href: '/about/intro#philosophy', desc: '우리의 가치와 비전' },
+                  { name: '사업 소개', href: '/about/intro#business', desc: '제공 서비스 안내' },
+                  { name: '사업장 소개', href: '/about/intro#location', desc: '전국 물류 네트워크' },
+                  { name: '패밀리사 소개', href: '/about/intro#family', desc: '토이트론 소개' },
+                  { name: '조직 및 인증서', href: '/about/intro#certification', desc: '신뢰의 증명' }
                 ]},
                 { title: '판매 제품', items: [
                   { name: '판매 제품', href: '/products/all', desc: '전체 제품 보기' },
@@ -301,7 +303,9 @@ export default function HomePage() {
                   { name: '기업 소개', href: '/about/intro' },
                   { name: '기업 연혁', href: '/about/intro#history' },
                   { name: '경영 철학', href: '/about/intro#philosophy' },
-                  { name: '사업장 소개', href: '/about/intro#business' },
+                  { name: '사업 소개', href: '/about/intro#business' },
+                  { name: '사업장 소개', href: '/about/intro#location' },
+                  { name: '패밀리사 소개', href: '/about/intro#family' },
                   { name: '조직 및 인증서', href: '/about/intro#certification' }
                 ]},
                 { title: '판매 제품', items: [

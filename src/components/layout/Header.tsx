@@ -8,7 +8,9 @@ const menuData = [
     { name: '기업 소개', href: '/about/intro#overview' },
     { name: '기업 연혁', href: '/about/intro#history' },
     { name: '경영 철학', href: '/about/intro#philosophy' },
-    { name: '사업장 소개', href: '/about/intro#business' },
+    { name: '사업 소개', href: '/about/intro#business' },
+    { name: '사업장 소개', href: '/about/intro#location' },
+    { name: '패밀리사 소개', href: '/about/intro#family' },
     { name: '조직 및 인증서', href: '/about/intro#certification' }
   ]},
   { title: '판매 제품', items: [

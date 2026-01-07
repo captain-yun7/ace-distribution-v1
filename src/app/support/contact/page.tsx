@@ -145,11 +145,32 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit} className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 border border-[#E8DCC8]">
               {/* Inquiry Type */}
               <div className="mb-6 sm:mb-8">
-                <label className="block text-xs sm:text-sm font-medium text-[#4A4039] mb-3 sm:mb-4">
-                  문의 유형 *
-                </label>
+                <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                  <label className="block text-xs sm:text-sm font-medium text-[#4A4039]">
+                    문의 유형 *
+                  </label>
+                  <span className="inline-flex items-center px-2 py-0.5 bg-[#B8956A] text-white text-[10px] sm:text-xs rounded-full">
+                    카페/베이커리 무료 컨설팅 문의
+                  </span>
+                </div>
                 <div className="flex flex-wrap gap-2 sm:gap-3">
-                  {['일반문의', '거래문의', '제품문의', '배송문의', '기타'].map((type) => (
+                  {/* 첫 번째 줄 */}
+                  {['일반문의', '거래문의'].map((type) => (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, type })}
+                      className={`px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-sm sm:text-base transition-all ${
+                        formData.type === type
+                          ? 'bg-gradient-to-r from-[#B8956A] to-[#D4A574] text-white'
+                          : 'bg-[#FAF6F1] text-[#6B5D53] hover:bg-[#E8DCC8]'
+                      }`}
+                    >
+                      {type}
+                    </button>
+                  ))}
+                  {/* 두 번째 줄 */}
+                  {['컨설팅문의', '제품문의', '배송문의', '기타'].map((type) => (
                     <button
                       key={type}
                       type="button"

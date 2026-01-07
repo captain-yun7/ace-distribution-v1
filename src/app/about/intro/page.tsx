@@ -124,7 +124,9 @@ export default function AboutIntroPage() {
               { id: 'overview', label: '기업 개요' },
               { id: 'history', label: '기업 연혁' },
               { id: 'philosophy', label: '경영 철학' },
-              { id: 'business', label: '사업장 소개' },
+              { id: 'business', label: '사업 소개' },
+              { id: 'location', label: '사업장 소개' },
+              { id: 'family', label: '패밀리사 소개' },
               { id: 'organization', label: '조직도' },
               { id: 'certification', label: '인증서' },
             ].map((tab) => (
@@ -402,11 +404,148 @@ export default function AboutIntroPage() {
         </div>
       </section>
 
-      {/* Section 4: 사업장 소개 */}
+      {/* Section 4: 사업 소개 */}
       <section id="business" className="py-12 sm:py-20 lg:py-32 bg-[#FAF6F1] scroll-mt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-16">
             <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">BUSINESS</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">사업 소개</h2>
+            <p className="text-sm sm:text-base text-[#6B5D53]">에이스유통이 제공하는 서비스</p>
+          </div>
+
+          {/* Business Cards Grid */}
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+            {/* 베이커리/카페 무료 창업컨설팅 */}
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-[#E8DCC8] hover:shadow-xl transition-all duration-300">
+              <div className="text-center mb-6">
+                <h3 className="text-lg sm:text-xl font-bold text-[#4A4039] mb-1">베이커리/카페 무료 창업컨설팅</h3>
+                <p className="text-xs sm:text-sm text-[#B8956A] font-medium tracking-wide">STARTUP CONSULTING</p>
+                <p className="text-xs sm:text-sm text-[#6B5D53] mt-3 leading-relaxed">
+                  성공적인 창업을 위한 전문 컨설팅,<br />
+                  입지 분석부터 운영 전략까지 체계적인 창업 솔루션을 제공합니다
+                </p>
+              </div>
+              <div className="flex items-center justify-between gap-2">
+                {[
+                  { icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4', title: '매장 매입/매각', subtitle: '및 시장조사' },
+                  { icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z', title: '기계/인테리어', subtitle: '업체 제휴' },
+                  { icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', title: '전문 인력 매칭', subtitle: '(제과제빵 기술자)' },
+                  { icon: 'M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z', title: '제과제빵 상품개발', subtitle: '및 제품 큐레이션' },
+                ].map((item, index) => (
+                  <div key={index} className="flex flex-col items-center flex-1">
+                    {index > 0 && (
+                      <div className="hidden sm:block absolute -ml-6 text-[#D4C4B0]">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    )}
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#FAF6F1] rounded-full flex items-center justify-center mb-2">
+                      <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
+                      </svg>
+                    </div>
+                    <p className="text-xs text-[#4A4039] font-medium text-center">{item.title}</p>
+                    <p className="text-[10px] text-[#6B5D53] text-center">{item.subtitle}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 베이커리/카페 유통 */}
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-[#E8DCC8] hover:shadow-xl transition-all duration-300">
+              <div className="text-center mb-6">
+                <h3 className="text-lg sm:text-xl font-bold text-[#4A4039] mb-1">베이커리/카페 유통</h3>
+                <p className="text-xs sm:text-sm text-[#B8956A] font-medium tracking-wide">DISTRIBUTION</p>
+                <p className="text-xs sm:text-sm text-[#6B5D53] mt-3 leading-relaxed">
+                  프리미엄 베이커리 제품 유통<br />
+                  신선하고 품질 높은 제품을 한결같이 공급합니다
+                </p>
+              </div>
+              <div className="flex items-center justify-between gap-2">
+                {[
+                  { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: '품질 검증', subtitle: '우수/술기반 인증' },
+                  { icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10', title: '재고 관리', subtitle: '실시간 재고 시스템' },
+                  { icon: 'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0', title: '신속 배송', subtitle: '당일/익일 배송' },
+                  { icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4', title: '사후 관리', subtitle: '지속적품질 관리' },
+                ].map((item, index) => (
+                  <div key={index} className="flex flex-col items-center flex-1">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#FAF6F1] rounded-full flex items-center justify-center mb-2">
+                      <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
+                      </svg>
+                    </div>
+                    <p className="text-xs text-[#4A4039] font-medium text-center">{item.title}</p>
+                    <p className="text-[10px] text-[#6B5D53] text-center">{item.subtitle}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 캐릭터 IP F&B */}
+            <div className="bg-gradient-to-br from-[#F5EFE7] to-[#EDE4D8] rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-[#D4C4B0] hover:shadow-xl transition-all duration-300">
+              <div className="text-center mb-6">
+                <h3 className="text-lg sm:text-xl font-bold text-[#4A4039] mb-1">캐릭터 IP F&B</h3>
+                <p className="text-xs sm:text-sm text-[#8B7355] font-medium tracking-wide">CHARACTER IP F&B</p>
+                <p className="text-xs sm:text-sm text-[#6B5D53] mt-3 leading-relaxed">
+                  인기 캐릭터와 콜라보레이션,<br />
+                  차별화된 메뉴 및 굿즈 개발로 브랜드 경쟁력을 강화합니다
+                </p>
+              </div>
+              <div className="space-y-2 sm:space-y-3 bg-white/60 rounded-xl p-4">
+                {[
+                  { num: 1, title: '파트너십 구축', desc: '(토이트론 제휴)' },
+                  { num: 2, title: 'IP 활용 기획', desc: '(캐릭터 브랜딩)' },
+                  { num: 3, title: '상품 개발 및 공급', desc: '(메뉴/굿즈 제작 및 공급)' },
+                  { num: 4, title: '런칭 지원', desc: '(마케팅 전략)' },
+                ].map((item) => (
+                  <div key={item.num} className="flex items-center gap-3">
+                    <span className="w-6 h-6 bg-[#8B7355] text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">{item.num}</span>
+                    <p className="text-sm text-[#4A4039]">
+                      <span className="font-medium">{item.title}</span>
+                      <span className="text-[#6B5D53]"> {item.desc}</span>
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 물류 파트너십 · 대행 */}
+            <div className="bg-gradient-to-br from-[#5C4D3D] to-[#4A4039] rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-[#6B5D53] hover:shadow-xl transition-all duration-300">
+              <div className="text-center mb-6">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-1">물류 파트너십 · 대행</h3>
+                <p className="text-xs sm:text-sm text-[#D4A574] font-medium tracking-wide">LOGISTICS PARTNERSHIP</p>
+                <p className="text-xs sm:text-sm text-white/80 mt-3 leading-relaxed">
+                  업계 최고 수준의 노하우와 네트워크를 기반으로<br />
+                  고객 맞춤형 서비스를 제공합니다
+                </p>
+              </div>
+              <div className="space-y-2 sm:space-y-3 bg-white/10 rounded-xl p-4">
+                {[
+                  { num: 1, title: '물류센터', desc: '(보관/재고관리)' },
+                  { num: 2, title: '콜드체인', desc: '(온도 관리 시스템)' },
+                  { num: 3, title: 'ERP 통합', desc: '(실시간 관리)' },
+                  { num: 4, title: '물류 배송', desc: '(전용 차량 운영)' },
+                ].map((item) => (
+                  <div key={item.num} className="flex items-center gap-3">
+                    <span className="w-6 h-6 bg-[#D4A574] text-[#4A4039] rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">{item.num}</span>
+                    <p className="text-sm text-white">
+                      <span className="font-medium">{item.title}</span>
+                      <span className="text-white/70"> {item.desc}</span>
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5: 사업장 소개 */}
+      <section id="location" className="py-12 sm:py-20 lg:py-32 bg-white scroll-mt-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-16">
+            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">LOCATION</span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">사업장 소개</h2>
             <p className="text-sm sm:text-base text-[#6B5D53]">전국 유통망과 물류 인프라</p>
           </div>
@@ -451,7 +590,81 @@ export default function AboutIntroPage() {
         </div>
       </section>
 
-      {/* Section 5: 조직도 */}
+      {/* Section 6: 패밀리사 소개 */}
+      <section id="family" className="py-12 sm:py-20 lg:py-32 bg-[#FAF6F1] scroll-mt-40">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-16">
+            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">FAMILY COMPANY</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">패밀리사 소개</h2>
+            <p className="text-sm sm:text-base text-[#6B5D53]">함께 성장하는 파트너</p>
+          </div>
+
+          {/* 토이트론 소개 */}
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border border-[#E8DCC8]">
+            {/* 회사명 및 슬로건 */}
+            <div className="text-center mb-8 sm:mb-10">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#4A4039] mb-2">
+                패밀리사: <span className="text-[#B8956A]">㈜토이트론 (Toytron)</span>
+              </h3>
+              <p className="text-sm sm:text-base text-[#6B5D53] italic">
+                &ldquo;아이와 같은 눈으로 바라보고, 아이와 같은 생각을 하는 <span className="text-[#B8956A] font-semibold">토이트론</span>&rdquo;
+              </p>
+            </div>
+
+            {/* 회사 소개 */}
+            <div className="mb-8 sm:mb-10">
+              <p className="text-sm sm:text-base text-[#4A4039] leading-relaxed text-center">
+                <span className="text-[#B8956A] font-semibold">토이트론</span>은 아이들에게 미래와 꿈을 보여주고, 상상력과 가능성을 심어주는 완구 전문 기업입니다.<br className="hidden sm:block" />
+                단순히 화려한 겉모습의 장난감이 아닌, 따뜻한 사랑이 담긴 감성적인 완구를 만들어<br className="hidden sm:block" />
+                아이들의 감성 창의력을 키우는 데 주력하고 있습니다.
+              </p>
+            </div>
+
+            {/* 기업 가치 */}
+            <div className="mb-8 sm:mb-10">
+              <h4 className="text-center text-lg sm:text-xl font-bold text-[#4A4039] mb-4 sm:mb-6">[기업 가치]</h4>
+              <div className="grid sm:grid-cols-3 gap-4">
+                {[
+                  { title: 'Like a Child', desc: '아이들의 동화를 믿고, 아이들의 꿈을 함께 꾸며, 아이처럼 순수하게 세상을 바라봅니다' },
+                  { title: '비타민 같은 완구', desc: '좋은 장난감은 아이의 성장에 필수적인 비타민과 같은 존재라는 철학' },
+                  { title: '미래지향적 제품', desc: '자극적이거나 겉모습만 화려한 것이 아닌, 아이의 미래까지 생각하는 장난감 개발' },
+                ].map((item, index) => (
+                  <div key={index} className="bg-[#FAF6F1] rounded-xl p-4 sm:p-5 text-center">
+                    <p className="font-bold text-[#B8956A] mb-2">{item.title}</p>
+                    <p className="text-xs sm:text-sm text-[#6B5D53] leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 주요 브랜드 */}
+            <div>
+              <h4 className="text-center text-lg sm:text-xl font-bold text-[#4A4039] mb-4 sm:mb-6">[주요 브랜드]</h4>
+              <div className="space-y-4">
+                {[
+                  { name: '실바니안 패밀리 (Sylvanian Families)', desc: '토이트론의 대표 완구 브랜드로, 프리미엄 리미티드 제품 라인의 한국 공식 유통을 담당하고 있습니다.' },
+                  { name: '달님이', desc: '20년간 국민 캐릭터로 사랑받아온 토이트론의 대표 자체 캐릭터 IP로, 따뜻한 감성을 전달합니다.' },
+                  { name: '하프&친구들 (Half & Friends)', desc: '토이트론의 인기 캐릭터 브랜드로, 독창적인 스토리텔링과 개성있는 디자인을 선보입니다.' },
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start gap-3 bg-gradient-to-r from-[#FAF6F1] to-white rounded-xl p-4 border border-[#E8DCC8]">
+                    <span className="w-6 h-6 bg-[#B8956A] text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                      {index + 1}
+                    </span>
+                    <div>
+                      <p className="font-bold text-[#4A4039] mb-1">
+                        <span className="text-[#B8956A]">{item.name}</span>
+                      </p>
+                      <p className="text-sm text-[#6B5D53]">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 7: 조직도 */}
       <section id="organization" className="py-12 sm:py-20 lg:py-32 bg-white scroll-mt-40">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-16">
@@ -462,15 +675,19 @@ export default function AboutIntroPage() {
 
           {/* 조직도 */}
           <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border border-[#E8DCC8]">
-            {/* CEO */}
-            <div className="flex justify-center">
-              <div className="bg-[#B8956A] text-white px-8 sm:px-12 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg">
+            {/* CEO + 토이트론 */}
+            <div className="flex justify-center items-center gap-3 sm:gap-4">
+              <div className="bg-[#B8956A] text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg">
                 <p className="text-lg sm:text-2xl font-bold text-center">CEO</p>
+              </div>
+              <div className="w-8 sm:w-12 h-[2px] bg-[#D4A574]"></div>
+              <div className="bg-[#4A4039] text-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg">
+                <p className="text-sm sm:text-lg font-bold text-center">㈜토이트론</p>
               </div>
             </div>
 
             {/* 연결선 - CEO에서 아래로 (끊김없이) */}
-            <div className="flex justify-center">
+            <div className="flex justify-center" style={{ marginLeft: '-60px' }}>
               <div className="w-[2px] h-10 sm:h-14 bg-[#D4A574]"></div>
             </div>
 
@@ -544,8 +761,8 @@ export default function AboutIntroPage() {
         </div>
       </section>
 
-      {/* Section 6: 보유 인증서 */}
-      <section id="certification" className="py-12 sm:py-20 lg:py-32 bg-[#FAF6F1] scroll-mt-40">
+      {/* Section 8: 보유 인증서 */}
+      <section id="certification" className="py-12 sm:py-20 lg:py-32 bg-white scroll-mt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-16">
             <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CERTIFICATION</span>
