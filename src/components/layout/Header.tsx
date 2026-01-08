@@ -11,7 +11,7 @@ const menuData = [
     { name: '사업 소개', href: '/about/intro#business' },
     { name: '사업장 소개', href: '/about/intro#location' },
     { name: '패밀리사 소개', href: '/about/intro#family' },
-    { name: '조직 및 인증서', href: '/about/intro#certification' }
+    { name: '조직 및 인증/수상', href: '/about/intro#certification' }
   ]},
   { title: '판매 제품', items: [
     { name: '판매 제품', href: '/products/all' },

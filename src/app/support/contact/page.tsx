@@ -149,9 +149,11 @@ export default function ContactPage() {
                   <label className="block text-xs sm:text-sm font-medium text-[#4A4039]">
                     문의 유형 *
                   </label>
-                  <span className="inline-flex items-center px-2 py-0.5 bg-[#B8956A] text-white text-[10px] sm:text-xs rounded-full">
-                    카페/베이커리 무료 컨설팅 문의
-                  </span>
+                  {formData.type === '컨설팅문의' && (
+                    <span className="inline-flex items-center px-2 py-0.5 bg-[#B8956A] text-white text-[10px] sm:text-xs rounded-full">
+                      카페/베이커리 무료 컨설팅 문의
+                    </span>
+                  )}
                 </div>
                 <div className="flex flex-wrap gap-2 sm:gap-3">
                   {/* 첫 번째 줄 */}

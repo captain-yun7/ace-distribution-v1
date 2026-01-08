@@ -210,7 +210,7 @@ export default function HomePage() {
                   { name: '사업 소개', href: '/about/intro#business', desc: '제공 서비스 안내' },
                   { name: '사업장 소개', href: '/about/intro#location', desc: '전국 물류 네트워크' },
                   { name: '패밀리사 소개', href: '/about/intro#family', desc: '토이트론 소개' },
-                  { name: '조직 및 인증서', href: '/about/intro#certification', desc: '신뢰의 증명' }
+                  { name: '조직 및 인증/수상', href: '/about/intro#certification', desc: '신뢰의 증명' }
                 ]},
                 { title: '판매 제품', items: [
                   { name: '판매 제품', href: '/products/all', desc: '전체 제품 보기' },
@@ -306,7 +306,7 @@ export default function HomePage() {
                   { name: '사업 소개', href: '/about/intro#business' },
                   { name: '사업장 소개', href: '/about/intro#location' },
                   { name: '패밀리사 소개', href: '/about/intro#family' },
-                  { name: '조직 및 인증서', href: '/about/intro#certification' }
+                  { name: '조직 및 인증/수상', href: '/about/intro#certification' }
                 ]},
                 { title: '판매 제품', items: [
                   { name: '판매 제품', href: '/products/all' },
