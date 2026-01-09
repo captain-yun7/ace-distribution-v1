@@ -477,149 +477,112 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Renewed Mission & Vision Section - Modern Corporate Style */}
+      {/* OUR BUSINESS Section - 4개 핵심 사업 */}
       <section
         ref={(el) => (sectionsRef.current[0] = el)}
         id="mission"
         className="py-16 sm:py-24 bg-white relative"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header - Clean & Minimal */}
-          <div className={`text-center mb-12 sm:mb-20 ${isVisible.mission ? 'animate-fadeInUp' : 'opacity-0'}`}>
-            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">Our Mission</span>
+          {/* Section Header */}
+          <div className={`text-center mb-12 sm:mb-16 ${isVisible.mission ? 'animate-fadeInUp' : 'opacity-0'}`}>
+            <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">OUR BUSINESS</span>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#4A4039] mb-4 sm:mb-6 px-2">
-              {missionContent?.data?.title || '최고의 품질로 성공을 만들어갑니다'}
+              베이커리·카페 산업의 토탈 솔루션 파트너
             </h2>
-            <p className="text-sm sm:text-lg text-[#6B5D53] max-w-2xl mx-auto px-2">
-              {missionContent?.data?.description || '16년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다'}
+            <p className="text-sm sm:text-lg text-[#6B5D53] max-w-3xl mx-auto px-2">
+              베이커리·카페 무료 창업컨설팅, 유통, 캐릭터 IP F&B, 물류 파트너십<br className="hidden sm:block" />
+              4개의 핵심 사업으로 최고의 품질과 전문성을 제공합니다
             </p>
           </div>
 
-          {/* Process Flow Section */}
-          <div className={`mb-16 sm:mb-32 ${isVisible.mission ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
-            <div className="relative">
-              {/* Connection Line - 원 아이콘 중앙에 맞춤 (top-12 = 원 높이 절반) */}
-              <div className="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-[2px] bg-gradient-to-r from-transparent via-[#E8DCC8] to-transparent"></div>
-
-              {/* Process Steps */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
-                {[
-                  {
-                    step: '01',
-                    title: '품질 검증',
-                    desc: '우수기술기업 인증',
-                    icon: (
-                      <svg className="w-12 h-12 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    )
-                  },
-                  {
-                    step: '02',
-                    title: '재고 관리',
-                    desc: '실시간 재고 시스템',
-                    icon: (
-                      <svg className="w-12 h-12 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                      </svg>
-                    )
-                  },
-                  {
-                    step: '03',
-                    title: '신속 배송',
-                    desc: '당일/익일 배송',
-                    icon: (
-                      <svg className="w-12 h-12 text-[#B8956A]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
-                      </svg>
-                    )
-                  },
-                  {
-                    step: '04',
-                    title: '사후 관리',
-                    desc: '지속적 품질 관리',
-                    icon: (
-                      <svg className="w-12 h-12 text-[#B8956A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
-                    )
-                  }
-                ].map((item, idx) => (
-                  <div key={idx} className="relative text-center group">
-                    {/* Icon Circle */}
-                    <div className="relative z-10 w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-6 bg-white border-2 sm:border-4 border-[#F5EFE7] rounded-full flex items-center justify-center group-hover:border-[#B8956A] transition-all duration-300 shadow-lg">
-                      <div className="scale-75 sm:scale-100">{item.icon}</div>
-                    </div>
-                    {/* Step Number */}
-                    <span className="absolute top-0 right-1/2 translate-x-1/2 text-[10px] sm:text-xs font-bold text-[#B8956A] bg-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-md">
-                      {item.step}
-                    </span>
-                    {/* Content */}
-                    <h4 className="text-sm sm:text-base font-bold text-[#4A4039] mb-1 sm:mb-2">{item.title}</h4>
-                    <p className="text-xs sm:text-sm text-[#8B7D73]">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Core Values - Card Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
-            {(coreValues.length > 0 ? coreValues : [
+          {/* 4개 사업 카드 그리드 */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+            {[
               {
-                title: '품질 최우선',
-                subtitle: 'Quality First',
-                description: '엄격한 품질관리 시스템으로 최고의 제품만을 선별합니다',
-                imageUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&h=400&fit=crop'
+                title: '베이커리/카페\n무료 창업컨설팅',
+                subtitle: 'STARTUP CONSULTING',
+                description: '성공적인 창업을 위한 전문 컨설팅',
+                hoverDesc: '입지 분석부터 운영 전략까지\n체계적인 창업 솔루션을 제공합니다',
+                imageUrl: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=800&fit=crop',
+                icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'
               },
               {
-                title: '고객 중심',
-                subtitle: 'Customer Focus',
-                description: '고객의 니즈를 정확히 파악하여 맞춤형 솔루션을 제공합니다',
-                imageUrl: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=600&h=400&fit=crop'
+                title: '베이커리/카페\n유통',
+                subtitle: 'DISTRIBUTION',
+                description: '프리미엄 베이커리 제품 유통',
+                hoverDesc: '신선하고 품질 높은 제품을\n안정적으로 공급합니다',
+                imageUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&h=800&fit=crop',
+                icon: 'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0'
               },
               {
-                title: '전문성',
-                subtitle: 'Expertise',
-                description: '16년간 축적된 노하우와 전문 지식을 바탕으로 서비스합니다',
-                imageUrl: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&h=400&fit=crop'
+                title: '캐릭터 IP F&B',
+                subtitle: 'CHARACTER IP F&B',
+                description: '인기 캐릭터와 콜라보레이션',
+                hoverDesc: '차별화된 메뉴 및 굿즈 개발로\n브랜드 경쟁력을 강화합니다',
+                imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=800&fit=crop',
+                icon: 'M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
               },
               {
-                title: '혁신 추구',
-                subtitle: 'Innovation',
-                description: '시장 트렌드를 선도하며 새로운 가치를 창출합니다',
-                imageUrl: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&h=400&fit=crop'
+                title: '물류 파트너십·대행',
+                subtitle: 'LOGISTICS PARTNERSHIP',
+                description: '업계 최고 수준의 물류 서비스',
+                hoverDesc: '업계 최고 수준의 노하우와 네트워크로\n고객 맞춤형 서비스를 제공합니다',
+                imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=800&fit=crop',
+                icon: 'M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z'
               }
-            ]).map((value, index) => (
-              <div
+            ].map((value, index) => (
+              <Link
+                href="/about/intro#business"
                 key={index}
                 className={`group relative overflow-hidden rounded-2xl shadow-xl cursor-pointer ${isVisible.mission ? `animate-fadeInScale animation-delay-${index * 100}` : 'opacity-0'}`}
               >
                 {/* Background Image */}
                 <div className="absolute inset-0">
-                  <img src={value.imageUrl || ''} alt={value.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <img src={value.imageUrl} alt={value.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
                 </div>
 
-                {/* Content */}
-                <div className="relative p-4 sm:p-8 h-48 sm:h-80 flex flex-col justify-end">
-                  <span className="text-[#FFE5CC] text-[10px] sm:text-xs font-medium tracking-wider uppercase mb-1 sm:mb-2">{value.subtitle}</span>
-                  <h3 className="text-white text-base sm:text-2xl font-bold mb-1 sm:mb-3">{value.title}</h3>
-                  <p className="text-white/90 text-xs sm:text-sm leading-relaxed line-clamp-2 sm:line-clamp-none">{value.description}</p>
-                </div>
-
-                {/* Hover Overlay - Hidden on mobile */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-[#B8956A]/50 opacity-0 group-hover:opacity-100 transition-all duration-500 hidden sm:flex items-center justify-center">
-                  <div className="text-center text-white p-8">
-                    <div className="w-16 h-16 mx-auto mb-4 border-2 border-white rounded-full flex items-center justify-center">
-                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <p className="text-lg font-medium">{value.description}</p>
+                {/* Default Content */}
+                <div className="relative p-4 sm:p-6 h-48 sm:h-72 flex flex-col group-hover:opacity-0 transition-opacity duration-300">
+                  {/* Icon */}
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-auto">
+                    <svg className="w-5 h-5 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={value.icon} />
+                    </svg>
+                  </div>
+                  {/* Text */}
+                  <div>
+                    <span className="text-[#D4A574] text-[10px] sm:text-xs font-medium tracking-wider uppercase mb-1 sm:mb-2 block">{value.subtitle}</span>
+                    <h3 className="text-white text-sm sm:text-xl font-bold mb-1 sm:mb-2 whitespace-pre-line leading-tight">{value.title}</h3>
+                    <p className="text-white/80 text-xs sm:text-sm leading-relaxed">{value.description}</p>
                   </div>
                 </div>
-              </div>
+
+                {/* Hover Content */}
+                <div className="absolute inset-0 p-4 sm:p-6 flex flex-col items-center justify-center bg-gradient-to-br from-[#B8956A]/95 to-[#8B7355]/95 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={value.icon} />
+                    </svg>
+                  </div>
+                  <h3 className="text-white text-sm sm:text-lg font-bold mb-2 sm:mb-3 text-center whitespace-pre-line leading-tight">{value.title.replace('\n', ' ')}</h3>
+                  <p className="text-white/90 text-xs sm:text-sm text-center whitespace-pre-line leading-relaxed">{value.hoverDesc}</p>
+                  <div className="mt-3 sm:mt-4 flex items-center gap-1 text-white text-xs sm:text-sm font-medium">
+                    자세히 보기
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Arrow Icon (default state) */}
+                <div className="absolute top-4 right-4 w-8 h-8 sm:w-10 sm:h-10 bg-black/30 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:opacity-0 transition-all duration-300">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
