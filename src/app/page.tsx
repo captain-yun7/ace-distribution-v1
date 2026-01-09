@@ -874,6 +874,9 @@ export default function HomePage() {
                 <p>대표이사 : 안종일</p>
                 <p>사업자등록번호 : 126-86-32865</p>
                 <p>설립년도 : 2010년</p>
+                <p>
+                  패밀리사 : <a href="http://www.toytron.co.kr/web/home/index.php" target="_blank" rel="noopener noreferrer" className="text-[#D4A574] hover:text-[#B8956A] underline underline-offset-2 transition-colors">㈜토이트론 바로가기</a>
+                </p>
               </div>
             </div>
           </div>

@@ -109,10 +109,10 @@ export default function AboutIntroPage() {
 
       <PageHero
         badge="ABOUT US"
-        title="회사 소개"
+        title="기업 개요"
         subtitle="에이스유통을 소개합니다"
         breadcrumb={[
-          { name: '회사 소개' }
+          { name: '기업 개요' }
         ]}
       />
 
@@ -121,7 +121,7 @@ export default function AboutIntroPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex overflow-x-auto gap-1 py-2 scrollbar-hide">
             {[
-              { id: 'overview', label: '기업 개요' },
+              { id: 'overview', label: '기업 소개' },
               { id: 'history', label: '기업 연혁' },
               { id: 'philosophy', label: '경영 철학' },
               { id: 'business', label: '사업 소개' },
