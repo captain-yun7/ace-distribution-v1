@@ -186,10 +186,19 @@ export default function HomePage() {
           {/* Logo with Premium Styling */}
           <Link href="/" className="flex items-center transition-all duration-500 group/logo relative">
             <div className="flex items-center gap-4">
-              <div className="relative">
-                <span className="text-4xl font-black tracking-tight text-white group-hover/header:text-[#8B6F47] transition-all duration-500 drop-shadow-lg">
-                  ACE
-                </span>
+              <div className="relative w-[100px] h-[40px]">
+                {/* 기본 로고 (화이트) - 투명 헤더용 */}
+                <img
+                  src="/logo_white.svg"
+                  alt="에이스유통 로고"
+                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 group-hover/header:opacity-0 drop-shadow-lg"
+                />
+                {/* 호버 로고 (브라운) - 흰 배경 헤더용 */}
+                <img
+                  src="/logo_brown.svg"
+                  alt="에이스유통 로고"
+                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 group-hover/header:opacity-100"
+                />
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#B8956A] to-[#D4A574] group-hover/logo:w-full transition-all duration-500"></span>
               </div>
               <div className="hidden sm:flex flex-col border-l-2 border-white/30 group-hover/header:border-[#B8956A]/30 pl-4 transition-all duration-500">
@@ -785,7 +794,7 @@ export default function HomePage() {
             {/* Logo & Company Info */}
             <div className="text-center md:text-left">
               <div className="flex items-center gap-3 mb-6 justify-center md:justify-start">
-                <span className="text-3xl font-black text-white">ACE</span>
+                <img src="/logo_white.svg" alt="에이스유통 로고" className="h-[32px] w-auto" />
                 <div className="flex flex-col">
                   <span className="text-sm font-bold text-white leading-tight">에이스유통</span>
                   <span className="text-xs font-medium text-white/60 leading-tight">주식회사</span>

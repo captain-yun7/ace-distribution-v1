@@ -39,10 +39,19 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center transition-all duration-500 group/logo relative">
             <div className="flex items-center gap-4">
-              <div className="relative">
-                <span className="text-4xl font-black tracking-tight text-[#8B6F47] transition-all duration-500 drop-shadow-sm">
-                  ACE
-                </span>
+              <div className="relative w-[100px] h-[40px]">
+                {/* 기본 로고 (화이트) */}
+                <img
+                  src="/logo_white.svg"
+                  alt="에이스유통 로고"
+                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 group-hover/logo:opacity-0"
+                />
+                {/* 호버 로고 (브라운) */}
+                <img
+                  src="/logo_brown.svg"
+                  alt="에이스유통 로고"
+                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 group-hover/logo:opacity-100"
+                />
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#B8956A] to-[#D4A574] group-hover/logo:w-full transition-all duration-500"></span>
               </div>
               <div className="hidden sm:flex flex-col border-l-2 border-[#B8956A]/30 pl-4 transition-all duration-500">
