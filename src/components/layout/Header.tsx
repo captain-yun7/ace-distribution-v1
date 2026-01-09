@@ -33,24 +33,30 @@ export default function Header() {
 
   return (
     <>
-      {/* Premium Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-[0_4px_30px_rgba(0,0,0,0.08)]">
+      {/* Premium Header - 메인 페이지와 동일한 스타일 */}
+      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-700 group/header bg-[#4A4039] hover:bg-white hover:shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
         <div className="max-w-[1920px] mx-auto flex items-center justify-between h-20 lg:h-24 px-6 lg:px-12">
           {/* Logo */}
           <Link href="/" className="flex items-center transition-all duration-500 group/logo relative">
             <div className="flex items-center gap-4">
               <div className="relative w-[100px] h-[40px]">
-                {/* 브라운 로고 (흰색 배경에서 사용) */}
+                {/* 기본 로고 (화이트) - 어두운 헤더용 */}
+                <img
+                  src="/logo_white.svg"
+                  alt="에이스유통 로고"
+                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 group-hover/header:opacity-0 drop-shadow-lg"
+                />
+                {/* 호버 로고 (브라운) - 흰 배경 헤더용 */}
                 <img
                   src="/logo_brown.svg"
                   alt="에이스유통 로고"
-                  className="w-full h-full object-contain transition-transform duration-500 group-hover/logo:scale-105"
+                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 group-hover/header:opacity-100"
                 />
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#B8956A] to-[#D4A574] group-hover/logo:w-full transition-all duration-500"></span>
               </div>
-              <div className="hidden sm:flex flex-col border-l-2 border-[#B8956A]/30 pl-4 transition-all duration-500">
-                <span className="text-sm font-bold text-[#4A4039] transition-all duration-500 tracking-wide">에이스유통</span>
-                <span className="text-xs font-medium text-[#6B5D53] transition-all duration-500">주식회사</span>
+              <div className="hidden sm:flex flex-col border-l-2 border-white/30 group-hover/header:border-[#B8956A]/30 pl-4 transition-all duration-500">
+                <span className="text-sm font-bold text-white group-hover/header:text-[#4A4039] transition-all duration-500 tracking-wide">에이스유통</span>
+                <span className="text-xs font-medium text-white/70 group-hover/header:text-[#6B5D53] transition-all duration-500">주식회사</span>
               </div>
             </div>
           </Link>
@@ -60,10 +66,10 @@ export default function Header() {
             <ul className="flex items-center gap-2">
               {menuData.map((menu) => (
                 <li key={menu.title} className="relative group">
-                  <Link href={menu.items[0].href} className="relative px-5 py-3 text-[15px] font-semibold text-[#4A4039] transition-all duration-500 tracking-wide block">
+                  <Link href={menu.items[0].href} className="relative px-5 py-3 text-[15px] font-semibold text-white group-hover/header:text-[#4A4039] transition-all duration-500 tracking-wide block">
                     <span className="relative z-10">{menu.title}</span>
                     <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[#B8956A] to-[#D4A574] group-hover:w-[calc(100%-20px)] transition-all duration-500 rounded-full"></span>
-                    <span className="absolute inset-0 rounded-xl bg-[#B8956A]/0 group-hover:bg-[#B8956A]/5 transition-all duration-500"></span>
+                    <span className="absolute inset-0 rounded-xl bg-white/0 group-hover:bg-white/10 group-hover/header:group-hover:bg-[#B8956A]/5 transition-all duration-500"></span>
                   </Link>
 
                   {/* Dropdown Menu */}
@@ -102,7 +108,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-[#4A4039] transition-colors duration-500"
+            className="lg:hidden p-2 text-white group-hover/header:text-[#4A4039] transition-colors duration-500"
           >
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
