@@ -520,7 +520,7 @@ export default function HomePage() {
                 subtitle: 'CHARACTER IP F&B',
                 description: '인기 캐릭터와 콜라보레이션',
                 hoverDesc: '차별화된 메뉴 및 굿즈 개발로\n브랜드 경쟁력을 강화합니다',
-                imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=800&fit=crop',
+                imageUrl: 'https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=600&h=800&fit=crop',
                 icon: 'M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
               },
               {
