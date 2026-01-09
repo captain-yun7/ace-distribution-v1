@@ -1,0 +1,99 @@
+var site_host = location.protocol + "//" + location.host;
+
+//아이디 특수문자 유효성
+function chkTxt(str){
+	var reg_txt = /^[a-z0-9_-]{4,16}$/;
+	if(!reg_txt.test(str)){
+		  return false;
+	}
+	return true;
+}
+
+//아이디 영문/숫자조합
+function chkTxt2(str){
+	var reg_txt = /^.*(?=.{4,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+	if(!reg_txt.test(str)){
+		  return false;
+	}
+	return true;
+}
+
+//ID 체크
+function id_check(){
+	var f = document.join_form;
+	if(f.userid.value=="") {
+		alert("아이디를 입력해 주세요.");
+		$("#id_check").empty();
+		f.userid.focus();
+	} else if(f.userid.value.length < 4 || f.userid.value.length > 16) {
+		alert("아이디를 입력해 주세요.\n(4~15자)");
+		$("#id_check").empty();
+		f.userid.focus();
+	}else if(!chkTxt($.trim(f.userid.value))){ 
+		alert("한글,특수문자,영문(대문자)는 사용 할 수 없습니다.");    
+		$("#id_check").empty();
+		f.userid.focus();
+	} else {
+		$.ajax({
+			url : site_host+"/member/join_idcheck.php",
+			type: "get",
+			data:	 {"userid": f.userid.value}, 
+			success:function(obj){ 
+				$("#id_check").html(obj);
+			}
+		});
+	}
+}
+
+//비밀번호 유효성
+function chkPwd(str){
+	var pw = str;
+	var num = pw.search(/[0-9]/g);
+	var eng = pw.search(/[a-z]/ig);
+	var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+		if(pw.length < 4 || pw.length > 16){
+			alert("비밀번호는 4~16자의 영문,숫자,특수문자 조합으로 가능합니다.");
+			return false;
+		}
+		if(pw.search(/₩s/) != -1){
+			alert("비밀번호는 공백없이 입력해주세요.");
+			return false;
+		}
+		if(num < 0 || eng < 0){
+			alert("영문,숫자를 조합하여 입력해주세요.");
+			return false;
+		}
+	 return true;
+}
+
+//우편번호
+function openDaumPostcode() {
+	new daum.Postcode({
+		oncomplete: function(data) {
+			$("input[name='zip_new']").val(data.zonecode);
+			$("input[name='add1']").val(data.address);
+			$("input[name='add2']").focus();
+		}
+	}).open();
+}
+
+$(function(){
+
+	$('input[name=passwd]').keyup(function(){
+		var pw = this.value;
+		var num = pw.search(/[0-9]/g);
+		var eng = pw.search(/[a-z]/ig);
+
+		if(pw.length >= 4){
+			if( (pw.length < 4 || pw.length > 16) || (pw.search(/₩s/) != -1) || (num < 0 || eng < 0) ){
+				$("#passwd_check").html('<strong class="font-caution">비밀번호가 정확하지 않습니다. 다시한번 입력해주세요. </strong>');
+				return false;
+			}else{
+				$("#passwd_check").empty();
+			}
+		}
+		return true;
+	});
+
+});

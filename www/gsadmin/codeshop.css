@@ -1,0 +1,46 @@
+.menu { color:#333333; font-size: 12px; font-family: "돋움", "Arial", "Helvetica", "sans-serif"; line-height: 160%
+	}
+.menu_small { color:#666666; font-size: 11px; font-family: "돋움", "Arial", "Helvetica", "sans-serif"; line-height: 160%
+	}
+.tmb { color:#525152; font-size: 12px; font-weight:bold;font-family: "돋움", "Arial", "Helvetica", "sans-serif"; line-height: 150%
+	}
+.menublue { color:#00AEEF; font-size: 12px;font-family: "돋움", "Arial", "Helvetica", "sans-serif"; line-height: 150%
+	}
+.menupurple { color:#FF00FF; font-size: 12px;font-family: "돋움", "Arial", "Helvetica", "sans-serif"; line-height: 150%
+	}
+.bluelight { color:#33FFFF; font-size: 12px;font-family: "돋움", "Arial", "Helvetica", "sans-serif"; line-height: 150%
+	}
+.cp { color:#FFFFFF; font-size: 11px; font-family: "돋움", "Tahoma", "Helvetica", "sans-serif"; line-height: 150%
+	}
+.cp_bk { color:#000000; font-size: 10px; font-family: "Tahoma", "Helvetica", "sans-serif"; line-height: 150%
+	}
+.submenu { color:#737173; font-size: 11px; font-family: "돋움", "Arial", "Helvetica", "sans-serif"; line-height: 150%
+	}
+.enbold { color:#737173; font-size: 11px; font-weight:bold;font-family: "돋움", "Arial", "Helvetica", "sans-serif"; line-height: 150%
+	}
+.enboldno { color:#FF0000; font-size: 11px; font-weight:bold;font-family: "돋움", "Arial", "Helvetica", "sans-serif"; line-height: 150%
+	}
+.enboldno2 { color:orange; font-size: 11px; font-weight:bold;font-family: "돋움", "Arial", "Helvetica", "sans-serif"; line-height: 150%
+	}
+.login { color:#333333; font-weight:bold; font-size: 11px; font-family: "sans-serif"; line-height: 150%
+	}
+.input_mono {	background-color:eeeeee; border:solid 1 cccccc; font-size:9pt;height:18px
+	}
+.input_black { border:solid 1 black; font-family:Tahoma; font-size:8pt; color:white; background-color:8c8c8c
+	}
+.input {	font-size=12px;  font-family:돋움; border:1 solid #BDBEBD
+	}
+.input_login {	background-color:ffffff; border:solid 1 CECFCE; font-family:"tahoma", "돋움"; font-size:9pt;color:333333;height:18px
+	}
+A:link { color:"#737173"; text-decoration: none 
+	}
+A:visited { color:"#737173"; text-decoration: none 
+	}
+A:active { color:"#737173"; text-decoration: none 
+	}
+A:hover { color: "#333333"; text-decoration: none 
+	}
+a { onfocus : "this.blur();" }
+.sline {
+	background-color: #CCCCCC;
+}

@@ -1,0 +1,64 @@
+// 모달 window
+$(function() {		
+	// 사이트맵
+	$("#sitemap_view").click(function(){tb_show('', '../include/sitemap.php?width=780&height=500'); return false });
+});
+
+
+//main visual slider
+$(function() {
+  $('#slides').slidesjs({
+		width:1920, 
+		height:380, 
+		play: {
+		  active:true, 
+		  effect: "fade",
+		  interval: 3000,
+		  auto:true, 
+		  pauseOnHover: true,
+		  restartDelay: 2000
+		},
+		navigation: {
+		  active:true, 
+		  effect: "fade",
+		  interval: 3000,
+		  auto:true, 
+		  pauseOnHover: true,
+		  restartDelay: 2000
+		 },
+		 pagination: {
+			active: true,
+		 },
+		effect: {
+		  fade: {
+			speed: 600
+		  }
+		}
+  });
+});
+
+
+// Top Scroll
+$(document).ready(function(){
+
+	$("#gototop").hide();
+	
+	$(function () {
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 100) {
+				$('#gototop').fadeIn();
+			} else {
+				$('#gototop').fadeOut();
+			}
+		});
+
+		$('#gototop a').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 1000);
+			return false;
+		});
+	});
+
+});
+
