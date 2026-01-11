@@ -45,21 +45,30 @@ interface NewsItem {
   publishedAt: string;
 }
 
-// Hero slide images - Premium bakery theme
-const heroSlides = [
+// Hero slide images - Fallback data
+const defaultHeroSlides = [
   {
     image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1920&h=1080&fit=crop',
-    alt: '신선한 크로와상과 빵'
+    title: '신선한 크로와상과 빵',
   },
   {
     image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1920&h=1080&fit=crop',
-    alt: '베이커리 원재료'
+    title: '베이커리 원재료',
   },
   {
     image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=1920&h=1080&fit=crop',
-    alt: '프리미엄 베이킹'
+    title: '프리미엄 베이킹',
   }
 ];
+
+interface HeroSlide {
+  id?: string;
+  image: string;
+  title: string;
+  description?: string | null;
+  linkUrl?: string | null;
+  linkText?: string | null;
+}
 
 const categoryLabels: Record<string, string> = {
   'PRESS_RELEASE': '보도자료',
@@ -81,6 +90,7 @@ export default function HomePage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [news, setNews] = useState<NewsItem[]>([]);
+  const [heroSlides, setHeroSlides] = useState<HeroSlide[]>(defaultHeroSlides);
   const [dataLoading, setDataLoading] = useState(true);
 
   // Company content from DB
@@ -101,20 +111,22 @@ export default function HomePage() {
 
   // Hero slider auto-play
   useEffect(() => {
+    if (heroSlides.length === 0) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [heroSlides.length]);
 
   // Fetch DB data
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [categoriesRes, productsRes, newsRes] = await Promise.all([
+        const [categoriesRes, productsRes, newsRes, bannersRes] = await Promise.all([
           fetch('/api/categories'),
           fetch('/api/products?featured=true&limit=6'),
           fetch('/api/news?limit=5'),
+          fetch('/api/banners?position=HOME_MAIN'),
         ]);
 
         if (categoriesRes.ok) {
@@ -130,6 +142,20 @@ export default function HomePage() {
         if (newsRes.ok) {
           const newsData = await newsRes.json();
           setNews(newsData.news);
+        }
+
+        if (bannersRes.ok) {
+          const bannersData = await bannersRes.json();
+          if (bannersData.banners && bannersData.banners.length > 0) {
+            setHeroSlides(bannersData.banners.map((b: { id: string; title: string; description?: string | null; imageUrl: string; linkUrl?: string | null; linkText?: string | null }) => ({
+              id: b.id,
+              image: b.imageUrl,
+              title: b.title,
+              description: b.description,
+              linkUrl: b.linkUrl,
+              linkText: b.linkText,
+            })));
+          }
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -386,7 +412,7 @@ export default function HomePage() {
               >
                 <img
                   src={slide.image}
-                  alt={slide.alt}
+                  alt={slide.title}
                   className="w-full h-full object-cover"
                 />
               </div>
