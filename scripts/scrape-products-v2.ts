@@ -24,9 +24,8 @@ const CATEGORY_CONFIG = [
 interface ProductData {
   name: string;
   brand: string | null;
-  specs: string | null;
-  storage: string | null;
   description: string | null;
+  features: Record<string, string>; // 제품 특징 (중량, 보관방법 등)
   imageUrl: string | null;
   originalIdx: number;
 }
@@ -85,22 +84,44 @@ function parseProductDetail(html: string, idx: number): ProductData | null {
       brand = brandExtract[1].trim();
     }
 
-    // 제품 설명 추출
+    // 제품 설명 추출 - <p class="txt">에서 (제품특징 전까지)
     const descMatch = html.match(/<p[^>]*class="[^"]*txt[^"]*"[^>]*>([\s\S]*?)<\/p>/i);
+    let description = descMatch ? descMatch[1].replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim() : null;
+
+    // "제품특징" 이후 텍스트 제거
+    if (description) {
+      const featuresIdx = description.indexOf('제품특징');
+      if (featuresIdx > 0) {
+        description = description.substring(0, featuresIdx).trim();
+      }
+    }
 
     // 이미지 URL 추출
     const imgMatch = html.match(/\/data\/product\/[^"'\s]+\.(jpg|jpeg|png|gif)/i);
 
-    // 규격, 보관방법 추출
-    const specsMatch = html.match(/중량\s*:\s*([^<\n]+)/i);
-    const storageMatch = html.match(/보관방법\s*:\s*([^<\n]+)/i);
+    // 제품 특징 추출 (중량, 보관방법, 권장연령, 맛 등)
+    const features: Record<string, string> = {};
+
+    const specsMatch = html.match(/중량\s*:\s*([^<\n-]+)/i);
+    if (specsMatch) features['중량'] = specsMatch[1].trim();
+
+    const storageMatch = html.match(/보관방법\s*:\s*([^<\n-]+)/i);
+    if (storageMatch) features['보관방법'] = storageMatch[1].trim();
+
+    const ageMatch = html.match(/권장연령\s*:\s*([^<\n-]+)/i);
+    if (ageMatch) features['권장연령'] = ageMatch[1].trim();
+
+    const flavorMatch = html.match(/맛\s*:\s*([^<\n-]+)/i);
+    if (flavorMatch) features['맛'] = flavorMatch[1].trim();
+
+    const ingredientMatch = html.match(/주요원료\s*:\s*([^<\n-]+)/i);
+    if (ingredientMatch) features['주요원료'] = ingredientMatch[1].trim();
 
     return {
       name: productName,
       brand,
-      specs: specsMatch ? specsMatch[1].trim() : null,
-      storage: storageMatch ? storageMatch[1].trim() : null,
-      description: descMatch ? descMatch[1].replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim() : null,
+      description,
+      features,
       imageUrl: imgMatch ? `https://www.xn--9t4b11d32atjr15b.com${imgMatch[0]}` : null,
       originalIdx: idx,
     };
@@ -190,12 +211,12 @@ async function main() {
             code,
             description: product.description || `${product.name} 제품입니다.`,
             brand: product.brand,
-            specs: product.specs ? { 규격: product.specs, 보관방법: product.storage } : undefined,
+            features: Object.keys(product.features).length > 0 ? product.features : undefined,
             imageUrl: product.imageUrl,
             thumbnailUrl: product.imageUrl,
             order: idx,
             stock: 0,
-            isPublished: false, // 이미지는 일단 비공개
+            isPublished: true, // 공개
             isFeatured: false,
           },
         });
