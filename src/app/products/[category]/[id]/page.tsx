@@ -2,6 +2,7 @@
 
 import { Header, Footer, PageHero } from '@/components/layout';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState, use } from 'react';
 
 interface Product {
@@ -9,15 +10,10 @@ interface Product {
   name: string;
   code: string;
   brand: string | null;
-  manufacturer: string | null;
-  origin: string | null;
   description: string;
-  specs: Record<string, string> | null;
-  features: string[] | null;
+  features: Record<string, string> | null;
   imageUrl: string | null;
   thumbnailUrl: string | null;
-  images: string[] | null;
-  brochureUrl: string | null;
   category: {
     id: string;
     name: string;
@@ -26,7 +22,7 @@ interface Product {
 }
 
 export default function ProductDetailPage({ params }: { params: Promise<{ category: string; id: string }> }) {
-  const { category, id } = use(params);
+  const { id } = use(params);
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
@@ -120,98 +116,50 @@ export default function ProductDetailPage({ params }: { params: Promise<{ catego
 
         {/* Product Detail */}
         <section className="py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Info Section */}
-            <div>
-                <div className="mb-6">
-                  <span className="inline-block bg-[#B8956A]/10 text-[#B8956A] text-sm font-medium px-3 py-1 rounded-full mb-3">
-                    {product.category.displayName}
-                  </span>
-                  <h1 className="text-3xl font-bold text-[#4A4039] mb-2">{product.name}</h1>
-                  {product.brand && (
-                    <p className="text-lg text-[#6B5D53]">{product.brand}</p>
-                  )}
-                </div>
-
-                {/* Usage / Specs - 사용량 및 상세 정보 */}
-                {product.specs && Object.keys(product.specs).length > 0 && (
-                  <div className="mb-6">
-                    <h2 className="font-bold text-[#4A4039] mb-3 flex items-center gap-2">
-                      <svg className="w-5 h-5 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                      </svg>
-                      사용량 및 상세 정보
-                    </h2>
-                    <div className="bg-white rounded-xl border border-[#E8DCC8] overflow-hidden">
-                      <table className="w-full">
-                        <tbody className="divide-y divide-[#E8DCC8]">
-                          {Object.entries(product.specs).map(([key, value]) => (
-                            <tr key={key}>
-                              <th className="px-4 py-3 bg-[#FAF6F1] text-left text-sm font-medium text-[#4A4039] w-32">{key}</th>
-                              <td className="px-4 py-3 text-sm text-[#6B5D53]">{value}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* Image */}
+              <div className="relative aspect-square bg-white rounded-2xl overflow-hidden border border-[#E8DCC8]">
+                {product.imageUrl || product.thumbnailUrl ? (
+                  <Image
+                    src={product.imageUrl || product.thumbnailUrl || ''}
+                    alt={product.name}
+                    fill
+                    className="object-contain p-8"
+                    unoptimized
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <svg className="w-24 h-24 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
                   </div>
                 )}
+              </div>
 
-                {/* Features - 제품 특징 */}
-                {product.features && product.features.length > 0 && (
-                  <div className="mb-6">
-                    <h2 className="font-bold text-[#4A4039] mb-3 flex items-center gap-2">
-                      <svg className="w-5 h-5 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      제품 특징
-                    </h2>
-                    <div className="bg-white rounded-xl border border-[#E8DCC8] p-4">
-                      <ul className="space-y-3">
-                        {product.features.map((feature, index) => (
-                          <li key={index} className="flex items-start gap-3">
-                            <span className="flex-shrink-0 w-6 h-6 bg-[#B8956A]/10 text-[#B8956A] rounded-full flex items-center justify-center text-xs font-bold">
-                              {index + 1}
-                            </span>
-                            <span className="text-[#6B5D53] text-sm leading-relaxed">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                )}
+              {/* Info */}
+              <div>
+                <span className="inline-block bg-[#B8956A]/10 text-[#B8956A] text-sm font-medium px-3 py-1 rounded-full mb-3">
+                  {product.category.displayName}
+                </span>
+                <h1 className="text-3xl font-bold text-[#4A4039] mb-4">{product.name}</h1>
 
-                {/* Description - 제품 설명 */}
+                {/* Description - Rich HTML */}
                 {product.description && (
-                  <div className="mb-6">
-                    <h2 className="font-bold text-[#4A4039] mb-3 flex items-center gap-2">
-                      <svg className="w-5 h-5 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      제품 설명
-                    </h2>
-                    <div className="bg-white rounded-xl border border-[#E8DCC8] p-4">
-                      <p className="text-[#6B5D53] text-sm leading-relaxed whitespace-pre-line">{product.description}</p>
-                    </div>
-                  </div>
+                  <div
+                    className="prose prose-sm max-w-none text-[#6B5D53]
+                      prose-headings:text-[#4A4039] prose-headings:font-bold
+                      prose-h4:text-lg prose-h4:text-amber-800 prose-h4:mb-3 prose-h4:pb-2 prose-h4:border-b-2 prose-h4:border-amber-200
+                      prose-p:mb-4 prose-p:leading-relaxed
+                      prose-ul:list-disc prose-ul:pl-5 prose-ul:mb-6 prose-ul:space-y-1
+                      prose-li:text-[#6B5D53]
+                      prose-table:w-full prose-table:text-sm
+                      prose-td:py-2 prose-td:border-b prose-td:border-gray-100
+                      [&_table_td:first-child]:pr-4 [&_table_td:first-child]:text-gray-500 [&_table_td:first-child]:font-medium [&_table_td:first-child]:w-24"
+                    dangerouslySetInnerHTML={{ __html: product.description }}
+                  />
                 )}
-
-                {/* Actions */}
-                {product.brochureUrl && (
-                  <div className="flex gap-4">
-                    <a
-                      href={product.brochureUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 bg-white border border-[#B8956A] text-[#B8956A] px-6 py-3 rounded-xl font-medium hover:bg-[#B8956A]/5 transition-colors"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                      브로셔 다운로드
-                    </a>
-                  </div>
-                )}
+              </div>
             </div>
           </div>
         </section>

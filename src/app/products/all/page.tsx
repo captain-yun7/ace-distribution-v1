@@ -2,6 +2,7 @@
 
 import { Header, Footer, PageHero } from '@/components/layout';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 interface Category {
@@ -22,6 +23,7 @@ interface Product {
   brand: string | null;
   description: string;
   imageUrl: string | null;
+  thumbnailUrl: string | null;
   category: {
     id: string;
     name: string;
@@ -37,13 +39,15 @@ export default function ProductsAllPage() {
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
+  const [showImages, setShowImages] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [categoriesRes, productsRes] = await Promise.all([
+        const [categoriesRes, productsRes, settingsRes] = await Promise.all([
           fetch('/api/categories'),
-          fetch('/api/products?limit=100'),
+          fetch('/api/products?limit=500'),
+          fetch('/api/settings'),
         ]);
 
         if (categoriesRes.ok) {
@@ -54,6 +58,11 @@ export default function ProductsAllPage() {
         if (productsRes.ok) {
           const productsData = await productsRes.json();
           setProducts(productsData.products);
+        }
+
+        if (settingsRes.ok) {
+          const settingsData = await settingsRes.json();
+          setShowImages(settingsData.showProductImages ?? true);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -157,29 +166,56 @@ export default function ProductsAllPage() {
             {loading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {[...Array(8)].map((_, i) => (
-                  <div key={i} className="bg-white rounded-xl border border-[#E8DCC8] p-5 animate-pulse">
-                    <div className="h-3 bg-gray-200 rounded w-16 mb-3"></div>
-                    <div className="h-5 bg-gray-200 rounded w-full mb-2"></div>
-                    <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                  <div key={i} className="bg-white rounded-xl border border-[#E8DCC8] overflow-hidden animate-pulse">
+                    <div className="aspect-square bg-gray-200"></div>
+                    <div className="p-4">
+                      <div className="h-3 bg-gray-200 rounded w-16 mb-2"></div>
+                      <div className="h-5 bg-gray-200 rounded w-full mb-2"></div>
+                      <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                    </div>
                   </div>
                 ))}
               </div>
             ) : filteredProducts.length > 0 ? (
               <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <div className={`grid gap-4 ${showImages ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'}`}>
                   {paginatedProducts.map((product) => (
                     <Link
                       key={product.id}
                       href={`/products/${product.category?.name}/${product.id}`}
-                      className="bg-white rounded-xl border border-[#E8DCC8] p-5 hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group block"
+                      className={`bg-white rounded-xl border border-[#E8DCC8] overflow-hidden hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group block ${!showImages ? 'flex items-center' : ''}`}
                     >
-                      <span className="inline-block px-2.5 py-1 bg-[#B8956A]/10 text-[#B8956A] text-[11px] font-medium rounded-full mb-3">
-                        {product.category?.displayName}
-                      </span>
-                      <h3 className="text-base font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors mb-1.5 line-clamp-2">
-                        {product.name}
-                      </h3>
-                      <p className="text-sm text-[#6B5D53]">{product.brand || product.code}</p>
+                      {/* Product Image */}
+                      {showImages && (
+                        <div className="relative aspect-square bg-gray-50">
+                          {product.imageUrl || product.thumbnailUrl ? (
+                            <Image
+                              src={product.imageUrl || product.thumbnailUrl || ''}
+                              alt={product.name}
+                              fill
+                              className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                              unoptimized
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center">
+                              <svg className="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Product Info */}
+                      <div className={`p-4 ${!showImages ? 'flex-1' : ''}`}>
+                        <span className="inline-block px-2.5 py-1 bg-[#B8956A]/10 text-[#B8956A] text-[11px] font-medium rounded-full mb-2">
+                          {product.category?.displayName}
+                        </span>
+                        <h3 className="text-base font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors mb-1 line-clamp-2">
+                          {product.name}
+                        </h3>
+                        <p className="text-sm text-[#6B5D53]">{product.brand || product.code}</p>
+                      </div>
                     </Link>
                   ))}
                 </div>

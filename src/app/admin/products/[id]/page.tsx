@@ -4,6 +4,7 @@ import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import ImageUpload from '@/components/ui/ImageUpload';
+import RichTextEditor from '@/components/ui/RichTextEditor';
 
 interface Category {
   id: string;
@@ -19,11 +20,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
-    slug: '',
     description: '',
     thumbnailUrl: '',
-    price: '',
-    unit: '',
     categoryId: '',
     isPublished: true,
     isFeatured: false,
@@ -41,11 +39,8 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
           const product = await productRes.json();
           setFormData({
             name: product.name || '',
-            slug: product.slug || '',
             description: product.description || '',
-            thumbnailUrl: product.thumbnailUrl || '',
-            price: product.price?.toString() || '',
-            unit: product.unit || '',
+            thumbnailUrl: product.thumbnailUrl || product.imageUrl || '',
             categoryId: product.categoryId || '',
             isPublished: product.isPublished ?? true,
             isFeatured: product.isFeatured ?? false,
@@ -74,9 +69,13 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...formData,
-          price: formData.price ? parseInt(formData.price) : null,
+          name: formData.name,
+          description: formData.description,
+          thumbnailUrl: formData.thumbnailUrl,
+          imageUrl: formData.thumbnailUrl,
           categoryId: formData.categoryId || null,
+          isPublished: formData.isPublished,
+          isFeatured: formData.isFeatured,
         }),
       });
 
@@ -113,6 +112,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
 
       <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6 space-y-6">
         <div className="grid md:grid-cols-2 gap-6">
+          {/* 제품명 */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               제품명 <span className="text-red-500">*</span>
@@ -126,18 +126,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              슬러그 (URL)
-            </label>
-            <input
-              type="text"
-              value={formData.slug}
-              onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
+          {/* 카테고리 */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               카테고리
@@ -155,54 +144,30 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
               ))}
             </select>
           </div>
-
-          <div>
-            <ImageUpload
-              label="제품 이미지"
-              value={formData.thumbnailUrl}
-              onChange={(url) => setFormData({ ...formData, thumbnailUrl: url || '' })}
-              folder="products"
-              aspectRatio="square"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              가격
-            </label>
-            <input
-              type="number"
-              value={formData.price}
-              onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              단위
-            </label>
-            <input
-              type="text"
-              value={formData.unit}
-              onChange={(e) => setFormData({ ...formData, unit: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
         </div>
 
+        {/* 제품 이미지 */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            설명
-          </label>
-          <textarea
-            value={formData.description}
-            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            rows={5}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+          <ImageUpload
+            label="제품 이미지"
+            value={formData.thumbnailUrl}
+            onChange={(url) => setFormData({ ...formData, thumbnailUrl: url || '' })}
+            folder="products"
+            aspectRatio="square"
           />
         </div>
 
+        {/* 제품 설명 (Rich Text Editor) */}
+        <div>
+          <RichTextEditor
+            label="제품 설명"
+            value={formData.description}
+            onChange={(value) => setFormData({ ...formData, description: value })}
+            placeholder="제품에 대한 상세 설명을 입력하세요. 제품특징 버튼을 눌러 템플릿을 삽입할 수 있습니다."
+          />
+        </div>
+
+        {/* 공개/추천 설정 */}
         <div className="flex gap-6">
           <label className="flex items-center gap-2">
             <input
@@ -224,6 +189,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
           </label>
         </div>
 
+        {/* 버튼 */}
         <div className="flex justify-end gap-4 pt-4 border-t">
           <Link
             href="/admin/products"
