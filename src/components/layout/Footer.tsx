@@ -22,8 +22,8 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Contact Info */}
-          <div className="md:justify-self-start">
+          {/* Contact Info - 가운데 */}
+          <div className="md:justify-self-center">
             <h4 className="text-sm sm:text-base text-white font-bold mb-3 sm:mb-4">Contact</h4>
             <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/70">
               <p className="flex items-start gap-2">
@@ -54,8 +54,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Business Info */}
-          <div className="md:justify-self-start">
+          {/* Business Info - 오른쪽 */}
+          <div className="md:justify-self-end">
             <h4 className="text-sm sm:text-base text-white font-bold mb-3 sm:mb-4">Business Info</h4>
             <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-white/70">
               <p>대표이사 : 안종일</p>
