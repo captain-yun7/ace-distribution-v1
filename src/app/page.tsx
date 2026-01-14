@@ -207,29 +207,44 @@ export default function HomePage() {
       </Link>
 
       {/* Premium Header with Enhanced Visual Hierarchy */}
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-700 group/header hover:bg-white hover:shadow-[0_4px_30px_rgba(0,0,0,0.1)] bg-gradient-to-b from-black/40 to-transparent">
+      {/* 메인페이지: 처음에는 흰색 배경, 스크롤하면 투명해짐 */}
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 group/header ${
+        scrollY > 50
+          ? 'bg-gradient-to-b from-black/40 to-transparent hover:bg-white hover:shadow-[0_4px_30px_rgba(0,0,0,0.1)]'
+          : 'bg-white shadow-[0_4px_30px_rgba(0,0,0,0.1)]'
+      }`}>
         <div className="max-w-[1920px] mx-auto flex items-center justify-between h-20 lg:h-24 px-6 lg:px-12">
           {/* Logo with Premium Styling */}
           <Link href="/" className="flex items-center transition-all duration-500 group/logo relative">
             <div className="flex items-center gap-4">
               <div className="relative w-[100px] h-[40px]">
-                {/* 기본 로고 (화이트) - 투명 헤더용 */}
+                {/* 흰색 로고 - 스크롤 후 투명 헤더용 */}
                 <img
                   src="/logo_white.svg"
                   alt="에이스유통 로고"
-                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 group-hover/header:opacity-0 drop-shadow-lg"
+                  className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 drop-shadow-lg ${
+                    scrollY > 50 ? 'opacity-100 group-hover/header:opacity-0' : 'opacity-0'
+                  }`}
                 />
-                {/* 호버 로고 (브라운) - 흰 배경 헤더용 */}
+                {/* 브라운 로고 - 초기 흰색 배경 및 호버 시 */}
                 <img
                   src="/logo_brown.svg"
                   alt="에이스유통 로고"
-                  className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 group-hover/header:opacity-100"
+                  className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${
+                    scrollY > 50 ? 'opacity-0 group-hover/header:opacity-100' : 'opacity-100'
+                  }`}
                 />
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#B8956A] to-[#D4A574] group-hover/logo:w-full transition-all duration-500"></span>
               </div>
-              <div className="hidden sm:flex flex-col border-l-2 border-white/30 group-hover/header:border-[#B8956A]/30 pl-4 transition-all duration-500">
-                <span className="text-sm font-bold text-white group-hover/header:text-[#4A4039] transition-all duration-500 tracking-wide">에이스유통</span>
-                <span className="text-xs font-medium text-white/70 group-hover/header:text-[#6B5D53] transition-all duration-500">주식회사</span>
+              <div className={`hidden sm:flex flex-col border-l-2 pl-4 transition-all duration-500 ${
+                scrollY > 50 ? 'border-white/30 group-hover/header:border-[#B8956A]/30' : 'border-[#B8956A]/30'
+              }`}>
+                <span className={`text-sm font-bold transition-all duration-500 tracking-wide ${
+                  scrollY > 50 ? 'text-white group-hover/header:text-[#4A4039]' : 'text-[#4A4039]'
+                }`}>에이스유통</span>
+                <span className={`text-xs font-medium transition-all duration-500 ${
+                  scrollY > 50 ? 'text-white/70 group-hover/header:text-[#6B5D53]' : 'text-[#6B5D53]'
+                }`}>주식회사</span>
               </div>
             </div>
           </Link>
@@ -261,7 +276,9 @@ export default function HomePage() {
                 ]}
               ].map((menu) => (
                 <li key={menu.title} className="relative group">
-                  <button className="relative px-5 py-3 text-[15px] font-semibold text-white group-hover/header:text-[#4A4039] transition-all duration-500 tracking-wide">
+                  <button className={`relative px-5 py-3 text-[15px] font-semibold transition-all duration-500 tracking-wide ${
+                    scrollY > 50 ? 'text-white group-hover/header:text-[#4A4039]' : 'text-[#4A4039]'
+                  }`}>
                     <span className="relative z-10">{menu.title}</span>
                     {/* Elegant underline animation */}
                     <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[#B8956A] to-[#D4A574] group-hover:w-[calc(100%-20px)] transition-all duration-500 rounded-full"></span>
@@ -314,7 +331,9 @@ export default function HomePage() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-white group-hover/header:text-[#4A4039] transition-colors duration-500"
+            className={`lg:hidden p-2 transition-colors duration-500 ${
+              scrollY > 50 ? 'text-white group-hover/header:text-[#4A4039]' : 'text-[#4A4039]'
+            }`}
           >
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
@@ -579,13 +598,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Default Content */}
-                <div className="relative p-4 sm:p-6 h-48 sm:h-72 flex flex-col group-hover:opacity-0 transition-opacity duration-300">
-                  {/* Icon */}
-                  <div className="w-10 h-10 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-auto">
-                    <svg className="w-5 h-5 sm:w-7 sm:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={value.icon} />
-                    </svg>
-                  </div>
+                <div className="relative p-4 sm:p-6 h-48 sm:h-72 flex flex-col justify-end group-hover:opacity-0 transition-opacity duration-300">
                   {/* Text */}
                   <div>
                     <span className="text-[#D4A574] text-[10px] sm:text-xs font-medium tracking-wider uppercase mb-1 sm:mb-2 block">{value.subtitle}</span>
@@ -611,12 +624,6 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Arrow Icon (default state) */}
-                <div className="absolute top-4 right-4 w-8 h-8 sm:w-10 sm:h-10 bg-black/30 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:opacity-0 transition-all duration-300">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
               </Link>
             ))}
           </div>
