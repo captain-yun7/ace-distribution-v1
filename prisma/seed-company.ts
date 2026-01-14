@@ -129,7 +129,7 @@ async function main() {
     {
       title: '전문성',
       subtitle: 'Expertise',
-      description: '15년간 축적된 노하우와 전문 지식을 바탕으로 서비스합니다',
+      description: '16년간 축적된 노하우와 전문 지식을 바탕으로 서비스합니다',
       imageUrl: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&h=400&fit=crop',
       order: 3,
     },
@@ -306,7 +306,7 @@ async function main() {
       data: {
         mainTitle: '최상의 원재료로',
         subTitle: '완성하는 <span class="text-[#D4A574]">프리미엄</span> 베이킹',
-        description: '15년간 축적된 노하우와 엄격한 품질 관리로\n최고의 베이커리 원재료를 공급합니다.',
+        description: '16년간 축적된 노하우와 엄격한 품질 관리로\n최고의 베이커리 원재료를 공급합니다.',
         since: 'Since 2010',
         cta1Text: '제품 보기',
         cta1Link: '/products/all',
@@ -321,7 +321,7 @@ async function main() {
       data: {
         mainTitle: '최상의 원재료로',
         subTitle: '완성하는 <span class="text-[#D4A574]">프리미엄</span> 베이킹',
-        description: '15년간 축적된 노하우와 엄격한 품질 관리로\n최고의 베이커리 원재료를 공급합니다.',
+        description: '16년간 축적된 노하우와 엄격한 품질 관리로\n최고의 베이커리 원재료를 공급합니다.',
         since: 'Since 2010',
         cta1Text: '제품 보기',
         cta1Link: '/products/all',
@@ -339,7 +339,7 @@ async function main() {
       content: '',
       data: {
         title: '최고의 품질로 성공을 만들어갑니다',
-        subtitle: '15년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다',
+        subtitle: '16년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다',
       },
     },
     create: {
@@ -348,7 +348,7 @@ async function main() {
       content: '',
       data: {
         title: '최고의 품질로 성공을 만들어갑니다',
-        subtitle: '15년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다',
+        subtitle: '16년의 경험과 전문성으로 고객사의 성공적인 비즈니스를 위한 최적의 솔루션을 제공합니다',
       },
     },
   });
