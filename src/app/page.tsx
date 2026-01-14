@@ -562,7 +562,7 @@ export default function HomePage() {
                 icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'
               },
               {
-                title: '베이커리/카페\n유통',
+                title: '베이커리/카페 유통',
                 subtitle: 'DISTRIBUTION',
                 description: '프리미엄 베이커리 제품 유통',
                 hoverDesc: '신선하고 품질 높은 제품을\n안정적으로 공급합니다',
@@ -656,106 +656,59 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Timeline Section - 세로 구분선 타임라인 */}
-          <div className={`mb-16 sm:mb-32 ${isVisible.story ? 'animate-fadeInUp animation-delay-200' : 'opacity-0'}`}>
-            <div className="flex justify-center flex-wrap md:flex-nowrap">
-              {[
-                {
-                  year: '2010',
-                  title: '회사 설립',
-                  desc: '카페·베이커리\n원재료 유통 사업 시작',
-                  icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'
-                },
-                {
-                  year: '2015',
-                  title: '사옥 신축',
-                  desc: '하남시 천현동\n물류센터 사옥 신축',
-                  icon: 'M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z'
-                },
-                {
-                  year: '2020',
-                  title: '창립 10주년',
-                  desc: '특허 취득 및\n배송차량 20대 증차',
-                  icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z'
-                },
-                {
-                  year: '2025',
-                  title: '연매출 245억',
-                  desc: '전략적 파트너십 체결 및\n신사옥 이전 예정',
-                  icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'
-                }
-              ].map((item, index, arr) => (
-                <div key={index} className="flex items-stretch">
-                  {/* 타임라인 아이템 */}
-                  <div className="text-center group px-6 sm:px-12 lg:px-16 py-6">
-                    {/* 아이콘 */}
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto bg-[#FAF6F1] rounded-full flex items-center justify-center group-hover:bg-[#B8956A] transition-all duration-300">
-                      <svg className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#B8956A] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
-                      </svg>
-                    </div>
-                    {/* 제목 */}
-                    <h4 className="text-sm sm:text-base lg:text-lg font-bold text-[#4A4039] mt-4 sm:mt-5 mb-2">{item.title}</h4>
-                    {/* 설명 */}
-                    <p className="text-xs sm:text-sm text-[#6B5D53] mb-4 px-1 max-w-[140px] sm:max-w-[160px] lg:max-w-[180px] mx-auto whitespace-pre-line">{item.desc}</p>
-                    {/* 연도 */}
-                    <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#B8956A]">{item.year}</span>
-                  </div>
-                  {/* 세로 구분선 (마지막 아이템 제외) */}
-                  {index < arr.length - 1 && (
-                    <div className="hidden md:block w-[1px] bg-[#E8DCC8] self-stretch my-6"></div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Achievement Numbers */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
+          {/* Achievement Numbers - 8개 통합 카드 */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {[
+              {
+                number: '2010',
+                label: '회사 설립',
+                icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'
+              },
+              {
+                number: '2015',
+                label: '사옥 신축',
+                icon: 'M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z'
+              },
+              {
+                number: '2020',
+                label: '창립 10주년',
+                icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z'
+              },
+              {
+                number: '2025',
+                label: '연매출 245억',
+                icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'
+              },
               {
                 number: '16년',
                 label: '업계 경력',
-                icon: (
-                  <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M5 7h14l-.89-3.11A1 1 0 0017.22 3H6.78a1 1 0 00-.89.89L5 7zm14.71 2H4.29L3.1 4.11A3 3 0 015.78 1h12.44a3 3 0 012.68 3.11L19.71 9zM12 13a1 1 0 011 1v5h2v-5a3 3 0 00-6 0v5h2v-5a1 1 0 011-1z"/>
-                    <path d="M5.29 9l.44 1.76A1 1 0 006.7 12h10.6a1 1 0 00.97-1.24L17.71 9H5.29z"/>
-                  </svg>
-                )
+                icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
               },
               {
                 number: '245억',
                 label: '연간 매출',
-                icon: (
-                  <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                )
+                icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
               },
               {
                 number: '500+',
                 label: '거래처',
-                icon: (
-                  <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-                  </svg>
-                )
+                icon: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z'
               },
               {
                 number: '20대',
                 label: '전용 배송차량',
-                icon: (
-                  <svg className="w-12 h-12 text-[#B8956A] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
-                  </svg>
-                )
+                icon: 'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0'
               }
             ].map((stat, index) => (
               <div
                 key={index}
-                className={`text-center p-4 sm:p-8 bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 ${isVisible.story ? `animate-fadeInScale animation-delay-${index * 100}` : 'opacity-0'}`}
+                className={`text-center p-4 sm:p-8 bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 ${isVisible.story ? `animate-fadeInScale animation-delay-${index * 50}` : 'opacity-0'}`}
               >
-                <div className="mb-2 sm:mb-4 scale-75 sm:scale-100">{stat.icon}</div>
+                <div className="mb-2 sm:mb-4">
+                  <svg className="w-8 h-8 sm:w-12 sm:h-12 text-[#B8956A] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={stat.icon} />
+                  </svg>
+                </div>
                 <div className="text-xl sm:text-3xl font-bold text-[#B8956A] mb-1 sm:mb-2">{stat.number}</div>
                 <div className="text-xs sm:text-sm text-[#6B5D53] font-medium">{stat.label}</div>
               </div>
