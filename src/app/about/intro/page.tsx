@@ -427,19 +427,12 @@ export default function AboutIntroPage() {
               </div>
               <div className="flex items-center justify-between gap-2">
                 {[
-                  { icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4', title: '매장 매입/매각', subtitle: '및 시장조사' },
-                  { icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z', title: '기계/인테리어', subtitle: '업체 제휴' },
-                  { icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', title: '전문 인력 매칭', subtitle: '(제과제빵 기술자)' },
-                  { icon: 'M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z', title: '제과제빵 상품개발', subtitle: '및 제품 큐레이션' },
+                  { icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', title: '파트너십 구축', subtitle: '(토이트론 제휴)' },
+                  { icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z', title: 'IP 활용 기획', subtitle: '(캐릭터 브랜딩)' },
+                  { icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4', title: '상품 개발 및 공급', subtitle: '(메뉴/굿즈 제작)' },
+                  { icon: 'M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z', title: '런칭 지원', subtitle: '(마케팅 전략)' },
                 ].map((item, index) => (
                   <div key={index} className="flex flex-col items-center flex-1">
-                    {index > 0 && (
-                      <div className="hidden sm:block absolute -ml-6 text-[#D4C4B0]">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    )}
                     <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#FAF6F1] rounded-full flex items-center justify-center mb-2">
                       <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
@@ -464,10 +457,10 @@ export default function AboutIntroPage() {
               </div>
               <div className="flex items-center justify-between gap-2">
                 {[
-                  { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: '품질 검증', subtitle: '우수/술기반 인증' },
-                  { icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10', title: '재고 관리', subtitle: '실시간 재고 시스템' },
-                  { icon: 'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0', title: '신속 배송', subtitle: '당일/익일 배송' },
-                  { icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4', title: '사후 관리', subtitle: '지속적품질 관리' },
+                  { icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4', title: '물류센터', subtitle: '(보관/재고관리)' },
+                  { icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', title: '콜드체인', subtitle: '(온도 관리 시스템)' },
+                  { icon: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4', title: 'ERP 통합', subtitle: '(실시간 관리)' },
+                  { icon: 'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0', title: '물류 배송', subtitle: '(전용 차량 운영)' },
                 ].map((item, index) => (
                   <div key={index} className="flex flex-col items-center flex-1">
                     <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#FAF6F1] rounded-full flex items-center justify-center mb-2">
@@ -580,7 +573,7 @@ export default function AboutIntroPage() {
               </div>
               <div className="flex items-center justify-end">
                 <img
-                  src="/images/사업장2.png"
+                  src="/images/business-location.png"
                   alt="에이스유통 물류센터"
                   className="w-auto h-auto max-h-[250px] sm:max-h-[300px] object-contain"
                 />
@@ -599,30 +592,31 @@ export default function AboutIntroPage() {
             <p className="text-sm sm:text-base text-[#6B5D53]">함께 성장하는 파트너</p>
           </div>
 
-          {/* 토이트론 소개 */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border border-[#E8DCC8]">
-            {/* 회사명 및 슬로건 */}
-            <div className="text-center mb-8 sm:mb-10">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#4A4039] mb-2">
-                패밀리사: <span className="text-[#B8956A]">㈜토이트론 (Toytron)</span>
-              </h3>
-              <p className="text-sm sm:text-base text-[#6B5D53] italic">
-                &ldquo;아이와 같은 눈으로 바라보고, 아이와 같은 생각을 하는 <span className="text-[#B8956A] font-semibold">토이트론</span>&rdquo;
-              </p>
+          {/* 토이트론 소개 - 3개 카드로 분리 */}
+          <div className="space-y-6">
+            {/* 카드 1: 회사 소개 */}
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border border-[#E8DCC8]">
+              <div className="text-center">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#4A4039] mb-3">
+                  패밀리사: <span className="text-[#B8956A]">㈜토이트론 (Toytron)</span>
+                </h3>
+                <p className="text-sm sm:text-base text-[#6B5D53] italic mb-6">
+                  &ldquo;아이와 같은 눈으로 바라보고, 아이와 같은 생각을 하는 <span className="text-[#B8956A] font-semibold">토이트론</span>&rdquo;
+                </p>
+                <p className="text-sm sm:text-base text-[#4A4039] leading-relaxed">
+                  <span className="text-[#B8956A] font-semibold">토이트론</span>은 아이들에게 미래와 꿈을 보여주고, 상상력과 가능성을 심어주는 완구 전문 기업입니다.<br className="hidden sm:block" />
+                  단순히 화려한 겉모습의 장난감이 아닌, 따뜻한 사랑이 담긴 감성적인 완구를 만들어<br className="hidden sm:block" />
+                  아이들의 감성 창의력을 키우는 데 주력하고 있습니다.
+                </p>
+              </div>
             </div>
 
-            {/* 회사 소개 */}
-            <div className="mb-8 sm:mb-10">
-              <p className="text-sm sm:text-base text-[#4A4039] leading-relaxed text-center">
-                <span className="text-[#B8956A] font-semibold">토이트론</span>은 아이들에게 미래와 꿈을 보여주고, 상상력과 가능성을 심어주는 완구 전문 기업입니다.<br className="hidden sm:block" />
-                단순히 화려한 겉모습의 장난감이 아닌, 따뜻한 사랑이 담긴 감성적인 완구를 만들어<br className="hidden sm:block" />
-                아이들의 감성 창의력을 키우는 데 주력하고 있습니다.
-              </p>
-            </div>
-
-            {/* 기업 가치 */}
-            <div className="mb-8 sm:mb-10">
-              <h4 className="text-center text-lg sm:text-xl font-bold text-[#4A4039] mb-4 sm:mb-6">[기업 가치]</h4>
+            {/* 카드 2: 기업 가치 */}
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border border-[#E8DCC8]">
+              <div className="text-center mb-6 sm:mb-8">
+                <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 sm:mb-3 block">CORE VALUES</span>
+                <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#4A4039]">기업 가치</h4>
+              </div>
               <div className="grid sm:grid-cols-3 gap-4">
                 {[
                   { title: 'Like a Child', desc: '아이들의 동화를 믿고, 아이들의 꿈을 함께 꾸며, 아이처럼 순수하게 세상을 바라봅니다' },
@@ -637,9 +631,12 @@ export default function AboutIntroPage() {
               </div>
             </div>
 
-            {/* 주요 브랜드 */}
-            <div>
-              <h4 className="text-center text-lg sm:text-xl font-bold text-[#4A4039] mb-4 sm:mb-6">[주요 브랜드]</h4>
+            {/* 카드 3: 주요 브랜드 */}
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border border-[#E8DCC8]">
+              <div className="text-center mb-6 sm:mb-8">
+                <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 sm:mb-3 block">MAIN BRANDS</span>
+                <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#4A4039]">주요 브랜드</h4>
+              </div>
               <div className="space-y-4">
                 {[
                   { name: '실바니안 패밀리 (Sylvanian Families)', desc: '토이트론의 대표 완구 브랜드로, 프리미엄 리미티드 제품 라인의 한국 공식 유통을 담당하고 있습니다.' },
