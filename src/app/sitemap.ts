@@ -1,9 +1,7 @@
 import { MetadataRoute } from 'next';
-import { createClient } from '@/lib/supabase/server';
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ace-distribution.co.kr';
-  const supabase = await createClient();
 
   // 정적 페이지들
   const staticPages: MetadataRoute.Sitemap = [
@@ -117,44 +115,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // 동적 페이지: 제품 카테고리
-  const { data: categories } = await supabase
-    .from('categories')
-    .select('slug')
-    .eq('is_active', true);
-
-  const categoryPages: MetadataRoute.Sitemap = (categories || []).map((category) => ({
-    url: `${baseUrl}/products/${category.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
-
-  // 동적 페이지: 개별 제품
-  const { data: products } = await supabase
-    .from('products')
-    .select('id, category_id, updated_at, categories(slug)')
-    .eq('is_public', true);
-
-  const productPages: MetadataRoute.Sitemap = (products || []).map((product: any) => ({
-    url: `${baseUrl}/products/${product.categories?.slug || 'all'}/${product.id}`,
-    lastModified: new Date(product.updated_at),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }));
-
-  // 동적 페이지: 뉴스
-  const { data: news } = await supabase
-    .from('news')
-    .select('id, updated_at')
-    .eq('is_published', true);
-
-  const newsPages: MetadataRoute.Sitemap = (news || []).map((item) => ({
-    url: `${baseUrl}/content/news/${item.id}`,
-    lastModified: new Date(item.updated_at),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
-
-  return [...staticPages, ...categoryPages, ...productPages, ...newsPages];
+  return staticPages;
 }
