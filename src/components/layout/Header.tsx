@@ -42,13 +42,13 @@ export default function Header() {
               <div className="relative w-[100px] h-[40px]">
                 {/* 기본 로고 (화이트) - 어두운 헤더용 */}
                 <img
-                  src="/logo_white.svg"
+                  src="/images/brand/logo_white.svg"
                   alt="에이스유통 로고"
                   className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-100 group-hover/header:opacity-0 drop-shadow-lg"
                 />
                 {/* 호버 로고 (브라운) - 흰 배경 헤더용 */}
                 <img
-                  src="/logo_brown.svg"
+                  src="/images/brand/logo_brown.svg"
                   alt="에이스유통 로고"
                   className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 group-hover/header:opacity-100"
                 />

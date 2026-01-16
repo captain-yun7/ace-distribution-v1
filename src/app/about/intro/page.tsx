@@ -59,11 +59,11 @@ export default function AboutIntroPage() {
   ];
 
   const certifications = dbCertificates.length > 0 ? dbCertificates : [
-    { title: '특허증 (냉장/냉동 장치)', description: '제과제빵류 운반 및 보관용\n냉장/냉동장치 특허 (제 10-2445173호)', date: '2020년 취득', imageUrl: '/images/인증서/특허증.png' },
-    { title: '상표등록증 (에이스제빵소)', description: '에이스제빵소 브랜드 상표권 등록', date: '2021년 등록', imageUrl: '/images/인증서/상표등록증.png' },
-    { title: '우수기술기업 인증서', description: '제과제빵 재료 유통물류 및\n기술마케팅 부문 기술력 인증', date: '2019년 취득', imageUrl: '/images/인증서/우수기술기업인증서.png' },
+    { title: '특허증 (냉장/냉동 장치)', description: '제과제빵류 운반 및 보관용\n냉장/냉동장치 특허 (제 10-2445173호)', date: '2020년 취득', imageUrl: '/images/certificates/patent.png' },
+    { title: '상표등록증 (에이스제빵소)', description: '에이스제빵소 브랜드 상표권 등록', date: '2021년 등록', imageUrl: '/images/certificates/trademark.png' },
+    { title: '우수기술기업 인증서', description: '제과제빵 재료 유통물류 및\n기술마케팅 부문 기술력 인증', date: '2019년 취득', imageUrl: '/images/certificates/tech-company.png' },
     { title: '메인비즈 인증', description: '중소벤처기업부 경영혁신형 중소기업 인증', date: '2016년 취득', imageUrl: '/images/certificates/mainbiz.png' },
-    { title: '일터혁신 사업장', description: '노사발전재단 일터혁신 사업장 선정\n직무 분석 및 평가체계 개선 추진', date: '2023년 선정', imageUrl: '/images/인증서/일터혁신.png' },
+    { title: '일터혁신 사업장', description: '노사발전재단 일터혁신 사업장 선정\n직무 분석 및 평가체계 개선 추진', date: '2023년 선정', imageUrl: '/images/certificates/workplace-innovation.png' },
   ];
 
   const coreValues = dbCoreValues.length > 0 ? dbCoreValues : [
@@ -171,7 +171,7 @@ export default function AboutIntroPage() {
             <div className="relative">
               <div className="bg-gradient-to-br from-[#FAF6F1] to-[#F5EFE7] rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="/images/business-location.png"
+                  src="/images/company/business-location.png"
                   alt="에이스유통 물류센터"
                   className="w-full h-auto"
                 />
@@ -573,7 +573,7 @@ export default function AboutIntroPage() {
               </div>
               <div className="flex items-center justify-end">
                 <img
-                  src="/images/business-location.png"
+                  src="/images/company/business-location.png"
                   alt="에이스유통 물류센터"
                   className="w-auto h-auto max-h-[250px] sm:max-h-[300px] object-contain"
                 />
@@ -597,8 +597,8 @@ export default function AboutIntroPage() {
             {/* 카드 1: 회사 소개 */}
             <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border border-[#E8DCC8]">
               <div className="text-center">
-                <h3 className="text-xl sm:text-2xl font-bold text-[#4A4039] mb-3">
-                  패밀리사: <span className="text-[#B8956A]">㈜토이트론 (Toytron)</span>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#B8956A] mb-3">
+                  ㈜토이트론 (Toytron)
                 </h3>
                 <p className="text-sm sm:text-base text-[#6B5D53] italic mb-6">
                   &ldquo;아이와 같은 눈으로 바라보고, 아이와 같은 생각을 하는 <span className="text-[#B8956A] font-semibold">토이트론</span>&rdquo;
@@ -771,9 +771,9 @@ export default function AboutIntroPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {[
               ...certifications,
-              { title: '중기부 장관 표창장', description: '중소벤처기업부 장관 표창', date: '2025년', imageUrl: '/중기부 장관 표창장.png' },
-              { title: '하남시 의장 표창장', description: '하남시 의회 의장 표창', date: '2025년', imageUrl: '/하남시 의장 표창장 수상.jpg' },
-              { title: '서울대 경영인상', description: '서울대학교 식품영양산업 경영인상', date: '2025년', imageUrl: '/서울대 경영인상 수상.jpg' },
+              { title: '중기부 장관 표창장', description: '중소벤처기업부 장관 표창', date: '2025년', imageUrl: '/images/awards/minister-award.png' },
+              { title: '하남시 의장 표창장', description: '하남시 의회 의장 표창', date: '2025년', imageUrl: '/images/awards/hanam-award.jpg' },
+              { title: '서울대 경영인상', description: '서울대학교 식품영양산업 경영인상', date: '2025년', imageUrl: '/images/awards/snu-award.jpg' },
             ].map((item, index) => (
               <div key={index} className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A]/50 hover:shadow-xl transition-all duration-300 group flex flex-col">
                 <div className="aspect-[4/3] bg-gradient-to-br from-[#FAF6F1] to-white flex items-center justify-center p-2 sm:p-4 overflow-hidden">

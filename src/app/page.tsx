@@ -221,7 +221,7 @@ export default function HomePage() {
               <div className="relative w-[100px] h-[40px]">
                 {/* 흰색 로고 - 스크롤 후 투명 헤더용 */}
                 <img
-                  src="/logo_white.svg"
+                  src="/images/brand/logo_white.svg"
                   alt="에이스유통 로고"
                   className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 drop-shadow-lg ${
                     scrollY > 50 ? 'opacity-100 group-hover/header:opacity-0' : 'opacity-0'
@@ -229,7 +229,7 @@ export default function HomePage() {
                 />
                 {/* 브라운 로고 - 초기 흰색 배경 및 호버 시 */}
                 <img
-                  src="/logo_brown.svg"
+                  src="/images/brand/logo_brown.svg"
                   alt="에이스유통 로고"
                   className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${
                     scrollY > 50 ? 'opacity-0 group-hover/header:opacity-100' : 'opacity-100'

@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Logo & Company Info */}
           <div className="md:justify-self-start">
             <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-              <img src="/logo_white.svg" alt="에이스유통 로고" className="h-[28px] sm:h-[32px] w-auto" />
+              <img src="/images/brand/logo_white.svg" alt="에이스유통 로고" className="h-[28px] sm:h-[32px] w-auto" />
               <div className="flex flex-col">
                 <span className="text-xs sm:text-sm font-bold text-white leading-tight">에이스유통</span>
                 <span className="text-[10px] sm:text-xs font-medium text-white/60 leading-tight">주식회사</span>

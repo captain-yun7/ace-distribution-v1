@@ -204,7 +204,7 @@ export default function InternalCulturePage() {
                 <div className="flex justify-center">
                   <div className="relative w-full max-w-sm aspect-square rounded-lg sm:rounded-xl overflow-hidden shadow-lg">
                     <Image
-                      src="/images/후원증서.png"
+                      src="/images/company/sponsorship.png"
                       alt="희망브릿지 후원 증서 - 에이스유통 산불 피해 이웃돕기 성금 기부"
                       fill
                       className="object-contain"
