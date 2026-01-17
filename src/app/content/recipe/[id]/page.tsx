@@ -106,47 +106,50 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
         />
 
         {/* Recipe Detail */}
-        <section className="py-16">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12">
-              {/* Image */}
-              <div className="relative aspect-square bg-white rounded-2xl overflow-hidden border border-[#E8DCC8]">
-                {recipe.imageUrl ? (
-                  <Image
-                    src={recipe.imageUrl}
-                    alt={recipe.title}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10">
-                    <svg className="w-24 h-24 text-[#B8956A]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </div>
-                )}
+        <section className="py-12 sm:py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Image */}
+            {recipe.imageUrl && (
+              <div className="relative aspect-video bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] mb-10">
+                <Image
+                  src={recipe.imageUrl}
+                  alt={recipe.title}
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
               </div>
+            )}
 
-              {/* Info */}
-              <div>
-                <h1 className="text-3xl font-bold text-[#4A4039] mb-6">{recipe.title}</h1>
+            {/* Recipe Content */}
+            <div className="bg-white rounded-2xl border border-[#E8DCC8] p-6 sm:p-10">
+              {/* Title */}
+              <h1 className="text-2xl sm:text-3xl font-bold text-[#4A4039] mb-8 pb-6 border-b border-[#E8DCC8]">
+                {recipe.title}
+              </h1>
 
-                {/* Description - Rich HTML */}
-                {recipe.description && (
-                  <div
-                    className="prose prose-sm max-w-none text-[#6B5D53]
-                      prose-headings:text-[#4A4039] prose-headings:font-bold
-                      prose-h3:text-xl prose-h3:text-[#B8956A] prose-h3:mb-3 prose-h3:mt-6
-                      prose-p:mb-4 prose-p:leading-relaxed
-                      prose-ul:list-disc prose-ul:pl-5 prose-ul:mb-6 prose-ul:space-y-1
-                      prose-ol:list-decimal prose-ol:pl-5 prose-ol:mb-6 prose-ol:space-y-2
-                      prose-li:text-[#6B5D53]
-                      prose-strong:text-[#4A4039]"
-                    dangerouslySetInnerHTML={{ __html: recipe.description }}
-                  />
-                )}
-              </div>
+              {/* Description - Rich HTML */}
+              {recipe.description && (
+                <div
+                  className="recipe-content max-w-none text-[#6B5D53] text-base leading-relaxed
+                    [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-[#4A4039] [&_h2]:mt-10 [&_h2]:mb-5 [&_h2]:pb-3 [&_h2]:border-b [&_h2]:border-[#E8DCC8]
+                    [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-[#B8956A] [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:flex [&_h3]:items-center [&_h3]:gap-3
+                    [&_h3]:before:content-[''] [&_h3]:before:w-1 [&_h3]:before:h-5 [&_h3]:before:bg-[#B8956A] [&_h3]:before:rounded-full
+                    [&_p]:mb-3 [&_p]:leading-relaxed
+                    [&_p+h3]:mt-10
+                    [&_ul]:my-3 [&_ul]:ml-1 [&_ul]:space-y-1.5
+                    [&_ol]:my-4 [&_ol]:ml-1 [&_ol]:space-y-2.5
+                    [&_ul]:list-none [&_ul>li]:relative [&_ul>li]:pl-5
+                    [&_ul>li]:before:content-['•'] [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:text-[#B8956A] [&_ul>li]:before:font-bold
+                    [&_ol]:list-decimal [&_ol]:pl-6
+                    [&_ol>li]:pl-2 [&_ol>li]:marker:text-[#B8956A] [&_ol>li]:marker:font-semibold
+                    [&_li]:leading-relaxed
+                    [&_strong]:text-[#4A4039] [&_strong]:font-semibold
+                    [&_p>strong]:block [&_p>strong]:mt-6 [&_p>strong]:mb-2 [&_p>strong]:text-[#4A4039]
+                    first:[&_h3]:mt-0"
+                  dangerouslySetInnerHTML={{ __html: recipe.description }}
+                />
+              )}
             </div>
           </div>
         </section>
