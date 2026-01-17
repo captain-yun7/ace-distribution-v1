@@ -6,19 +6,12 @@ import Link from 'next/link';
 import ImageUpload from '@/components/ui/ImageUpload';
 import RichTextEditor from '@/components/ui/RichTextEditor';
 
-interface Category {
-  id: string;
-  name: string;
-}
-
 export default function EditRecipePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
-  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
-    categoryId: '',
     title: '',
     description: '',
     imageUrl: '',
@@ -29,15 +22,11 @@ export default function EditRecipePage({ params }: { params: Promise<{ id: strin
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [recipeRes, categoriesRes] = await Promise.all([
-          fetch(`/api/admin/recipes/${id}`),
-          fetch('/api/admin/recipe-categories'),
-        ]);
+        const recipeRes = await fetch(`/api/admin/recipes/${id}`);
 
         if (recipeRes.ok) {
           const recipe = await recipeRes.json();
           setFormData({
-            categoryId: recipe.categoryId || '',
             title: recipe.title || '',
             description: recipe.description || '',
             imageUrl: recipe.imageUrl || '',
@@ -45,9 +34,6 @@ export default function EditRecipePage({ params }: { params: Promise<{ id: strin
             isFeatured: recipe.isFeatured ?? false,
           });
         }
-
-        const categoriesData = await categoriesRes.json();
-        setCategories(categoriesData.categories || []);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -100,39 +86,18 @@ export default function EditRecipePage({ params }: { params: Promise<{ id: strin
       </div>
 
       <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6 space-y-6">
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* 제목 */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              레시피명 <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              required
-              value={formData.title}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          {/* 카테고리 */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              카테고리
-            </label>
-            <select
-              value={formData.categoryId}
-              onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">카테고리 선택</option>
-              {categories.map((cat) => (
-                <option key={cat.id} value={cat.id}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
-          </div>
+        {/* 제목 */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            레시피명 <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            required
+            value={formData.title}
+            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+          />
         </div>
 
         {/* 레시피 이미지 */}

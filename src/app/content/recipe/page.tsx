@@ -2,10 +2,11 @@
 
 import { Header, Footer, PageHero } from '@/components/layout';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
-interface RecipeCategory {
-  id: string;
-  name: string;
+// HTML 태그를 제거하고 텍스트만 추출하는 함수
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
 }
 
 interface Recipe {
@@ -13,18 +14,10 @@ interface Recipe {
   title: string;
   description: string;
   imageUrl: string | null;
-  difficulty: string | null;
-  cookingTime: string | null;
-  category: {
-    id: string;
-    name: string;
-  };
 }
 
 export default function RecipePage() {
-  const [selectedCategory, setSelectedCategory] = useState('전체');
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [categories, setCategories] = useState<RecipeCategory[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,7 +27,6 @@ export default function RecipePage() {
         if (res.ok) {
           const data = await res.json();
           setRecipes(data.recipes);
-          setCategories(data.categories);
         }
       } catch (error) {
         console.error('Error fetching recipes:', error);
@@ -45,12 +37,6 @@ export default function RecipePage() {
 
     fetchRecipes();
   }, []);
-
-  const categoryNames = ['전체', ...categories.map(c => c.name)];
-
-  const filteredRecipes = selectedCategory === '전체'
-    ? recipes
-    : recipes.filter(r => r.category?.name === selectedCategory);
 
   return (
     <>
@@ -66,27 +52,6 @@ export default function RecipePage() {
           ]}
         />
 
-        {/* Category Filter */}
-        <section className="py-8 bg-white border-b border-[#E8DCC8]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap gap-3 justify-center">
-              {categoryNames.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                    cat === selectedCategory
-                      ? 'bg-[#B8956A] text-white'
-                      : 'bg-[#FAF6F1] text-[#4A4039] hover:bg-[#B8956A] hover:text-white'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Recipe Grid */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -98,18 +63,14 @@ export default function RecipePage() {
                     <div className="p-6">
                       <div className="h-5 bg-gray-200 rounded w-3/4 mb-3"></div>
                       <div className="h-4 bg-gray-200 rounded w-full mb-4"></div>
-                      <div className="flex gap-4">
-                        <div className="h-4 bg-gray-200 rounded w-16"></div>
-                        <div className="h-4 bg-gray-200 rounded w-20"></div>
-                      </div>
                     </div>
                   </div>
                 ))}
               </div>
-            ) : filteredRecipes.length > 0 ? (
+            ) : recipes.length > 0 ? (
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredRecipes.map((recipe) => (
-                  <div key={recipe.id} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group">
+                {recipes.map((recipe) => (
+                  <Link href={`/content/recipe/${recipe.id}`} key={recipe.id} className="bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group block">
                     <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-[#B8956A]/10 to-[#D4A574]/10">
                       {recipe.imageUrl ? (
                         <img
@@ -124,33 +85,12 @@ export default function RecipePage() {
                           </svg>
                         </div>
                       )}
-                      <span className="absolute top-4 left-4 bg-[#B8956A] text-white text-xs font-bold px-3 py-1 rounded-full">
-                        {recipe.category?.name}
-                      </span>
                     </div>
                     <div className="p-6">
                       <h3 className="text-xl font-bold text-[#4A4039] mb-2 group-hover:text-[#B8956A] transition-colors">{recipe.title}</h3>
-                      <p className="text-[#6B5D53] text-sm mb-4 line-clamp-2">{recipe.description}</p>
-                      <div className="flex items-center gap-4 text-xs text-[#6B5D53]">
-                        {recipe.cookingTime && (
-                          <span className="flex items-center gap-1">
-                            <svg className="w-4 h-4 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            {recipe.cookingTime}
-                          </span>
-                        )}
-                        {recipe.difficulty && (
-                          <span className="flex items-center gap-1">
-                            <svg className="w-4 h-4 text-[#B8956A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                            </svg>
-                            난이도: {recipe.difficulty}
-                          </span>
-                        )}
-                      </div>
+                      <p className="text-[#6B5D53] text-sm line-clamp-2">{stripHtml(recipe.description)}</p>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             ) : (

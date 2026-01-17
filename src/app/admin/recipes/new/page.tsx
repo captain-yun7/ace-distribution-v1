@@ -1,22 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import ImageUpload from '@/components/ui/ImageUpload';
 import RichTextEditor from '@/components/ui/RichTextEditor';
 
-interface Category {
-  id: string;
-  name: string;
-}
-
 export default function NewRecipePage() {
   const router = useRouter();
-  const [categories, setCategories] = useState<Category[]>([]);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
-    categoryId: '',
     title: '',
     description: '',
     imageUrl: '',
@@ -24,30 +17,8 @@ export default function NewRecipePage() {
     isFeatured: false,
   });
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await fetch('/api/admin/recipe-categories');
-        const data = await res.json();
-        setCategories(data.categories || []);
-        if (data.categories?.length > 0) {
-          setFormData((prev) => ({ ...prev, categoryId: data.categories[0].id }));
-        }
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-      }
-    };
-    fetchCategories();
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!formData.categoryId) {
-      alert('카테고리를 선택해주세요. 카테고리가 없다면 먼저 추가해주세요.');
-      return;
-    }
-
     setSaving(true);
 
     try {
@@ -81,49 +52,19 @@ export default function NewRecipePage() {
       </div>
 
       <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6 space-y-6">
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* 제목 */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              레시피명 <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              required
-              value={formData.title}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              placeholder="레시피명을 입력하세요"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          {/* 카테고리 */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              카테고리
-            </label>
-            {categories.length === 0 ? (
-              <div className="text-sm text-gray-500 py-2">
-                카테고리가 없습니다.{' '}
-                <Link href="/admin/recipes" className="text-blue-600 hover:underline">
-                  카테고리를 먼저 추가해주세요
-                </Link>
-              </div>
-            ) : (
-              <select
-                value={formData.categoryId}
-                onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">카테고리 선택</option>
-                {categories.map((cat) => (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.name}
-                  </option>
-                ))}
-              </select>
-            )}
-          </div>
+        {/* 제목 */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            레시피명 <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            required
+            value={formData.title}
+            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            placeholder="레시피명을 입력하세요"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+          />
         </div>
 
         {/* 레시피 이미지 */}
@@ -179,7 +120,7 @@ export default function NewRecipePage() {
           </Link>
           <button
             type="submit"
-            disabled={saving || categories.length === 0}
+            disabled={saving}
             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
           >
             {saving ? '등록 중...' : '등록하기'}
