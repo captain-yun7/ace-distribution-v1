@@ -18,6 +18,7 @@ export async function GET() {
       settings = await prisma.siteSetting.create({
         data: {
           showProductImages: true,
+          showRecipeImages: false,
         },
       });
     }
@@ -38,7 +39,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { showProductImages } = body;
+    const { showProductImages, showRecipeImages } = body;
 
     // 기존 설정 찾기
     let settings = await prisma.siteSetting.findFirst();
@@ -48,7 +49,8 @@ export async function PUT(request: NextRequest) {
       settings = await prisma.siteSetting.update({
         where: { id: settings.id },
         data: {
-          showProductImages: showProductImages ?? settings.showProductImages,
+          ...(showProductImages !== undefined && { showProductImages }),
+          ...(showRecipeImages !== undefined && { showRecipeImages }),
         },
       });
     } else {
@@ -56,6 +58,7 @@ export async function PUT(request: NextRequest) {
       settings = await prisma.siteSetting.create({
         data: {
           showProductImages: showProductImages ?? true,
+          showRecipeImages: showRecipeImages ?? false,
         },
       });
     }

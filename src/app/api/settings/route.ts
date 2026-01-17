@@ -10,17 +10,20 @@ export async function GET() {
     if (!settings) {
       return NextResponse.json({
         showProductImages: true,
+        showRecipeImages: false,
       });
     }
 
     return NextResponse.json({
       showProductImages: settings.showProductImages,
+      showRecipeImages: settings.showRecipeImages,
     });
   } catch (error) {
     console.error('Error fetching settings:', error);
     // 에러 시에도 기본값 반환
     return NextResponse.json({
       showProductImages: true,
+      showRecipeImages: false,
     });
   }
 }

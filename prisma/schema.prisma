@@ -526,7 +526,8 @@ enum StoryCategory {
 
 model SiteSetting {
   id                 String   @id @default(cuid())
-  showProductImages  Boolean  @default(true) // 제품 목록에 이미지 표시 여부
+  showProductImages  Boolean  @default(true)  // 제품 목록에 이미지 표시 여부
+  showRecipeImages   Boolean  @default(false) // 레시피 목록에 이미지 표시 여부 (기본값: 숨김)
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 

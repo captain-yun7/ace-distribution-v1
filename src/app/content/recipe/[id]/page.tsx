@@ -99,7 +99,7 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
           title={recipe.title}
           subtitle="프리미엄 레시피"
           breadcrumb={[
-            { name: '콘텐츠 / 홍보', href: '/content/recipe' },
+            { name: '판매 제품', href: '/products/all' },
             { name: '레시피', href: '/content/recipe' },
             { name: recipe.title }
           ]}
