@@ -9,6 +9,7 @@ const menuItems = [
   { name: '대시보드', href: '/admin', icon: 'dashboard' },
   { name: '제품 관리', href: '/admin/products', icon: 'box' },
   { name: '카테고리 관리', href: '/admin/categories', icon: 'folder' },
+  { name: '레시피 관리', href: '/admin/recipes', icon: 'recipe' },
   { name: '뉴스/공지사항', href: '/admin/news', icon: 'newspaper' },
   { name: '문의 관리', href: '/admin/inquiries', icon: 'message' },
   { name: '배너 관리', href: '/admin/banners', icon: 'image' },
@@ -31,6 +32,11 @@ const icons: Record<string, React.ReactNode> = {
   folder: (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+    </svg>
+  ),
+  recipe: (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
     </svg>
   ),
   newspaper: (
