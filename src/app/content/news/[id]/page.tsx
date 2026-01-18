@@ -181,14 +181,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
 
                 {/* Content */}
                 <div
-                  className="prose prose-lg max-w-none text-[#4A4039]
-                    prose-headings:text-[#4A4039] prose-headings:font-bold
-                    prose-p:text-[#6B5D53] prose-p:leading-relaxed
-                    prose-a:text-[#B8956A] prose-a:no-underline hover:prose-a:underline
-                    prose-strong:text-[#4A4039]
-                    prose-ul:text-[#6B5D53] prose-ol:text-[#6B5D53]
-                    prose-blockquote:border-l-[#B8956A] prose-blockquote:bg-[#FAF6F1] prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
-                    prose-img:rounded-xl prose-img:shadow-lg"
+                  className="rich-content max-w-none text-[#6B5D53] text-base leading-relaxed"
                   dangerouslySetInnerHTML={{ __html: news.content }}
                 />
               </div>

@@ -4,6 +4,7 @@ import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import ImageUpload from '@/components/ui/ImageUpload';
+import RichTextEditor from '@/components/ui/RichTextEditor';
 
 export default function EditNewsPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -157,7 +158,7 @@ export default function EditNewsPage({ params }: { params: Promise<{ id: string 
               value={formData.thumbnailUrl}
               onChange={(url) => setFormData({ ...formData, thumbnailUrl: url || '' })}
               folder="news"
-              aspectRatio="video"
+              aspectRatio="square"
             />
           </div>
         </div>
@@ -175,14 +176,11 @@ export default function EditNewsPage({ params }: { params: Promise<{ id: string 
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            내용
-          </label>
-          <textarea
+          <RichTextEditor
+            label="내용"
             value={formData.content}
-            onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-            rows={15}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+            onChange={(value) => setFormData({ ...formData, content: value })}
+            placeholder="게시글 내용을 입력하세요."
           />
         </div>
 

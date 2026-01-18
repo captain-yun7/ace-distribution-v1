@@ -46,28 +46,6 @@ export default function RichTextEditor({
     handleInput();
   };
 
-  const insertFeatureSection = () => {
-    const featureHtml = `
-<div class="mt-6">
-  <h4 class="text-lg font-semibold text-amber-800 mb-3 pb-2 border-b-2 border-amber-200">제품특징</h4>
-  <table class="w-full text-sm">
-    <tbody>
-      <tr class="border-b border-gray-100">
-        <td class="py-2 pr-4 text-gray-500 font-medium w-24">중량</td>
-        <td class="py-2 text-gray-700">내용 입력</td>
-      </tr>
-      <tr class="border-b border-gray-100">
-        <td class="py-2 pr-4 text-gray-500 font-medium w-24">보관방법</td>
-        <td class="py-2 text-gray-700">내용 입력</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-    `;
-    document.execCommand('insertHTML', false, featureHtml);
-    handleInput();
-  };
-
   return (
     <div>
       {label && (
@@ -153,15 +131,6 @@ export default function RichTextEditor({
             <line x1="9" y1="3" x2="9" y2="21" />
           </svg>
         </button>
-        <button
-          type="button"
-          onClick={insertFeatureSection}
-          className="px-3 py-1.5 text-xs bg-amber-100 text-amber-800 hover:bg-amber-200 rounded font-medium"
-          title="제품특징 템플릿"
-        >
-          + 제품특징
-        </button>
-
         <div className="flex-1" />
 
         {/* Mode toggle */}
@@ -203,7 +172,7 @@ export default function RichTextEditor({
       )}
 
       <p className="mt-1 text-xs text-gray-500">
-        HTML 형식으로 저장됩니다. 제품특징 버튼을 눌러 템플릿을 삽입할 수 있습니다.
+        HTML 형식으로 저장됩니다.
       </p>
     </div>
   );
