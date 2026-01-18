@@ -40,6 +40,7 @@ export default function ProductsAllPage() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [showImages, setShowImages] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,20 +77,22 @@ export default function ProductsAllPage() {
 
   const totalProducts = categories.reduce((sum, cat) => sum + cat._count.products, 0);
 
-  // 카테고리별 필터링
-  const filteredProducts = activeCategory === 'all'
-    ? products
-    : products.filter(p => p.category?.name === activeCategory);
+  // 검색어 및 카테고리별 필터링
+  const filteredProducts = products.filter(p => {
+    const matchesCategory = activeCategory === 'all' || p.category?.name === activeCategory;
+    const matchesSearch = searchQuery === '' || p.name.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   // 페이지네이션
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const paginatedProducts = filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
-  // 카테고리 변경 시 페이지 리셋
+  // 카테고리 또는 검색어 변경 시 페이지 리셋
   useEffect(() => {
     setCurrentPage(1);
-  }, [activeCategory]);
+  }, [activeCategory, searchQuery]);
 
   return (
     <>
@@ -131,6 +134,42 @@ export default function ProductsAllPage() {
               <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CATEGORIES</span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">제품 카테고리</h2>
               <p className="text-sm sm:text-base text-[#6B5D53]">다양한 베이커리·카페 원재료를 카테고리별로 만나보세요</p>
+            </div>
+
+            {/* Search Bar */}
+            <div className="mb-6 sm:mb-8">
+              <div className="relative max-w-md mx-auto">
+                <input
+                  type="text"
+                  placeholder="제품명 검색..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full px-4 py-3 pl-12 rounded-xl border border-[#E8DCC8] bg-white text-[#4A4039] placeholder:text-[#6B5D53]/50 focus:outline-none focus:border-[#B8956A] focus:ring-2 focus:ring-[#B8956A]/20 transition-all"
+                />
+                <svg
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6B5D53]/50"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6B5D53]/50 hover:text-[#B8956A] transition-colors"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+              {searchQuery && (
+                <p className="text-center text-sm text-[#6B5D53] mt-3">
+                  &quot;{searchQuery}&quot; 검색 결과: <span className="font-semibold text-[#B8956A]">{filteredProducts.length}개</span>
+                </p>
+              )}
             </div>
 
             {/* Category Tab Menu */}
