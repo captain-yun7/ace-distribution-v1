@@ -147,15 +147,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ catego
                 {/* Description - Rich HTML */}
                 {product.description && (
                   <div
-                    className="prose prose-sm max-w-none text-[#6B5D53]
-                      prose-headings:text-[#4A4039] prose-headings:font-bold
-                      prose-h4:text-lg prose-h4:text-amber-800 prose-h4:mb-3 prose-h4:pb-2 prose-h4:border-b-2 prose-h4:border-amber-200
-                      prose-p:mb-4 prose-p:leading-relaxed
-                      prose-ul:list-disc prose-ul:pl-5 prose-ul:mb-6 prose-ul:space-y-1
-                      prose-li:text-[#6B5D53]
-                      prose-table:w-full prose-table:text-sm
-                      prose-td:py-2 prose-td:border-b prose-td:border-gray-100
-                      [&_table_td:first-child]:pr-4 [&_table_td:first-child]:text-gray-500 [&_table_td:first-child]:font-medium [&_table_td:first-child]:w-24"
+                    className="rich-content max-w-none text-[#6B5D53] text-base leading-relaxed"
                     dangerouslySetInnerHTML={{ __html: product.description }}
                   />
                 )}

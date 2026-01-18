@@ -131,22 +131,7 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
               {/* Description - Rich HTML */}
               {recipe.description && (
                 <div
-                  className="recipe-content max-w-none text-[#6B5D53] text-base leading-relaxed
-                    [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-[#4A4039] [&_h2]:mt-10 [&_h2]:mb-5 [&_h2]:pb-3 [&_h2]:border-b [&_h2]:border-[#E8DCC8]
-                    [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-[#B8956A] [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:flex [&_h3]:items-center [&_h3]:gap-3
-                    [&_h3]:before:content-[''] [&_h3]:before:w-1 [&_h3]:before:h-5 [&_h3]:before:bg-[#B8956A] [&_h3]:before:rounded-full
-                    [&_p]:mb-3 [&_p]:leading-relaxed
-                    [&_p+h3]:mt-10
-                    [&_ul]:my-3 [&_ul]:ml-1 [&_ul]:space-y-1.5
-                    [&_ol]:my-4 [&_ol]:ml-1 [&_ol]:space-y-2.5
-                    [&_ul]:list-none [&_ul>li]:relative [&_ul>li]:pl-5
-                    [&_ul>li]:before:content-['•'] [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:text-[#B8956A] [&_ul>li]:before:font-bold
-                    [&_ol]:list-decimal [&_ol]:pl-6
-                    [&_ol>li]:pl-2 [&_ol>li]:marker:text-[#B8956A] [&_ol>li]:marker:font-semibold
-                    [&_li]:leading-relaxed
-                    [&_strong]:text-[#4A4039] [&_strong]:font-semibold
-                    [&_p>strong]:block [&_p>strong]:mt-6 [&_p>strong]:mb-2 [&_p>strong]:text-[#4A4039]
-                    first:[&_h3]:mt-0"
+                  className="recipe-content max-w-none text-[#6B5D53] text-base leading-relaxed"
                   dangerouslySetInnerHTML={{ __html: recipe.description }}
                 />
               )}

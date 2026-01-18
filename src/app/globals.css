@@ -410,3 +410,133 @@ a, button, [role="button"], input[type="button"], input[type="submit"] {
 .scroll-touch {
   -webkit-overflow-scrolling: touch;
 }
+
+/* Rich HTML Content Styles (레시피, 제품 등 공통) */
+.rich-content h2,
+.recipe-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4A4039;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #E8DCC8;
+}
+
+.rich-content h3,
+.recipe-content h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #B8956A;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.rich-content h3::before,
+.recipe-content h3::before {
+  content: '';
+  width: 4px;
+  height: 1.25rem;
+  background-color: #B8956A;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.rich-content h3:first-child,
+.recipe-content h3:first-child {
+  margin-top: 0;
+}
+
+.rich-content p,
+.recipe-content p {
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+}
+
+.rich-content strong,
+.recipe-content strong {
+  color: #4A4039;
+  font-weight: 600;
+}
+
+.rich-content p > strong,
+.recipe-content p > strong {
+  display: block;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.rich-content ul,
+.recipe-content ul {
+  margin: 0.75rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.rich-content ul li,
+.recipe-content ul li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.375rem;
+  line-height: 1.7;
+}
+
+.rich-content ul li::before,
+.recipe-content ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #B8956A;
+  font-weight: 700;
+}
+
+.rich-content ol,
+.recipe-content ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  list-style: decimal;
+}
+
+.rich-content ol li,
+.recipe-content ol li {
+  padding-left: 0.5rem;
+  margin-bottom: 0.625rem;
+  line-height: 1.7;
+}
+
+.rich-content ol li::marker,
+.recipe-content ol li::marker {
+  color: #B8956A;
+  font-weight: 600;
+}
+
+/* Rich Text Editor Styles (Admin) */
+[contenteditable="true"] ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+[contenteditable="true"] ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  list-style: decimal;
+}
+
+[contenteditable="true"] li {
+  margin-bottom: 0.25rem;
+}
+
+[contenteditable="true"] h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+[contenteditable="true"] strong {
+  font-weight: 700;
+}
