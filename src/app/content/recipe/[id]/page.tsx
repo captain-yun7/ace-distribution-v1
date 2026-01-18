@@ -2,7 +2,6 @@
 
 import { Header, Footer, PageHero } from '@/components/layout';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useEffect, useState, use } from 'react';
 
 interface Recipe {
@@ -108,19 +107,6 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ id: str
         {/* Recipe Detail */}
         <section className="py-12 sm:py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Image */}
-            {recipe.imageUrl && (
-              <div className="relative aspect-video bg-white rounded-2xl overflow-hidden border border-[#E8DCC8] mb-10">
-                <Image
-                  src={recipe.imageUrl}
-                  alt={recipe.title}
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-            )}
-
             {/* Recipe Content */}
             <div className="bg-white rounded-2xl border border-[#E8DCC8] p-6 sm:p-10">
               {/* Title */}
