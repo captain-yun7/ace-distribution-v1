@@ -28,81 +28,6 @@ const defaultImages: Record<string, string> = {
   'PRESS': 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=600&fit=crop',
 };
 
-// 초기 더미 데이터 (DB에 데이터가 없을 때 표시)
-const dummyStories: Story[] = [
-  {
-    id: '1',
-    title: '프랜차이즈 카페 A사와 함께한 베이커리 메뉴 혁신',
-    category: 'PARTNERSHIP',
-    description: '고품질 냉동 베이커리 공급 및 메뉴 컨설팅을 통해 베이커리 매출 40% 증가를 달성한 성공 사례입니다.',
-    content: null,
-    imageUrl: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop',
-    thumbnailUrl: null,
-    tags: ['카페', '베이커리', '매출증가'],
-    isFeatured: true,
-    publishedAt: '2024-12-15T00:00:00Z',
-  },
-  {
-    id: '2',
-    title: '호텔 B사 조식 뷔페 품질 향상 프로젝트',
-    category: 'PARTNERSHIP',
-    description: '호텔 전용 프리미엄 빵 라인업 개발로 고객 만족도 향상, 재구매율 95% 달성',
-    content: null,
-    imageUrl: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop',
-    thumbnailUrl: null,
-    tags: ['호텔', '프리미엄', '품질'],
-    isFeatured: true,
-    publishedAt: '2024-11-20T00:00:00Z',
-  },
-  {
-    id: '3',
-    title: '에이스유통, 식품 유통업계 혁신 기업 선정',
-    category: 'PRESS',
-    description: '한국경제신문 주최 2024 식품유통대상에서 혁신 기업으로 선정되었습니다.',
-    content: null,
-    imageUrl: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=600&fit=crop',
-    thumbnailUrl: null,
-    tags: ['수상', '혁신', '식품유통'],
-    isFeatured: true,
-    publishedAt: '2024-12-01T00:00:00Z',
-  },
-  {
-    id: '4',
-    title: '지역 베이커리 상생 프로그램 성과 발표',
-    category: 'PRESS',
-    description: '지역 소상공인과의 상생 협력 프로그램을 통해 50개 이상의 지역 베이커리를 지원했습니다.',
-    content: null,
-    imageUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&h=600&fit=crop',
-    thumbnailUrl: null,
-    tags: ['상생', '소상공인', '지역경제'],
-    isFeatured: false,
-    publishedAt: '2024-10-15T00:00:00Z',
-  },
-  {
-    id: '5',
-    title: '편의점 C사 전국 물류망 효율화',
-    category: 'PARTNERSHIP',
-    description: '콜드체인 기반 전국 배송 시스템 구축으로 배송 시간 30% 단축 달성',
-    content: null,
-    imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop',
-    thumbnailUrl: null,
-    tags: ['편의점', '물류', '콜드체인'],
-    isFeatured: false,
-    publishedAt: '2024-09-10T00:00:00Z',
-  },
-  {
-    id: '6',
-    title: '에이스유통 ESG 경영 우수기업 인증',
-    category: 'PRESS',
-    description: '환경·사회·지배구조 분야에서 우수한 성과를 인정받아 ESG 우수기업 인증을 획득했습니다.',
-    content: null,
-    imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop',
-    thumbnailUrl: null,
-    tags: ['ESG', '지속가능', '인증'],
-    isFeatured: false,
-    publishedAt: '2024-08-20T00:00:00Z',
-  },
-];
 
 function StoryPageContent() {
   const searchParams = useSearchParams();
@@ -124,18 +49,13 @@ function StoryPageContent() {
         const res = await fetch('/api/stories?limit=50');
         if (res.ok) {
           const data = await res.json();
-          if (data.stories && data.stories.length > 0) {
-            setStories(data.stories);
-          } else {
-            // DB에 데이터가 없으면 더미 데이터 사용
-            setStories(dummyStories);
-          }
+          setStories(data.stories || []);
         } else {
-          setStories(dummyStories);
+          setStories([]);
         }
       } catch (error) {
         console.error('Error fetching stories:', error);
-        setStories(dummyStories);
+        setStories([]);
       } finally {
         setLoading(false);
       }
