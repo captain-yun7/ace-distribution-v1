@@ -8,24 +8,27 @@ import { useSearchParams } from 'next/navigation';
 interface Story {
   id: string;
   title: string;
-  category: 'PARTNERSHIP' | 'PRESS';
-  description: string;
-  content: string | null;
+  category: 'PRESS_RELEASE' | 'EVENT' | 'NOTICE' | 'BLOG';
+  excerpt: string | null;
+  content: string;
   imageUrl: string | null;
   thumbnailUrl: string | null;
-  tags: string[] | null;
-  isFeatured: boolean;
+  isPinned: boolean;
   publishedAt: string;
 }
 
 const categoryLabels: Record<string, string> = {
-  'PARTNERSHIP': '협력 사례',
-  'PRESS': '언론 보도',
+  'PRESS_RELEASE': '보도자료',
+  'EVENT': '이벤트',
+  'NOTICE': '공지사항',
+  'BLOG': '블로그',
 };
 
 const defaultImages: Record<string, string> = {
-  'PARTNERSHIP': 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop',
-  'PRESS': 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=600&fit=crop',
+  'PRESS_RELEASE': 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=600&fit=crop',
+  'EVENT': 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop',
+  'NOTICE': 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop',
+  'BLOG': 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=600&fit=crop',
 };
 
 
@@ -38,7 +41,7 @@ function StoryPageContent() {
   // URL 쿼리 파라미터에서 초기 카테고리 설정
   useEffect(() => {
     const categoryParam = searchParams.get('category');
-    if (categoryParam && (categoryParam === 'PARTNERSHIP' || categoryParam === 'PRESS')) {
+    if (categoryParam && ['PRESS_RELEASE', 'EVENT', 'NOTICE', 'BLOG'].includes(categoryParam)) {
       setActiveCategory(categoryParam);
     }
   }, [searchParams]);
@@ -46,10 +49,10 @@ function StoryPageContent() {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const res = await fetch('/api/stories?limit=50');
+        const res = await fetch('/api/news?limit=50');
         if (res.ok) {
           const data = await res.json();
-          setStories(data.stories || []);
+          setStories(data.news || []);
         } else {
           setStories([]);
         }
@@ -80,7 +83,7 @@ function StoryPageContent() {
         <PageHero
           badge="STORY"
           title="스토리"
-          subtitle="에이스유통의 협력 사례와 언론 보도"
+          subtitle="에이스유통의 뉴스, 공지사항 및 이벤트"
           breadcrumb={[
             { name: 'ACE 스토리', href: '/culture/internal' },
             { name: '스토리' }
@@ -102,24 +105,44 @@ function StoryPageContent() {
                 전체
               </button>
               <button
-                onClick={() => setActiveCategory('PARTNERSHIP')}
+                onClick={() => setActiveCategory('PRESS_RELEASE')}
                 className={`px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
-                  activeCategory === 'PARTNERSHIP'
+                  activeCategory === 'PRESS_RELEASE'
                     ? 'bg-[#B8956A] text-white shadow-lg'
                     : 'bg-white text-[#6B5D53] border border-[#E8DCC8] hover:border-[#B8956A] hover:text-[#B8956A]'
                 }`}
               >
-                협력 사례
+                보도자료
               </button>
               <button
-                onClick={() => setActiveCategory('PRESS')}
+                onClick={() => setActiveCategory('EVENT')}
                 className={`px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
-                  activeCategory === 'PRESS'
+                  activeCategory === 'EVENT'
                     ? 'bg-[#B8956A] text-white shadow-lg'
                     : 'bg-white text-[#6B5D53] border border-[#E8DCC8] hover:border-[#B8956A] hover:text-[#B8956A]'
                 }`}
               >
-                언론 보도
+                이벤트
+              </button>
+              <button
+                onClick={() => setActiveCategory('NOTICE')}
+                className={`px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
+                  activeCategory === 'NOTICE'
+                    ? 'bg-[#B8956A] text-white shadow-lg'
+                    : 'bg-white text-[#6B5D53] border border-[#E8DCC8] hover:border-[#B8956A] hover:text-[#B8956A]'
+                }`}
+              >
+                공지사항
+              </button>
+              <button
+                onClick={() => setActiveCategory('BLOG')}
+                className={`px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
+                  activeCategory === 'BLOG'
+                    ? 'bg-[#B8956A] text-white shadow-lg'
+                    : 'bg-white text-[#6B5D53] border border-[#E8DCC8] hover:border-[#B8956A] hover:text-[#B8956A]'
+                }`}
+              >
+                블로그
               </button>
             </div>
           </div>
@@ -150,7 +173,7 @@ function StoryPageContent() {
                 {filteredStories.map((story) => (
                   <Link
                     key={story.id}
-                    href={`/culture/story/${story.id}`}
+                    href={`/content/news/${story.id}`}
                     className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#E8DCC8] hover:border-[#B8956A] hover:shadow-xl transition-all duration-300 group block"
                   >
                     <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-[#FAF6F1] to-white">
@@ -163,9 +186,9 @@ function StoryPageContent() {
                         <span className="bg-[#B8956A] text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
                           {categoryLabels[story.category]}
                         </span>
-                        {story.isFeatured && (
+                        {story.isPinned && (
                           <span className="bg-[#4A4039] text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
-                            주요
+                            중요
                           </span>
                         )}
                       </div>
@@ -175,7 +198,7 @@ function StoryPageContent() {
                       <h3 className="text-sm sm:text-lg font-bold text-[#4A4039] mb-1 sm:mb-2 group-hover:text-[#B8956A] transition-colors line-clamp-2">
                         {story.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#6B5D53] line-clamp-2 hidden sm:block">{story.description}</p>
+                      <p className="text-xs sm:text-sm text-[#6B5D53] line-clamp-2 hidden sm:block">{story.excerpt || ''}</p>
                     </div>
                   </Link>
                 ))}
