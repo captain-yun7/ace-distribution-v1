@@ -66,7 +66,8 @@ export async function PUT(
     return NextResponse.json(news);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.issues }, { status: 400 });
+      const errorMessage = error.issues.map(issue => issue.message).join(', ');
+      return NextResponse.json({ error: errorMessage }, { status: 400 });
     }
     console.error('Error updating news:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

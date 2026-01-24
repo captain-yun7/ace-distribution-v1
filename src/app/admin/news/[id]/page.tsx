@@ -16,7 +16,7 @@ export default function EditNewsPage({ params }: { params: Promise<{ id: string 
     slug: '',
     content: '',
     excerpt: '',
-    category: 'NOTICE' as 'PRESS' | 'EVENT' | 'NOTICE' | 'BLOG',
+    category: 'NOTICE' as 'PRESS_RELEASE' | 'EVENT' | 'NOTICE' | 'BLOG',
     thumbnailUrl: '',
     isPublished: true,
     isFeatured: false,
@@ -122,7 +122,7 @@ export default function EditNewsPage({ params }: { params: Promise<{ id: string 
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
             >
               <option value="NOTICE">공지사항</option>
-              <option value="PRESS">보도자료</option>
+              <option value="PRESS_RELEASE">보도자료</option>
               <option value="EVENT">이벤트</option>
               <option value="BLOG">블로그</option>
             </select>

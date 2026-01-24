@@ -88,7 +88,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(news, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.issues }, { status: 400 });
+      const errorMessage = error.issues.map(issue => issue.message).join(', ');
+      return NextResponse.json({ error: errorMessage }, { status: 400 });
     }
     console.error('Error creating news:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
