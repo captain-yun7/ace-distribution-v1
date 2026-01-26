@@ -36,7 +36,7 @@ export default function PageHero({ title, subtitle, badge, breadcrumb, backgroun
           {badge && (
             <span className="text-xs sm:text-sm font-medium text-[#D4A574] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-2 sm:mb-4 animate-fadeInUp">{badge}</span>
           )}
-          <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold text-white mb-2 sm:mb-4 animate-fadeInUp animation-delay-200">{title}</h1>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-4 animate-fadeInUp animation-delay-200">{title}</h1>
           <p className="text-white/80 text-sm sm:text-lg lg:text-xl max-w-2xl px-2 animate-fadeInUp animation-delay-400">{subtitle}</p>
         </div>
       </section>

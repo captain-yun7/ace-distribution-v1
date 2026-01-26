@@ -104,8 +104,7 @@ export default function LocationPage() {
                     </div>
                     <div>
                       <h3 className="font-bold text-[#4A4039] mb-1">영업시간</h3>
-                      <p className="text-[#6B5D53]">평일 08:00 - 18:00</p>
-                      <p className="text-sm text-[#6B5D53]/70">토요일, 일요일, 공휴일 휴무</p>
+                      <p className="text-[#6B5D53]">평일 09:00 - 18:00</p>
                     </div>
                   </div>
                 </div>
