@@ -788,7 +788,7 @@ export default function AboutIntroPage() {
                   <img
                     src={item.imageUrl || ''}
                     alt={item.title}
-                    className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300 border border-[#E8DCC8]"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 border border-[#E8DCC8]"
                   />
                 </div>
                 <div className="p-3 sm:p-6 flex flex-col flex-grow">
