@@ -1,4 +1,4 @@
-# robots.txt for ace-distribution.co.kr
+# robots.txt for acedistribution.co.kr
 
 User-agent: *
 Allow: /
@@ -9,4 +9,4 @@ Disallow: /login
 Disallow: /api/
 
 # 사이트맵 위치
-Sitemap: https://ace-distribution.co.kr/sitemap.xml
+Sitemap: https://acedistribution.co.kr/sitemap.xml

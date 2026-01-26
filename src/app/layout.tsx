@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://ace-distribution.co.kr'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://acedistribution.co.kr'),
   alternates: {
     canonical: '/',
   },
@@ -71,8 +71,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'YOUR_GOOGLE_VERIFICATION_CODE', // Google Search Console 인증 코드
-    // naver: 'YOUR_NAVER_VERIFICATION_CODE', // 네이버 웹마스터 도구 인증 코드
+    google: 'googlec8bf49ffcb63533a',
+    other: {
+      'naver-site-verification': 'navera38b6ab8edc0fc4be16bfa81a8ea506e',
+    },
   },
 };
 
@@ -88,13 +90,13 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://ace-distribution.co.kr/#organization',
+      '@id': 'https://acedistribution.co.kr/#organization',
       name: '에이스유통주식회사',
       alternateName: ['에이스유통', 'ACE Distribution'],
-      url: 'https://ace-distribution.co.kr',
+      url: 'https://acedistribution.co.kr',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://ace-distribution.co.kr/logo.png',
+        url: 'https://acedistribution.co.kr/logo.png',
         width: 200,
         height: 60,
       },
@@ -122,9 +124,9 @@ const jsonLd = {
     },
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://ace-distribution.co.kr/#localbusiness',
+      '@id': 'https://acedistribution.co.kr/#localbusiness',
       name: '에이스유통',
-      image: 'https://ace-distribution.co.kr/og-image.png',
+      image: 'https://acedistribution.co.kr/og-image.png',
       description: '베이커리 카페 원재료 유통, 제과제빵 재료 도소매, 베이킹 생지 전문 납품업체',
       address: {
         '@type': 'PostalAddress',
@@ -142,7 +144,7 @@ const jsonLd = {
       telephone: '02-471-1644',
       faxNumber: '02-476-1372',
       email: 'ace32865@hanmail.net',
-      url: 'https://ace-distribution.co.kr',
+      url: 'https://acedistribution.co.kr',
       priceRange: '$$',
       openingHours: 'Mo-Fr 09:00-18:00',
       areaServed: {
@@ -153,16 +155,16 @@ const jsonLd = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://ace-distribution.co.kr/#website',
-      url: 'https://ace-distribution.co.kr',
+      '@id': 'https://acedistribution.co.kr/#website',
+      url: 'https://acedistribution.co.kr',
       name: '에이스유통',
       description: '베이커리 카페 원재료 유통 전문기업',
       publisher: {
-        '@id': 'https://ace-distribution.co.kr/#organization',
+        '@id': 'https://acedistribution.co.kr/#organization',
       },
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://ace-distribution.co.kr/products?search={search_term_string}',
+        target: 'https://acedistribution.co.kr/products?search={search_term_string}',
         'query-input': 'required name=search_term_string',
       },
     },
@@ -188,8 +190,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* 네이버 웹마스터 도구 인증 - 발급받은 후 아래 코드 활성화 */}
-        {/* <meta name="naver-site-verification" content="YOUR_NAVER_CODE" /> */}
       </head>
       <body className="antialiased">
         <Providers>{children}</Providers>

@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ace-distribution.co.kr';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://acedistribution.co.kr';
 
   // 정적 페이지들
   const staticPages: MetadataRoute.Sitemap = [
