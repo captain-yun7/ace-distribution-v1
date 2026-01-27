@@ -724,7 +724,7 @@ export default function HomePage() {
           <div className="text-center mb-8 sm:mb-12">
             <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">CEO MESSAGE</span>
             <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-6 sm:mb-8 leading-tight">
-              "정직한 유통으로 신뢰를 쌓아가는 카페·베이커리 유통 파트너가 되겠습니다"
+              &quot;정직한 유통으로 신뢰를 쌓아가는<br />카페·베이커리 유통 파트너가 되겠습니다&quot;
             </h2>
           </div>
 
