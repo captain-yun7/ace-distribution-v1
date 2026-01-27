@@ -734,30 +734,17 @@ export default function HomePage() {
             </p>
             <p>
               당사는 카페·베이커리 산업을 위한 프리미엄 원재료 공급, 전문 소싱, 콜드체인 물류,<br className="hidden sm:block" />
-              품질관리(QC)를 기반으로 성장해온 <strong className="text-[#4A4039]">F&B B2B</strong> 솔루션 기업입니다. 2010년 설립 이후<br className="hidden sm:block" />
-              자체 물류센터와 체계적인 유통 인프라를 구축하며 국내 프랜차이즈, 베이커리 카페,<br className="hidden sm:block" />
-              전문 제과점 등 다양한 파트너에게 신뢰성 높은 제품을 안정적으로 공급해왔습니다.
+              품질관리(QC)를 기반으로 성장해온 F&B B2B 솔루션 기업입니다. 2010년 설립 이후<br className="hidden sm:block" />
+              자체 물류센터와 체계적인 유통 인프라를 구축하며 국내 프랜차이즈, 베이커리 카페, 전문 제과점<br className="hidden sm:block" />
+              등 다양한 파트너에게 신뢰성 높은 제품을 안정적으로 공급해왔습니다.
             </p>
             <p>
-              저희 에이스유통은 원재료의 선별력과 정교한 품질관리, 신속한 공급망 운영을 통해<br className="hidden sm:block" />
-              고객이 필요로 하는 제품을 정확하고 안정적으로 전달하는 데 집중해왔으며<br className="hidden sm:block" />
-              이를 통해 업계에서 견고한 파트너십을 확보해 왔습니다.
-            </p>
-            <p>
-              특히 단순한 원재료 공급을 넘어, 카페/베이커리 사업의 전 과정을 지원하는<br className="hidden sm:block" />
-              무료 컨설팅 서비스를 제공하여 고객사의 성공적인 창업과 운영을 돕고 있습니다.<br className="hidden sm:block" />
-              매장 매입/매각부터 시장조사, 기계/인테리어 제휴, 전문 인력 매칭,<br className="hidden sm:block" />
-              제과제빵 상품 <strong className="text-[#4A4039]">큐레이션</strong>에 이르기까지 비즈니스의 시작과 끝을 함께 고민합니다.
-            </p>
-            <p>
-              더 나아가 캐릭터 <strong className="text-[#4A4039]">IP F&B</strong> 사업을 통해 인기 캐릭터와의 콜라보레이션으로 차별화된<br className="hidden sm:block" />
-              메뉴 및 <strong className="text-[#4A4039]">굿즈</strong> 개발을 지원하며, 고객사의 브랜드 경쟁력을 강화하는 데 기여하고 있습니다.<br className="hidden sm:block" />
-              자체 브랜드 제품과 <strong className="text-[#4A4039]">굿즈</strong> 개발을 통해 매장만의 독특한 아이덴티티를 구축하고,<br className="hidden sm:block" />
-              고객 경험을 풍부하게 만드는 차별화 전략을 함께 만들어갑니다.
+              단순한 원재료 공급을 넘어 매장 매입/매각, 시장조사, 기계/인테리어 제휴, 전문 인력 매칭,<br className="hidden sm:block" />
+              제과제빵 상품 큐레이션까지 사업의 전 과정을 지원하는 무료 컨설팅 서비스를 제공하며,<br className="hidden sm:block" />
+              캐릭터 IP F&B 사업과 자체 브랜드 개발로 차별화된 고객 경험을 함께 만들어갑니다.
             </p>
             <p className="font-medium text-[#4A4039]">
-              에이스유통은 앞으로도 고품질 원재료와 안정적인 공급 체계를 중심으로<br className="hidden sm:block" />
-              고객의 비즈니스를 확실하게 지원하며 신뢰받는 유통 파트너로 자리매김하겠습니다.
+              에이스유통은 앞으로도 고품질 원재료와 안정적인 공급 체계로 신뢰받는 유통 파트너가 되겠습니다.
             </p>
           </div>
 
