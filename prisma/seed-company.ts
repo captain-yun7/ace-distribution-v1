@@ -44,7 +44,7 @@ async function main() {
       title: '특허증 (냉장/냉동 장치)',
       description: '제과제빵류 운반 및 보관용 냉장/냉동장치 특허 (제 10-2445173호)',
       date: '2020년 취득',
-      imageUrl: '/images/certificates/patent.png',
+      imageUrl: '/images/certificates/patent.jpg',
       order: 1,
     },
     {
