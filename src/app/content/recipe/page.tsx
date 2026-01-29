@@ -10,6 +10,7 @@ interface Recipe {
   title: string;
   description: string;
   imageUrl: string | null;
+  isFeatured: boolean;
 }
 
 const ITEMS_PER_PAGE = 12;
@@ -113,9 +114,16 @@ export default function RecipePage() {
 
                       {/* Recipe Info */}
                       <div className={`p-4 ${!showImages ? 'flex-1' : ''}`}>
-                        <span className="inline-block px-2.5 py-1 bg-[#B8956A]/10 text-[#B8956A] text-[11px] font-medium rounded-full mb-2">
-                          RECIPE
-                        </span>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="inline-block px-2.5 py-1 bg-[#B8956A]/10 text-[#B8956A] text-[11px] font-medium rounded-full">
+                            RECIPE
+                          </span>
+                          {recipe.isFeatured && (
+                            <span className="inline-block px-2.5 py-1 bg-yellow-100 text-yellow-700 text-[11px] font-medium rounded-full">
+                              추천
+                            </span>
+                          )}
+                        </div>
                         <h3 className="text-base font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors line-clamp-2">
                           {recipe.title}
                         </h3>

@@ -11,11 +11,11 @@ import {
   useCompanyClients,
 } from '@/hooks/company';
 
-// 업력 자동 계산 함수 (설립년도 포함하여 계산)
+// 업력 자동 계산 함수
 const calculateYearsInBusiness = () => {
   const foundingYear = 2010;
   const currentYear = new Date().getFullYear();
-  return currentYear - foundingYear + 1;
+  return currentYear - foundingYear;
 };
 
 interface CompanyKPI {
