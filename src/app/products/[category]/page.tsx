@@ -19,6 +19,7 @@ interface Product {
   brand: string | null;
   description: string;
   imageUrl: string | null;
+  isFeatured: boolean;
   category: {
     id: string;
     name: string;
@@ -165,9 +166,16 @@ export default function CategoryPage() {
                       href={`/products/${product.category.name}/${product.id}`}
                       className="bg-white rounded-xl border border-[#E8DCC8] p-5 hover:border-[#B8956A] hover:shadow-lg transition-all duration-300 group block"
                     >
-                      <h3 className="text-base font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors mb-1.5 line-clamp-2">
-                        {product.name}
-                      </h3>
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <h3 className="text-base font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors line-clamp-2">
+                          {product.name}
+                        </h3>
+                        {product.isFeatured && (
+                          <span className="inline-block px-2.5 py-0.5 bg-yellow-100 text-yellow-700 text-[11px] font-medium rounded-full shrink-0">
+                            추천
+                          </span>
+                        )}
+                      </div>
                       <p className="text-sm text-[#6B5D53]">{product.brand || product.code}</p>
                     </Link>
                   ))}

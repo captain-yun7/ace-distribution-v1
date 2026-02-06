@@ -24,6 +24,7 @@ interface Product {
   description: string;
   imageUrl: string | null;
   thumbnailUrl: string | null;
+  isFeatured: boolean;
   category: {
     id: string;
     name: string;
@@ -247,9 +248,16 @@ export default function ProductsAllPage() {
 
                       {/* Product Info */}
                       <div className={`p-4 ${!showImages ? 'flex-1' : ''}`}>
-                        <span className="inline-block px-2.5 py-1 bg-[#B8956A]/10 text-[#B8956A] text-[11px] font-medium rounded-full mb-2">
-                          {product.category?.displayName}
-                        </span>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="inline-block px-2.5 py-1 bg-[#B8956A]/10 text-[#B8956A] text-[11px] font-medium rounded-full">
+                            {product.category?.displayName}
+                          </span>
+                          {product.isFeatured && (
+                            <span className="inline-block px-2.5 py-1 bg-yellow-100 text-yellow-700 text-[11px] font-medium rounded-full">
+                              추천
+                            </span>
+                          )}
+                        </div>
                         <h3 className="text-base font-bold text-[#4A4039] group-hover:text-[#B8956A] transition-colors mb-1 line-clamp-2">
                           {product.name}
                         </h3>
