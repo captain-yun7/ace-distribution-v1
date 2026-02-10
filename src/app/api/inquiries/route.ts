@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
 
     // Send email notification
     const resend = getResendClient();
-    const adminEmail = process.env.ADMIN_EMAIL || 'ace32865@hanmail.net';
+    const adminEmail = (process.env.ADMIN_EMAIL || 'ace32865@hanmail.net').split(',').map(e => e.trim());
     const fromEmail = process.env.FROM_EMAIL || 'onboarding@resend.dev';
 
     try {
@@ -151,7 +151,13 @@ export async function POST(request: NextRequest) {
       });
     } catch (emailError) {
       console.error('Email sending failed:', emailError);
-      // Continue even if email fails - inquiry is saved to database
+      // DB에는 저장되었지만 이메일 발송 실패
+      return NextResponse.json({
+        success: true,
+        message: '문의가 접수되었습니다. (이메일 알림 발송에 실패했습니다)',
+        inquiryId: inquiry.id,
+        emailError: true,
+      });
     }
 
     return NextResponse.json({
