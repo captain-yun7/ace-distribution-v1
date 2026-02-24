@@ -4,19 +4,15 @@ import { useState } from 'react';
 import BasicInfoTab from './components/BasicInfoTab';
 import TimelineTab from './components/TimelineTab';
 import CertificatesTab from './components/CertificatesTab';
-import ClientsTab from './components/ClientsTab';
 import CoreValuesTab from './components/CoreValuesTab';
 import CultureTab from './components/CultureTab';
-import DonationsTab from './components/DonationsTab';
 
 const tabs = [
   { id: 'basic', name: '기본 정보', icon: '🏢' },
   { id: 'timeline', name: '기업 연혁', icon: '📅' },
   { id: 'certificates', name: '인증서', icon: '🏆' },
-  { id: 'clients', name: '주요 고객사', icon: '🤝' },
   { id: 'core-values', name: '핵심가치', icon: '💎' },
   { id: 'culture', name: '사내문화', icon: '🌱' },
-  { id: 'donations', name: '기부 현황', icon: '❤️' },
 ];
 
 export default function AdminCompanyPage() {
@@ -55,10 +51,8 @@ export default function AdminCompanyPage() {
         {activeTab === 'basic' && <BasicInfoTab />}
         {activeTab === 'timeline' && <TimelineTab />}
         {activeTab === 'certificates' && <CertificatesTab />}
-        {activeTab === 'clients' && <ClientsTab />}
         {activeTab === 'core-values' && <CoreValuesTab />}
         {activeTab === 'culture' && <CultureTab />}
-        {activeTab === 'donations' && <DonationsTab />}
       </div>
     </div>
   );
