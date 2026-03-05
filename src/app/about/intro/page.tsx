@@ -676,19 +676,15 @@ export default function AboutIntroPage() {
 
           {/* 조직도 */}
           <div className="bg-gradient-to-br from-[#FAF6F1] to-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border border-[#E8DCC8]">
-            {/* CEO + 토이트론 */}
-            <div className="flex justify-center items-center gap-3 sm:gap-4">
+            {/* CEO */}
+            <div className="flex justify-center">
               <div className="bg-[#B8956A] text-white px-6 sm:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg">
                 <p className="text-lg sm:text-2xl font-bold text-center">CEO</p>
               </div>
-              <div className="w-8 sm:w-12 h-[2px] bg-[#D4A574]"></div>
-              <div className="bg-[#4A4039] text-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg">
-                <p className="text-sm sm:text-lg font-bold text-center">㈜토이트론</p>
-              </div>
             </div>
 
-            {/* 연결선 - CEO에서 아래로 (끊김없이) */}
-            <div className="flex justify-center" style={{ marginLeft: '-60px' }}>
+            {/* 연결선 - CEO에서 아래로 */}
+            <div className="flex justify-center">
               <div className="w-[2px] h-10 sm:h-14 bg-[#D4A574]"></div>
             </div>
 
