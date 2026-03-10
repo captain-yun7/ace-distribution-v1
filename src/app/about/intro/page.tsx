@@ -547,17 +547,6 @@ export default function AboutIntroPage() {
             <p className="text-sm sm:text-base text-[#6B5D53]">전국 유통망과 물류 인프라</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-8 sm:mb-12">
-            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-center border border-[#E8DCC8]">
-              <p className="text-2xl sm:text-5xl font-bold text-[#B8956A] mb-1 sm:mb-2">{getKPIValue('deliveryVehicles', defaultKPI.deliveryVehicles)}</p>
-              <p className="text-xs sm:text-base text-[#4A4039] font-semibold">배송차량 보유</p>
-            </div>
-            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-center border border-[#E8DCC8]">
-              <p className="text-2xl sm:text-5xl font-bold text-[#B8956A] mb-1 sm:mb-2">{getKPIValue('warehouseSize', defaultKPI.warehouseSize)}</p>
-              <p className="text-xs sm:text-base text-[#4A4039] font-semibold">물류센터 면적</p>
-            </div>
-          </div>
-
           <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 border border-[#E8DCC8]">
             <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
               <div className="text-sm sm:text-base text-left">
@@ -571,8 +560,11 @@ export default function AboutIntroPage() {
                 <p className="text-[#6B5D53] mb-3 sm:mb-4">
                   <strong className="text-[#4A4039]">이메일:</strong> ace32865@hanmail.net
                 </p>
-                <p className="text-[#6B5D53]">
+                <p className="text-[#6B5D53] mb-3 sm:mb-4">
                   <strong className="text-[#4A4039]">팩스:</strong> 02) 476-1372
+                </p>
+                <p className="text-[#6B5D53]">
+                  <strong className="text-[#4A4039]">물류센터면적:</strong> {getKPIValue('warehouseSize', defaultKPI.warehouseSize)}
                 </p>
               </div>
               <div className="flex items-center justify-end">
