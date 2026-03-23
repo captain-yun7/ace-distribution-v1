@@ -42,7 +42,6 @@ export default function AboutIntroPage() {
     { year: '2025', title: '서울대 경영인상 수상', desc: '서울대 경영인상 수상' },
     { year: '2025', title: '하남시 의장 표창장 수상', desc: '하남시 의장 표창장 수상' },
     { year: '2025', title: '토이트론 전략적 신주인수 계약', desc: 'IP 굿즈 및 에듀 콘텐츠 전문기업 ㈜토이트론과 전략적 신주인수 계약체결' },
-    { year: '2024', title: '연매출 245억 달성', desc: '지속적인 성장으로 연매출 245억원 달성' },
     { year: '2023', title: '일터혁신 사업장 선정', desc: '노사발전재단 일터혁신 사업장으로 선정' },
     { year: '2022', title: '하남 시장 표창장 수상', desc: '하남 시장 표창장 수상' },
     { year: '2021', title: '에이스제빵소 상표권 등록', desc: '에이스제빵소 브랜드 상표권 등록' },
@@ -219,7 +218,6 @@ export default function AboutIntroPage() {
                   '하남시 의장 표창장 수상',
                   'IP 굿즈 및 에듀 콘텐츠 전문기업\n㈜토이트론과 전략적 신주인수 계약체결'
                 ], side: 'right' },
-                { year: '2024', items: ['매출 245억 달성'], side: 'left' },
                 { year: '2023', items: ['일터혁신 사업장으로 선정'], side: 'right' },
                 { year: '2022', items: ['하남 시장 표창장 수상'], side: 'left' },
                 { year: '2021', items: ['에이스제빵소 상표권 등록'], side: 'right' },
@@ -292,7 +290,6 @@ export default function AboutIntroPage() {
                   '하남시 의장 표창장 수상',
                   'IP 굿즈 및 에듀 콘텐츠 전문기업\n㈜토이트론과 전략적 신주인수 계약체결'
                 ] },
-                { year: '2024', items: ['매출 245억 달성'] },
                 { year: '2023', items: ['일터혁신 사업장으로 선정'] },
                 { year: '2022', items: ['하남 시장 표창장 수상'] },
                 { year: '2021', items: ['에이스제빵소 상표권 등록'] },
