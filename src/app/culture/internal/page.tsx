@@ -186,36 +186,6 @@ export default function InternalCulturePage() {
           </div>
         </section>
 
-        {/* Donation History */}
-        <section className="py-12 sm:py-20 bg-[#FAF6F1]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10 sm:mb-16">
-              <span className="text-xs sm:text-sm font-medium text-[#B8956A] tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-3 sm:mb-4 block">DONATIONS</span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A4039] mb-3 sm:mb-4">기부 현황</h2>
-            </div>
-
-            {/* 후원 증서 */}
-            <div className="mt-8 sm:mt-12">
-              <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-[#E8DCC8] overflow-hidden">
-                <div className="text-center mb-4 sm:mb-6">
-                  <h3 className="text-lg sm:text-2xl font-bold text-[#4A4039] mb-2">희망브릿지 후원 증서</h3>
-                  <p className="text-sm sm:text-base text-[#6B5D53] whitespace-pre-line">에이스유통(주)는 2025년 4월 15일 산불로 피해를 입은 이웃들의 조속한 일상 회복을 돕기 위해{'\n'}희망브릿지 전국재해구호협회를 통해 산불 피해 이웃돕기 성금 기부를 완료했습니다.</p>
-                </div>
-                <div className="flex justify-center">
-                  <div className="relative w-full max-w-sm aspect-square rounded-lg sm:rounded-xl overflow-hidden shadow-lg">
-                    <Image
-                      src="/images/company/sponsorship.png"
-                      alt="희망브릿지 후원 증서 - 에이스유통 산불 피해 이웃돕기 성금 기부"
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 768px) 320px, 384px"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
       </main>
       <Footer />
